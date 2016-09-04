@@ -126,17 +126,27 @@
 
 
 \begin{abstract}
-We formulate the late score fusion algorithm as ensemble clustering problem, and propose an efficient optimization algorithm, namely Score Fusion via Ensemble Cluster(SFEC). SFEC has capability to remove outliers of label assignments from multiple classifiers using a $\ell_{2,1}$ loss, which improves the performance of late fusion (large scale ability). To the best of our knowledge, this is the first work to connect ensemble clustering with late fusion. Compared to the state-of-the-art fusion algorithm, the SFEC achieves promising improvements on large scale dataset such as UCF101
-%In this paper, we propose an efficient maximum margin matrix factorization algorithm for ensemble clustering.
-%Our contributions include i) introduction of an efficient optimization for matrix completion based ensemble clustering methods; ii) an intuitive motivation for a $\ell_{1,2}$ loss.
-%[Gao] , FM
+% First: A big picture of the scenario which we would consider
+In many real world applications, data can be represented in multiple ways/features, which would describe various characteristics of data.
+Many works have shown that it could often improve the performance to make use of these features together.
+% Second: what BIG problem would we like to solve?
+Late fusion, which combines the predictions of multiple features, is a commonly used approach to generate the final decision for a test instance.
+% Third: specify the detailed problem: find a precise position for our paper
+However, it is ubiquitous that different features would dispute on some data, leading to the requirement of outlier rejection for late fusion algorithms.
+% Fourth: general introduction of our method
+In this paper, we propose an efficient matrix factorization based approach to fuse predictions from multiple sources, which could
+relieve the performance degeneration caused by the controversy of multiple features on test data.
+% Some unvalued sentence(s)
+Extensive experiments demonstrate that the proposed method is effective to remove outliers and improve fusion performance.
+% Written by DXY:
+%We formulate the late score fusion algorithm as ensemble clustering problem, and propose an efficient optimization algorithm, namely Score Fusion via Ensemble Cluster(SFEC). SFEC has capability to remove outliers of label assignments from multiple classifiers using a $\ell_{2,1}$ loss, which improves the performance of late fusion (large scale ability). To the best of our knowledge, this is the first work to connect ensemble clustering with late fusion. Compared to the state-of-the-art fusion algorithm, the SFEC achieves promising improvements on large scale dataset such as UCF101
 \end{abstract}
 
 
 
 \section{Introduction}
 
-A single model results could be inaccurate in vision recogonition, so some researchers study how to fuse multiple models to boost the performance, such as the algorithms proposed in \cite{gehler2009feature,xuiccv2013feature,Rakotomamonjy2008Simplemkl}. Fusion techniques can be grouped into two types which are early fusion and late fusion, early fusion fusion multiple models in the feature level, late fusion merge the result of each classifier. 
+A single model results could be inaccurate in vision recogonition, so some researchers study how to fuse multiple models to boost the performance, such as the algorithms proposed in \cite{gehler2009feature,xuiccv2013feature,Rakotomamonjy2008Simplemkl}. Fusion techniques can be grouped into two types which are early fusion and late fusion, early fusion fusion multiple models in the feature level, late fusion merge the result of each classifier.
 
 In the early fusion, a linear combination or more complex functions,eg. 3D convolution , of different features is utilized to capture inner correlation bettwen each model, such as \cite{Feichtenhofer2016Convolutional}. A more simple but effective method in early fusion is to calculate multiple kernel matrix from different features and then average them together to train a SVM classifier.
 Another fusion technique is late fusion, which train classifiers of seperate features and then fuses the results based on the predicted scores, such as \cite{gehler2009feature} learns a linear combination on decision values of individual features to boost the performance of single model.
@@ -204,7 +214,7 @@ We first elaborate the formulation of our SFEC algorithm. Then we show the detai
 \end{figure}
 
 \subsection{Problem Formulation}{}
-Suppose there are n testing instances, we denote each instance as a variable $x_i \belong R^d (1<=i<=n)$. Assuming we have already training m classifiers, $f_1(x), f_2(x), ... f_m(x)$, per classifier will predict a score vector $s_{ij}, 1<=i<=n, 1<=j<=m$，represent the result of j-th classifier on i-th testing instance. Our goal is to fusion these score vectors. Firstly, we transfer these score vectors to a label matrix P, each colums represent the highest value position of each instance. Then using label assigment, we convert multiple P matrixs into a 01 matrix L, see as{\ref{fig:framework}}. 
+Suppose there are n testing instances, we denote each instance as a variable $x_i \in \dsR^d (1<=i<=n)$. Assuming we have already training m classifiers, $f_1(x), f_2(x), ... f_m(x)$, per classifier will predict a score vector $s_{ij}, 1<=i<=n, 1<=j<=m$，represent the result of j-th classifier on i-th testing instance. Our goal is to fusion these score vectors. Firstly, we transfer these score vectors to a label matrix P, each colums represent the highest value position of each instance. Then using label assigment, we convert multiple P matrixs into a 01 matrix L, see as{\ref{fig:framework}}.
 The core of our proposed algorithm is to apply $\ell_{1,2}$ to capture the outliers as well as anomalous columns in matrix L, which can be written as below
 \begin{align}\label{eq:l12e}
   \min_{\bX} ~&~ || \bL - \bX ||_{1,2}    \nonumber \\
@@ -349,9 +359,9 @@ It could be a contribution, since maximum margin loss achieves better performanc
 
 
 \section{Experiments}
-We visualize the results of our approach on one synthetic and evaluate the perfomance on five publicly available datasets : UCF101 human action dataset\cite{soomro2012ucf101}, Cifar10\cite{krizhevsky2009learning} dataset, PASCAL VOC’07\cite{pascal-voc-2007}, Oxford Flower 17\cite{nilsback2006visual} and Pascal Sentences dataset. 
-In UCF101 dataset, features are extracted from `fc6' layer of C3D model\cite{tran2015learning}, `pool5/7x7\_s1' layer from GoogleNet model\cite{szegedy2015going}, `pool5' layer of Residual Network model\cite{he2015deep}, `fc6' layer of AlexNet\cite{krizhevsky2012imagenet} model\cite{alex} and caffenet model (described in caffe model zoo) and Two-Stream Convolutional Networks. Given a video, we sample 25 frames with equal temporal spacing between them as described in \cite{twostream}(25 volumes for C3D). Following the same produce in \cite{tran2015learning} and \cite{simonyan2014two}, the features for the whole video are then calculated by averaging the features across the sampled frames. 
-In Cifar10 dataset, features are extracted from `global\_pool' layer of the ResnNt-20,32,44,56,110 models\cite{he2015deep} and pre-activation ResNet-20,32,44,56,110,164 models\cite{he2016identity}. 
+We visualize the results of our approach on one synthetic and evaluate the perfomance on five publicly available datasets : UCF101 human action dataset\cite{soomro2012ucf101}, Cifar10\cite{krizhevsky2009learning} dataset, PASCAL VOC’07\cite{pascal-voc-2007}, Oxford Flower 17\cite{nilsback2006visual} and Pascal Sentences dataset.
+In UCF101 dataset, features are extracted from `fc6' layer of C3D model\cite{tran2015learning}, `pool5/7x7\_s1' layer from GoogleNet model\cite{szegedy2015going}, `pool5' layer of Residual Network model\cite{he2015deep}, `fc6' layer of AlexNet\cite{krizhevsky2012imagenet} model\cite{alex} and caffenet model (described in caffe model zoo) and Two-Stream Convolutional Networks. Given a video, we sample 25 frames with equal temporal spacing between them as described in \cite{twostream}(25 volumes for C3D). Following the same produce in \cite{tran2015learning} and \cite{simonyan2014two}, the features for the whole video are then calculated by averaging the features across the sampled frames.
+In Cifar10 dataset, features are extracted from `global\_pool' layer of the ResnNt-20,32,44,56,110 models\cite{he2015deep} and pre-activation ResNet-20,32,44,56,110,164 models\cite{he2016identity}.
 In all other dataset,features are extracted from `fc6' layer of VGG16,VGG19\cite{chatfield2014return},AlexNet,CaffeNet models, `pool5/7x7\_s1' layer from GoogleNet model\cite{szegedy2015going}, `pool5' layer of ResNet-50,101,152 models.
 To be noted, all our cnn features are extracted using Caffe\cite{jia2014caffe}.
 
@@ -445,8 +455,8 @@ FWOT &  000 \\
 LPBoost &  000 \\\hline
 Ours &  000 \\
 \hline
-\caption{Mean Accuracy on UCF101 dataset for best single model and six fusion methods}
 \end{tabular}
+\caption{Mean Accuracy on UCF101 dataset for best single model and six fusion methods}
 \end{table}
 
 \subsection{Experiment on PASCAL VOC 2007 dataset}
