@@ -111,7 +111,10 @@
 
 
 
-\title{Maximum Margin Matrix Factorization for Ensemble Clustering}
+\title{Outlier Reject for Late Fusion on Visual Recognition}
+\author{Yan Yan$^1$, Yi Yang$^1$\\
+$^1$Centre for Quantum Computation and Intelligent Systems, University of Technology, Sydney, Australia\\
+yan.yan-3@student.uts.edu.au,yee.i.yang@gmail.com}
 
 %\author{AAAI Press\\
 %Association for the Advancement of Artificial Intelligence\\
@@ -146,27 +149,51 @@ Extensive experiments demonstrate that the proposed method is effective to remov
 
 \section{Introduction}
 
-A single model results could be inaccurate in vision recogonition, so some researchers study how to fuse multiple models to boost the performance, such as the algorithms proposed in \cite{gehler2009feature,xuiccv2013feature,Rakotomamonjy2008Simplemkl}. Fusion techniques can be grouped into two types which are early fusion and late fusion, early fusion fusion multiple models in the feature level, late fusion merge the result of each classifier.
+%背景 多model融合
+Image or video data in the real world can be represented in multiple features, such as motion features of videos (eg.Dense Trajectories\cite{Wang2011Action}), shape features of frames (eg. Histograms of Oriented Gradients\cite{dalal2005histograms}, SIFT\cite{lowe2004distinctive}), or some complex CNN features for both frames and sequences(eg.\cite{szegedy2015going,chatfield2014return,he2015deep,simonyan2014two,Xu_2015_CVPR}).
+Each of these features contain rich information of data, which can not capture all views of our data. A single classifier model will bias on some characteristics of training data based on different features. Combine multiple features together and capture more views on data can significantly improve the performance.
 
-In the early fusion, a linear combination or more complex functions,eg. 3D convolution , of different features is utilized to capture inner correlation bettwen each model, such as \cite{Feichtenhofer2016Convolutional}. A more simple but effective method in early fusion is to calculate multiple kernel matrix from different features and then average them together to train a SVM classifier.
-Another fusion technique is late fusion, which train classifiers of seperate features and then fuses the results based on the predicted scores, such as \cite{gehler2009feature} learns a linear combination on decision values of individual features to boost the performance of single model.
+%%A single model results could be inaccurate in vision recogonition, so some researchers study how to fuse multiple models to boost the performance, such as the algorithms proposed in \cite{gehler2009feature,xuiccv2013feature,Rakotomamonjy2008Simplemkl}. Fusion techniques can be grouped into two types which are early fusion and late fusion, early fusion fusion multiple models in the feature level, late fusion merge the result of each classifier.
 
-Most previous works in late fusion focus on how to learn weights on different models, (disadvantage?)
+%% late fusion is a common sigle model -> single feature, 介绍late fusion
+Late fusion is a common method to make the combination of different features. Single model is firstly trained on different features using SVM or other classifiers, then late fusion method combine the predicted decision results of each single model to decide the final result.
+A popular family of late fusion algorithm is that estimate a learned weight for each single model and then fuse the weighted prediction results by simple summation.Multiple Kernel Learning\cite{Rakotomamonjy2008Simplemkl} based method learn a linear combination to fuse multiple predicted scores, many works optimize the MKL based late fusion method by leading thresholding, specific weights or robust constraint into algorithm(eg. \cite{gehler2009feature,xuiccv2013feature,lai2015learning}). 
+The alogrithms proposed in ensemble clustering problem might also be used for late fusion, which are capable to find the anomalous results among multiple classifers(eg.\cite{gaoijcai2016robust}).
+\yanred{Robust Principal Component Analysis xxxxx}. 
 
-Another issue in late fusion is that some works based on MKL \cite{xuiccv2013feature} poor ability to extend their algorithm to large scale data, the ensemble clustering alogrithm \cite{gaoijcai2016robust}, which could alse used in fusion, use a matrix inversion learding into a high time complexity.
+%%In the early fusion, a linear combination or more complex functions,eg. 3D convolution , of different features is utilized to capture inner correlation bettwen each model, such as \cite{Feichtenhofer2016Convolutional}. A more simple but effective method in early fusion is to calculate multiple kernel matrix from different features and then average them together to train a SVM classifier.Another fusion technique is late fusion, which train classifiers of seperate features and then fuses the results based on the predicted scores, such as \cite{gehler2009feature} learns a linear combination on decision values of individual features to boost the performance of single model.
+%%Most previous works in late fusion focus on how to learn weights on different models, (disadvantage?)
 
-In this paper, we propose a method for ensemble multiple results from different features. As aforementioned, we could use the connection between different classifiers to remove outliers in their results. To be noticed, the number of class K in vision recoginition task is a great information to constrain the results and connect each other. Suppose we have got an label assigment matrix from each features, and concact them together into L. This label matrix L is inaccurate due to (xxxxxx), we could use the prior knowledge to restore L by fixing the outlier in it, formulate as below:
+
+%% 不同的features 会有意见不同的时候，具体 outlier rejection，might [Gao low rank sparse loss, but the nuclear norm 
+%% scale poorly , expensive single vd(SVDs) present of , the other way of low MF foucs on least square smooth function
+%% least square loss is sensitive to outlier
+%% it's unclear to extend MF to nonsmooth function .
+%% In this paper we proposed a 
+%%Another issue in late fusion is that some works based on MKL \cite{xuiccv2013feature} poor ability to extend their algorithm to large scale data, the ensemble clustering alogrithm \cite{gaoijcai2016robust}, which could alse used in fusion, use a matrix inversion learding into a high time complexity.
+It is ubiquitous that multiple classifers based on different features would have disagreements on some data, which motivates the outlier rejection might solve this problem. There are some researchers have ability to reject the outlier of multiple results, such as \cite{gaoijcai2016robust} use low rank sparse $\ell_{1,2}$ loss and nuclear norm to solve, which are poorly to extend to large scale data due to the expensive cost of Singular Value Decomposition(SVDs) present in the alogrithm. The other research on matrix factorization foucs on least square smooth loss funcion, which is sensitive to outlier and it's unclear to extend matrix factorization to nonsmooth $\ell_{1,2}$ loss.
+
+In this paper, we introduce an efficient matrix factorization based alogrithm to do late fuse for multiple predictions of vision recoginition, named Outlier Rejection for Late Fusion(ORLF).
+We utilize the robust $\ell_{1,2}$ nonsmooth loss fuction \ref{eq:typical_mc} to reject the outlier results from different classifiers. The low rank constrain is the number of classes in vision recoginition task. 
+%%%In this paper, we propose a method for ensemble multiple results from different features. As aforementioned, we could use the connection between different classifiers to remove outliers in their results. To be noticed, the number of class K in vision recoginition task is a great information to constrain the results and connect each other. Suppose we have got an label assigment matrix from each features, and concact them together into L. This label matrix L is inaccurate due to (xxxxxx), we could use the prior knowledge to restore L by fixing the outlier in it, formulate as below:
 \begin{align}\label{eq:typical_mc}
   \min_{\bX} ~&~ || \bX - \bL ||_{1,2}   \nonumber \\
   \st        ~&~ \rank(\bX) \leq k  ,
 \end{align}
 \noindent
-Considering on column-wise sparsity of X, it's naturally to lear a $\ell_{1,2}$ on loss function.
-(xxxxxxxx)our main contribution can be summarized in three entries:
+Problem~(\ref{eq:typical_mc}) is NP-hard due to the presence of the low rank constraint. For the sake of efficiency on large scale matrices, we consider matrix factorization approaches to optimize it, which can be written as \ref{eq:mc_l21}
+\begin{align}\label{eq:mf_l21}
+  \min_{\bX} ~&~ || \bL - \bX ||_{1,2}    \nonumber \\
+  \st        ~&~ \bX = \bU \bV,~\bU \in \dsR^{N \times k},~\bV \in \dsR^{k \times MK} .
+\end{align}
+\noindent
+Most existing matrix factorization optimization methods only consider smooth loss functions, but the $\ell_{1,2}$ loss in \ref{eq:mc_l21} is nonsmooth. In this paper, we apply augmented Lagrangian multiplier (ALM) to optimize the nonsmooth objective function efficiently.
+
+Our main contribution can be summarized in three entries:
 \begin{itemize}
-  \item propose an efficient late fusion algorithm.
-  \item a novel sense of $\ell_{1,2}$
-  \item a linear time complexity ALM Optimization
+  \item We propose an efficient late fusion algorithm based on matrix factorization to do outlier rejection.
+  \item We extend matrix factorization alogrithm to handle $\ell_{1,2}$ norm function.
+  \item Out proposed method empirically shows significantly improvement than other late fusion algorithms.
 \end{itemize}
 
 %A single clustering result could be inaccurate, so some researchers study ensemble clustering methods to boost the performance,
@@ -199,24 +226,27 @@ In fact, the term $|| \bL - \bX ||_F^2$ is sensitive to outliers, and the term $
 
 
 \section{Related Work}
-
+%% RPCA robust 
+%% Matrix F...
+%% 
 Many late fusion alogrithm have been proposed to improve the performance of recognition model. \cite{gehler2009feature} learns linear funciont to combine multiple classifiers after training SVM on each features. \cite{xuiccv2013feature} introduce thresholding and smooth parameters to joint learn weights for each classifier. \cite{Rakotomamonjy2008Simplemkl} apply mkl on feature combination, treat each feature as a diffierent kernel function in SVMs to train a robust fusion classifier, which could select the most important feature. \cite{gaoijcai2016robust} propose a Robust Convex Ensemble Clustering method utilize a $\ell_{1,2}$ regularization, it could also be applied into late fusion.
 However, \cite{gehler2009feature,xuiccv2013feature,Rakotomamonjy2008Simplemkl} are variant of MKL, (xxxxx), \cite{gaoijcai2016robust} have a high time complexity.
 
+%% Latent Fusion
 
 
 \section{The Proposed Approach}
 We first elaborate the formulation of our SFEC algorithm. Then we show the details about how to use ensemble clustering to fuse multiple classifiers' scores. Finally, we introduce a novel optimization for the $\ell_{2,1}$ loss ensemble clustering problem.
 
 \begin{figure}[t]
-\centering\includegraphics[width=3.5in]{resource/framework.pdf}
+\centering\includegraphics[width=0.45\textwidth]{resource/framework.pdf}
 \caption{something}\label{fig:framework}
 \end{figure}
 
-\subsection{Problem Formulation}{}
-Suppose there are n testing instances, we denote each instance as a variable $x_i \in \dsR^d (1<=i<=n)$. Assuming we have already training m classifiers, $f_1(x), f_2(x), ... f_m(x)$, per classifier will predict a score vector $s_{ij}, 1<=i<=n, 1<=j<=m$，represent the result of j-th classifier on i-th testing instance. Our goal is to fusion these score vectors. Firstly, we transfer these score vectors to a label matrix P, each colums represent the highest value position of each instance. Then using label assigment, we convert multiple P matrixs into a 01 matrix L, see as{\ref{fig:framework}}.
+\subsection{Problem Formulation}
+Suppose there are n testing instances, we denote each instance as a variable $x_i \in \dsR^d (1{\leq}i{\leq}n)$. Assuming we have already training m classifiers, $f_1(x), f_2(x), ... f_m(x)$, per classifier will predict a score vector $s_{ij}, 1{\leq}i{\leq}n, 1{\leq}j{\leq}m$，represent the result of j-th classifier on i-th testing instance. Our goal is to fusion these score vectors. Firstly, we transfer these score vectors to a label matrix P, each colums represent the highest value position of each instance. Then using label assigment, we convert multiple P matrixs into a 01 matrix L, see as{\ref{fig:framework}}.
 The core of our proposed algorithm is to apply $\ell_{1,2}$ to capture the outliers as well as anomalous columns in matrix L, which can be written as below
-\begin{align}\label{eq:l12e}
+\begin{align}\label{eq:mc_l21}
   \min_{\bX} ~&~ || \bL - \bX ||_{1,2}    \nonumber \\
   \st        ~&~ \rank(\bX) \leq k  .
 \end{align}
@@ -350,17 +380,16 @@ It could be a contribution, since maximum margin loss achieves better performanc
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.49\textwidth]{resource/anomalous_clusters.png}
+  \includegraphics[width=0.45\textwidth]{resource/anomalous_clusters.png}
   \caption{An example of anomalous cluster assignments which is retrieved from~\cite{gaoijcai2016robust}}\label{fig:anomalous_cluster}
 \end{figure}
 
 
 
 
-
 \section{Experiments}
 We visualize the results of our approach on one synthetic and evaluate the perfomance on five publicly available datasets : UCF101 human action dataset\cite{soomro2012ucf101}, Cifar10\cite{krizhevsky2009learning} dataset, PASCAL VOC’07\cite{pascal-voc-2007}, Oxford Flower 17\cite{nilsback2006visual} and Pascal Sentences dataset.
-In UCF101 dataset, features are extracted from `fc6' layer of C3D model\cite{tran2015learning}, `pool5/7x7\_s1' layer from GoogleNet model\cite{szegedy2015going}, `pool5' layer of Residual Network model\cite{he2015deep}, `fc6' layer of AlexNet\cite{krizhevsky2012imagenet} model\cite{alex} and caffenet model (described in caffe model zoo) and Two-Stream Convolutional Networks. Given a video, we sample 25 frames with equal temporal spacing between them as described in \cite{twostream}(25 volumes for C3D). Following the same produce in \cite{tran2015learning} and \cite{simonyan2014two}, the features for the whole video are then calculated by averaging the features across the sampled frames.
+In UCF101 dataset, features are extracted from `fc6' layer of C3D model\cite{tran2015learning}, `pool5/7x7\_s1' layer from GoogleNet model\cite{szegedy2015going}, `pool5' layer of Residual Network model\cite{he2015deep}, `fc6' layer of AlexNet\cite{krizhevsky2012imagenet} model\cite{krizhevsky2012imagenet} and caffenet model (described in caffe model zoo) and Two-Stream Convolutional Networks. Given a video, we sample 25 frames with equal temporal spacing between them as described in \cite{simonyan2014two} volumes for C3D). Following the same produce in \cite{tran2015learning} and \cite{simonyan2014two}, the features for the whole video are then calculated by averaging the features across the sampled frames.
 In Cifar10 dataset, features are extracted from `global\_pool' layer of the ResnNt-20,32,44,56,110 models\cite{he2015deep} and pre-activation ResNet-20,32,44,56,110,164 models\cite{he2016identity}.
 In all other dataset,features are extracted from `fc6' layer of VGG16,VGG19\cite{chatfield2014return},AlexNet,CaffeNet models, `pool5/7x7\_s1' layer from GoogleNet model\cite{szegedy2015going}, `pool5' layer of ResNet-50,101,152 models.
 To be noted, all our cnn features are extracted using Caffe\cite{jia2014caffe}.
@@ -377,41 +406,25 @@ In synthetic experiments, we set N = 320, M = 15, K = 20, randomly generate N in
 
 
 
-
-
-\iffalse
 \begin{figure}[htp]
 \center
-    \subfigure[{Ground Truth}]{
-    \begin{minipage}[t]{0.5\linewidth}
-    \centering
+    \subfigure[Ground Truth]{
     \label{subfig:gt_pdf}
-    \includegraphics[width=2.2in]{resource/ground_truth.pdf}
-    \end{minipage}
-
+    \includegraphics[width=0.14\textwidth]{resource/ground_truth.eps}
     }
-
-    \subfigure[{\%30 Random Noise}]{
-    \begin{minipage}[t]{0.5\linewidth}
-    \centering
+    \subfigure[Random Noise]{
     \label{subfig:er_pdf}
-    \includegraphics[width=2.2in]{resource/random_error.pdf}
-    \end{minipage}
+    \includegraphics[width=0.14\textwidth]{resource/random_error.eps}
     }
-
-
-    \subfigure[{Recovered Results}]{
-    \begin{minipage}[t]{0.33\linewidth}
-    \centering
+    \subfigure[Outlier Reject]{
     \label{subfig:re_pdf}
-    \includegraphics[width=1in]{resource/recover.pdf}
-    \end{minipage}
+    \includegraphics[width=0.14\textwidth]{resource/recover.eps}
     }
     \caption{visualized results of the synthetic dataset} \label{fig:ensemble_cluster}
 \end{figure}
 
 
-
+\iffalse
 %We perform two experiments to show the effectiveness of the proposed outlier label pruning method.
 %The first experiment is image classification with multiple features.
 %The second experiment is ensemble classification.
@@ -459,6 +472,27 @@ Ours &  000 \\
 \caption{Mean Accuracy on UCF101 dataset for best single model and six fusion methods}
 \end{table}
 
+
+\begin{table*}[t]\scriptsize
+\centering
+\label{table:voc}
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c}
+\hline
+Method & Mean Accuracy & aeroplane & bicycle & bird & boat & bottle & bus & car & cat & chair & cow \\\hline
+       &   & diningtable & dog & horse & motorbike & person & pottedplant & sheep & sofa & train & tvmonitor \\\hline
+Best Single Model & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+Best Single Model & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\\hline
+ASF     & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 86.8\% \\
+MKL     & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 00 \\
+RCEC    & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 000 \\
+FWOT    & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 000 \\
+LPBoost & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 000 \\\hline
+Ours    & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 000 \\
+\hline
+\end{tabular}
+\caption{Statistics of the Real-world data sets.}
+\end{table*}
+
 \subsection{Experiment on PASCAL VOC 2007 dataset}
 PASCAL VOC 2007 is a dataset for object detection and image classification. For our experiment we only use the image level annotation information. Since each image may contain more than one label, we filter the multilabel images. Using the offical split provided by \cite{pascal-voc-2007}, we have 2954 trainval images and 3192 test images with 20 classes after filtration. We extract features from AlexNet,VGG,GoogleNet,ResNet, totally eight diffierent CNN features.
 
@@ -466,33 +500,14 @@ After the procesure of classification and fusion, we got the results as \ref{tab
 
 
 
-\begin{table}[t]\small
-\centering
-\caption{Statistics of the Real-world data sets.}
-\label{table:voc}
-\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c}
-\hline
-Method & aeroplane & bicycle & bird & boat & bottle & bus & car & cat & chair & cow & diningtable & dog & horse & motorbike & person & pottedplant & sheep & sofa & train & tvmonitor & Mean Accuracy(\%) \\\hline
-Best Single Model & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 86.8\%\\\hline
-ASF & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 86.8\% \\
-MKL & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 00 \\
-RCEC & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 000 \\
-FWOT & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 000 \\
-LPBoost & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 000 \\\hline
-Ours & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 000 \\
-\hline
-\end{tabular}
-\end{table}
-
 \subsection{Experiment on Cifar10 dataset}
 In CIFAR-10 dataset, totally 60000 32x32 colour pictures are categoried into 10 classes, with 6000 pictures per class. There are 50000 training data and 10000 testing data. We extract 14 CNN features from multiple state of the art models (eg. ResNet20,32,44,56,110,164). large scale ability...(how to say).
 
 Fourteen linear SVM model are trained on each features, then our fusion method are applied to the predicted scores of test images. Results are shown on \ref{table:cifar10}
 
 
-\begin{table}[h]\small
+\begin{table}[h]\scriptsize
 \centering
-\caption{Statistics of the Real-world data sets.}
 \label{table:cifar10}
 \begin{tabular}{c|c|c|c}
 \hline
@@ -505,6 +520,7 @@ LPBoost & 000 & 0 & 0 \\\hline
 Ours &  000 & 0 & 0 \\
 \hline
 \end{tabular}
+\caption{Accuracy and Time cost on cifar10 dataset}
 \end{table}
 
 
