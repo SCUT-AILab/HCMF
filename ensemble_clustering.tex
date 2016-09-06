@@ -12,6 +12,7 @@
 \usepackage{multirow}
 \usepackage{subfigure}
 \usepackage{color}
+\usepackage{epstopdf}
 \usepackage{bm}
 %\usepackage[vlined,boxed,ruled]{algorithm2e}
 \usepackage{url}
@@ -112,9 +113,6 @@
 
 
 \title{Outlier Reject for Late Fusion on Visual Recognition}
-\author{Yan Yan$^1$, Yi Yang$^1$\\
-$^1$Centre for Quantum Computation and Intelligent Systems, University of Technology, Sydney, Australia\\
-yan.yan-3@student.uts.edu.au,yee.i.yang@gmail.com}
 
 %\author{AAAI Press\\
 %Association for the Advancement of Artificial Intelligence\\
@@ -150,16 +148,16 @@ Extensive experiments demonstrate that the proposed method is effective to remov
 \section{Introduction}
 
 %背景 多model融合
-Image or video data in the real world can be represented in multiple features, such as motion features of videos (eg.Dense Trajectories\cite{Wang2011Action}), shape features of frames (eg. Histograms of Oriented Gradients\cite{dalal2005histograms}, SIFT\cite{lowe2004distinctive}), or some complex CNN features for both frames and sequences(eg.\cite{szegedy2015going,chatfield2014return,he2015deep,simonyan2014two,Xu_2015_CVPR}).
-Each of these features contain rich information of data, which can not capture all views of our data. A single classifier model will bias on some characteristics of training data based on different features. Combine multiple features together and capture more views on data can significantly improve the performance.
+Image or video data in the real world can be represented in multiple features. For example, motion features of videos can be extracted by Dense Trajectories~\cite{Wang2011Action}, shape features of frames can be represented by Histograms of Oriented Gradients~\cite{dalal2005histograms} and Scale-Invariant Feature Transform~\cite{lowe2004distinctive}, and some complex CNN features for both frames and sequences can be trained by ~\cite{szegedy2015going,chatfield2014return,he2015deep,simonyan2014two,Xu_2015_CVPR}.
+Each feature contains rich information of real data, which can not capture all views of our data. A single classifier model will bias on some characteristics of training data based on different features. It can significantly improve the performance by combining multiple features together and capturing more views on data.
 
 %%A single model results could be inaccurate in vision recogonition, so some researchers study how to fuse multiple models to boost the performance, such as the algorithms proposed in \cite{gehler2009feature,xuiccv2013feature,Rakotomamonjy2008Simplemkl}. Fusion techniques can be grouped into two types which are early fusion and late fusion, early fusion fusion multiple models in the feature level, late fusion merge the result of each classifier.
 
 %% late fusion is a common sigle model -> single feature, 介绍late fusion
-Late fusion is a common method to make the combination of different features. Single model is firstly trained on different features using SVM or other classifiers, then late fusion method combine the predicted decision results of each single model to decide the final result.
-A popular family of late fusion algorithm is that estimate a learned weight for each single model and then fuse the weighted prediction results by simple summation.Multiple Kernel Learning\cite{Rakotomamonjy2008Simplemkl} based method learn a linear combination to fuse multiple predicted scores, many works optimize the MKL based late fusion method by leading thresholding, specific weights or robust constraint into algorithm(eg. \cite{gehler2009feature,xuiccv2013feature,lai2015learning}). 
-The alogrithms proposed in ensemble clustering problem might also be used for late fusion, which are capable to find the anomalous results among multiple classifers(eg.\cite{gaoijcai2016robust}).
-\yanred{Robust Principal Component Analysis xxxxx}. 
+Late fusion is a common method to make the combination of different features. Single model is firstly trained on different features using Support Vector Machine(SVM) or other classifiers, and then late fusion methods combine the predicted decision results of each single model to decide the final result.
+A popular family of late fusion algorithm is that estimate a learned weight for each single model and then fuse the weighted prediction results by simple summation. Multiple Kernel Learning(MKL)~\cite{lanckriet2004learning,Rakotomamonjy2008Simplemkl} based method learn a linear combination to fuse multiple predicted scores, many works optimize the MKL based late fusion method by leading thresholding, specific weights or robust constraint into algorithm, such as \cite{gehler2009feature,xuiccv2013feature,lai2015learning}. 
+\yanred{The alogrithms proposed in Robust Principal Components Analysis(RPCA) might also be used for late fusion, which are capable to find the anomalous results among multiple classifers~\cite{gaoijcai2016robust}. }
+%%这提了Gao，下一段也提了Gao这样好么？
 
 %%In the early fusion, a linear combination or more complex functions,eg. 3D convolution , of different features is utilized to capture inner correlation bettwen each model, such as \cite{Feichtenhofer2016Convolutional}. A more simple but effective method in early fusion is to calculate multiple kernel matrix from different features and then average them together to train a SVM classifier.Another fusion technique is late fusion, which train classifiers of seperate features and then fuses the results based on the predicted scores, such as \cite{gehler2009feature} learns a linear combination on decision values of individual features to boost the performance of single model.
 %%Most previous works in late fusion focus on how to learn weights on different models, (disadvantage?)
@@ -173,23 +171,26 @@ The alogrithms proposed in ensemble clustering problem might also be used for la
 %%Another issue in late fusion is that some works based on MKL \cite{xuiccv2013feature} poor ability to extend their algorithm to large scale data, the ensemble clustering alogrithm \cite{gaoijcai2016robust}, which could alse used in fusion, use a matrix inversion learding into a high time complexity.
 It is ubiquitous that multiple classifers based on different features would have disagreements on some data, which motivates the outlier rejection might solve this problem. There are some researchers have ability to reject the outlier of multiple results, such as \cite{gaoijcai2016robust} use low rank sparse $\ell_{1,2}$ loss and nuclear norm to solve, which are poorly to extend to large scale data due to the expensive cost of Singular Value Decomposition(SVDs) present in the alogrithm. The other research on matrix factorization foucs on least square smooth loss funcion, which is sensitive to outlier and it's unclear to extend matrix factorization to nonsmooth $\ell_{1,2}$ loss.
 
-In this paper, we introduce an efficient matrix factorization based alogrithm to do late fuse for multiple predictions of vision recoginition, named Outlier Rejection for Late Fusion(ORLF).
-We utilize the robust $\ell_{1,2}$ nonsmooth loss fuction \ref{eq:typical_mc} to reject the outlier results from different classifiers. The low rank constrain is the number of classes in vision recoginition task. 
-%%%In this paper, we propose a method for ensemble multiple results from different features. As aforementioned, we could use the connection between different classifiers to remove outliers in their results. To be noticed, the number of class K in vision recoginition task is a great information to constrain the results and connect each other. Suppose we have got an label assigment matrix from each features, and concact them together into L. This label matrix L is inaccurate due to (xxxxxx), we could use the prior knowledge to restore L by fixing the outlier in it, formulate as below:
+In this paper, we introduce an efficient matrix factorization based alogrithm for late fuse, named Outlier Rejection for Late Fusion(ORLF).
+We utilize the robust $\ell_{1,2}$ nonsmooth objective fuction~(\ref{eq:typical_mc}) to remove the outlier results among different classifiers. We introduce the low rank constraint to maintain the consistency among differernt classifers.
+The formulation can be written as bellow:
+
 \begin{align}\label{eq:typical_mc}
   \min_{\bX} ~&~ || \bX - \bL ||_{1,2}   \nonumber \\
   \st        ~&~ \rank(\bX) \leq k  ,
 \end{align}
 \noindent
-Problem~(\ref{eq:typical_mc}) is NP-hard due to the presence of the low rank constraint. For the sake of efficiency on large scale matrices, we consider matrix factorization approaches to optimize it, which can be written as \ref{eq:mc_l21}
+
+L a is observed matrix, represent the label indicator matrix in our vision recoginition case. X is a low rank matrix recovered from L. Rank function measures the rank of a matrix. $|| \bX ||_{1,2} = \sum_{j = 1}^{M} \sqrt{\sum_{i=1}^{N} \bX_{ij}} = \sum_{j=1}^{M} || \bX_{.j} ||_2$, where $\bX \in \dsR^{N \times M}$.
+Problem~(\ref{eq:typical_mc}) is NP-hard due to the presence of the low rank constraint. For the sake of efficiency on large scale matrices, we consider matrix factorization approaches to optimize it, which can be written as bellow:
 \begin{align}\label{eq:mf_l21}
   \min_{\bX} ~&~ || \bL - \bX ||_{1,2}    \nonumber \\
   \st        ~&~ \bX = \bU \bV,~\bU \in \dsR^{N \times k},~\bV \in \dsR^{k \times MK} .
 \end{align}
 \noindent
-Most existing matrix factorization optimization methods only consider smooth loss functions, but the $\ell_{1,2}$ loss in \ref{eq:mc_l21} is nonsmooth. In this paper, we apply augmented Lagrangian multiplier (ALM) to optimize the nonsmooth objective function efficiently.
+Most existing matrix factorization optimization methods only consider smooth loss functions, but the $\ell_{1,2}$ loss in \ref{eq:mf_l21} is nonsmooth. In our proposed method(ORLF), we apply augmented Lagrangian multiplier (ALM) to optimize the nonsmooth objective function efficiently.
 
-Our main contribution can be summarized in three entries:
+Our main contribution can be summarized as below:
 \begin{itemize}
   \item We propose an efficient late fusion algorithm based on matrix factorization to do outlier rejection.
   \item We extend matrix factorization alogrithm to handle $\ell_{1,2}$ norm function.
@@ -229,41 +230,33 @@ In fact, the term $|| \bL - \bX ||_F^2$ is sensitive to outliers, and the term $
 %% RPCA robust 
 %% Matrix F...
 %% 
-Many late fusion alogrithm have been proposed to improve the performance of recognition model. \cite{gehler2009feature} learns linear funciont to combine multiple classifiers after training SVM on each features. \cite{xuiccv2013feature} introduce thresholding and smooth parameters to joint learn weights for each classifier. \cite{Rakotomamonjy2008Simplemkl} apply mkl on feature combination, treat each feature as a diffierent kernel function in SVMs to train a robust fusion classifier, which could select the most important feature. \cite{gaoijcai2016robust} propose a Robust Convex Ensemble Clustering method utilize a $\ell_{1,2}$ regularization, it could also be applied into late fusion.
-However, \cite{gehler2009feature,xuiccv2013feature,Rakotomamonjy2008Simplemkl} are variant of MKL, (xxxxx), \cite{gaoijcai2016robust} have a high time complexity.
+\yanred{MF method}
 
-%% Latent Fusion
+%%RPCA Methods
+Recently, \cite{gaoijcai2016robust} have proposed a robust convex ensemble clustering methods, which use the group-norm regularization to remove anomalous columns from cluster assignment matrix. This could also be used in our late fusion application to remove outlier column in the indicator matrix L. \cite{wright2009robust} instroduce a representative Robust PCA algorithm, and \cite{ye2012robust} propose a rank minimization method optimize the RPCA to fuse the predicted confidence scores of multiple models. \yanred{other RPCA and disadvantage}
 
+MKL~\cite{Rakotomamonjy2008Simplemkl} based method is a simple but efficient way to combine different features for late fusion. \cite{vedaldi2009multiple} use MKL to learn an optimal combination of exponential ${\chi}^2$. \cite{gehler2009feature} introduce two boosting approaches inspired by the MKL. \cite{natarajan2012multimodal} combines these diverse features using a two-step strategy employing MKL and late score fusion methods. \cite{lai2015learning} proposed a late fusion method that determines the optimal fusion weights for each sample. \yanred{\cite{xuiccv2013feature} learns the weights, thresholding and smoothing parameters in a joint framework to combine the decision values. Copy from Abs}. \yanred{However, MKL based method...} 
+
+
+%% Latent Fusion, 
 
 \section{The Proposed Approach}
-We first elaborate the formulation of our SFEC algorithm. Then we show the details about how to use ensemble clustering to fuse multiple classifiers' scores. Finally, we introduce a novel optimization for the $\ell_{2,1}$ loss ensemble clustering problem.
+We first elaborate the formulation of our ORLF algorithm. Then we show the details about how to use augmented Lagrangian multiplier (ALM) to solve the $\ell_{1,2}$ objective function. Finnaly we introduce our post process strategy to convert the recovered matrix X in \ref{eq:mf_l21} to the final predicted label.
 
-\begin{figure}[t]
-\centering\includegraphics[width=0.45\textwidth]{resource/framework.pdf}
+
+\subsection{Problem Formulation}
+Suppose there are n testing instances, we denote each instance as a variable $x_i{\in}\dsR^{d}(1{\leq}i{\leq}n)$. Assuming we have already training m classifiers, $f_1(x), f_2(x), ... f_m(x)$, per classifier will predict a score vector $s_{ij}, 1{\leq}i{\leq}n, 1{\leq}j{\leq}m $，represent the result of j-th classifier on i-th testing instance. Our goal is to fusion these predicted confidence score vectors. Firstly, we transfer these score vectors to a label matrix P, each colums represent the highest value position of each instance. Then using label assigment, we convert multiple P matrixs into a 01 indicator matrix L, see as{\ref{fig:framework}}.
+The core of our proposed algorithm is to apply $\ell_{1,2}$ to capture the outliers as well as anomalous columns in matrix L, and apply a matrix factorization based approach to optimize the objective function as shown in \ref{eq:mf_l21}. The k of the low rank constraint in (\ref{eq:mf_l21}) is the number of class in recoginition task.
+
+\begin{figure}[h]
+\centering\includegraphics[width=0.45\textwidth]{resource/frame_work.pdf}
 \caption{something}\label{fig:framework}
 \end{figure}
 
-\subsection{Problem Formulation}
-Suppose there are n testing instances, we denote each instance as a variable $x_i \in \dsR^d (1{\leq}i{\leq}n)$. Assuming we have already training m classifiers, $f_1(x), f_2(x), ... f_m(x)$, per classifier will predict a score vector $s_{ij}, 1{\leq}i{\leq}n, 1{\leq}j{\leq}m$，represent the result of j-th classifier on i-th testing instance. Our goal is to fusion these score vectors. Firstly, we transfer these score vectors to a label matrix P, each colums represent the highest value position of each instance. Then using label assigment, we convert multiple P matrixs into a 01 matrix L, see as{\ref{fig:framework}}.
-The core of our proposed algorithm is to apply $\ell_{1,2}$ to capture the outliers as well as anomalous columns in matrix L, which can be written as below
-\begin{align}\label{eq:mc_l21}
-  \min_{\bX} ~&~ || \bL - \bX ||_{1,2}    \nonumber \\
-  \st        ~&~ \rank(\bX) \leq k  .
-\end{align}
-Problem~(\ref{eq:mc_l21}) is NP-hard due to the presence of the low rank constraint.
-For the sake of efficiency on large scale matrices, we consider matrix factorization approaches to optimize it, which can be written as
-\begin{align}\label{eq:mf_l21}
-  \min_{\bX} ~&~ || \bL - \bX ||_{1,2}    \nonumber \\
-  \st        ~&~ \bX = \bU \bV,~\bU \in \dsR^{N \times k},~\bV \in \dsR^{k \times MK} .
-\end{align}
-\noindent
-Note that we have totally $K$ single clustering assignments.
-Intuitively, we could set $k = K$ in Problem~(\ref{eq:mf_l21}).
-Most existing matrix factorization optimization methods only consider smooth loss functions,
-but the $\ell_{1,2}$ loss in Problem~(\ref{eq:mf_l21}) is nonsmooth.
-we apply augmented Lagrangian multiplier (ALM) to optimize the nonsmooth objective function efficiently desccribed in the following section.
 
 \subsection{ALM Optimization}
+Most existing matrix factorization optimization methods only consider smooth loss functions, but the $\ell_{1,2}$ loss in Problem~(\ref{eq:mf_l21}) is nonsmooth.
+We apply ALM to optimize the nonsmooth objective function efficiently, desccribed as bellow: 
 
 By introducing a new variable $\bE = \bL - \bX$, we can develop Problem~(\ref{eq:mf_l21}) as below:
 
@@ -358,41 +351,32 @@ We summarize the proposed algorithm for Problem~(\ref{eq:mf_l21_constrained}) in
 \end{algorithm}
 
 \subsection{Final Post Process}
-As we recover the low rank matrix X from the label assisnment matrix L. Intuitively, there is two possible way to get our final fusion results from X. Although L is a 01 matrix obtain by hard label, we could treat it as a soft score matrix, which the position of highest score represent the most possible label predicted by classifiers. X is an approximation of L, we can simply consider X as a soft score matrix, which fix the outliers from L. And two possible post way to processing X is applied.
-(1)average the score matrixs, each is a subset of X, the j-th matrix is from (j*k-k+1)-th colum to (j*k)-th colum of X. Then we got $X^*$, a N*K score matrix. we make the position of the highest value in each rows as the predicted label of the i-th instance.(2)seprate X into M matrixs $Y_j$, the i-th colum of $Y_j$ the (j*K+i)-th colum. For each matrix $Y_j$, we obtain a column vector by selecting the index of the highest score in each row. Then we use voting from M index matrix to select the final label.
-According to the experiments, methods (1) outperform than (2), we choose (1) as our final post process of fusion method.
+As we recover the low rank matrix X from the label assisnment matrix L. Intuitively, there is two possible way to get our final fusion results from X. Although L is a 01 matrix obtain by hard label, we could treat it as a soft score matrix, which the position of highest score represent the most possible label predicted by classifiers. X is an approximation of L, we can simply consider X as a soft score matrix, which fix the outliers from L. Two possible post way to processing X are described as bellow:
+\begin{itemize}
+  \item Average the score matrixs, each of which is a subset of X, the j-th matrix is from (j*k-k+1)-th colum to (j*k)-th colum of X. Then we got $X^*$, a N*K score matrix. we make the position of the highest value in each rows as the predicted label of the i-th instance.
+  \item Seprate X into M matrixs $Y_j$, the i-th colum of $Y_j$ the (j*K+i)-th colum. For each matrix $Y_j$, we obtain a column vector by selecting the index of the highest score in each row. Then we use voting from M index matrix to select the final label.
+\end{itemize}
+According to the experiments, the first strategy outperform than the second one, we choose the first one as our final post process of fusion method.
 
 \iffalse
 \section{An Option on Loss Function: Max Margin}
-
 In fact, the assignments $\bL$ contains only $0/1$ values (discrete ordinal values).
 This fits the setting in~\cite{yanijcai2015scalable} very much.
 It could be a contribution, since maximum margin loss achieves better performance on discrete ordinal values.
 \yanred{Note: we may leave this extension as a journal?}
+
+\section{Another Option on Loss Function: $\ell_{1,2}$ to $\ell_1$ loss}
+$\ell_{1,2}$ loss could be difficult to optimize.
+A simple way is to replace $\ell_{1,2}$ to $\ell_1$, which would be much easier.
 \fi
 
 
-%\section{Another Option on Loss Function: $\ell_{1,2}$ to $\ell_1$ loss}
-
-%$\ell_{1,2}$ loss could be difficult to optimize.
-%A simple way is to replace $\ell_{1,2}$ to $\ell_1$, which would be much easier.
-
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.45\textwidth]{resource/anomalous_clusters.png}
-  \caption{An example of anomalous cluster assignments which is retrieved from~\cite{gaoijcai2016robust}}\label{fig:anomalous_cluster}
-\end{figure}
-
-
-
-
 \section{Experiments}
-We visualize the results of our approach on one synthetic and evaluate the perfomance on five publicly available datasets : UCF101 human action dataset\cite{soomro2012ucf101}, Cifar10\cite{krizhevsky2009learning} dataset, PASCAL VOC’07\cite{pascal-voc-2007}, Oxford Flower 17\cite{nilsback2006visual} and Pascal Sentences dataset.
-In UCF101 dataset, features are extracted from `fc6' layer of C3D model\cite{tran2015learning}, `pool5/7x7\_s1' layer from GoogleNet model\cite{szegedy2015going}, `pool5' layer of Residual Network model\cite{he2015deep}, `fc6' layer of AlexNet\cite{krizhevsky2012imagenet} model\cite{krizhevsky2012imagenet} and caffenet model (described in caffe model zoo) and Two-Stream Convolutional Networks. Given a video, we sample 25 frames with equal temporal spacing between them as described in \cite{simonyan2014two} volumes for C3D). Following the same produce in \cite{tran2015learning} and \cite{simonyan2014two}, the features for the whole video are then calculated by averaging the features across the sampled frames.
+We visualize the results of our approach on one synthetic and evaluate the perfomance on five publicly available datasets : UCF101 human action dataset~\cite{soomro2012ucf101}, Cifar10~\cite{krizhevsky2009learning} dataset, PASCAL VOC’07~\cite{pascal-voc-2007}, Oxford Flower 17~\cite{nilsback2006visual} and Pascal Sentences dataset.
+In UCF101 dataset, features are extracted from `fc6' layer of C3D model\cite{tran2015learning}, `pool5/7x7\_s1' layer from GoogleNet model\cite{szegedy2015going}, `pool5' layer of Residual Network model~\cite{he2015deep}, `fc6' layer of AlexNet,CaffeNet~\cite{krizhevsky2012imagenet} and Two-Stream Convolutional Networks~\cite{simonyan2014two}. Given a video, we sample 25 frames with equal temporal spacing between them as described in \cite{simonyan2014two} volumes for C3D). Following the same produce in \cite{tran2015learning} and \cite{simonyan2014two}, the features for the whole video are then calculated by averaging the features across the sampled frames.
 In Cifar10 dataset, features are extracted from `global\_pool' layer of the ResnNt-20,32,44,56,110 models\cite{he2015deep} and pre-activation ResNet-20,32,44,56,110,164 models\cite{he2016identity}.
-In all other dataset,features are extracted from `fc6' layer of VGG16,VGG19\cite{chatfield2014return},AlexNet,CaffeNet models, `pool5/7x7\_s1' layer from GoogleNet model\cite{szegedy2015going}, `pool5' layer of ResNet-50,101,152 models.
-To be noted, all our cnn features are extracted using Caffe\cite{jia2014caffe}.
+In all other dataset, features are extracted among `fc6' layer of VGG network~\cite{chatfield2014return} and AlexNet network~\cite{krizhevsky2012imagenet}, `pool5/7x7\_s1' layer from GoogleNet network~\cite{szegedy2015going}, `pool5' layer of Residual network~\cite{he2015deep}.
+To be noted, all our cnn features are extracted using Caffe\cite{jia2014caffe}, a deep learning framework.
 
 LIBLINEAR\cite{fan2008liblinear} is adopted for our classification toolbox, the confidence scores are generated from the outputs of LIBLINEAR. Then we put the confidence scores as the input into our alogrithm.
 
@@ -402,7 +386,7 @@ The parameter $\mu$ are selected from {0.1, 1, 5, 10}, $\rho$ are select from {1
 
 \subsection{Synthetic Experiments}
 
-In synthetic experiments, we set N = 320, M = 15, K = 20, randomly generate N instances with K kinds of labels. We randomly change 30% instances' labels, repeat M times to get M classifiers results. By appling our proposed alogrithm to this synthetic dataset, we visualize the results in Figure \ref{fig:ensemble_cluster}.
+In synthetic experiments, we set N = 320, M = 15, K = 20, randomly generate N instances with K kinds of labels. We randomly change 30\% instances' labels, repeat M times to get M classifiers' results. By appling our proposed alogrithm to this synthetic dataset, we visualize the results in Figure \ref{fig:ensemble_cluster}. Each subfigure contrains $N\times M$ small narrow blocks, which visualized in diverse colors according to their different label. The first picture~\ref{subfig:gt_pdf}, show the ground truth and copied M times. And M noised classifiers' results are pictured as~\ref{subfig:er_pdf}. After we recover the low rank matrix from the noised matrix by using ORLF late fusion method, we visualize it as~\ref{subfig:er_pdf}.
 
 
 
@@ -429,24 +413,6 @@ In synthetic experiments, we set N = 320, M = 15, K = 20, randomly generate N in
 %The first experiment is image classification with multiple features.
 %The second experiment is ensemble classification.
 %By these two experiments, we aim to demonstrate that our method is able to effectively remove the anomalous labels from the class indicator matrix, and thus improve the fusion performance of classification.
-We have the following datasets:
-\begin{itemize}
-  \item Oxford flower 17
-  \item Pascal Sentences
-  \item Wikipedia
-  \item mnist
-  \item CIFAR10
-  \item Imagenet
-\end{itemize}
-We compare our proposed method with the following five baselines:
-\begin{itemize}
-  \item Score average
-  \item MKL of multiple features (or base learners)
-  \item LPBoost
-  \item The method proposed in~\cite{gaoijcai2016robust}
-  \item the method proposed in~\cite{xuiccv2013feature}
-\end{itemize}
-
 \fi
 
 \subsection{Experiment on UCF 101 dataset}
@@ -473,31 +439,30 @@ Ours &  000 \\
 \end{table}
 
 
-\begin{table*}[t]\scriptsize
+
+
+\subsection{Experiment on PASCAL VOC 2007 dataset}
+PASCAL VOC 2007 is a dataset for object detection and image classification. For our experiment we only use the image level annotation information. Since each image may contain more than one label, we filter the multilabel images. Using the offical split provided by \cite{pascal-voc-2007}, we have 2954 trainval images and 3192 test images with 20 classes after filtration. We extract features from AlexNet,VGG,GoogleNet,ResNet, totally seven diffierent CNN features(AlexNet for alexnet and caffenet, VGG for VGG16 and VGG19, ResNet for ResNet50 and ResNet101).
+
+After the procesure of classification and fusion, we got the results as \ref{table:voc}. Since in PASCAL VOC 2007 dataset, more classifiers are utilized than UCF101, it's clear that our method achieve significant improvement than single model and a slight improvement than other fusion algorithm.
+
+\begin{table*}[h]\scriptsize
 \centering
 \label{table:voc}
-\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c}
+\begin{tabular}{c|c|c|c}
 \hline
-Method & Mean Accuracy & aeroplane & bicycle & bird & boat & bottle & bus & car & cat & chair & cow \\\hline
-       &   & diningtable & dog & horse & motorbike & person & pottedplant & sheep & sofa & train & tvmonitor \\\hline
-Best Single Model & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-Best Single Model & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\\hline
-ASF     & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 86.8\% \\
-MKL     & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 00 \\
-RCEC    & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 000 \\
-FWOT    & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 000 \\
-LPBoost & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 000 \\\hline
-Ours    & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 000 \\
+Method            & Mean Accuracy & Classification Time(s)& Fusion Time \\\hline
+Best Single Model & 88.44\%       &  2.347                &      0    \\\hline
+ASF               & 88.69\%       &  10.2347              &    0.008   \\ % Average
+MKL               &     0 & 00 & 0 \\
+RCEC              &     0 & 0 & 000 \\
+FWOT              &     0 & 0 & 000 \\
+LPBoost           &     0 & 0 & 000 \\\hline
+Ours              & 88.78\%       & 10.2347               & 9.918 \\
 \hline
 \end{tabular}
 \caption{Statistics of the Real-world data sets.}
 \end{table*}
-
-\subsection{Experiment on PASCAL VOC 2007 dataset}
-PASCAL VOC 2007 is a dataset for object detection and image classification. For our experiment we only use the image level annotation information. Since each image may contain more than one label, we filter the multilabel images. Using the offical split provided by \cite{pascal-voc-2007}, we have 2954 trainval images and 3192 test images with 20 classes after filtration. We extract features from AlexNet,VGG,GoogleNet,ResNet, totally eight diffierent CNN features.
-
-After the procesure of classification and fusion, we got the results as \ref{table:voc}. Since in PASCAL VOC 2007 dataset, more classifiers are utilized than UCF101, it's clear that our method achieve significant improvement than single model and a slight improvement than other fusion algorithm.
-
 
 
 \subsection{Experiment on Cifar10 dataset}
@@ -523,7 +488,29 @@ Ours &  000 & 0 & 0 \\
 \caption{Accuracy and Time cost on cifar10 dataset}
 \end{table}
 
+\subsection{Experiment on Oxford Flowers}
+Oxford Flowers 17 dataset~\cite{nilsback2006visual} havs 17 flower categories with 80 images for each class. There are three predefined splits training set with 680 images, validation set with 340 images and testing set 340 images. 2048 dimetions `pool5' features from ResNet-50,101,152 proposed in \cite{he2015deep} and 4096 dimetions `fc6' features from CaffeNet,AlexNet proposed in \cite{krizhevsky2012imagenet} are used for linear SVM. The models are download from Caffe Model Zoo\footnote{\url{https://github.com/BVLC/caffe/wiki/Model-Zoo}}, with no finetuning on the current dataset.
 
+We use the predefined training set and validation set as our training data, trained on liblinear with default parameters.
+Results are shown in \ref{table:flower17}
+
+
+\begin{table}[h]\scriptsize
+\centering
+\label{table:flower17}
+\begin{tabular}{c|c|c|c}
+\hline
+Method & Split 1 & Split 2 & Split 3\\\hline
+ASF &  97.94\% & 0 & 0 \\
+MKL &  000 & 0 & 0 \\
+RCEC &  000 & 0 & 0 \\
+FWOT &  000 & 0 & 0 \\
+LPBoost & 000 & 0 & 0 \\\hline
+Ours &  98.24\% & 0 & 0 \\
+\hline
+\end{tabular}
+\caption{Accuracy on Three Official Split}
+\end{table}
 
 \begin{quote}
 \begin{small}
