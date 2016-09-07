@@ -380,7 +380,7 @@ To be noted, all our cnn features are extracted using Caffe\cite{jia2014caffe}, 
 
 LIBLINEAR\cite{fan2008liblinear} is adopted for our classification toolbox, the confidence scores are generated from the outputs of LIBLINEAR. Then we put the confidence scores as the input into our alogrithm.
 
-Five state-of-the-art fusion methods are compared with our proposed alogrithm : (1)Average Score Fusion(ASF), we directly average the confidence scores predicted by classifiers. (2)Multiple Kernel Learning (MKL),  MKL learn a weight w for each classifiers, the final score are obtained from function $f(s)=w^{T}s, \sum w = 1$. (3)Robust Convex Ensemble Clustering (RCEC)\cite{gaoijcai2016robust} (4)Feature Weighting via Optimal Thresholding(FWOT)\cite{xuiccv2013feature}. In this method, the result scores of each classifier are combined by learning thresholding, smoothing parameters and weights. (5)LPBoost\cite{gehler2009feature}. In this method, a variant linear combination are applied to multiple classifiers.
+Five state-of-the-art fusion methods are compared with our proposed alogrithm : (1)Average Score Fusion(ASF), we directly average the confidence scores predicted by classifiers. We use $L_2$ norm on each classifiers for normalization. (2)Multiple Kernel Learning (MKL),  MKL learn a weight w for each classifiers, the final score are obtained from function $f(s)=w^{T}s, \sum w = 1$. We use liblinear-mkl\footnote{\url{http://www.csie.ntu.edu.tw/~b95028/software/liblinear-mkl/} ; \url{https://github.com/minghen/liblinear-mkl}} to train out MKL model. (3)Robust Convex Ensemble Clustering (RCEC)\cite{gaoijcai2016robust} (4)Feature Weighting via Optimal Thresholding(FWOT)\cite{xuiccv2013feature}. The author propse a method to learn thresholding, smoothing parameters and weights in a joint framework to combine prediction confidence scores of different features. (5)LPBoost\cite{gehler2009feature}. In this method, a variant linear combination are applied to multiple classifiers.
 
 The parameter $\mu$ are selected from {0.1, 1, 5, 10}, $\rho$ are select from {1.01, 1.05, 1.1} in all our experiments. For SVM, we use the default parameters set in the LIBLINEAR.
 
@@ -446,7 +446,7 @@ PASCAL VOC 2007 is a dataset for object detection and image classification. For 
 
 After the procesure of classification and fusion, we got the results as \ref{table:voc}. Since in PASCAL VOC 2007 dataset, more classifiers are utilized than UCF101, it's clear that our method achieve significant improvement than single model and a slight improvement than other fusion algorithm.
 
-\begin{table*}[h]\scriptsize
+\begin{table}[!h]\scriptsize
 \centering
 \label{table:voc}
 \begin{tabular}{c|c|c|c}
@@ -461,37 +461,39 @@ LPBoost           &     0 & 0 & 000 \\\hline
 Ours              & 88.78\%       & 10.2347               & 9.918 \\
 \hline
 \end{tabular}
-\caption{Statistics of the Real-world data sets.}
-\end{table*}
+\caption{Accuracy and Time cost on VOC2007 dataset}
+\end{table}
 
 
 \subsection{Experiment on Cifar10 dataset}
-In CIFAR-10 dataset, totally 60000 32x32 colour pictures are categoried into 10 classes, with 6000 pictures per class. There are 50000 training data and 10000 testing data. We extract 14 CNN features from multiple state of the art models (eg. ResNet20,32,44,56,110,164). large scale ability...(how to say).
+In CIFAR-10 dataset, totally 60000 32x32 colour pictures are categoried into 10 classes, with 6000 pictures per class. There are 50000 training data and 10000 testing data. Fourteen CNN features are extracted from multiple state of the art models for training svm. These features are `global\_pool' layers' features of ResNet-20,32,44,56,110~\cite{he2015deep} and pre-activation ResNet-20,32,44,56,110,164~\cite{he2016identity},  `pool3' layer's features of cifar10\_full model described in caffe example prototxt\footnote{\url{https://github.com/BVLC/caffe/blob/master/examples/cifar10/cifar10_full.prototxt}} and `global\_pool' layers' features from two modified network from~\cite{szegedy2015going,chatfield2014return}. This experiments show the ability of our ORLF to handle large scale data.\yanred{(how to say)}
 
-Fourteen linear SVM model are trained on each features, then our fusion method are applied to the predicted scores of test images. Results are shown on \ref{table:cifar10}
+As we have 50000 training data and 10000 testing data, FWOT~\cite{xuiccv2013feature} has one step to deal with N*N matrixes, which are excessive to train~(more than one day) and LPBoost~\cite{gehler2009feature} need to create a $NK\times N$ constraint matrix linear programming solvers\footnote{The author use the MOSEK interior-point solver, see www.mosek.com.}, which occupies too much memory and still consumes long time to train. We use `-s 2' parameters in liblinear to speedup training training process. Results of other contrast algorithms are shown on \ref{table:cifar10}
 
 
 \begin{table}[h]\scriptsize
 \centering
 \label{table:cifar10}
-\begin{tabular}{c|c|c|c}
+\begin{tabular}{c|c|c}
 \hline
-Method & Mean Accuracy(\%) & Classification Time & Fusion Time\\\hline
-ASF &  86.8\% & 0 & 0 \\
-MKL &  000 & 0 & 0 \\
-RCEC &  000 & 0 & 0 \\
-FWOT &  000 & 0 & 0 \\
-LPBoost & 000 & 0 & 0 \\\hline
-Ours &  000 & 0 & 0 \\
+Method & Mean Accuracy(\%) & Classification Time + Fusion Time(s)\\\hline
+ASF &  94.21\% & 55.6 + 0.02 \\
+MKL &  94.15\% & 865.09 \\
+RCEC &  94.87\% & 55.6 + 3.5 \\
+FWOT &  - & - \\
+LPBoost & - & - \\\hline
+Ours &  95.05\% & 55.6 + 32.1 \\
 \hline
 \end{tabular}
 \caption{Accuracy and Time cost on cifar10 dataset}
 \end{table}
 
+
+
 \subsection{Experiment on Oxford Flowers}
 Oxford Flowers 17 dataset~\cite{nilsback2006visual} havs 17 flower categories with 80 images for each class. There are three predefined splits training set with 680 images, validation set with 340 images and testing set 340 images. 2048 dimetions `pool5' features from ResNet-50,101,152 proposed in \cite{he2015deep} and 4096 dimetions `fc6' features from CaffeNet,AlexNet proposed in \cite{krizhevsky2012imagenet} are used for linear SVM. The models are download from Caffe Model Zoo\footnote{\url{https://github.com/BVLC/caffe/wiki/Model-Zoo}}, with no finetuning on the current dataset.
 
-We use the predefined training set and validation set as our training data, trained on liblinear with default parameters.
+We use the predefined training set and validation set as our training data, trained on liblinear with default parameters. For LPBoost Methods, we use 5 fold cross validation to select the best hyperparmeter $\nu$. 
 Results are shown in \ref{table:flower17}
 
 
@@ -505,7 +507,7 @@ ASF &  97.94\% & 0 & 0 \\
 MKL &  000 & 0 & 0 \\
 RCEC &  000 & 0 & 0 \\
 FWOT &  000 & 0 & 0 \\
-LPBoost & 000 & 0 & 0 \\\hline
+LPBoost & 97.94\% & 0 & 0 \\\hline
 Ours &  98.24\% & 0 & 0 \\
 \hline
 \end{tabular}
