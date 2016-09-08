@@ -139,9 +139,11 @@ In this paper, we propose an efficient matrix factorization based approach to fu
 relieve the performance degeneration caused by the controversy of multiple features on test data.
 % Some unvalued sentence(s)
 Extensive experiments demonstrate that the proposed method is effective to remove outliers and improve fusion performance.
-% Written by DXY:
-%We formulate the late score fusion algorithm as ensemble clustering problem, and propose an efficient optimization algorithm, namely Score Fusion via Ensemble Cluster(SFEC). SFEC has capability to remove outliers of label assignments from multiple classifiers using a $\ell_{2,1}$ loss, which improves the performance of late fusion (large scale ability). To the best of our knowledge, this is the first work to connect ensemble clustering with late fusion. Compared to the state-of-the-art fusion algorithm, the SFEC achieves promising improvements on large scale dataset such as UCF101
+
+%% Written by DXY:
+%%% We formulate the late score fusion algorithm as ensemble clustering problem, and propose an efficient optimization algorithm, namely Score Fusion via Ensemble Cluster(SFEC). SFEC has capability to remove outliers of label assignments from multiple classifiers using a $\ell_{2,1}$ loss, which improves the performance of late fusion (large scale ability). To the best of our knowledge, this is the first work to connect ensemble clustering with late fusion. Compared to the state-of-the-art fusion algorithm, the SFEC achieves promising improvements on large scale dataset such as UCF101.
 \end{abstract}
+
 
 
 
@@ -418,21 +420,21 @@ In synthetic experiments, we set N = 320, M = 15, K = 20, randomly generate N in
 \subsection{Experiment on UCF 101 dataset}
 For action recognition, we present our results on UCF 101 dataset\cite{soomro2012ucf101}. UCF101 contains 13320 videos collected from YouTube, categoried into 101 human action classes. We use the official split1 described in \cite{soomro2012ucf101}, which have 9573 training videos 3783 testing videos. As mentioned above, fives features are provided from the state of the art deep convolution networks, 4096 demitions features in `fc6' layer from C3D, 1028 demitions features in `pool5/7x7\_s1' layer from  GoogleNet, 2048 demitions features in `pool5' layer of ResNet-152, 4096 demitions features in `fc6' layer in Spatial and Temporal Net. All models used in UCF-101 are published by their authors.
 
-We use liblinear to train seperate classifiers on each features with the default parameters in liblinear. By appling trained classifiers on test data, we can obtain 5 * 20 confidence score for each video. After emsenable fusion, we choose the class with highest confidence score as our predicted class. Results are shown in \ref{table:ucf101}, in which we illustrate the performance of the best single classifier and compare several fusion method.
+We use liblinear to train seperate classifiers on each features with the default parameters in liblinear. By appling trained classifiers on test data, we can obtain 5 * 20 confidence score for each video. After emsenable fusion, we choose the class with highest confidence score as our predicted class. Results are shown in \ref{table:ucf101}, in which we illustrate the performance of the best single classifier and compare several fusion method. To be noted, FWOT~\cite{xuiccv2013feature} is too slow to train, we didn't show it's result (more than one day).
 
 \begin{table}[h]\small
 \centering
 \label{table:ucf101}
 \begin{tabular}{c|c}
 \hline
-Method & Mean Accuracy(\%) \\\hline
-SVM on Temporal Net Features & 86.2\% \\\hline
-ASF &  86.8\% \\
-MKL &  000 \\
-RCEC &  000 \\
-FWOT &  000 \\
-LPBoost &  000 \\\hline
-Ours &  000 \\
+Method                       & Mean Accuracy(\%) \\\hline
+SVM on Temporal Net Features & 86.23\%            \\\hline
+ASF                          & 86.78\%           \\
+MKL                          & 85.38\%           \\
+RCEC                         & 88.29\%           \\
+FWOT                         & -                 \\
+LPBoost                      & 86.24\%           \\\hline
+Ours                         & 88.89\%           \\
 \hline
 \end{tabular}
 \caption{Mean Accuracy on UCF101 dataset for best single model and six fusion methods}
@@ -466,9 +468,9 @@ Ours              & 88.78\%       & 10.2347               & 9.918 \\
 
 
 \subsection{Experiment on Cifar10 dataset}
-In CIFAR-10 dataset, totally 60000 32x32 colour pictures are categoried into 10 classes, with 6000 pictures per class. There are 50000 training data and 10000 testing data. Fourteen CNN features are extracted from multiple state of the art models for training svm. These features are `global\_pool' layers' features of ResNet-20,32,44,56,110~\cite{he2015deep} and pre-activation ResNet-20,32,44,56,110,164~\cite{he2016identity},  `pool3' layer's features of cifar10\_full model described in caffe example prototxt\footnote{\url{https://github.com/BVLC/caffe/blob/master/examples/cifar10/cifar10_full.prototxt}} and `global\_pool' layers' features from two modified network from~\cite{szegedy2015going,chatfield2014return}. This experiments show the ability of our ORLF to handle large scale data.\yanred{(how to say)}
+In CIFAR-10 dataset~\cite{krizhevsky2009learning}, totally 60000 32x32 colour pictures are categoried into 10 classes, with 6000 pictures per class. There are 50000 training data and 10000 testing data. Fourteen CNN features are extracted from multiple state of the art models for training svm. These features are `global\_pool' layers' features of ResNet-20,32,44,56,110~\cite{he2015deep} and pre-activation ResNet-20,32,44,56,110,164~\cite{he2016identity},  `pool3' layer's features of cifar10\_full model described in caffe example prototxt\footnote{\url{https://github.com/BVLC/caffe/blob/master/examples/cifar10/cifar10_full.prototxt}} and `global\_pool' layers' features from two modified network from~\cite{szegedy2015going,chatfield2014return}. This experiments show the ability of our ORLF to handle large scale data.\yanred{(how to say)}
 
-As we have 50000 training data and 10000 testing data, FWOT~\cite{xuiccv2013feature} has one step to deal with N*N matrixes, which are excessive to train~(more than one day) and LPBoost~\cite{gehler2009feature} need to create a $NK\times N$ constraint matrix linear programming solvers\footnote{The author use the MOSEK interior-point solver, see www.mosek.com.}, which occupies too much memory and still consumes long time to train. We use `-s 2' parameters in liblinear to speedup training training process. Results of other contrast algorithms are shown on \ref{table:cifar10}
+As we have 50000 training data and 10000 testing data, FWOT~\cite{xuiccv2013feature} has one step to deal with N*N matrixes, which are excessive to train~(more than one day). LPBoost~\cite{gehler2009feature} need to create a $NK\times N$ constraint matrix linear programming solvers\footnote{The author use the MOSEK interior-point solver, see www.mosek.com.}, which occupies too much memory and still consumes long time to train, so we solve this problem by using sparse matrix storage and parallel during matlab. the use `-s 2' parameters in liblinear to speedup training training process. Results of other contrast algorithms are shown on \ref{table:cifar10}
 
 
 \begin{table}[h]\scriptsize
@@ -476,17 +478,18 @@ As we have 50000 training data and 10000 testing data, FWOT~\cite{xuiccv2013feat
 \label{table:cifar10}
 \begin{tabular}{c|c|c}
 \hline
-Method & Mean Accuracy(\%) & Classification Time + Fusion Time(s)\\\hline
-ASF &  94.21\% & 55.6 + 0.02 \\
-MKL &  94.15\% & 865.09 \\
-RCEC &  94.87\% & 55.6 + 3.5 \\
-FWOT &  - & - \\
-LPBoost & - & - \\\hline
-Ours &  95.05\% & 55.6 + 32.1 \\
+Method  & Mean Accuracy(\%) & Classification Time + Fusion Time(s)\\\hline
+ASF     & 94.21\%           & 55.6 + 0.02                         \\
+MKL     & 94.15\%           & 865.09                              \\
+RCEC    & 94.87\%           & 55.6 + 3.5                          \\
+FWOT    & -                 & -                                   \\
+LPBoost & 94.88\%           & 54.99                               \\\hline
+Ours    & 95.05\%           & 55.6 + 32.1                         \\
 \hline
 \end{tabular}
 \caption{Accuracy and Time cost on cifar10 dataset}
 \end{table}
+
 
 
 
@@ -495,6 +498,7 @@ Oxford Flowers 17 dataset~\cite{nilsback2006visual} havs 17 flower categories wi
 
 We use the predefined training set and validation set as our training data, trained on liblinear with default parameters. For LPBoost Methods, we use 5 fold cross validation to select the best hyperparmeter $\nu$. 
 Results are shown in \ref{table:flower17}
+
 
 
 \begin{table}[h]\scriptsize
