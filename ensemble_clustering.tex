@@ -426,7 +426,7 @@ A simple way is to replace $\ell_{1,2}$ to $\ell_1$, which would be much easier.
 
 
 \section{Experiments}
-We visualize the results of our approach on one synthetic and evaluate the perfomance on five publicly available datasets : UCF101 human action dataset~\cite{soomro2012ucf101}, Cifar10~\cite{krizhevsky2009learning} dataset, PASCAL VOC’07~\cite{pascal-voc-2007}, Oxford Flower 17~\cite{nilsback2006visual} and Pascal Sentences dataset.
+We visualize the results of our approach on one synthetic and evaluate the perfomance on five publicly available datasets : UCF101 human action dataset~\cite{soomro2012ucf101}, Cifar10~\cite{krizhevsky2009learning} dataset, Oxford-IIIT-Pet dataset~\cite{parkhi12a} and Pascal Sentences dataset.
 In UCF101 dataset, features are extracted from `fc6' layer of C3D model\cite{tran2015learning}, `pool5/7x7\_s1' layer from GoogleNet model\cite{szegedy2015going}, `pool5' layer of Residual Network model~\cite{he2015deep}, `fc6' layer of AlexNet,CaffeNet~\cite{krizhevsky2012imagenet} and Two-Stream Convolutional Networks~\cite{simonyan2014two}. Given a video, we sample 25 frames with equal temporal spacing between them as described in \cite{simonyan2014two} volumes for C3D). Following the same produce in \cite{tran2015learning} and \cite{simonyan2014two}, the features for the whole video are then calculated by averaging the features across the sampled frames.
 In Cifar10 dataset, features are extracted from `global\_pool' layer of the ResnNt-20,32,44,56,110 models\cite{he2015deep} and pre-activation ResNet-20,32,44,56,110,164 models\cite{he2016identity}.
 In all other dataset, features are extracted among `fc6' layer of VGG network~\cite{chatfield2014return} and AlexNet network~\cite{krizhevsky2012imagenet}, `pool5/7x7\_s1' layer from GoogleNet network~\cite{szegedy2015going}, `pool5' layer of Residual network~\cite{he2015deep}.
@@ -462,12 +462,28 @@ In synthetic experiments, we set N = 320, M = 15, K = 20, randomly generate N in
 \end{figure}
 
 
-\iffalse
-%We perform two experiments to show the effectiveness of the proposed outlier label pruning method.
-%The first experiment is image classification with multiple features.
-%The second experiment is ensemble classification.
-%By these two experiments, we aim to demonstrate that our method is able to effectively remove the anomalous labels from the class indicator matrix, and thus improve the fusion performance of classification.
-\fi
+\subsection{Experiment on Oxford-IIIT-Pet dataset}
+The Oxford-IIIT-Pet dataset~\cite{parkhi12a} contains 7349 images covering 37 different breeds of cats and dogs, 2371 images for cats and 4978 images for dogs. Each categories have about 200 pictures with a large variations in scale, pose and lighting. We extract features from AlexNet,VGG,GoogleNet,ResNet, totally eight diffierent CNN features(AlexNet for alexnet and caffenet, VGG for VGG16 and VGG19, ResNet for ResNet50, ResNet101 and ResNet152).
+
+We randomly sample fifty percent pictures as our training data and the others as our testing data, repeat ten times. We first traing svm on each seperate features by liblinear and fuse by our ORLF methods, comparison result are shown as below:
+
+\begin{table}[h]\small
+\centering
+\label{table:oxford_pet}
+\begin{tabular}{c|c}
+\hline
+Method                       & Mean Accuracy(\%) \\\hline
+ASF                          & 92.46\%           \\
+MKL                          & 87.13\%           \\
+RCEC                         & 92.41\%           \\
+FWOT                         & **                \\
+LPBoost                      & 92.73\%           \\\hline
+Ours                         & 92.84\%           \\
+\hline
+\end{tabular}
+\caption{Mean Accuracy on UCF101 dataset for best single model and six fusion methods}
+\end{table}
+
 
 \subsection{Experiment on UCF 101 dataset}
 For action recognition, we present our results on UCF 101 dataset\cite{soomro2012ucf101}. UCF101 contains 13320 videos collected from YouTube, categoried into 101 human action classes. We use the official split1 described in \cite{soomro2012ucf101}, which have 9573 training videos 3783 testing videos. As mentioned above, fives features are provided from the state of the art deep convolution networks, 4096 demitions features in `fc6' layer from C3D, 1028 demitions features in `pool5/7x7\_s1' layer from  GoogleNet, 2048 demitions features in `pool5' layer of ResNet-152, 4096 demitions features in `fc6' layer in Spatial and Temporal Net. All models used in UCF-101 are published by their authors.
@@ -494,7 +510,7 @@ Ours                         & 88.89\%           \\
 
 
 
-
+\iffalse
 \subsection{Experiment on PASCAL VOC 2007 dataset}
 PASCAL VOC 2007 is a dataset for object detection and image classification. For our experiment we only use the image level annotation information. Since each image may contain more than one label, we filter the multilabel images. Using the offical split provided by \cite{pascal-voc-2007}, we have 2954 trainval images and 3192 test images with 20 classes after filtration. We extract features from AlexNet,VGG,GoogleNet,ResNet, totally seven diffierent CNN features(AlexNet for alexnet and caffenet, VGG for VGG16 and VGG19, ResNet for ResNet50 and ResNet101).
 
@@ -517,7 +533,7 @@ Ours              & 88.78\%       & 10.2347               & 9.918 \\
 \end{tabular}
 \caption{Accuracy and Time cost on VOC2007 dataset}
 \end{table}
-
+\fi
 
 \subsection{Experiment on Cifar10 dataset}
 In CIFAR-10 dataset~\cite{krizhevsky2009learning}, totally 60000 32x32 colour pictures are categoried into 10 classes, with 6000 pictures per class. There are 50000 training data and 10000 testing data. Fourteen CNN features are extracted from multiple state of the art models for training svm. These features are `global\_pool' layers' features of ResNet-20,32,44,56,110~\cite{he2015deep} and pre-activation ResNet-20,32,44,56,110,164~\cite{he2016identity},  `pool3' layer's features of cifar10\_full model described in caffe example prototxt\footnote{\url{https://github.com/BVLC/caffe/blob/master/examples/cifar10/cifar10_full.prototxt}} and `global\_pool' layers' features from two modified network from~\cite{szegedy2015going,chatfield2014return}. This experiments show the ability of our ORLF to handle large scale data.\yanred{(how to say)}
@@ -544,13 +560,12 @@ Ours    & 95.05\%           & 55.6 + 32.1                         \\
 
 
 
-
+\iffalse
 \subsection{Experiment on Oxford Flowers}
 Oxford Flowers 17 dataset~\cite{nilsback2006visual} havs 17 flower categories with 80 images for each class. There are three predefined splits training set with 680 images, validation set with 340 images and testing set 340 images. 2048 dimetions `pool5' features from ResNet-50,101,152 proposed in \cite{he2015deep} and 4096 dimetions `fc6' features from CaffeNet,AlexNet proposed in \cite{krizhevsky2012imagenet} are used for linear SVM. The models are download from Caffe Model Zoo\footnote{\url{https://github.com/BVLC/caffe/wiki/Model-Zoo}}, with no finetuning on the current dataset.
 
 We use the predefined training set and validation set as our training data, trained on liblinear with default parameters. For LPBoost Methods, we use 5 fold cross validation to select the best hyperparmeter $\nu$.
 Results are shown in \ref{table:flower17}
-
 
 
 \begin{table}[h]\scriptsize
@@ -569,6 +584,8 @@ Ours &  98.24\% & 0 & 0 \\
 \end{tabular}
 \caption{Accuracy on Three Official Split}
 \end{table}
+
+\fi
 
 \begin{quote}
 \begin{small}
