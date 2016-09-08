@@ -34,6 +34,9 @@
 
 
 
+\def\grad{\mbox{\text{\textbf{grad}}}}
+\def\bzero{{\bf{0}}}
+
 \def\bD{{\bf D}}
 \def\bI{{\bf I}}
 \def\bE{{\bf E}}
@@ -150,14 +153,18 @@ Extensive experiments demonstrate that the proposed method is effective to remov
 \section{Introduction}
 
 %背景 多model融合
-Image or video data in the real world can be represented in multiple features. For example, motion features of videos can be extracted by Dense Trajectories~\cite{Wang2011Action}, shape features of frames can be represented by Histograms of Oriented Gradients~\cite{dalal2005histograms} and Scale-Invariant Feature Transform~\cite{lowe2004distinctive}, and some complex CNN features for both frames and sequences can be trained by ~\cite{szegedy2015going,chatfield2014return,he2015deep,simonyan2014two,Xu_2015_CVPR}.
-Each feature contains rich information of real data, which can not capture all views of our data. A single classifier model will bias on some characteristics of training data based on different features. It can significantly improve the performance by combining multiple features together and capturing more views on data.
+Image or video data in the real world can be represented in multiple features.
+For example, motion features of videos can be extracted by Dense Trajectories~\cite{Wang2011Action}.
+Shape features of frames can be represented by Histograms of Oriented Gradients~\cite{dalal2005histograms} and Scale-Invariant Feature Transform~\cite{lowe2004distinctive}, and some complex CNN features for both frames and sequences can be trained by ~\cite{szegedy2015going,chatfield2014return,he2015deep,simonyan2014two,Xu_2015_CVPR}.
+Each feature contains rich information of real data, which can not capture all views of our data.
+A single classifier model will bias on some characteristics of training data based on different features.
+It can significantly improve the performance by combining multiple features together and capturing more views on data.
 
 %%A single model results could be inaccurate in vision recogonition, so some researchers study how to fuse multiple models to boost the performance, such as the algorithms proposed in \cite{gehler2009feature,xuiccv2013feature,Rakotomamonjy2008Simplemkl}. Fusion techniques can be grouped into two types which are early fusion and late fusion, early fusion fusion multiple models in the feature level, late fusion merge the result of each classifier.
 
 %% late fusion is a common sigle model -> single feature, 介绍late fusion
 Late fusion is a common method to make the combination of different features. Single model is firstly trained on different features using Support Vector Machine(SVM) or other classifiers, and then late fusion methods combine the predicted decision results of each single model to decide the final result.
-A popular family of late fusion algorithm is that estimate a learned weight for each single model and then fuse the weighted prediction results by simple summation. Multiple Kernel Learning(MKL)~\cite{lanckriet2004learning,Rakotomamonjy2008Simplemkl} based method learn a linear combination to fuse multiple predicted scores, many works optimize the MKL based late fusion method by leading thresholding, specific weights or robust constraint into algorithm, such as \cite{gehler2009feature,xuiccv2013feature,lai2015learning}. 
+A popular family of late fusion algorithm is that estimate a learned weight for each single model and then fuse the weighted prediction results by simple summation. Multiple Kernel Learning(MKL)~\cite{lanckriet2004learning,Rakotomamonjy2008Simplemkl} based method learn a linear combination to fuse multiple predicted scores, many works optimize the MKL based late fusion method by leading thresholding, specific weights or robust constraint into algorithm, such as \cite{gehler2009feature,xuiccv2013feature,lai2015learning}.
 \yanred{The alogrithms proposed in Robust Principal Components Analysis(RPCA) might also be used for late fusion, which are capable to find the anomalous results among multiple classifers~\cite{gaoijcai2016robust}. }
 %%这提了Gao，下一段也提了Gao这样好么？
 
@@ -165,11 +172,11 @@ A popular family of late fusion algorithm is that estimate a learned weight for 
 %%Most previous works in late fusion focus on how to learn weights on different models, (disadvantage?)
 
 
-%% 不同的features 会有意见不同的时候，具体 outlier rejection，might [Gao low rank sparse loss, but the nuclear norm 
+%% 不同的features 会有意见不同的时候，具体 outlier rejection，might [Gao low rank sparse loss, but the nuclear norm
 %% scale poorly , expensive single vd(SVDs) present of , the other way of low MF foucs on least square smooth function
 %% least square loss is sensitive to outlier
 %% it's unclear to extend MF to nonsmooth function .
-%% In this paper we proposed a 
+%% In this paper we proposed a
 %%Another issue in late fusion is that some works based on MKL \cite{xuiccv2013feature} poor ability to extend their algorithm to large scale data, the ensemble clustering alogrithm \cite{gaoijcai2016robust}, which could alse used in fusion, use a matrix inversion learding into a high time complexity.
 It is ubiquitous that multiple classifers based on different features would have disagreements on some data, which motivates the outlier rejection might solve this problem. There are some researchers have ability to reject the outlier of multiple results, such as \cite{gaoijcai2016robust} use low rank sparse $\ell_{1,2}$ loss and nuclear norm to solve, which are poorly to extend to large scale data due to the expensive cost of Singular Value Decomposition(SVDs) present in the alogrithm. The other research on matrix factorization foucs on least square smooth loss funcion, which is sensitive to outlier and it's unclear to extend matrix factorization to nonsmooth $\ell_{1,2}$ loss.
 
@@ -229,18 +236,18 @@ In fact, the term $|| \bL - \bX ||_F^2$ is sensitive to outliers, and the term $
 
 
 \section{Related Work}
-%% RPCA robust 
+%% RPCA robust
 %% Matrix F...
-%% 
+%%
 \yanred{MF method}
 
 %%RPCA Methods
 Recently, \cite{gaoijcai2016robust} have proposed a robust convex ensemble clustering methods, which use the group-norm regularization to remove anomalous columns from cluster assignment matrix. This could also be used in our late fusion application to remove outlier column in the indicator matrix L. \cite{wright2009robust} instroduce a representative Robust PCA algorithm, and \cite{ye2012robust} propose a rank minimization method optimize the RPCA to fuse the predicted confidence scores of multiple models. \yanred{other RPCA and disadvantage}
 
-MKL~\cite{Rakotomamonjy2008Simplemkl} based method is a simple but efficient way to combine different features for late fusion. \cite{vedaldi2009multiple} use MKL to learn an optimal combination of exponential ${\chi}^2$. \cite{gehler2009feature} introduce two boosting approaches inspired by the MKL. \cite{natarajan2012multimodal} combines these diverse features using a two-step strategy employing MKL and late score fusion methods. \cite{lai2015learning} proposed a late fusion method that determines the optimal fusion weights for each sample. \yanred{\cite{xuiccv2013feature} learns the weights, thresholding and smoothing parameters in a joint framework to combine the decision values. Copy from Abs}. \yanred{However, MKL based method...} 
+MKL~\cite{Rakotomamonjy2008Simplemkl} based method is a simple but efficient way to combine different features for late fusion. \cite{vedaldi2009multiple} use MKL to learn an optimal combination of exponential ${\chi}^2$. \cite{gehler2009feature} introduce two boosting approaches inspired by the MKL. \cite{natarajan2012multimodal} combines these diverse features using a two-step strategy employing MKL and late score fusion methods. \cite{lai2015learning} proposed a late fusion method that determines the optimal fusion weights for each sample. \yanred{\cite{xuiccv2013feature} learns the weights, thresholding and smoothing parameters in a joint framework to combine the decision values. Copy from Abs}. \yanred{However, MKL based method...}
 
 
-%% Latent Fusion, 
+%% Latent Fusion,
 
 \section{The Proposed Approach}
 We first elaborate the formulation of our ORLF algorithm. Then we show the details about how to use augmented Lagrangian multiplier (ALM) to solve the $\ell_{1,2}$ objective function. Finnaly we introduce our post process strategy to convert the recovered matrix X in \ref{eq:mf_l21} to the final predicted label.
@@ -258,7 +265,7 @@ The core of our proposed algorithm is to apply $\ell_{1,2}$ to capture the outli
 
 \subsection{ALM Optimization}
 Most existing matrix factorization optimization methods only consider smooth loss functions, but the $\ell_{1,2}$ loss in Problem~(\ref{eq:mf_l21}) is nonsmooth.
-We apply ALM to optimize the nonsmooth objective function efficiently, desccribed as bellow: 
+We apply ALM to optimize the nonsmooth objective function efficiently, desccribed as bellow:
 
 By introducing a new variable $\bE = \bL - \bX$, we can develop Problem~(\ref{eq:mf_l21}) as below:
 
@@ -331,29 +338,74 @@ and $\alpha = \frac{2}{\mu}$.
 
 
 
-We summarize the proposed algorithm for Problem~(\ref{eq:mf_l21_constrained}) in Algorithm~\
+We summarize the proposed algorithm for Problem~(\ref{eq:mf_l21_constrained}) in Algorithm~\ref{alg:alm_mf}.
 \begin{algorithm}[h!]
 \begin{algorithmic}
 \STATE Initialize $\rho > 1$, $t = 0$, $\blambda^{(t)} = 0$, and $\mu^{(t)} > 0$.
 
-\STATE 1: Obtain $\bX^{(t)}$ by solving Problem~(\ref{eq:problem_X3}) via LRGeomCG.
+\WHILE{not converge}
 
-\STATE 2: Obtain $\bE^{(t)}$ by column-wise soft-thresholding~(\ref{eq:column_wise_soft_thresholding}).
+  \WHILE{not converge}
 
-\STATE 2: $\blambda^{(t+1)} = \blambda^{(t)} + \mu^{(t)} (\bL - \bX^{(t+1)} - \bE^{(t+1)})$.
+    \STATE 1: Obtain $\bX^{(t)}$ by solving Problem~(\ref{eq:problem_X3}) via LRGeomCG.
 
-\STATE 3: $\mu^{(t+1)} = \rho \mu^{(t)}$.
+    \STATE 2: Obtain $\bE^{(t)}$ by column-wise soft-thresholding~(\ref{eq:column_wise_soft_thresholding}).
 
-\STATE 4: t = t + 1.
+  \ENDWHILE
 
-\STATE 5: Go to step 1 until convergence.
+  \STATE 3: $\blambda^{(t+1)} = \blambda^{(t)} + \mu^{(t)} (\bL - \bX^{(t+1)} - \bE^{(t+1)})$.
+
+  \STATE 4: $\mu^{(t+1)} = \rho \mu^{(t)}$.
+
+  \STATE 5: t = t + 1.
+
+\ENDWHILE
 
 \end{algorithmic}
-\caption{The ALM algorithm for Problem~(\ref{eq:mf_l21_constrained})} \label{Alg:overview_alm}
+\caption{The ALM algorithm for Problem~(\ref{eq:mf_l21_constrained})}
+\label{alg:alm_mf}
 \end{algorithm}
 
+
+
+\begin{theorem}\label{theorem:alm_convergence}
+  Suppose that the sequence $\{ \blambda_{k} \}$ is bounded, any accumulation point $(\bX^*, \bE^*)$ of Algorithm~\ref{alg:alm_mf} is a stationary point.
+\end{theorem}
+
+\begin{proof}
+    Considering the $(k+1)$-th iteration of Algorithm~\ref{alg:alm_mf}, we have the following development:
+    \begin{align}\label{eq:proof1}
+      & \calL(\bX_{k+1}, \bE_{k+1}, \blambda_{k}, \mu_{k})   \nonumber \\ 
+      & = || \bE_{k+1} ||_{1,2} + \langle \blambda_{k}, \bL - \bX_{k+1} - \bE_{k+1} \rangle + \frac{\mu}{2} || \bL - \bX_{k+1} - \bE_{k+1} ||_{F}^2         \nonumber \\
+      & = || \bE_{k+1} ||_{1,2} + \frac{\mu}{2} [ || \bL - \bX_{k+1} - \bE_{k+1} ||_{F}^2 + \frac{\mu}{2} \langle \blambda_{k}, \bL - \bx_{k+1} - \bE_{k+1} \rangle + \frac{1}{\mu_{k}^2} || \blambda_k ||_F^2 ] - \frac{1}{2\mu_k} || \blambda_k ||_F^2    \nonumber  \\
+      & = || \bE_{k+1} ||_{1,2} + \frac{\mu_k}{2} || \bL - \bX_{k+1} - \bE_{k+1} + \frac{\blambda_k}{\mu_k} ||_F^2 - \frac{1}{2\mu_k} || \blambda_k ||_F^2   \nonumber \\
+      & = || \bE_{k+1} ||_{1,2} + \frac{\mu_k}{2} || \frac{1}{\mu_k} [ \mu_k (\bL - \bX_{k+1} - \bE_{k+1}) - \blambda_k ] ||_F^2 - \frac{1}{2\mu_k} || \blambda_k ||_F^2   \nonumber \\
+      & = || \bE_{k+1} ||_{1,2} + \frac{1}{2\mu_k} ( || \blambda_{k+1} || - || \blambda_{k} ||_F^2 )   .
+    \end{align}
+    \noindent
+    Let $f^*$ denote a local optimal objective function value, which enables the following development:
+    \begin{align}\label{eq:proof2}
+      f^* & = \min_{\bX + \bE = \bL, \bX = \bU \bV} || \bE ||_{1,2}   \nonumber  \\
+          & = \min_{\bX + \bE = \bL, \bX = \bU \bV} || \bE ||_{1,2} + \langle \blambda_k, \bL - \bX - \bE \rangle + \frac{\mu_k}{2} || \bL - \bA - \bE ||_F^2   \nonumber \\
+          & \geq \min_{\bE, \bX = \bU \bV} || \bE ||_{1,2} + \langle \blambda_k, \bL - \bX - \bE \rangle + \frac{\mu_k}{2} ||  \bL - 
+          \bX - \bE ||_F^2     \nonumber \\
+          & = \min_{\bE, \bX = \bU \bV} || \bE ||_{1,2} + \frac{1}{2\mu_k} (|| \blambda_{k+1} ||_F^2 - || \blambda_{k} ||_F^2)   .
+    \end{align}
+    \indent
+    Regarding that $\mu_{k} = \rho \mu_{k+1}$ where $\rho > 1$, and the sequence $\{ \blambda_k \}$ is bounded, we derive that
+    $\frac{1}{2\mu_k} (|| \blambda_{k+1} ||_F^2 - || \blambda_{k} ||_F^2) \rightarrow 0$ when $k \rightarrow +\infty .$
+    Therefore, when $k \rightarrow +\infty$, we obtain $\min_{\bE, \bA = \bU \bV} = || \bE^* ||_{1,2} \leq f^*$.
+    On the other hand, by Algorithm~\ref{alg:alm_mf}, $\bL - \bX_{k+1} - \bE_{k+1} = \mu_k^{-1} (\blambda_{k+1} - \blambda_{k}) .$
+    As $k \rightarrow +\infty$, we have $\bL - \bX^* - \bE^* \rightarrow +\infty  ,$
+    which indicates that $(\bX^*, \bE^*)$ is a stationary point.
+    This completes proof.
+\end{proof}
+
+
+
+
 \subsection{Final Post Process}
-As we recover the low rank matrix X from the label assisnment matrix L. Intuitively, there is two possible way to get our final fusion results from X. Although L is a 01 matrix obtain by hard label, we could treat it as a soft score matrix, which the position of highest score represent the most possible label predicted by classifiers. X is an approximation of L, we can simply consider X as a soft score matrix, which fix the outliers from L. Two possible post way to processing X are described as bellow:
+As we recover the low rank matrix X from the label assignment matrix L. Intuitively, there is two possible way to get our final fusion results from X. Although L is a 01 matrix obtain by hard label, we could treat it as a soft score matrix, which the position of highest score represent the most possible label predicted by classifiers. X is an approximation of L, we can simply consider X as a soft score matrix, which fix the outliers from L. Two possible post way to processing X are described as bellow:
 \begin{itemize}
   \item Average the score matrixs, each of which is a subset of X, the j-th matrix is from (j*k-k+1)-th colum to (j*k)-th colum of X. Then we got $X^*$, a N*K score matrix. we make the position of the highest value in each rows as the predicted label of the i-th instance.
   \item Seprate X into M matrixs $Y_j$, the i-th colum of $Y_j$ the (j*K+i)-th colum. For each matrix $Y_j$, we obtain a column vector by selecting the index of the highest score in each row. Then we use voting from M index matrix to select the final label.
@@ -496,7 +548,7 @@ Ours    & 95.05\%           & 55.6 + 32.1                         \\
 \subsection{Experiment on Oxford Flowers}
 Oxford Flowers 17 dataset~\cite{nilsback2006visual} havs 17 flower categories with 80 images for each class. There are three predefined splits training set with 680 images, validation set with 340 images and testing set 340 images. 2048 dimetions `pool5' features from ResNet-50,101,152 proposed in \cite{he2015deep} and 4096 dimetions `fc6' features from CaffeNet,AlexNet proposed in \cite{krizhevsky2012imagenet} are used for linear SVM. The models are download from Caffe Model Zoo\footnote{\url{https://github.com/BVLC/caffe/wiki/Model-Zoo}}, with no finetuning on the current dataset.
 
-We use the predefined training set and validation set as our training data, trained on liblinear with default parameters. For LPBoost Methods, we use 5 fold cross validation to select the best hyperparmeter $\nu$. 
+We use the predefined training set and validation set as our training data, trained on liblinear with default parameters. For LPBoost Methods, we use 5 fold cross validation to select the best hyperparmeter $\nu$.
 Results are shown in \ref{table:flower17}
 
 
