@@ -217,7 +217,7 @@ The main contributions are summarized as below:
 
 %%In this paper, we introduce an efficient matrix factorization based alogrithm for late fuse, named Outlier Rejection for Late Fusion(ORLF).
 %%We utilize the robust $\ell_{1,2}$ nonsmooth objective fuction~(\ref{eq:typical_mc}) to remove the outlier results among different classifiers. We introduce the low rank constraint to maintain the consistency among differernt classifers.
-%%The formulation can be written as bellow:
+%%The formulation can be written as below:
 
 %\begin{align}\label{eq:typical_mc}
 %  \min_{\bX} ~&~ || \bX - \bL ||_{1,2}   \nonumber \\
@@ -226,7 +226,7 @@ The main contributions are summarized as below:
 %\noindent
 
 %L a is observed matrix, represent the label indicator matrix in our vision recoginition case. X is a low rank matrix recovered from L. Rank function measures the rank of a matrix. $|| \bX ||_{1,2} = \sum_{j = 1}^{M} \sqrt{\sum_{i=1}^{N} \bX_{ij}} = \sum_{j=1}^{M} || \bX_{.j} ||_2$, where $\bX \in \dsR^{N \times M}$.
-%Problem~(\ref{eq:typical_mc}) is NP-hard due to the presence of the low rank constraint. For the sake of efficiency on large scale matrices, we consider matrix factorization approaches to optimize it, which can be written as bellow:
+%Problem~(\ref{eq:typical_mc}) is NP-hard due to the presence of the low rank constraint. For the sake of efficiency on large scale matrices, we consider matrix factorization approaches to optimize it, which can be written as below:
 %\begin{align}\label{eq:mf_l21}
 %  \min_{\bX} ~&~ || \bL - \bX ||_{1,2}    \nonumber \\
 %  \st        ~&~ \bX = \bU \bV,~\bU \in \dsR^{N \times k},~\bV \in \dsR^{k \times MK} .
@@ -284,7 +284,7 @@ We first elaborate the formulation of our ORLF algorithm. Then we show the detai
 
 \subsection{Problem Formulation}
 Suppose there are n testing instances, we denote each instance as a variable $x_i{\in}\dsR^{d}(1{\leq}i{\leq}n)$. Assuming we have already training m classifiers, $f_1(x), f_2(x), ... f_m(x)$, per classifier will predict a score vector $s_{ij}, 1{\leq}i{\leq}n, 1{\leq}j{\leq}m $，represent the result of j-th classifier on i-th testing instance. Our goal is to fusion these predicted confidence score vectors. Firstly, we transfer these score vectors to a label matrix P, each colums represent the highest value position of each instance. Then using label assigment, we convert multiple P matrixs into a 01 indicator matrix L, see as{\ref{fig:framework}}.
-The core of our proposed algorithm is to apply $\ell_{1,2}$ to capture the outliers as well as anomalous columns in matrix L, and apply a matrix factorization based approach to optimize the objective function as shown bellow: 
+The core of our proposed algorithm is to apply $\ell_{1,2}$ to capture the outliers as well as anomalous columns in matrix L, and apply a matrix factorization based approach to optimize the objective function as shown below: 
 
 \begin{align}\label{eq:mf_l21}
     \min_{\bX} ~&~ || \bL - \bX ||_{1,2}    \nonumber \\
@@ -301,7 +301,7 @@ The k of the low rank constraint in (\ref{eq:mf_l21}) is the number of class in 
 
 \subsection{ALM Optimization}
 Most existing matrix factorization optimization methods only consider smooth loss functions, but the $\ell_{1,2}$ loss in Problem~(\ref{eq:mf_l21}) is nonsmooth.
-We apply ALM to optimize the nonsmooth objective function efficiently, desccribed as bellow:
+We apply ALM to optimize the nonsmooth objective function efficiently, desccribed as below:
 
 By introducing a new variable $\bE = \bL - \bX$, we can develop Problem~(\ref{eq:mf_l21}) as below:
 
@@ -440,33 +440,58 @@ We summarize the proposed algorithm for Problem~(\ref{eq:mf_l21_constrained}) in
 
 
 
-\subsection{Final Post Process}
-As we recover the low rank matrix X from the label assignment matrix L. Intuitively, there is two possible way to get our final fusion results from X. Although L is a 01 matrix obtain by hard label, we could treat it as a soft score matrix, which the position of highest score represent the most possible label predicted by classifiers. X is an approximation of L, we can simply consider X as a soft score matrix, which fix the outliers from L. Three possible post ways processing X are described as bellow, $X_{*j}$ represents the j-th matrix is from (j*k-k+1)-th colum to (j*k)-th colum of X:
+\subsection{Post Process}
+As we recover the low rank matrix X from the label assignment matrix L,
+it does need a post process to generate the predicted label for each testing data.
+Intuitively, there might be several possible ways to select as below : 
 \begin{itemize}
-  \item Average the score matrixs $X_{*j}$, which is a subset of X. Then we got $X^*$, a $N\times K$ score matrix. we make the position of the highest value in each rows as the predicted label of the i-th instance.
-  \item The same pre-process as the first strategy, but we use voting to predict the final label the i-th instance.
-  \item We normalize each subset of X by softmax function and the corresponding confidence score matrix Y by L2 norm. Then we treat each element as a gate to the corresponding one in Y, which effects on Y by production. Finally the indicator of the highest value is selected to be the predicted label as the first strategy.
+  \item A $N\times K$ score matrix $X^{*}$ is obtained by averaging matrixes $X_{*j}$\footnote{the subset matrix of X from (j*k-k+1)-th to (j*k)-th colums} $(1{\leq}j{\leq}m)$. 
+		The indicator of the highest value in each row of $X^{*}$ is regard as the predicted label for the corresponding data.
+  \item For $X_{*j} (1{\leq}j{\leq}m)$, we set $I_{ij}$ is the index of the highest value in the i-th row of $X_{*j}$.
+  		Each $I_{ij}$ contributes one point to the i-th data with label j. 
+  		Finally, we choose the label with the most votes to be the predicted results.
+  \item $X_{*j}$ are transformed through softmax function as a gate of the corresponding confidence score matrix, which is normalized by L2 norm. 
+  		As $X_{*j}$ contains outlier rejection information, we product the $X_{*j}$ by the corresponding score matrix after softmax and normalization.
+  		The similar process as the first strategy is applied to the above results, which predictes the final label.
 \end{itemize}
-According to the experiments, the first strategy outperforms than the others, we choose the first one as our final post process of fusion method and analyse inner reason during experiment section.
+According to the experiments, the last strategy outperforms than the others. 
+So We choose the last one as the post process for fusion method and analyse inner reasons during experiment section.
 
 
 \section{Experiments}
 
-In this section, we first visualize the results of our approach on one synthetic dataset and evaluate the perfomance on five publicly available datasets : UCF101 human action dataset~\cite{soomro2012ucf101}, CIFAR-10,100~\cite{krizhevsky2009learning} dataset and Oxford-IIIT-Pet dataset~\cite{parkhi12a}. 
-Details about how we select features in each dataset are described in the second subsection.
-LIBLINEAR\cite{fan2008liblinear} is adopted for our basic classification toolbox, and the confidence scores are generated from the outputs of LIBLINEAR. Then we put the confidence scores as the input of our alogrithm.
+In this section, we first visualize the results of our approach on one synthetic dataset 
+and evaluate the perfomance on four publicly available datasets : UCF101 human action dataset~\cite{soomro2012ucf101}, CIFAR-10,100~\cite{krizhevsky2009learning} dataset and Oxford-IIIT-Pet dataset~\cite{parkhi12a}. 
+Details on feature extraction for each dataset are described in the second subsection.
+LIBLINEAR\cite{fan2008liblinear} is adopted for our basic classification toolbox, and the confidence scores are set as outputs of LIBLINEAR. 
+Then we put the confidence scores as the input X of our alogrithm.
 
-Five state-of-the-art fusion methods are compared with our proposed alogrithm : (1)Average Score Fusion(ASF), we directly average the confidence scores predicted by classifiers. We use $L_2$ norm on each classifiers for normalization. (2)Multiple Kernel Learning (MKL),  MKL learn a weight w for each classifiers, the final score are obtained from function $f(s)=w^{T}s, \sum w = 1$. We use liblinear-mkl\footnote{\url{http://www.csie.ntu.edu.tw/~b95028/software/liblinear-mkl/}} to train our MKL model. (3)Robust Convex Ensemble Clustering (RCEC)\cite{gaoijcai2016robust}. We use the core alogrithm to recover X from L in ~\ref{eq:mf_l21}, and choose the same post process as our method. (4)Feature Weighting via Optimal Thresholding(FWOT)\cite{xuiccv2013feature}. The author propse a method to learn thresholding, smoothing parameters and weights in a joint framework to combine prediction confidence scores of different features. (5)LPBoost\cite{gehler2009feature}. In this method, a variant linear combination are applied to multiple classifiers.
 
-The parameter $\mu$ are selected from {0.1, 1, 5}, $\rho$ are select from {1.01, 1.05, 1.1} in all our experiments. It shows slight different performance by selecting different parameters in our experiment. We use the default parameters set in LIBLINEAR for SVM and liblinear-mkl for MKL, unless otherwise specified. For RCEC method, we use 5 folder cross validation to select best parameter $\beta$ from {0.01,1,2,4,6,...,20} and set $\lambda = 0.1 \gamma = 0.01$, which are suggested by author~\cite{yiicdm2012robust}. For LPBoost, the smoothing parameter candidates are {0.5, 0.6, ... , 0.9} and the parameter C in is selected from $10^{-4},10^{-2},...,10^{4}$ according to cross-validation, which are same as~\cite{xuiccv2013feature}. For LPBoost, we use cross-validation to pick up the best $\nu$ from {0.5,0.6,0.7,0.8,0.9}, which is used in~\cite{xuiccv2013feature}.
+Five state-of-the-art fusion methods are compared with our proposed alogrithm : 
+(1)Average Score Fusion(ASF), we directly average the confidence scores predicted by classifiers. We use $L_2$ norm on each classifier's results for normalization. 
+(2)Multiple Kernel Learning (MKL),  MKL learn a weight w for each classifiers, the final score are obtained from function $f(s)=w^{T}s, \sum w = 1$. We use liblinear-mkl\footnote{\url{http://www.csie.ntu.edu.tw/~b95028/software/liblinear-mkl/}} to train our MKL model. 
+(3)Robust Convex Ensemble Clustering (RCEC)\cite{gaoijcai2016robust}. The core alogrithm in RCEC can be modified to recover X from L in ~\ref{eq:mf_l21}, and the post process is same as our method. 
+(4)Feature Weighting via Optimal Thresholding(FWOT)\cite{xuiccv2013feature}. The author propse a method to learn thresholding, smoothing parameters and weights in a joint framework to combine prediction confidence scores of different features. 
+(5)LPBoost\cite{gehler2009feature}. In this method, a variant linear combination are applied to multiple classifiers to boost performance.
+
+
+The parameter $\mu$ is selected from \{0.1, 1, 5\} and $\rho$ is select from \{1.01, 1.05, 1.1\} in all our experiments.
+It shows slight performance change during selecting different parameters. 
+We use the default parameters set in LIBLINEAR and liblinear-mkl, unless otherwise specified. 
+For RCEC method, we use 5 folder cross validation to select the best parameter $\beta$ from \{0.01,1,2,4,6,...,20\} and set $\lambda = 0.1, \gamma = 0.01$, which are suggested by author~\cite{yiicdm2012robust}.
+For FWOT, the smoothing parameter candidates are \{0.5, 0.6, ... , 0.9\} and the parameter C in is selected from \{$10^{-4},10^{-2},...,10^{4}$\} according to cross-validation, which is same in~\cite{xuiccv2013feature}. 
+For LPBoost, we use cross-validation to pick up the best $\nu$ from \{0.5,0.6,0.7,0.8,0.9\} suggested by~\cite{xuiccv2013feature}.
 
 
 
 \subsection{Synthetic Experiments}
 
-
-In synthetic experiments, we set N = 320, M = 15, K = 20, and randomly generate N instances with K kinds of labels for each instance. Then we randomly change 30\% instances' labels, repeat M times to get M classifiers' results. By appling our proposed alogrithm to this synthetic dataset, we visualize the results in Figure \ref{fig:ensemble_cluster}. Each subfigure contains $N\times M$ small narrow blocks, which visualized in diverse color according to different label. The first picture~\ref{subfig:gt_pdf}, show the ground truth label repeating M times. And M noised classifiers' results are pictured as~\ref{subfig:er_pdf}. After we recover the low rank matrix from the noised matrix by using our ORLF method, we visualize it as~\ref{subfig:er_pdf}.
-
+In synthetic experiments, we set N = 320, M = 15, K = 20, and randomly generate N instances with K kinds of labels for each instance. Then we randomly change 30\% instances' labels, repeat M times to get M classifiers' results. 
+Appling our proposed alogrithm to this synthetic dataset, we visualize the results in Figure~\ref{fig:ensemble_cluster}.
+Each subfigure contains $N\times M$ small narrow blocks, which visualized in diverse color according to different label. 
+The first picture~\ref{subfig:gt_pdf}, show the ground truth label repeating M times. 
+And M noised classifiers' results are pictured as~\ref{subfig:er_pdf}. 
+We recover the low rank matrix from the noised matrix by using our late fusion method, which is visualized as~\ref{subfig:er_pdf}.
 
 \begin{figure}[htp]
 \center
@@ -486,21 +511,24 @@ In synthetic experiments, we set N = 320, M = 15, K = 20, and randomly generate 
 \end{figure}
 
 
-\subsection{Feature Selection}
-In this section, we describe of the details of the feature extraction used in each dataset. All convolutional neural network(CNN) features are extracted using Caffe~\cite{jia2014caffe}, a deep learning framework.
+\subsection{Feature Extraction}
+In this section, we describe the details of the feature extraction for each dataset. 
+All convolutional neural network(CNN) features are extracted using Caffe~\cite{jia2014caffe}, a deep learning framework.
 
 In UCF101 dataset, five different features are extracted from the following:
 \begin{itemize}
   \item `fc6' of C3D~\cite{tran2015learning}
   \item `pool5/7x7\_s1' from GoogleNet~\cite{szegedy2015going}
   \item `pool5' of ResNet-152~\cite{he2015deep}
-  \item two `fc6' of Two-Stream~\cite{simonyan2014two}
+  \item two `fc6's of Two-Stream~\cite{simonyan2014two}
 \end{itemize}
-%%Given a video, we first choose 25 frames with equal temporal spacing. For frame-level feature, we extract features on sampled 25 frames as described in~\cite{simonyan2014two}. For volum-level feature, we extract features on 25 volumes starting from our sampled frames with several continuous frames, 17 frames for C3D~\cite{simonyan2014two} and 10 frames for Two-Stream. Finally, we average the sampled 25 feature vectors for each kind of CNN model as our final training data. 
+Given a video, we extract the above five features following the same process in~\cite{simonyan2014two,tran2015learning}(GoogleNet and ResNet-152 feature are same as spatial net in~\cite{simonyan2014two}). 
+All models we used are available on Internet provided by authors.
 
-Given a video, we extract the above five features following the same process in \cite{simonyan2014two,tran2015learning}(GoogleNet and ResNet-152 feature are same as spatial net in~\cite{simonyan2014two}). All models we used are available on Internet provided by authors.
-
-In Cifar10 dataset, the features are extracted from the `global\_pool' layer of ResNet-20,32,44,56,68,110~\cite{he2015deep} and of pre-activation ResNet-20,32,44,56,68,110,164 models~\cite{he2016identity}. Another feature is extracted from `pool3' layer's features of cifar10\_full model described in caffe example prototxt\footnote{\url{https://github.com/BVLC/caffe/blob/master/examples/cifar10/cifar10_full.prototxt}}. We train each ResNet model following the standard procedure in ~\cite{he2015deep,he2016identity} and cifar10\_full model use a official shell\footnote{\url{https://github.com/BVLC/caffe/blob/master/examples/cifar10/train_full.sh}} before extracting features. In Cifar100 dataset, we use the same model and process as in Cifar10 except the caffe example model and pre-activation ResNet-68, totaly twelve features.
+In Cifar10 dataset, the features are extracted from the `global\_pool' layer of ResNet-20,32,44,56,68,110~\cite{he2015deep} and of pre-activation ResNet-20,32,44,56,68,110,164 models~\cite{he2016identity}. 
+Another feature is extracted from `pool3' layer's features of cifar10\_full model described in caffe example prototxt\footnote{\url{https://github.com/BVLC/caffe/blob/master/examples/cifar10/cifar10_full.prototxt}}. 
+We train each ResNet model following the standard procedure in~\cite{he2015deep,he2016identity} and cifar10\_full model using a official shell\footnote{\url{https://github.com/BVLC/caffe/blob/master/examples/cifar10/train_full.sh}} before extracting features. 
+In Cifar100 dataset, we use the same model and process as in Cifar10 except the caffe example model and pre-activation ResNet-68, totaly twelve features.
 
 In all other experiments, eight different features are extracted from the following:
 \begin{itemize}
@@ -509,12 +537,20 @@ In all other experiments, eight different features are extracted from the follow
   \item `pool5/7x7\_s1' from GoogleNet~\cite{szegedy2015going}
   \item `pool5' of ResNet-50,101,152~\cite{he2015deep}
 \end{itemize}
-We use the offical caffe model provided by Caffe Model Zoo\footnote{\url{https://github.com/BVLC/caffe/wiki/Model-Zoo}} for all above features with no extrat operation.
+We use the offical caffe model provided by Caffe Model Zoo\footnote{\url{https://github.com/BVLC/caffe/wiki/Model-Zoo}}.
+For above eight features, we don't do extra operation.
 
 
 \subsection{Experiment on UCF 101 dataset}
-For action recognition, we present our results on UCF 101 dataset~\cite{soomro2012ucf101}. UCF101 contains 13320 videos collected from YouTube, categoried into 101 human action classes. We use the official split1 described in~\cite{soomro2012ucf101}, which have 9573 training videos and 3783 testing videos. As mentioned above, we extract fives features and use liblinear to train seperate classifiers on each features with the default parameters in liblinear. 
-By appling five classifiers on test data, we can obtain 5 * 101 confidence scores for each video. After emsenable fusion, we choose the class with the highest confidence score as our predicted class. Results are shown in \ref{table:ucf101}, in which we illustrate the performance of the best single classifier and compare several fusion method. To be noted, FWOT~\cite{xuiccv2013feature} is too slow to train, we didn't show it's result (more than one day).
+
+For action recognition, we present our results on UCF 101 dataset~\cite{soomro2012ucf101}. 
+UCF101 contains 13320 videos collected from YouTube, categoried into 101 human action classes. 
+We use the official split1 described in~\cite{soomro2012ucf101}, which have 9573 training videos and 3783 testing videos. 
+
+As mentioned above, we extract fives features and train different classifier on each feature with the default parameters by liblinear. 
+Appling five classifiers on test data, we obtain 5 * 101 confidence scores for each video, which forms the input matrix X of our algorithm. 
+Results are shown in Table~\ref{table:ucf101}, in which we illustrate the performance of the best single classifier and compare six fusion methods. 
+To be noted, FWOT~\cite{xuiccv2013feature} is too slow to train, we didn't show it's result (more than one day).
 
 \begin{table}[h]\small
 \centering
@@ -525,10 +561,10 @@ Method                       & Mean Accuracy(\%) \\\hline
 SVM on Temporal Net Features & 86.23\%           \\\hline
 ASF                          & 86.78\%           \\
 MKL                          & 85.38\%           \\
-RCEC                         & 88.29\%           \\
+RCEC                         & 86.60\%           \\          %ori: 0.88290  vote : 0.88158
 FWOT                         & -                 \\
 LPBoost                      & 86.24\%           \\\hline
-Ours                         & 88.89\%           \\
+Ours                         & 89.03\%           \\          %ori: 0.8888   vote : 0.88686
 \hline
 \end{tabular}
 %\caption{Mean Accuracy on UCF101 dataset for best single model and six fusion methods}
@@ -537,9 +573,15 @@ Ours                         & 88.89\%           \\
 
 
 \subsection{Experiment on Cifar10 dataset}
-In CIFAR-10 dataset~\cite{krizhevsky2009learning}, totally 60000 32x32 colour pictures are categoried into 10 classes, with 6000 pictures per class. There are 50000 training data and 10000 testing data. Fourteen CNN features are extracted from multiple state of the art models for training svm. This experiments show the ability of our algorithm to handle large scale data.
 
-As we have 50000 training data and 10000 testing data, FWOT~\cite{xuiccv2013feature} has one step to deal with N*N matrixes, which are excessive to train~(more than one day). LPBoost~\cite{gehler2009feature} need to create a $NK\times N$ constraint matrix linear programming solvers\footnote{The author use the MOSEK interior-point solver, see www.mosek.com.}, which occupies too much memory and still consumes long time to train, so we solve this problem by using sparse matrix storage and parallel during matlab. We also use `-s 2' parameters in liblinear to speedup training process. Results of other contrast algorithms are shown on \ref{table:cifar10}
+In CIFAR-10 dataset~\cite{krizhevsky2009learning}, totally 60000 32x32 colour pictures are categoried into 10 classes, with 6000 pictures per class. 
+There are 50000 training data and 10000 testing data. 
+Fourteen CNN features are extracted from multiple state of the art models. 
+This experiments show the ability of our algorithm to handle large scale data.
+
+As we have 50000 training data and 10000 testing data, FWOT~\cite{xuiccv2013feature} has one step to deal with N*N matrixes, which are excessive to train~(more than one day). 
+LPBoost~\cite{gehler2009feature} need to create a $NK\times N$ constraint matrix linear programming solvers\footnote{The author use the MOSEK interior-point solver, see www.mosek.com.}, which occupies too much memory and still consumes long time to train, so we solve this problem by using sparse matrix storage and parallel during matlab. 
+We also use `-s 2' parameters in liblinear to speedup training process. Results of other contrast algorithms are shown on \ref{table:cifar10}
 
 
 \begin{table}[h]\scriptsize
@@ -550,38 +592,44 @@ As we have 50000 training data and 10000 testing data, FWOT~\cite{xuiccv2013feat
 Method  & Mean Accuracy     & Classification Time + Fusion Time(s)\\\hline
 ASF     & 94.21\%           & 55.6 + 0.02                         \\
 MKL     & 94.15\%           & 865.09                              \\
-RCEC    & 94.87\%           & 55.6 + 3.5                          \\
+RCEC    & 94.99\%           & 55.6 + 3.5                          \\         % ori:0.94850  vote:0.94820 / 0.95070
 FWOT    & -                 & -                                   \\
 LPBoost & 94.88\%           & 54.99                               \\\hline
-Ours    & 95.05\%           & 55.6 + 32.1                         \\
+Ours    & 95.11\%           & 55.6 + 32.1                         \\         % ori:0.95050  vote:0.95030
 \hline
 \end{tabular}
 \caption{Mean Accuracy and Time cost on cifar10 dataset}
 \end{table}
 
 \subsection{Experiment on Cifar100 dataset}
-CIFAR-100~\cite{krizhevsky2009learning} is similar with CIFAR-10, except it has 100 classes containing 600 images each. There are 50000 training data and 10000 testing data as CIFAR-10. Twelve CNN features used in this experiment are describe in the previous section. Training and comparison process are the same as in CIFAR-10. Results are shown as below:
+
+CIFAR-100~\cite{krizhevsky2009learning} is similar with CIFAR-10, except it has 100 classes containing 600 images each.
+There are 50000 training data and 10000 testing data as CIFAR-10. 
+Twelve CNN features used in this experiment are described in the previous section. 
+Training and comparison process are the same as CIFAR-10. Results are shown as below:
 
 
-\begin{table}[h]\scriptsize
+\begin{table}[h]\small
 \centering
 \label{table:cifar100}
-\begin{tabular}{c|c|c}
+\begin{tabular}{c|c}
 \hline
 Method  & Mean Accuracy \\\hline
 ASF     & 76.91\%           \\
 MKL     & 72.71\%           \\
-RCEC    & 96.96\%           \\
+RCEC    & 77.13\%           \\  %ori: 0.76960,  vote: 0.77050
 FWOT    & -                 \\
 LPBoost & 76.59\%           \\\hline
-Ours    & 77.18\%           \\
+Ours    & 77.72\%           \\  %ori: 0.77170, vote: 0.77160
 \hline
 \end{tabular}
 \caption{Mean Accuracy on cifar100 dataset}
-\end{table}
+\end{table} 
 
 \subsection{Experiment on Oxford-IIIT-Pet dataset}
-The Oxford-IIIT-Pet dataset~\cite{parkhi12a} contains 7349 images covering 37 different breeds of cats and dogs, 2371 images for cats and 4978 images for dogs. Each categories have about 200 pictures with a large variations in scale, pose and lighting.
+
+The Oxford-IIIT-Pet dataset~\cite{parkhi12a} contains 7349 images covering 37 different breeds of cats and dogs, 2371 images for cats and 4978 images for dogs. 
+Each categories have about 200 pictures with a large variations in multiple views, such as scale, pose and lighting.
 We randomly sample fifty percent pictures as our training data and the others as our testing data, repeat ten times. We first traing svm on each seperate features and fuse by our ORLF method. The comparison results are shown as below:
 
 \begin{table}[h]\small
@@ -592,10 +640,10 @@ We randomly sample fifty percent pictures as our training data and the others as
 Method                       & Mean Accuracy     \\\hline
 ASF                          & 92.46\%           \\
 MKL                          & 87.13\%           \\
-RCEC                         & 92.41\%           \\
-FWOT                         & 92.90\%           \\
+RCEC                         & 92.11\%           \\          % ori: 92.41
+FWOT                         & 92.90\%           \\			 
 LPBoost                      & 92.73\%           \\\hline
-Ours                         & 92.84\%           \\
+Ours                         & 92.90\%           \\			 % ori: 92.84
 \hline
 \end{tabular}
 \caption{Mean Accuracy on Oxford-IIIT-Pet dataset}
@@ -604,9 +652,16 @@ Ours                         & 92.84\%           \\
 
 
 \subsection{Post Strategy Selection}
-In this section, we first compare three proposed final post strategy on tree small dataset: PASCAL VOC 2007~\cite{pascal-voc-2007}, Oxford Flowers 17~\cite{nilsback2006visual} and Caltech 101~\cite{Li2006One}. PASCAL VOC 2007 contrains 6146 images classified into 20 classes, after filtering the multi-label data. Oxford Flowers 17 dataset havs 17 flower categories with 80 images for each class. Caltech 101 contains a total of 9,146 images, split between 101 distinct object categories and a background category.
+In this section, we first compare three proposed final post strategy on three small dataset: PASCAL VOC 2007~\cite{pascal-voc-2007}, Oxford Flowers 17~\cite{nilsback2006visual} and Caltech 101~\cite{Li2006One}.
+PASCAL VOC 2007 contrains 6146 images classified into 20 classes, after filtering the multi-label data. 
+Oxford Flowers 17 dataset havs 17 flower categories with 80 images for each class. 
+Caltech 101 contains a total of 9,146 images, split between 101 distinct object categories and a background category.
+We sample fifty percent data as training data and the others as testing data, repeat 10 times on all three datasets.
 
-Experiment results show that the first strategy outperforms than the others in most cases and never performe under the others. \yanred{Lack Analysis}
+Experiment results show that the first strategy outperforms than the others in most cases and never performes under the others. 
+The reason that the first strategy is better than the second one might because the soft average method would reserve more detail information than the hard voting method.
+Since the recover matrix X contains the outlier rejection information, 
+the last strategy combines the outlier results as a rejection decision operating on the original confidence score matrix, which utlizing more than both the first and second strategy.
 
 \begin{table}[h]\small
 \centering
@@ -614,13 +669,14 @@ Experiment results show that the first strategy outperforms than the others in m
 \begin{tabular}{c|c|c|c}
 \hline
 Method                       & VOC 2007 &  Flowers 17  & Caltech 101 \\\hline
-Strategy 1                   & 89.56\%  &  96.76\%     &    -        \\\hline
-Strategy 2                   & 89.26\%  &  96.61\%     &    -        \\\hline
-Strategy 3                   & 89.16\%  &  96.75\%     &    -        \\\hline
+Strategy 1                   & 89.60\%  &  96.77\%     &   96.04\%   \\\hline
+Strategy 2                   & 89.41\%  &  96.61\%     &   95.91\%   \\\hline
+Strategy 3                   & 90.10\%  &  96.77\%     &   96.08\%   \\
 \hline
 \end{tabular}
 \caption{Mean Accuracy on Three Strategies}
 \end{table}
+
 
 \subsection{\yanred{Unwork dataset Record Data}}
 
@@ -637,25 +693,25 @@ MKL                          & 85.53\%           \\
 RCEC                         & 89.60\%           \\
 FWOT                         & 89.85\%           \\
 LPBoost                      & 90.54\%           \\\hline
-Ours                         & 89.57\%           \\
+Ours                         & 90.10\%           \\
 \hline
 \end{tabular}
 \caption{VOC 2007}
 \end{table}
 
 
-\begin{table}[h]\scriptsize
+\begin{table}[h]\small
 \centering
 \label{table:flower17}
 \begin{tabular}{c|c}
 \hline
 Method & Mean Accuracy\\\hline
-ASF &  96.81\% \\
-MKL &  93.24\% \\
-RCEC &  96.81\% \\
-FWOT &  96.88\% \\
+ASF    &  96.81\% \\
+MKL    &  93.24\% \\
+RCEC   &  96.81\% \\
+FWOT   &  96.88\% \\
 LPBoost & 97.24\% \\\hline
-Ours &  96.62\% \\
+Ours   &  96.74\% \\
 \hline
 \end{tabular}
 \caption{Oxford Flowers 17}
