@@ -1,0 +1,192 @@
+\def\year{2017}\relax
+%File: formatting-instruction.tex
+\documentclass[letterpaper]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm,mathrsfs,amsfonts,dsfont}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{subfigure}
+\usepackage{color}
+\usepackage{epstopdf}
+\usepackage{bm}
+%\usepackage[vlined,boxed,ruled]{algorithm2e}
+\usepackage{url}
+\usepackage{xspace}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+
+
+
+\usepackage{aaai17}
+\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+
+
+
+\def\grad{\mbox{\text{\textbf{grad}}}}
+\def\bzero{{\bf{0}}}
+
+\def\bA{{\bf A}}
+\def\bB{{\bf B}}
+\def\bN{{\bf N}}
+\def\bM{{\bf M}}
+\def\bD{{\bf D}}
+\def\bI{{\bf I}}
+\def\bE{{\bf E}}
+\def\blambda{{\bm \lambda}}
+\def\calL{{\mathcal{L}}}
+\def\calC{{\mathcal{C}}}
+\def\calS{{\mathcal{S}}}
+\def\calF{{\mathcal{F}}}
+\def\bL{{\bf L}}
+\def\bO{{\bf O}}
+\def\bU{{\bf U}}
+\def\bV{{\bf V}}
+\def\dsR{\mathds{R}}
+\def\bX{{\bf X}}
+\def\bx{{\bf x}}
+\def\btx{{\tilde{\bf x}}}
+\def\by{{\bf y}}
+\def\bw{{\bf w}}
+\def\btw{{\tilde{\bf w}}}
+\def\tK{\tilde{K}}
+\def\txi{\tilde{\xi}}
+\def\tildeb{{\tilde{b}}}
+\def\tphi{{\tilde{\phi}}}
+\def\bz{{\bf z}}
+\def\br{{\bf r}}
+\def\bv{{\bf v}}
+\def\bb{{\bf b}}
+\def\bp{{\bf p}}
+\def\bA{{\bf A}}
+\def\bI{{\bf I}}
+
+\def\bx{{\bf x}}
+\def\bX{{\bf X}}
+\def\by{{\bf y}}
+\def\bY{{\bf Y}}
+\def\bw{{\bf w}}
+\def\bW{{\bf W}}
+\def\balpha{{\bm \alpha}}
+\def\bmu{{\bm \mu}}
+\def\bK{{\bf K}}
+\def\bg{{\bf g}}
+\def\bp{{\bf p}}
+\def\p{p}
+\def\bP{{\bf P}}
+
+\def\balpha{{\bm \alpha}}
+\def\bbeta{{\bm \beta}}
+\def\eg{{\emph{e.g.}}}
+\def\zerocolumn{{\bf 0}}
+
+\def\ttTP{{\tt TP}}
+\def\ttFP{{\tt FP}}
+\def\ttFN{{\tt FN}}
+
+\def\st{{\text{s.t.}}}
+\def\etc{\emph{etc}}
+\def\wrt{\emph{w.r.t}}
+\def\ie{\emph{ie}}
+\def\eg{\emph{eg}}
+\def\rank{{\text{rank}}}
+\def\Tr{{\text{Tr}}}
+
+\def\yanred{\textcolor{red}}
+\def\yanblue{\textcolor{blue}}
+
+
+\frenchspacing
+\setlength{\pdfpagewidth}{8.5in}
+\setlength{\pdfpageheight}{11in}
+\pdfinfo{
+/Title (Insert Your Title Here)
+/Author (Put All Your Authors Here, Separated by Commas)}
+\setcounter{secnumdepth}{0}
+ \begin{document}
+
+
+% The file aaai.sty is the style file for AAAI Press
+% proceedings, working notes, and technical reports.
+%
+
+
+
+%\title{Outlier Reject for Late Fusion on Visual Recognition}
+\title{Supplemental Material for ``Robust Late Fusion Based on Matrix Factorization''}
+
+\author{AAAI Press\\
+Association for the Advancement of Artificial Intelligence\\
+2275 East Bayshore Road, Suite 160\\
+Palo Alto, California 94303\\
+}
+
+
+
+\maketitle
+
+
+
+
+
+\begin{theorem}\label{theorem:alm_convergence}
+  %Suppose that the sequence $\{ \blambda_{k} \}$ is bounded, any accumulation point $(\bX^*, \bE^*)$ of Algorithm~\ref{alg:alm_mf} is a stationary point.
+  Suppose that the sequence $\{ \blambda_{k} \}$ is bounded, any accumulation point $(\bX^*, \bE^*)$ of Algorithm~1 is a stationary point.
+\end{theorem}
+
+%\begin{proof}
+%  The proof can be found in Appendix A.
+%\end{proof}
+\begin{proof}
+    %Considering the $(k+1)$-th iteration of Algorithm~\ref{alg:alm_mf}, we have the following development:
+    Considering the $(k+1)$-th iteration of Algorithm~1, we have the following development:
+    \begin{align}\label{eq:proof1}
+      & \calL(\bX_{k+1}, \bE_{k+1}, \blambda_{k}, \mu_{k})   \nonumber \\
+      & = || \bE_{k+1} ||_{1,2} + \langle \blambda_{k}, \bL - \bX_{k+1} - \bE_{k+1} \rangle + \frac{\mu}{2} || \bL - \bX_{k+1} - \bE_{k+1} ||_{F}^2         \nonumber \\
+      & = || \bE_{k+1} ||_{1,2} + \frac{\mu}{2} [ || \bL - \bX_{k+1} - \bE_{k+1} ||_{F}^2 + \frac{\mu}{2} \langle \blambda_{k}, \bL - \bx_{k+1} - \bE_{k+1} \rangle + \frac{1}{\mu_{k}^2} || \blambda_k ||_F^2 ] - \frac{1}{2\mu_k} || \blambda_k ||_F^2    \nonumber  \\
+      & = || \bE_{k+1} ||_{1,2} + \frac{\mu_k}{2} || \bL - \bX_{k+1} - \bE_{k+1} + \frac{\blambda_k}{\mu_k} ||_F^2 - \frac{1}{2\mu_k} || \blambda_k ||_F^2   \nonumber \\
+      & = || \bE_{k+1} ||_{1,2} + \frac{\mu_k}{2} || \frac{1}{\mu_k} [ \mu_k (\bL - \bX_{k+1} - \bE_{k+1}) - \blambda_k ] ||_F^2 - \frac{1}{2\mu_k} || \blambda_k ||_F^2   \nonumber \\
+      & = || \bE_{k+1} ||_{1,2} + \frac{1}{2\mu_k} ( || \blambda_{k+1} || - || \blambda_{k} ||_F^2 )   .
+    \end{align}
+    \noindent
+    Let $f^*$ denote a local optimal objective function value, which enables the following development:
+    \begin{align}\label{eq:proof2}
+      f^* & = \min_{\bX + \bE = \bL, \bX = \bU \bV} || \bE ||_{1,2}   \nonumber  \\
+          & = \min_{\bX + \bE = \bL, \bX = \bU \bV} || \bE ||_{1,2} + \langle \blambda_k, \bL - \bX - \bE \rangle + \frac{\mu_k}{2} || \bL - \bA - \bE ||_F^2   \nonumber \\
+          & \geq \min_{\bE, \bX = \bU \bV} || \bE ||_{1,2} + \langle \blambda_k, \bL - \bX - \bE \rangle + \frac{\mu_k}{2} ||  \bL -
+          \bX - \bE ||_F^2     \nonumber \\
+          & = \min_{\bE, \bX = \bU \bV} || \bE ||_{1,2} + \frac{1}{2\mu_k} (|| \blambda_{k+1} ||_F^2 - || \blambda_{k} ||_F^2)   .
+    \end{align}
+    \indent
+    Regarding that $\mu_{k} = \rho \mu_{k+1}$ where $\rho > 1$, and the sequence $\{ \blambda_k \}$ is bounded, we derive that
+    $\frac{1}{2\mu_k} (|| \blambda_{k+1} ||_F^2 - || \blambda_{k} ||_F^2) \rightarrow 0$ when $k \rightarrow +\infty .$
+    Therefore, when $k \rightarrow +\infty$, we obtain $\min_{\bE, \bA = \bU \bV} = || \bE^* ||_{1,2} \leq f^*$.
+    On the other hand, by Algorithm~1, $\bL - \bX_{k+1} - \bE_{k+1} = \mu_k^{-1} (\blambda_{k+1} - \blambda_{k}) .$
+    As $k \rightarrow +\infty$, we have $\bL - \bX^* - \bE^* \rightarrow +\infty  ,$
+    which indicates that $(\bX^*, \bE^*)$ is a stationary point.
+    This completes proof.
+\end{proof}
+
+
+
+
+
+%\begin{quote}
+%\begin{small}
+%  \bibliographystyle{aaai}
+%  \bibliography{ensemble_clustering,m3frp}
+%\end{small}
+%\end{quote}
+
+\end{document}

@@ -37,6 +37,10 @@
 \def\grad{\mbox{\text{\textbf{grad}}}}
 \def\bzero{{\bf{0}}}
 
+\def\bA{{\bf A}}
+\def\bB{{\bf B}}
+\def\bN{{\bf N}}
+\def\bM{{\bf M}}
 \def\bD{{\bf D}}
 \def\bI{{\bf I}}
 \def\bE{{\bf E}}
@@ -93,6 +97,7 @@
 
 \def\st{{\text{s.t.}}}
 \def\etc{\emph{etc}}
+\def\wrt{\emph{w.r.t}}
 \def\ie{\emph{ie}}
 \def\eg{\emph{eg}}
 \def\rank{{\text{rank}}}
@@ -121,11 +126,11 @@
 %\title{Outlier Reject for Late Fusion on Visual Recognition}
 \title{Robust Late Fusion Based on Matrix Factorization}
 
-%\author{AAAI Press\\
-%Association for the Advancement of Artificial Intelligence\\
-%2275 East Bayshore Road, Suite 160\\
-%Palo Alto, California 94303\\
-%}
+\author{AAAI Press\\
+Association for the Advancement of Artificial Intelligence\\
+2275 East Bayshore Road, Suite 160\\
+Palo Alto, California 94303\\
+}
 
 
 
@@ -160,7 +165,7 @@ Extensive experiments demonstrate that the proposed method is effective to remov
 Feature extraction, which transforms raw data into numerical features, is a prerequisite for most real world applications.
 There are often multiple ways to generate numerical features from raw data.
 For example, for image data, one can extract hand-crafted features such as scale-invariant feature transform
-(SIFT)~\cite{loweijcv2004distinctive}, Histograms of Gradients (HOG)~\cite{dalalcvpr2005histograms} and trained convolutional neural networks (CNNs) features~\cite{krizhevskynips2012imagenet}.
+(SIFT)~\cite{loweijcv2004distinctive}, Histograms of Gradients (HOG)~\cite{dalalcvpr2005histograms} and trained convolutional neural networks (CNNs) features~\cite{krizhevsky2012imagenet}.
 Text data can be represented by term frequency–inverse document frequency (tf-idf)~\cite{manning2008introduction} and word2vec~\cite{mikoloviclr2013efficient}.
 %Videos can be represented by Dense Trajectories~\cite{Wang2011Action}, CNNs~\cite{xucvpr2015discriminative}, \etc.
 %\cite{szegedy2015going,chatfield2014return,he2015deep,simonyan2014two,xucvpr2015discriminative}
@@ -291,95 +296,131 @@ MKL~\cite{Rakotomamonjy2008Simplemkl} based method is a simple but efficient way
 %% Latent Fusion,
 
 \section{The Proposed Approach}
-We first elaborate the formulation of our ORLF algorithm. Then we show the details about how to use augmented Lagrangian multiplier (ALM) to solve the $\ell_{1,2}$ objective function. Finnaly we introduce our post process strategy to convert the recovered matrix X in \ref{eq:mf_l21} to the final predicted label.
+In this section, we first elaborate the formulation of ORLF.
+Then we show the details of the application of ALM to extend matrix factorization to handle $\ell_{1,2}$ loss.
+Finally we introduce our post-process strategy to convert the recovered label matrix to final predictions.
 
 
-\subsection{Problem Formulation}
-Suppose there are n testing instances, we denote each instance as a variable $x_i{\in}\dsR^{d}(1{\leq}i{\leq}n)$. Assuming we have already training m classifiers, $f_1(x), f_2(x), ... f_m(x)$, per classifier will predict a score vector $s_{ij}, 1{\leq}i{\leq}n, 1{\leq}j{\leq}m $，represent the result of j-th classifier on i-th testing instance. Our goal is to fusion these predicted confidence score vectors. Firstly, we transfer these score vectors to a label matrix P, each colums represent the highest value position of each instance. Then using label assigment, we convert multiple P matrixs into a 01 indicator matrix L, see as{\ref{fig:framework}}.
-The core of our proposed algorithm is to apply $\ell_{1,2}$ to capture the outliers as well as anomalous columns in matrix L, and apply a matrix factorization based approach to optimize the objective function as shown in \ref{eq:mf_l21}. The k of the low rank constraint in (\ref{eq:mf_l21}) is the number of class in recoginition task.
 
-\begin{figure}[h]
+
+
+\begin{figure}[htp]
 \centering\includegraphics[width=0.45\textwidth]{resource/frame_work.pdf}
 \caption{something}\label{fig:framework}
 \end{figure}
 
 
-\subsection{ALM Optimization}
-Most existing matrix factorization optimization methods only consider smooth loss functions, but the $\ell_{1,2}$ loss in Problem~(\ref{eq:mf_l21}) is nonsmooth.
-We apply ALM to optimize the nonsmooth objective function efficiently, desccribed as bellow:
 
-By introducing a new variable $\bE = \bL - \bX$, we can develop Problem~(\ref{eq:mf_l21}) as below:
 
+\subsection{Problem Formulation}
+
+Suppose there are $n$ testing instances and $\calC$ classes.
+We denote each instance as $x_i \in \dsR^{d}$ where $1 \leq i \leq n$.
+Assume that we have already trained $m$ classifiers, \ie. $f_1, f_2, ... f_m$.
+Then by applying each single classifier $f_j$ on the entire testing data, one can derive an indicator matrix $\bL_j \in \dsR^{n \times m}$, where $\bL_{j, ic} = 1$ if the $i$-th instance is assigned to the $c$ class, otherwise $\bL_{j, ic} = 0$ (as shown in Figure~\ref{fig:framework}).
+Let $\bL = [ \bL_1, \bL_2, ..., \bL_\calC ]$.
+On one hand, we aim to preserve the consistency among $m$ classifiers, so we introduce a rank-$m$ constraint on $\bL$.
+On the other hand, to catch the outlier columns, we apply robust $\ell_{1, 2}$ loss, which can be computed by
+$$ || \bX ||_{1,2} = \sum_{j = 1}^{m\calC} \sqrt{ \sum_{i = 1}^{n} \bX_{ij}^2 } . $$
+Thus, the proposed model can be written as below:
+\begin{align}\label{eq:l12_rankconstraint}
+  \min_{\bX} ~&~ || \bL - \bX ||_{1,2}    \nonumber \\
+  \st ~&~ \rank(\bX) = p   ,
+\end{align}
+\noindent
+where $\bX$ is the underlying low rank label matrix to be recovered, $\rank(\bX)$ obtains the rank of $\bX$,
+and $p$ is a scalar.
+In our setting, to preserve the consistency among various classifiers, we set $p = \calC$.
+
+
+
+It is difficult to optimize Problem~(\ref{eq:l12_rankconstraint}) directly due to the presence of the rank constraint.
+We hence transform the original problem as a matrix factorization formulation as below:
+\begin{align}\label{eq:l12_mf}
+  \min_{\bX} ~&~ || \bL - \bX ||_{1,2}   \nonumber \\
+             ~&~ \bX = \bU \bV,~\bU \in \dsR^{n \times p},~\bV \in \dsR^{p \times m\calC}  .
+\end{align}
+\noindent
+Nevertheless, existing matrix factorization algorithms focus on smooth loss functions, rather than a nonsmooth $\ell_{1,2}$ loss function~\cite{tanicml2014riemannian,vandereycken2013lowrank,Wen2012,ngonips2012scaled,rtrmc2011boumal}.
+In the following section, we present an ALM optimization framework to solve Problem~(\ref{eq:l12_mf}).
+
+
+
+\subsection{Optimization Based on ALM}
+
+Most existing matrix factorization optimization methods only consider smooth loss functions, rather than the nonsmooth $\ell_{1,2}$ loss used in Problem~(\ref{eq:l12_mf}).
+In this section, we present an ALM based algorithm to optimize Problem~(\ref{eq:l12_mf}).
+
+
+
+By introducing a new variable $\bE = \bL - \bX$, we can develop Problem~(\ref{eq:l12_mf}) as below:
 \begin{align}\label{eq:mf_l21_constrained}
   \min_{\bE, \bX} ~&~ || \bE ||_{1,2}   \nonumber \\
   \st             ~&~ \bE = \bL - \bX   \nonumber \\
-                  ~&~ \bX = \bU \bV,~\bU \in \dsR^{N \times k},~\bV \in \dsR^{k \times MK}
+                  ~&~ \bX = \bU \bV,~\bU \in \dsR^{n \times p},~\bV \in \dsR^{p \times m \calC}
 \end{align}
-The augmented Lagrangian function of Problem~(\ref{eq:mf_l21}) is as below
+The augmented Lagrangian function of Problem~(\ref{eq:l12_mf}) is constructed as below
 \begin{align}\label{eq:lagrangian_l21}
-  \calL = & || \bE ||_{1,2} + \langle \blambda, \bL - \bX - \bE \rangle + \frac{\mu}{2} || \bL - \bX - \bE ||_F^2
+  \calL (\bX, \bE, \blambda, \mu) = &~ || \bE ||_{1,2} + \langle \blambda, \bL - \bX - \bE \rangle      \nonumber \\
+                                    & + \frac{\mu}{2} || \bL - \bX - \bE ||_F^2
 \end{align}
 \noindent
-where $\bX = \bU \bV$,
-and $\blambda \in \dsR^{MK \times N}$ are the Lagrangian multipliers (or dual variables).
-Then we could update $\bX$ and $\bE$ alternatively.
+where $\bX = \bU \bV$, $\mu$ is a scalar,
+and $\blambda \in \dsR^{n \times m\calC}$ are the Lagrangian multipliers.
+Here $\langle \bA, \bB \rangle$ is the inner product of $\bA \in \dsR^{m \times n}$ and $\bB \in \dsR^{m \times n}$, and defined as $\langle \bA, \bB \rangle = \sum_{i=1}^{n} \sum_{j=1}^{m} \bA_{ij} \bB_{ij}$.
+Then we can update $\bX$ and $\bE$ alternatively, which is summarized in Algorithm~\ref{alg:alm_mf}.
 
 
-Specifically, to update $\bX$, we consider the following problem:
-\begin{align}\label{eq:problem_X}
-  \min_{\bX} ~&~ \langle \blambda, \bL - \bX - \bE \rangle + \frac{\mu}{2} || \bL - \bX - \bE ||_F^2  \nonumber  \\
-  \st        ~&~ \bX = \bU \bV,~\bU \in \dsR^{N \times k},~\bV \in \dsR^{k \times MK}   .
-\end{align}
-Problem~(\ref{eq:problem_X}) includes a smooth loss function w.r.t. $\bX$, thus can be solved by a standard matrix factorization method, such as~\cite{yanijcai2015scalable,tanicml2014riemannian,vandereyckensiamjo2013low}.
 
 
-Problem~(\ref{eq:problem_X}) can also be rewritten as below
-\begin{align}\label{eq:problem_X2}
-  \min_{\bX} ~&~ \frac{\mu}{2} \Big( || \bL - \bX - \bE ||_F^2 + \frac{2}{\mu} \langle \blambda, \bL - \bX - \bE \rangle + \frac{|| \blambda ||_F^2}{\mu^2} \Big)    \nonumber   \\
-             ~&~ - \frac{\mu}{2} \frac{|| \blambda ||_F^2}{\mu^2}   \nonumber \\
-  \st.       ~&~ \bX = \bU \bV,~\bU \in \dsR^{N \times k},~\bV \in \dsR^{k \times MK}   .
+
+In particular, to update $\bX$, we have the following augmented Lagrangian function \wrt. $\bX$:
+\begin{align}\label{eq:langrangian_wrt_X}
+  \calL (\bX) = & \langle \blambda, \bL - \bX - \bE \rangle + \frac{\mu}{2} || \bL - \bX - \bE ||_F^2  \nonumber  \\
+              = & \frac{\mu}{2} \Big( || \bL - \bX - \bE ||_F^2 + \frac{2}{\mu} \langle \blambda, \bL - \bX - \bE \rangle + \frac{|| \blambda ||_F^2}{\mu^2} \Big)    \nonumber   \\
+                & - \frac{\mu}{2} \frac{|| \blambda ||_F^2}{\mu^2}   \nonumber \\
+              = & || \bL - \bX - \bE + \frac{\blambda}{\mu} ||_F^2 - \frac{1}{2\mu}|| \blambda ||_F^2   \nonumber \\
+              = & || \bM - \bX ||_F^2 - \frac{1}{2\mu}|| \blambda ||_F^2   ,
 \end{align}
 \noindent
-We can obtain the final problem w.r.t. $\bX$:
-\begin{align}\label{eq:problem_X3}
-  \min_{\bX} ~&~ || \bL - \bX - \bE + \frac{\blambda}{\mu} ||_F^2   \nonumber \\
-  \st        ~&~ \bX = \bU \bV,~\bU \in \dsR^{N \times k},~\bV \in \dsR^{k \times MK}   .
+where $\bM = \bL - \bE + \frac{\blambda}{\mu}$.
+Hence, we derive the following subproblem \wrt. $\bX$:
+\begin{align}\label{eq:subproblem_wrt_X}
+  \min_{\bX} ~&~ || \bM - \bX ||_F^2    \nonumber \\
+  \st        ~&~ \bX = \bU \bV,~\bU \in \dsR^{n \times p},~\bV \in \dsR^{p \times m\calC}   .
+\end{align}
+Problem~(\ref{eq:subproblem_wrt_X}) contains a smooth loss function \wrt. $\bX$, thus can be efficiently solved by existing fixed-rank matrix factorization optimization algorithms, such as LRGeomCG~\cite{vandereycken2013lowrank}%\footnote{\yanred{Code available at~\url{http://www.unige.ch/math/vandereycken/matrix_completion.html}}}.
+
+
+
+
+Similarly, to update $\bE$, we consider the augmented Lagrangian function \wrt. $\bE$ as below:
+\begin{align}\label{eq:subproblem_wrt_E}
+  \calL (\bE) = & || \bE ||_{1,2} + || \bL - \bX - \bE + \frac{\blambda}{\mu} ||_F^2 -\frac{1}{2\mu}|| \blambda ||_F^2  \nonumber \\
+              = & || \bE ||_{1,2} + || \bN - \bE ||_F^2 - \frac{1}{2\mu}|| \blambda ||_F^2   ,
 \end{align}
 \noindent
-There are a number of optimization algorithms for Problem~(\ref{eq:problem_X3}), such as LRGeomCG\footnote{\yanred{Code available at~\url{http://www.unige.ch/math/vandereycken/matrix_completion.html}}}.
-
-
-
-
-To update $\bE$, we consider the following problem:
-\begin{align}\label{eq:problem_E}
-  \yanred{
-  \min_{\bE} ~ || \bE ||_{1,2} + \langle \blambda, \bL - \bX - \bE \rangle + \frac{\mu}{2} || \bL - \bX - \bE ||_F^2   .
-  }
+where $\bN = \bL - \bX + \frac{\blambda}{\mu}$.
+We thus obtain the subproblem \wrt. $\bE$ as below:
+\begin{align}\label{eq:subproblem_wrt_E}
+  \min_{\bE} & || \bE ||_{1,2} + || \bN - \bE ||_F^2 \\
 \end{align}
 \noindent
-Similarly, we could reformulate the above problem as below:
-\begin{align}\label{eq:problem_E2}
-  \min_{\bE} & \frac{2}{\mu} || \bE ||_{1,2} + || \bL - \bX - \bE + \frac{\blambda}{\mu} ||_F^2    .
-\end{align}
-\noindent
-Let $\bY = \bL - \bX + \frac{\blambda}{\mu}$.
-The above problem can be efficiently solved by the following column-wise soft-thresholding operator:
+The above problem can be efficiently solved by the following column-wise soft-thresholding operator~\cite{xiao2015FaLRR}:
 \begin{align}\label{eq:column_wise_soft_thresholding}
   \bE_{i} = \calS_{\alpha}(\bY_{i}) = \left\{
     \begin{aligned}
-      & \zerocolumn,~\text{if}~ ||\bY_{i}||_2 \leq \alpha   \\
-      & \bY_{i} - \frac{\alpha \bY_{i}}{|| \bY_{i} ||_2},~\text{otherwise,}
+      & \zerocolumn,~\text{if}~ ||\bN_{i}||_2 \leq \alpha   \\
+      & \bY_{i} - \frac{\alpha \bY_{i}}{|| \bN_{i} ||_2},~\text{otherwise,}
     \end{aligned}
     \right.
 \end{align}
 \noindent
-where $\bE_{i}$ and $\bY_{i}$ denote the $i$-th column of $\bE$ and $\bY$,
+where $\bE_{i}$ and $\bN_{i}$ denote the $i$-th column of $\bE$ and $\bY$,
 and $\alpha = \frac{2}{\mu}$.
 
 
 
-We summarize the proposed algorithm for Problem~(\ref{eq:mf_l21_constrained}) in Algorithm~\ref{alg:alm_mf}.
 \begin{algorithm}[h!]
 \begin{algorithmic}
 \STATE Initialize $\rho > 1$, $t = 0$, $\blambda^{(t)} = 0$, and $\mu^{(t)} > 0$.
@@ -388,7 +429,7 @@ We summarize the proposed algorithm for Problem~(\ref{eq:mf_l21_constrained}) in
 
   \WHILE{not converge}
 
-    \STATE 1: Obtain $\bX^{(t)}$ by solving Problem~(\ref{eq:problem_X3}) via LRGeomCG.
+    \STATE 1: Obtain $\bX^{(t)}$ by solving Problem~(\ref{eq:subproblem_wrt_X}) via LRGeomCG.
 
     \STATE 2: Obtain $\bE^{(t)}$ by column-wise soft-thresholding~(\ref{eq:column_wise_soft_thresholding}).
 
@@ -414,33 +455,36 @@ We summarize the proposed algorithm for Problem~(\ref{eq:mf_l21_constrained}) in
 \end{theorem}
 
 \begin{proof}
-    Considering the $(k+1)$-th iteration of Algorithm~\ref{alg:alm_mf}, we have the following development:
-    \begin{align}\label{eq:proof1}
-      & \calL(\bX_{k+1}, \bE_{k+1}, \blambda_{k}, \mu_{k})   \nonumber \\
-      & = || \bE_{k+1} ||_{1,2} + \langle \blambda_{k}, \bL - \bX_{k+1} - \bE_{k+1} \rangle + \frac{\mu}{2} || \bL - \bX_{k+1} - \bE_{k+1} ||_{F}^2         \nonumber \\
-      & = || \bE_{k+1} ||_{1,2} + \frac{\mu}{2} [ || \bL - \bX_{k+1} - \bE_{k+1} ||_{F}^2 + \frac{\mu}{2} \langle \blambda_{k}, \bL - \bx_{k+1} - \bE_{k+1} \rangle + \frac{1}{\mu_{k}^2} || \blambda_k ||_F^2 ] - \frac{1}{2\mu_k} || \blambda_k ||_F^2    \nonumber  \\
-      & = || \bE_{k+1} ||_{1,2} + \frac{\mu_k}{2} || \bL - \bX_{k+1} - \bE_{k+1} + \frac{\blambda_k}{\mu_k} ||_F^2 - \frac{1}{2\mu_k} || \blambda_k ||_F^2   \nonumber \\
-      & = || \bE_{k+1} ||_{1,2} + \frac{\mu_k}{2} || \frac{1}{\mu_k} [ \mu_k (\bL - \bX_{k+1} - \bE_{k+1}) - \blambda_k ] ||_F^2 - \frac{1}{2\mu_k} || \blambda_k ||_F^2   \nonumber \\
-      & = || \bE_{k+1} ||_{1,2} + \frac{1}{2\mu_k} ( || \blambda_{k+1} || - || \blambda_{k} ||_F^2 )   .
-    \end{align}
-    \noindent
-    Let $f^*$ denote a local optimal objective function value, which enables the following development:
-    \begin{align}\label{eq:proof2}
-      f^* & = \min_{\bX + \bE = \bL, \bX = \bU \bV} || \bE ||_{1,2}   \nonumber  \\
-          & = \min_{\bX + \bE = \bL, \bX = \bU \bV} || \bE ||_{1,2} + \langle \blambda_k, \bL - \bX - \bE \rangle + \frac{\mu_k}{2} || \bL - \bA - \bE ||_F^2   \nonumber \\
-          & \geq \min_{\bE, \bX = \bU \bV} || \bE ||_{1,2} + \langle \blambda_k, \bL - \bX - \bE \rangle + \frac{\mu_k}{2} ||  \bL -
-          \bX - \bE ||_F^2     \nonumber \\
-          & = \min_{\bE, \bX = \bU \bV} || \bE ||_{1,2} + \frac{1}{2\mu_k} (|| \blambda_{k+1} ||_F^2 - || \blambda_{k} ||_F^2)   .
-    \end{align}
-    \indent
-    Regarding that $\mu_{k} = \rho \mu_{k+1}$ where $\rho > 1$, and the sequence $\{ \blambda_k \}$ is bounded, we derive that
-    $\frac{1}{2\mu_k} (|| \blambda_{k+1} ||_F^2 - || \blambda_{k} ||_F^2) \rightarrow 0$ when $k \rightarrow +\infty .$
-    Therefore, when $k \rightarrow +\infty$, we obtain $\min_{\bE, \bA = \bU \bV} = || \bE^* ||_{1,2} \leq f^*$.
-    On the other hand, by Algorithm~\ref{alg:alm_mf}, $\bL - \bX_{k+1} - \bE_{k+1} = \mu_k^{-1} (\blambda_{k+1} - \blambda_{k}) .$
-    As $k \rightarrow +\infty$, we have $\bL - \bX^* - \bE^* \rightarrow +\infty  ,$
-    which indicates that $(\bX^*, \bE^*)$ is a stationary point.
-    This completes proof.
+  The proof can be found in Appendix A.
 \end{proof}
+%\begin{proof}
+%    Considering the $(k+1)$-th iteration of Algorithm~\ref{alg:alm_mf}, we have the following development:
+%    \begin{align}\label{eq:proof1}
+%      & \calL(\bX_{k+1}, \bE_{k+1}, \blambda_{k}, \mu_{k})   \nonumber \\
+%      & = || \bE_{k+1} ||_{1,2} + \langle \blambda_{k}, \bL - \bX_{k+1} - \bE_{k+1} \rangle + \frac{\mu}{2} || \bL - \bX_{k+1} - \bE_{k+1} ||_{F}^2         \nonumber \\
+%      & = || \bE_{k+1} ||_{1,2} + \frac{\mu}{2} [ || \bL - \bX_{k+1} - \bE_{k+1} ||_{F}^2 + \frac{\mu}{2} \langle \blambda_{k}, \bL - \bx_{k+1} - \bE_{k+1} \rangle + \frac{1}{\mu_{k}^2} || \blambda_k ||_F^2 ] - \frac{1}{2\mu_k} || \blambda_k ||_F^2    \nonumber  \\
+%      & = || \bE_{k+1} ||_{1,2} + \frac{\mu_k}{2} || \bL - \bX_{k+1} - \bE_{k+1} + \frac{\blambda_k}{\mu_k} ||_F^2 - \frac{1}{2\mu_k} || \blambda_k ||_F^2   \nonumber \\
+%      & = || \bE_{k+1} ||_{1,2} + \frac{\mu_k}{2} || \frac{1}{\mu_k} [ \mu_k (\bL - \bX_{k+1} - \bE_{k+1}) - \blambda_k ] ||_F^2 - \frac{1}{2\mu_k} || \blambda_k ||_F^2   \nonumber \\
+%      & = || \bE_{k+1} ||_{1,2} + \frac{1}{2\mu_k} ( || \blambda_{k+1} || - || \blambda_{k} ||_F^2 )   .
+%    \end{align}
+%    \noindent
+%    Let $f^*$ denote a local optimal objective function value, which enables the following development:
+%    \begin{align}\label{eq:proof2}
+%      f^* & = \min_{\bX + \bE = \bL, \bX = \bU \bV} || \bE ||_{1,2}   \nonumber  \\
+%          & = \min_{\bX + \bE = \bL, \bX = \bU \bV} || \bE ||_{1,2} + \langle \blambda_k, \bL - \bX - \bE \rangle + \frac{\mu_k}{2} || \bL - \bA - \bE ||_F^2   \nonumber \\
+%          & \geq \min_{\bE, \bX = \bU \bV} || \bE ||_{1,2} + \langle \blambda_k, \bL - \bX - \bE \rangle + \frac{\mu_k}{2} ||  \bL -
+%          \bX - \bE ||_F^2     \nonumber \\
+%          & = \min_{\bE, \bX = \bU \bV} || \bE ||_{1,2} + \frac{1}{2\mu_k} (|| \blambda_{k+1} ||_F^2 - || \blambda_{k} ||_F^2)   .
+%    \end{align}
+%    \indent
+%    Regarding that $\mu_{k} = \rho \mu_{k+1}$ where $\rho > 1$, and the sequence $\{ \blambda_k \}$ is bounded, we derive that
+%    $\frac{1}{2\mu_k} (|| \blambda_{k+1} ||_F^2 - || \blambda_{k} ||_F^2) \rightarrow 0$ when $k \rightarrow +\infty .$
+%    Therefore, when $k \rightarrow +\infty$, we obtain $\min_{\bE, \bA = \bU \bV} = || \bE^* ||_{1,2} \leq f^*$.
+%    On the other hand, by Algorithm~\ref{alg:alm_mf}, $\bL - \bX_{k+1} - \bE_{k+1} = \mu_k^{-1} (\blambda_{k+1} - \blambda_{k}) .$
+%    As $k \rightarrow +\infty$, we have $\bL - \bX^* - \bE^* \rightarrow +\infty  ,$
+%    which indicates that $(\bX^*, \bE^*)$ is a stationary point.
+%    This completes proof.
+%\end{proof}
 
 
 
