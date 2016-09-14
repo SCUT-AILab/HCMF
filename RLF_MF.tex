@@ -277,12 +277,17 @@ Let $\bL = [ \bL_1, \bL_2, ..., \bL_\calC ]$.
 %%On one hand, we aim to preserve the consistency among $m$ classifiers, so we introduce a rank-$m$ constraint on $\bL$.
 On one hand, we aim to preserve the consistency among $m$ classifiers, so we introduce a rank constraint on $\bL$.
 On the other hand, to catch the outlier columns, we apply robust $\ell_{1, 2}$ loss, which is computed by
+{\small
 $$ || \bX ||_{1,2} = \sum_{j = 1}^{m\calC} \sqrt{ \sum_{i = 1}^{n} \bX_{ij}^2 } . $$
+}
+\noindent
 Thus, the proposed model can be written as below:
+{\small
 \begin{align}\label{eq:l12_rankconstraint}
   \min_{\bX} ~&~ || \bL - \bX ||_{1,2}    \nonumber \\
   \st ~&~ \rank(\bX) = p   ,
 \end{align}
+}
 \noindent
 where $\bX \in \dsR^{n \times m\calC}$ is the underlying low rank label matrix to be recovered, $\rank(\bX)$ obtains the rank of $\bX$,
 and $p$ is a scalar.
@@ -292,10 +297,12 @@ In our setting, to preserve the consistency among various classifiers, we set $p
 
 It is difficult to optimize Problem~(\ref{eq:l12_rankconstraint}) directly due to the presence of the rank constraint.
 We hence transform the original problem as a matrix factorization formulation as below:
+{\small
 \begin{align}\label{eq:l12_mf}
   \min_{\bX} ~&~ || \bL - \bX ||_{1,2}   \nonumber \\
          \st ~&~ \bX = \bU \bV,~\bU \in \dsR^{n \times p},~\bV \in \dsR^{p \times m\calC}  .
 \end{align}
+}
 \noindent
 Nevertheless, existing matrix factorization algorithms focus on smooth loss functions, rather than a nonsmooth $\ell_{1,2}$ loss function~\cite{tanicml2014riemannian,vandereycken2013lowrank,Wen2012,ngonips2012scaled,rtrmc2011boumal}.
 In the following section, we present an ALM optimization framework to solve Problem~(\ref{eq:l12_mf}).
@@ -383,16 +390,21 @@ In this section, we present an ALM based algorithm to optimize Problem~(\ref{eq:
 
 
 By introducing a new variable $\bE = \bL - \bX$, we can develop Problem~(\ref{eq:l12_mf}) as below:
+{\small
 \begin{align}\label{eq:mf_l21_constrained}
   \min_{\bE, \bX} ~&~ || \bE ||_{1,2}      \nonumber \\
   \st             ~&~ \bE = \bL - \bX  ,   \nonumber \\
                   ~&~ \bX = \bU \bV,~\bU \in \dsR^{n \times p},~\bV \in \dsR^{p \times m \calC}
 \end{align}
+}
+\noindent
 The augmented Lagrangian function of Problem~(\ref{eq:l12_mf}) is constructed as below
+{\small
 \begin{align}\label{eq:lagrangian_l21}
   \calL (\bX, \bE, \blambda, \mu) = &~ || \bE ||_{1,2} + \langle \blambda, \bL - \bX - \bE \rangle      \nonumber \\
                                     & + \frac{\mu}{2} || \bL - \bX - \bE ||_F^2
 \end{align}
+}
 \noindent
 where $\bX = \bU \bV$, $\mu$ is a scalar,
 and $\blambda \in \dsR^{n \times m\calC}$ are the Lagrangian multipliers.
@@ -418,6 +430,7 @@ Then we can update $\bX$ and $\bE$ alternatively, which is summarized in Algorit
 \subsection{Optimization of The Subproblem of $\bX$}
 
 Particularly, to update $\bX$, we have the following augmented Lagrangian function \wrt. $\bX$:
+{\small
 \begin{align}\label{eq:langrangian_wrt_X}
   \calL (\bX) = & \langle \blambda, \bL - \bX - \bE \rangle + \frac{\mu}{2} || \bL - \bX - \bE ||_F^2  \nonumber  \\
               %= & \frac{\mu}{2} \Big( || \bL - \bX - \bE ||_F^2 + \frac{2}{\mu} \langle \blambda, \bL - \bX - \bE \rangle + \frac{|| \blambda ||_F^2}{\mu^2} \Big)    \nonumber   \\
@@ -425,13 +438,17 @@ Particularly, to update $\bX$, we have the following augmented Lagrangian functi
               %= & || \bL - \bX - \bE + \frac{\blambda}{\mu} ||_F^2 - \frac{1}{2\mu}|| \blambda ||_F^2   \nonumber \\
               = & || \bM - \bX ||_F^2 - \frac{1}{2\mu}|| \blambda ||_F^2   ,
 \end{align}
+}
 \noindent
 where $\bM = \bL - \bE + \frac{\blambda}{\mu}$.
 Hence, we derive the following subproblem \wrt. $\bX$:
+{\small
 \begin{align}\label{eq:subproblem_wrt_X}
   \min_{\bX} ~&~ || \bM - \bX ||_F^2    \nonumber \\
   \st        ~&~ \bX = \bU \bV,~\bU \in \dsR^{n \times p},~\bV \in \dsR^{p \times m\calC}   .
 \end{align}
+}
+\noindent
 %Problem~(\ref{eq:subproblem_wrt_X}) contains a smooth loss function \wrt. $\bX$, thus can be efficiently solved by existing fixed-rank matrix factorization optimization algorithms, such as LRGeomCG~\cite{vandereycken2013lowrank}.
 Problem~(\ref{eq:subproblem_wrt_X}) contains a smooth loss function of $\bX$.
 We thus propose to solve the subproblem by exploiting Riemannian geometry of smooth fixed-rank matrices, which is briefly presented below.
@@ -444,21 +461,25 @@ We thus propose to solve the subproblem by exploiting Riemannian geometry of smo
 The key idea of manifold optimization is that update of $\bX$ is always performed on the same manifold, which ensures the rank of $\bX$ unchanged as the optimization iterates.
 Let $r$ be a known scalar.
 A smooth manifold of fixed-rank-$r$ matrices is defined as~\cite{vandereycken2013lowrank}:
+{\small
 \begin{eqnarray}
 \M_{r} &=& \{\bX\in \R^{n\times m\calC}: \rank(\bX) = r\} \nonumber \\
        &=& \{\U\diag(\bsigma)\V^{\trsp}: \U \in \textrm{St}_{r}^{n}, \V \in
            \textrm{St}_{r}^{m\calC}, ||\bsigma||_0 = r\} \nonumber
 \end{eqnarray}
+}
 \noindent
 where $\textrm{St}_{r}^{n} = \{\U \in \R^{n\times r}:
 \U^{\trsp}\U = \I \}$ dentoes the Stiefel manifold of $n\times r$ real and orthonormal matrices.
 We denote the tangent space by $T_{\bX}\M_{r}$ of $\M_{r}$ at $\bX = \U\diag(\bsigma)\V^{\trsp} \in \R^{n \times m\calC}$,
 which is obtained as below
+{\small
 \begin{eqnarray}\label{eq:tangent_vector}
 &&T_{\bX}\M_{r} =  \{\U\bM\V^{\trsp} \!\!+\! \U_p\V^{\trsp} \!\!+\!
 \U\V_p^{\trsp}: \bM \in \R^{r\times r}, \nonumber\\ && \U_p \in \R^{n\times r},
 \U_p^{\trsp}\U = \0, \V_p \in \R^{m\calC \times r}, \V_p^{\trsp}\V = \0\}.
 \end{eqnarray}
+}
 \noindent
 One can define a metric $g_{\bX}({\bA},{\bB}) = \langle{\bA},{\bB}\rangle$ on $\M_{r}$,
 with $\bX \in \M_{r}$ and ${\bA},{\bB} \in T_{\bX}\M_{r}$,
@@ -475,9 +496,11 @@ Let $f(\bX) = || \bM - \bX ||_F^2$.
 Suppose that $\G = \nabla f(\bX)$ in Euclidean space at $\bX = \U\diag(\bsigma)\V^{\trsp}$.
 Then, according to~\cite{vandereycken2013lowrank}, the Riemannian gradient of $f(\bX)$ on $\M_r$ is given as the orthogonal
 projection of $\G$ onto the tangent space at $\bX$:
+{\small
 \begin{eqnarray}\label{eq:grad}
 \grad{f(\bX)} = P_{T_{\bX}\M_{r}}(\G)  ,
 \end{eqnarray}
+}
 \noindent
 where
 $P_{T_{\bX}\M_{r}}(\bZ): \bZ \mapsto P_{U}\bZ P_{V} + P_{U}^{\perp} \bZ P_{V} + P_{U} \bZ P_{V}^{\perp}$
@@ -544,18 +567,24 @@ Here $P_U = \U \U^{\trsp}$ and $P_U^{\perp} = \I - \U \U^{\trsp}$ for any $\U \i
 
 
 Particularly, in Step 2 of Algorithm~\ref{alg:LRGeomCG}, $\beta_{k}$ is determined by a Polak-Ribi$\grave{e}$re (PR+) rule~\cite{vandereycken2013lowrank}:
+{\small
 \begin{eqnarray}\label{eq:beta}
 \beta_{k} = \frac{\grad f(\bX_{k})^{\trsp}(\grad f(\bX_{k}) - \grad f(\bX_{k-1}))}{\langle \grad f(\bX_{k-1}),\grad f(\bX_{k-1})\rangle}.
 \end{eqnarray}
+}
 \noindent
 The step size $t_{k}$ in Step 3, given a search direction $\bfeta_{k} \in T_{\bX_{k} \M_{r}}$, is chosen such that
+{\small
 \begin{align}\label{eq:choose_step_size}
   f(R_{\bX_{k}} (t_{k} \bfeta_{k})) \leq f(\bX_{k}) + c_{1} t_{k} \langle \grad f(\bX_{k}), \bfeta_{k} \rangle ,
 \end{align}
+}
+{\small
 \begin{align}\label{eq+choose_step_size2}
   | \langle \grad f(R_{\bX_{k}} (t_{k} \bfeta_{k})), & \mT_{\bX_{k-1} \rightarrow \bX_{k}} (\bfeta_{k}) \rangle |  \nonumber \\
                            & \leq c_{2} | \langle \grad f(\bX_{k}), \bfeta_{k} \rangle |  ,
 \end{align}
+}
 \noindent
 where $0 \leq c_{1} \leq c_{2} \leq \frac{1}{2}$.
 The notation $\mT_{\bX_{k-1} \rightarrow \bX_{k}} (\bfeta_{k-1})$ in Step 2 and $R_{\bX_{k}} (t_k \bfeta_{k})$ denote \emph{vector transport} and \emph{retraction}, respectively.
@@ -588,17 +617,22 @@ Similarly, to update $\bE$, we consider the augmented Lagrangian function \wrt. 
 %  \calL (\bE) = & || \bE ||_{1,2} + || \bL - \bX - \bE + \frac{\blambda}{\mu} ||_F^2 -\frac{1}{2\mu}|| \blambda ||_F^2  \nonumber \\
 %              = & || \bE ||_{1,2} + || \bN - \bE ||_F^2 - \frac{1}{2\mu}|| \blambda ||_F^2   ,
 %\end{align}
+{\small
 \begin{align}\label{eq:subproblem_wrt_E_1}
   \calL (\bE) = & || \bE ||_{1,2} + || \bN - \bE ||_F^2 - \frac{1}{2\mu}|| \blambda ||_F^2   ,
 \end{align}
+}
 \noindent
 where $\bN = \bL - \bX + \frac{\blambda}{\mu}$.
 We thus obtain the subproblem \wrt. $\bE$ as below:
+{\small
 \begin{align}\label{eq:subproblem_wrt_E_2}
   \min_{\bE} & || \bE ||_{1,2} + || \bN - \bE ||_F^2 .
 \end{align}
+}
 \noindent
 The above problem can be efficiently solved by the following column-wise soft-thresholding operator~\cite{xiao2015FaLRR}:
+{\small
 \begin{align}\label{eq:column_wise_soft_thresholding}
   \bE_{i} = \calS_{\alpha}(\bY_{i}) = \left\{
     \begin{aligned}
@@ -607,6 +641,7 @@ The above problem can be efficiently solved by the following column-wise soft-th
     \end{aligned}
     \right.
 \end{align}
+}
 \noindent
 where $\bE_{i}$ and $\bN_{i}$ denote the $i$-th column of $\bE$ and $\bY$,
 and $\alpha = \frac{2}{\mu}$.
@@ -710,6 +745,11 @@ LPBoost             & 86.24\%          & 94.88\%          & 76.59\%          & 9
 \textbf{Ours}       & \textbf{89.03\%} & \textbf{95.11\%} & \textbf{77.72\%} & \textbf{92.90\%}&   90.98\%          \\
 \hline
 \end{tabular}
+\begin{tablenotes}
+\footnotesize
+\item[*]
+  FWOT costs excessive time for training (\yanred{6 hours for a single run}), so we omit these results indicated by ``-''.
+\end{tablenotes}
 \label{table:total_acc}
 \end{table*}
 
@@ -727,6 +767,11 @@ LPBoost             & 110.81     & 72.45     &  4750.9    & 43.67           &   
 Ours                & 421.23     & 5.384     &  417.26    & 76.16           &   16.21         \\
 \hline
 \end{tabular}
+\begin{tablenotes}
+\footnotesize
+\item[*]
+  FWOT costs excessive time for training (\yanred{6 hours for a single run}), so we omit these results indicated by ``$\infty$''.
+\end{tablenotes}
 \label{table:total_time}
 \end{table*}
 
