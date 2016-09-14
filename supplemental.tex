@@ -139,7 +139,8 @@
 
 
 %\title{Outlier Reject for Late Fusion on Visual Recognition}
-\title{Supplemental Material for ``Robust Late Fusion Based on Matrix Factorization''}
+%\title{Supplemental Material for ``Robust Late Fusion Based on Matrix Factorization''}
+\title{Supplemental Material for ``Late Fusion via Subspace Search With Consistency Preservation''}
 
 \author{AAAI Press\\
 Association for the Advancement of Artificial Intelligence\\
@@ -224,7 +225,7 @@ Palo Alto, California 94303\\
                  & = P_{\U} \G P_{V} + \G P_{V} - 2\U (\U^{\trsp} \bR_{v}) \V^{\trsp} + P_{U} \G  \nonumber \\
                  & = P_{\U} \G P_{V} + \G P_{V} - 2\U (\U^{\trsp} \G \V) \V^{\trsp} + P_{U} \G  \nonumber \\
                  & = P_{\U} \G P_{V} + \G P_{V} - \U (\U^{\trsp} \G \V) \V^{\trsp}  \nonumber \\
-                 & ~~~~ + P_{U} \G \U (\U^{\trsp} \G \V)  \nonumber \\
+                 & ~~~~ + P_{U} \G - \U (\U^{\trsp} \G \V) \V^{\trsp}  \nonumber \\
                  & = P_{\U} \G P_{V} + (\bI - P_{U}) \G P_{V} + P_{U} \G (\bI - P_{V})  \nonumber \\
                  & = P_{\U} \G P_{V} + P_{U}^{\perp} \G P_{V} + P_{U} \G P_{V}^{\perp}  ,
   \end{align}
