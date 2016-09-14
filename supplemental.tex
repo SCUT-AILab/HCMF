@@ -34,8 +34,23 @@
 
 
 
-\def\grad{\mbox{\text{\textbf{grad}}}}
-\def\bzero{{\bf{0}}}
+\def\M{\mathcal{M}}
+\def\R{{\mathbb R}}
+\def\bR{{\bf R}}
+\def\U{{\bf U}}
+\def\V{{\bf V}}
+\def\diag{\mbox{diag}}
+\def\bsigma{\mbox{{\boldmath $\sigma$}}}
+\def\trsp{{\sf T}}
+\def\I{{\bf I}}
+\def\0{{\bf 0}}
+\def\E{{\bf E}}
+\def\G{{\bf G}}
+\def\grad{{\text{grad}}}
+\def\bZ{{\bf Z}}
+\def\bfeta{\mbox{{\boldmath $\eta$}}}
+\def\mT{{\mathcal T}}
+
 
 \def\bA{{\bf A}}
 \def\bB{{\bf B}}
@@ -138,7 +153,7 @@ Palo Alto, California 94303\\
 
 
 
-
+\section{Appendix A: The Proof of Theorem 1}
 
 \begin{theorem}\label{theorem:alm_convergence}
   %Suppose that the sequence $\{ \blambda_{k} \}$ is bounded, any accumulation point $(\bX^*, \bE^*)$ of Algorithm~\ref{alg:alm_mf} is a stationary point.
@@ -153,19 +168,25 @@ Palo Alto, California 94303\\
     Considering the $(k+1)$-th iteration of Algorithm~1, we have the following development:
     \begin{align}\label{eq:proof1}
       & \calL(\bX_{k+1}, \bE_{k+1}, \blambda_{k}, \mu_{k})   \nonumber \\
-      & = || \bE_{k+1} ||_{1,2} + \langle \blambda_{k}, \bL - \bX_{k+1} - \bE_{k+1} \rangle + \frac{\mu}{2} || \bL - \bX_{k+1} - \bE_{k+1} ||_{F}^2         \nonumber \\
-      & = || \bE_{k+1} ||_{1,2} + \frac{\mu}{2} [ || \bL - \bX_{k+1} - \bE_{k+1} ||_{F}^2 + \frac{\mu}{2} \langle \blambda_{k}, \bL - \bx_{k+1} - \bE_{k+1} \rangle + \frac{1}{\mu_{k}^2} || \blambda_k ||_F^2 ] - \frac{1}{2\mu_k} || \blambda_k ||_F^2    \nonumber  \\
-      & = || \bE_{k+1} ||_{1,2} + \frac{\mu_k}{2} || \bL - \bX_{k+1} - \bE_{k+1} + \frac{\blambda_k}{\mu_k} ||_F^2 - \frac{1}{2\mu_k} || \blambda_k ||_F^2   \nonumber \\
-      & = || \bE_{k+1} ||_{1,2} + \frac{\mu_k}{2} || \frac{1}{\mu_k} [ \mu_k (\bL - \bX_{k+1} - \bE_{k+1}) - \blambda_k ] ||_F^2 - \frac{1}{2\mu_k} || \blambda_k ||_F^2   \nonumber \\
+      & = || \bE_{k+1} ||_{1,2} + \langle \blambda_{k}, \bL - \bX_{k+1} - \bE_{k+1} \rangle  \nonumber \\
+      & \quad + \frac{\mu}{2} || \bL - \bX_{k+1} - \bE_{k+1} ||_{F}^2         \nonumber \\
+      & = || \bE_{k+1} ||_{1,2} + \frac{\mu}{2} [ || \bL - \bX_{k+1} - \bE_{k+1} ||_{F}^2  \nonumber \\
+      & \quad + \frac{\mu}{2} \langle \blambda_{k}, \bL - \bx_{k+1} - \bE_{k+1} \rangle + \frac{1}{\mu_{k}^2} || \blambda_k ||_F^2 ] \nonumber \\
+      & \quad - \frac{1}{2\mu_k} || \blambda_k ||_F^2    \nonumber  \\
+      & = || \bE_{k+1} ||_{1,2} + \frac{\mu_k}{2} || \bL - \bX_{k+1} - \bE_{k+1} + \frac{\blambda_k}{\mu_k} ||_F^2 \nonumber \\
+      & \quad - \frac{1}{2\mu_k} || \blambda_k ||_F^2   \nonumber \\
+      & = || \bE_{k+1} ||_{1,2} + \frac{\mu_k}{2} || \frac{1}{\mu_k} [ \mu_k (\bL - \bX_{k+1} - \bE_{k+1}) - \blambda_k ] ||_F^2  \nonumber \\
+      & \quad - \frac{1}{2\mu_k} || \blambda_k ||_F^2   \nonumber \\
       & = || \bE_{k+1} ||_{1,2} + \frac{1}{2\mu_k} ( || \blambda_{k+1} || - || \blambda_{k} ||_F^2 )   .
     \end{align}
     \noindent
     Let $f^*$ denote a local optimal objective function value, which enables the following development:
     \begin{align}\label{eq:proof2}
       f^* & = \min_{\bX + \bE = \bL, \bX = \bU \bV} || \bE ||_{1,2}   \nonumber  \\
-          & = \min_{\bX + \bE = \bL, \bX = \bU \bV} || \bE ||_{1,2} + \langle \blambda_k, \bL - \bX - \bE \rangle + \frac{\mu_k}{2} || \bL - \bA - \bE ||_F^2   \nonumber \\
-          & \geq \min_{\bE, \bX = \bU \bV} || \bE ||_{1,2} + \langle \blambda_k, \bL - \bX - \bE \rangle + \frac{\mu_k}{2} ||  \bL -
-          \bX - \bE ||_F^2     \nonumber \\
+          & = \min_{\bX + \bE = \bL, \bX = \bU \bV} || \bE ||_{1,2} + \langle \blambda_k, \bL - \bX - \bE \rangle \nonumber \\
+          & \quad + \frac{\mu_k}{2} || \bL - \bA - \bE ||_F^2   \nonumber \\
+          & \geq \min_{\bE, \bX = \bU \bV} || \bE ||_{1,2} + \langle \blambda_k, \bL - \bX - \bE \rangle \nonumber \\
+          & \quad + \frac{\mu_k}{2} ||  \bL - \bX - \bE ||_F^2     \nonumber \\
           & = \min_{\bE, \bX = \bU \bV} || \bE ||_{1,2} + \frac{1}{2\mu_k} (|| \blambda_{k+1} ||_F^2 - || \blambda_{k} ||_F^2)   .
     \end{align}
     \indent
@@ -176,6 +197,40 @@ Palo Alto, California 94303\\
     As $k \rightarrow +\infty$, we have $\bL - \bX^* - \bE^* \rightarrow +\infty  ,$
     which indicates that $(\bX^*, \bE^*)$ is a stationary point.
     This completes proof.
+\end{proof}
+
+
+
+
+
+\section{Appendix B: The Proof of Lemma 1}
+
+\begin{lemma}
+  %Assuming that $\U_{p}$, $\V_{p}$ and $\bM$ are computed by Algorithm~\ref{alg:compute_riemannian_grad},
+  Assuming that $\U_{p}$, $\V_{p}$ and $\bM$ are computed by Algorithm~2 in the main manuscript,
+  we have ${\textnormal{grad}} f(\bX) = \U \bM \V + \U_{p} \V^{\trsp} + \U \V^{\trsp}_{p}$.
+\end{lemma}
+
+\begin{proof}
+  %As shown in Equation~(8) in the main manuscript, the Riemannian gradient of $f(\bX)$ on $\M_r$ is given as the orthogonal projection of $\G$ onto the tangent space at $\bX$.
+  We start with Algorithm~2, where $\grad f(\bX) = \U \bM \V^{\trsp} + \U_{p} \V^{\trsp} + \U \V_{p}^{\trsp} \in T_{\bX}\M_{r}$:
+  \begin{align}\label{eq:proof_lemma1}
+    \grad f(\bX) & = \U \bM \V^{\trsp} + \U_{p} \V^{\trsp} + \U \V_{p}^{\trsp}  \nonumber \\
+                 & = \U(\U^{\trsp} \G \V) \V^{\trsp} + (\bR_{v} - \U \bM) \V^{\trsp}  \nonumber \\
+                 & ~~~~ + \U (\bR_{u} - \V \bM^{\trsp})^{\trsp} \nonumber \\
+                 & = P_{\U} \G P_{V} + \G \V \V^{\trsp} - \U \bM \V^{\trsp} + \U \U^{\trsp} \G \nonumber \\
+                 & ~~~~ - \U \bM \V^{\trsp} \nonumber \\
+                 & = P_{\U} \G P_{V} + \G P_{V} - 2\U \bM \V^{\trsp} + P_{U} \G  \nonumber \\
+                 & = P_{\U} \G P_{V} + \G P_{V} - 2\U (\U^{\trsp} \bR_{v}) \V^{\trsp} + P_{U} \G  \nonumber \\
+                 & = P_{\U} \G P_{V} + \G P_{V} - 2\U (\U^{\trsp} \G \V) \V^{\trsp} + P_{U} \G  \nonumber \\
+                 & = P_{\U} \G P_{V} + \G P_{V} - \U (\U^{\trsp} \G \V) \V^{\trsp}  \nonumber \\
+                 & ~~~~ + P_{U} \G \U (\U^{\trsp} \G \V)  \nonumber \\
+                 & = P_{\U} \G P_{V} + (\bI - P_{U}) \G P_{V} + P_{U} \G (\bI - P_{V})  \nonumber \\
+                 & = P_{\U} \G P_{V} + P_{U}^{\perp} \G P_{V} + P_{U} \G P_{V}^{\perp}  ,
+  \end{align}
+  \noindent
+  which is exactly $P_{T_{\bX}\M_{r}}$.
+  This completes the proof.
 \end{proof}
 
 
