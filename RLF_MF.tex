@@ -230,8 +230,9 @@ In~\cite{xuiccv2013feature}, a optimization algorithm are proposed to combine di
 which learns the weights, thresholding and smoothing parameters in a joint framework.
 However, all these mkl based fusion methods or others only learn weights to combine different basic models, which do not consider the outlier rejection in the fusion process specifically.
 
-Our proposed late fusion algorithm is based on matrix factorization,
-which has attracted increasing attention recently.
+%Our proposed late fusion algorithm is based on matrix factorization,
+%which has attracted increasing attention recently.
+Matrix factorization has attracted increasing attention recently.
 Many manifold optimization algorithms on matrix factorization have been proposed by exploiting the manifold geometry.
 Based on manifold optimization, fixed-rank matrices are supposed to belong to a smooth matrix manifold~\cite{Absil2008OAMM,vandereycken2013lowrank}.
 In~\cite{vandereycken2013lowrank}, the authors propose a low rank geometric conjugate gradient (LRGeomCG) method.
@@ -300,7 +301,6 @@ Nevertheless, existing matrix factorization algorithms focus on smooth loss func
 In the following section, we present an ALM optimization framework to solve Problem~(\ref{eq:l12_mf}).
 
 
-
 \begin{small}
 \begin{algorithm}[h!]
 
@@ -308,23 +308,23 @@ In the following section, we present an ALM optimization framework to solve Prob
 
 \REQUIRE $\bL \in \dsR^{n \times m\calC}$, $p$ (the rank of $\bX$)
 \ENSURE $\bX \in \dsR^{n \times m\calC}$
-\STATE Initialize $\rho > 1$, $t = 0$, $\blambda^{(0)} = 0$, and $\mu^{(0)} > 0$.
+\STATE Initialize $\rho > 1$, $t = 0$, $\blambda_{0} = 0$, and $\mu_{0} > 0$.
 
 \WHILE{not converge}
 
   \WHILE{not converge}
 
     %\STATE 1: Obtain $\bX^{(t)}$ by solving Problem~(\ref{eq:subproblem_wrt_X}) via LRGeomCG.
-    \STATE 1: Obtain $\bX^{(t)}$ by solving Problem~(\ref{eq:subproblem_wrt_X}).
+    \STATE 1: Obtain $\bX_{t}$ by solving Problem~(\ref{eq:subproblem_wrt_X}).
 
     %\STATE 2: Obtain $\bE^{(t)}$ by column-wise soft-thresholding~(\ref{eq:column_wise_soft_thresholding}).
-    \STATE 2: Obtain $\bE^{(t)}$ by solving Problem~(\ref{eq:column_wise_soft_thresholding}).
+    \STATE 2: Obtain $\bE_{t}$ by solving Problem~(\ref{eq:column_wise_soft_thresholding}).
 
   \ENDWHILE
 
-  \STATE 3: $\blambda^{(t+1)} = \blambda^{(t)} + \mu^{(t)} (\bL - \bX^{(t+1)} - \bE^{(t+1)})$.
+  \STATE 3: $\blambda_{t+1} = \blambda_{t} + \mu_{t} (\bL - \bX_{t+1} - \bE_{t+1})$.
 
-  \STATE 4: $\mu^{(t+1)} = \rho \mu^{(t)}$.
+  \STATE 4: $\mu_{t+1} = \rho \mu_{t}$.
 
   \STATE 5: t = t + 1.
 
@@ -335,6 +335,42 @@ In the following section, we present an ALM optimization framework to solve Prob
 \label{alg:alm_mf}
 \end{algorithm}
 \end{small}
+
+%
+%\begin{small}
+%\begin{algorithm}[h!]
+%
+%\begin{algorithmic}
+%
+%\REQUIRE $\bL \in \dsR^{n \times m\calC}$, $p$ (the rank of $\bX$)
+%\ENSURE $\bX \in \dsR^{n \times m\calC}$
+%\STATE Initialize $\rho > 1$, $t = 0$, $\blambda^{(0)} = 0$, and $\mu^{(0)} > 0$.
+%
+%\WHILE{not converge}
+%
+%  \WHILE{not converge}
+%
+%    %\STATE 1: Obtain $\bX^{(t)}$ by solving Problem~(\ref{eq:subproblem_wrt_X}) via LRGeomCG.
+%    \STATE 1: Obtain $\bX^{(t)}$ by solving Problem~(\ref{eq:subproblem_wrt_X}).
+%
+%    %\STATE 2: Obtain $\bE^{(t)}$ by column-wise soft-thresholding~(\ref{eq:column_wise_soft_thresholding}).
+%    \STATE 2: Obtain $\bE^{(t)}$ by solving Problem~(\ref{eq:column_wise_soft_thresholding}).
+%
+%  \ENDWHILE
+%
+%  \STATE 3: $\blambda^{(t+1)} = \blambda^{(t)} + \mu^{(t)} (\bL - \bX^{(t+1)} - \bE^{(t+1)})$.
+%
+%  \STATE 4: $\mu^{(t+1)} = \rho \mu^{(t)}$.
+%
+%  \STATE 5: t = t + 1.
+%
+%\ENDWHILE
+%
+%\end{algorithmic}
+%\caption{The ALM algorithm for Problem~(\ref{eq:mf_l21_constrained})}
+%\label{alg:alm_mf}
+%\end{algorithm}
+%\end{small}
 
 
 
@@ -430,7 +466,7 @@ then $\M_{r}$ becomes a Riemannian manifold by restricting
 $\langle\bA,\bB\rangle$
 to the \emph{tangent bundle}, defined as the disjoint union of all tangent spaces:
 $T\M_{r} = \bigcup_{\bX\in \M_{r}}\{\bX\} \times T_{\bX}\M_{r}
-         = \! \{(\bX,\E)\in \R^{n \times m\calC} \times \R^{n \times m\calC}: \bX \in \M_{r}, \E \in T_{\bX}\M_{r}\}.$
+         = \! \{(\bX,\bP)\in \R^{n \times m\calC} \times \R^{n \times m\calC}: \bX \in \M_{r}, \bP \in T_{\bX}\M_{r}\}.$
 
 
 
@@ -660,10 +696,9 @@ We recover the low rank matrix $\bX$ from the noised matrix by using our late fu
 
 
 \begin{table*}[t]
-%\small
+\small
 \centering
-\begin{scriptsize}
-\caption{Mean accuracy on real-world data sets}
+\caption{Mean accuracy on real-world data sets.}
 \begin{tabular}{c|c|c|c|c|c}
 \hline
 Method              & UCF-101          & CIFAR-10         & CIFAR-100        & Oxford-IIIT-Pet & PASCAL VOC 2007    \\\hline
@@ -675,14 +710,13 @@ LPBoost             & 86.24\%          & 94.88\%          & 76.59\%          & 9
 \textbf{Ours}       & \textbf{89.03\%} & \textbf{95.11\%} & \textbf{77.72\%} & \textbf{92.90\%}&   90.98\%          \\
 \hline
 \end{tabular}
-\end{scriptsize}
 \label{table:total_acc}
 \end{table*}
 
+
 \begin{table*}[t]
-%\small
+\small
 \centering
-\begin{scriptsize}
 \caption{Experimental results on real-world data sets. Computational time is recorded in seconds.}
 \begin{tabular}{c|c|c|c|c|c}
 \hline
@@ -693,7 +727,6 @@ LPBoost             & 110.81     & 72.45     &  4750.9    & 43.67           &   
 Ours                & 421.23     & 5.384     &  417.26    & 76.16           &   16.21         \\
 \hline
 \end{tabular}
-\end{scriptsize}
 \label{table:total_time}
 \end{table*}
 
@@ -705,29 +738,43 @@ We describe the details of the feature extraction for each dataset we use.
 All CNN features are extracted using Caffe~\cite{jia2014caffe}, a deep learning framework.
 
 In UCF101 dataset, five different features are extracted from the following:
-\begin{itemize}
-  \item `fc6' of C3D~\cite{tran2015learning}
-  \item `pool5/7x7\_s1' from GoogleNet~\cite{szegedy2015going}
-  \item `pool5' of ResNet-152~\cite{he2015deep}
-  \item two `fc6's of Two-Stream~\cite{simonyan2014two}
-\end{itemize}
+%\begin{itemize}
+%  \item `fc6' of C3D~\cite{tran2015learning}
+%  \item `pool5/7x7\_s1' from GoogleNet~\cite{szegedy2015going}
+%  \item `pool5' of ResNet-152~\cite{he2015deep}
+%  \item two `fc6's of Two-Stream~\cite{simonyan2014two}
+%\end{itemize}
+`fc6' of C3D~\cite{tran2015learning},
+`pool5/7x7\_s1' from GoogleNet~\cite{szegedy2015going},
+`pool5' of ResNet-152~\cite{he2015deep},
+and two `fc6's of Two-Stream~\cite{simonyan2014two}.
 Given a video, we extract the above five features following the same process in~\cite{simonyan2014two,tran2015learning}(GoogleNet and ResNet-152 feature are same as spatial net in~\cite{simonyan2014two}).
 All models we used are public available on Internet. %% provided by authors.
 
 In Cifar10 dataset, the features are extracted from the `global\_pool' layer of ResNet-20,32,44,56,110~\cite{he2015deep} and of pre-activation ResNet-20,32,44,56,110,164 models~\cite{he2016identity}.
-One feature is extracted from `pool3' layer's features of cifar10\_full model described in caffe example prototxt\footnote{\url{https://github.com/BVLC/caffe/blob/master/examples/cifar10/cifar10_full.prototxt}}.
+One feature is extracted from `pool3' layer's features of cifar10\_full model described in caffe example prototxt
+\footnote{\url{https://github.com/BVLC/caffe/blob/master/examples/cifar10/cifar10_full.prototxt}}
+.
 Two modified networks VGG16 and GoogleNet are used to extract final pooling features~(Modify the stride 2 in conv4 and conv5 layers to stride 1 and fc layers to global pooling layers), trained the same in~\cite{he2015deep}
-Each ResNet model is trained following the standard procedure in~\cite{he2015deep,he2016identity}, and cifar10\_full model is trained by an official shell\footnote{\url{https://github.com/BVLC/caffe/blob/master/examples/cifar10/train_full.sh}} before extracting features.
+Each ResNet model is trained following the standard procedure in~\cite{he2015deep,he2016identity}, and cifar10\_full model is trained by an official shell
+\footnote{\url{https://github.com/BVLC/caffe/blob/master/examples/cifar10/train_full.sh}}
+before extracting features.
 In Cifar100 dataset, we use `global\_pool' layer features of ResNet-20,32,44,56,68,110 and of pre-activation ResNet-20,32,44,56,110,164 models, following the same training process as in~\cite{he2015deep,he2016identity}.
 
 In all other experiments, eight different features are extracted from the following:
-\begin{itemize}
-  \item `fc6' of VGG16,VGG19~\cite{chatfield2014return}
-  \item `fc6' of AlexNet,CaffeNet~\cite{krizhevsky2012imagenet}
-  \item `pool5/7x7\_s1' from GoogleNet~\cite{szegedy2015going}
-  \item `pool5' of ResNet-50,101,152~\cite{he2015deep}
-\end{itemize}
-We use the offical pre-trained model provided by Caffe Model Zoo\footnote{\url{https://github.com/BVLC/caffe/wiki/Model-Zoo}}.
+%\begin{itemize}
+%  \item `fc6' of VGG16,VGG19~\cite{chatfield2014return}
+%  \item `fc6' of AlexNet,CaffeNet~\cite{krizhevsky2012imagenet}
+%  \item `pool5/7x7\_s1' from GoogleNet~\cite{szegedy2015going}
+%  \item `pool5' of ResNet-50,101,152~\cite{he2015deep}
+%\end{itemize}
+``fc6'' of VGG16, VGG19~\cite{chatfield2014return},
+``fc6'' of AlexNet,CaffeNet~\cite{krizhevsky2012imagenet},
+``pool5/7x7\_s1'' from GoogleNet~\cite{szegedy2015going},
+and ``pool5'' of ResNet-50,101,152~\cite{he2015deep}.
+We use the offical pre-trained model provided by Caffe Model Zoo
+\footnote{\url{https://github.com/BVLC/caffe/wiki/Model-Zoo}}
+.
 For above eight models, we simply extract features with no extra operation.
 
 
@@ -764,7 +811,8 @@ As we have 50000 training data and 10000 testing data,
 FWOT algorithm has one step to deal with $n\times n$ matrixes, which are excessive to train~(more than one day).
 LPBoost algorithm needs to create a $nm\times \calC$ constraint matrix linear programming solvers\footnote{The author use the MOSEK interior-point solver, see www.mosek.com.},
 which occupies too much memory and still consumes long time to train, so we solve this problem by using sparse matrix storage and parallel during matlab.
-We also use `-s 2' parameters in liblinear to speedup training process. Results of total six contrast algorithms are shown in Table~\ref{table:total_acc} and \ref{table:total_time}.
+We also use `-s 2' parameters in liblinear to speedup training process.
+Results of total six competing algorithms are shown in Table~\ref{table:total_acc} and \ref{table:total_time}.
 
 
 %\subsubsection{Experiment on Cifar100 dataset}
@@ -807,12 +855,11 @@ Fifty percent of data are sampled as training set and the others as testing set,
 The $[$AVE$]$ strategy outperforms than the $[$VOTE$]$ in our experiments, which may be caused by the soft average method reserves more detail information than the hard voting method.
 In all our experiments, the accuracy performance of the $[$GATE$]$ strategy is higher than the others.
 Since the recover matrix $\bX$ contains the outlier rejection information,
-it's more robust to take advantage of the recovered results as a confidence gate operating on the original confidence score matrix.
+it is more robust to take advantage of the recovered results as a confidence gate operating on the original confidence score matrix.
 
 \begin{table}[h]
-%\small
+\small
 \centering
-\begin{scriptsize}
 \caption{Mean Accuracy with Different Strategies}
 \begin{tabular}{c|c|c|c}
 \hline
@@ -822,7 +869,6 @@ Strategy            & Wikipedia & Flowers 17 & Pascal Sentence \\\hline
 [GATE]              & 49.03\%   & 96.77\%    &   67.20\%       \\
 \hline
 \end{tabular}
-\end{scriptsize}
 \label{table:strategy}
 \end{table}
 
