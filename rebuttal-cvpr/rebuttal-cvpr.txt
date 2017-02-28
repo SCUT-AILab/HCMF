@@ -1,0 +1,26 @@
+# For Assigned Reviewer 1
+
+-- over-sold description
+Theorem 1 guarantees the correctness of our algorithm.（不是到该说啥了...）
+
+# For Assigned Reviewer 2
+
+-- technical contributions
+Replacing the nuclear norm with a low-rank matrix factorization can not only speed up the fusion process but also be able to handle the large scale problem.
+But nuclear norm based methods are limited by the cubic complex, being difficult to deal with large scale problem.
+
+-- too much space for Sec.3.2
+...
+
+-- empirical
+Our method show a great improvement on UCF-101 and Oxford-IIIT-Pet comparing with LPBoost.
+Post-processing steps are detailedly described in Sec.4.4 and carefully choosed via experimental results as Table.3
+We use `GATE' strategy for all experiments as mentioned in line 759-760.
+
+-- state-of-the-art
+The state-of-the-art fusion methods are already compared in Table.1 and Table.2
+Table.5 shows we are able to achieve better performance comparing with the current state-of-the-art results on CIFAR-10,100 dataset.
+
+# For Assigned Reviewer 3
+How the l1,2 norm helps with outliers are discusses in line-106-111.
+Why not l2 norm????...

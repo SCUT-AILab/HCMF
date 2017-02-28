@@ -1,0 +1,1327 @@
+......*
+optimization finished, #iter = 67
+Objective value = -0.162205
+nSV = 117
+...*
+optimization finished, #iter = 32
+Objective value = -0.100821
+nSV = 106
+..*
+optimization finished, #iter = 25
+Objective value = -0.041999
+nSV = 90
+..*.
+optimization finished, #iter = 30
+Objective value = -0.061324
+nSV = 97
+...*
+optimization finished, #iter = 33
+Objective value = -0.083175
+nSV = 99
+...*
+optimization finished, #iter = 31
+Objective value = -0.051275
+nSV = 87
+.*
+optimization finished, #iter = 17
+Objective value = -0.025712
+nSV = 77
+....*
+optimization finished, #iter = 47
+Objective value = -0.134983
+nSV = 118
+..*
+optimization finished, #iter = 27
+Objective value = -0.041942
+nSV = 83
+..*.*
+optimization finished, #iter = 32
+Objective value = -0.035489
+nSV = 63
+..*
+optimization finished, #iter = 26
+Objective value = -0.037320
+nSV = 73
+...*
+optimization finished, #iter = 39
+Objective value = -0.080128
+nSV = 89
+.....*
+optimization finished, #iter = 52
+Objective value = -0.125107
+nSV = 100
+......*
+optimization finished, #iter = 62
+Objective value = -0.179451
+nSV = 116
+.....**.
+optimization finished, #iter = 60
+Objective value = -0.099375
+nSV = 94
+....*.*
+optimization finished, #iter = 51
+Objective value = -0.086184
+nSV = 89
+....*
+optimization finished, #iter = 45
+Objective value = -0.105318
+nSV = 109
+Accuracy = 96.7647% (329/340)
+Accuracy = 100% (1020/1020)
+......**
+optimization finished, #iter = 68
+Objective value = -0.154079
+nSV = 110
+...**
+optimization finished, #iter = 35
+Objective value = -0.107160
+nSV = 108
+..*
+optimization finished, #iter = 25
+Objective value = -0.056996
+nSV = 98
+...*
+optimization finished, #iter = 35
+Objective value = -0.068939
+nSV = 103
+...*
+optimization finished, #iter = 32
+Objective value = -0.085560
+nSV = 108
+...*
+optimization finished, #iter = 34
+Objective value = -0.059928
+nSV = 95
+.*
+optimization finished, #iter = 17
+Objective value = -0.034987
+nSV = 85
+....*
+optimization finished, #iter = 49
+Objective value = -0.174298
+nSV = 129
+..*
+optimization finished, #iter = 25
+Objective value = -0.037064
+nSV = 70
+..*
+optimization finished, #iter = 24
+Objective value = -0.034823
+nSV = 85
+..*
+optimization finished, #iter = 22
+Objective value = -0.033606
+nSV = 62
+....***
+optimization finished, #iter = 47
+Objective value = -0.075051
+nSV = 77
+.....**.
+optimization finished, #iter = 60
+Objective value = -0.116781
+nSV = 91
+......*.***
+optimization finished, #iter = 76
+Objective value = -0.187010
+nSV = 125
+.....*
+optimization finished, #iter = 58
+Objective value = -0.105651
+nSV = 112
+....**
+optimization finished, #iter = 47
+Objective value = -0.085535
+nSV = 98
+.....**
+optimization finished, #iter = 56
+Objective value = -0.126694
+nSV = 121
+Accuracy = 95% (323/340)
+Accuracy = 100% (1020/1020)
+....**
+optimization finished, #iter = 49
+Objective value = -0.206427
+nSV = 138
+..*.
+optimization finished, #iter = 30
+Objective value = -0.096752
+nSV = 108
+..*
+optimization finished, #iter = 24
+Objective value = -0.059969
+nSV = 89
+...*
+optimization finished, #iter = 32
+Objective value = -0.075520
+nSV = 112
+..*.
+optimization finished, #iter = 30
+Objective value = -0.087539
+nSV = 97
+..*
+optimization finished, #iter = 26
+Objective value = -0.056209
+nSV = 82
+..*
+optimization finished, #iter = 26
+Objective value = -0.029944
+nSV = 88
+...*
+optimization finished, #iter = 36
+Objective value = -0.158765
+nSV = 124
+..*
+optimization finished, #iter = 22
+Objective value = -0.040614
+nSV = 83
+..*
+optimization finished, #iter = 28
+Objective value = -0.048749
+nSV = 87
+..*
+optimization finished, #iter = 26
+Objective value = -0.043934
+nSV = 76
+....*
+optimization finished, #iter = 43
+Objective value = -0.092456
+nSV = 80
+.....**
+optimization finished, #iter = 59
+Objective value = -0.156422
+nSV = 87
+.....*.
+optimization finished, #iter = 60
+Objective value = -0.247108
+nSV = 135
+....*.*
+optimization finished, #iter = 51
+Objective value = -0.140568
+nSV = 109
+....***.
+optimization finished, #iter = 50
+Objective value = -0.102239
+nSV = 90
+.....**
+optimization finished, #iter = 53
+Objective value = -0.171975
+nSV = 115
+Accuracy = 97.0588% (330/340)
+Accuracy = 100% (1020/1020)
+.*
+optimization finished, #iter = 16
+Objective value = -0.001156
+nSV = 169
+.*
+optimization finished, #iter = 11
+Objective value = -0.001344
+nSV = 154
+*
+optimization finished, #iter = 9
+Objective value = -0.001011
+nSV = 148
+.*
+optimization finished, #iter = 11
+Objective value = -0.001221
+nSV = 152
+.*
+optimization finished, #iter = 11
+Objective value = -0.001145
+nSV = 184
+*.
+optimization finished, #iter = 10
+Objective value = -0.000725
+nSV = 167
+*
+optimization finished, #iter = 8
+Objective value = -0.000564
+nSV = 129
+..*
+optimization finished, #iter = 22
+Objective value = -0.001721
+nSV = 188
+*
+optimization finished, #iter = 9
+Objective value = -0.000628
+nSV = 130
+.*
+optimization finished, #iter = 14
+Objective value = -0.000374
+nSV = 128
+.*
+optimization finished, #iter = 13
+Objective value = -0.000486
+nSV = 149
+..*
+optimization finished, #iter = 28
+Objective value = -0.000880
+nSV = 154
+..*
+optimization finished, #iter = 23
+Objective value = -0.000808
+nSV = 141
+..*
+optimization finished, #iter = 23
+Objective value = -0.001649
+nSV = 184
+.*
+optimization finished, #iter = 15
+Objective value = -0.000835
+nSV = 150
+.*
+optimization finished, #iter = 12
+Objective value = -0.000891
+nSV = 147
+.*
+optimization finished, #iter = 16
+Objective value = -0.000968
+nSV = 180
+Accuracy = 95% (323/340)
+Accuracy = 100% (1020/1020)
+.*
+optimization finished, #iter = 15
+Objective value = -0.001353
+nSV = 168
+.**
+optimization finished, #iter = 14
+Objective value = -0.001393
+nSV = 164
+.*
+optimization finished, #iter = 11
+Objective value = -0.001252
+nSV = 148
+*.
+optimization finished, #iter = 10
+Objective value = -0.001358
+nSV = 148
+*.
+optimization finished, #iter = 10
+Objective value = -0.001293
+nSV = 171
+*
+optimization finished, #iter = 9
+Objective value = -0.000896
+nSV = 161
+*
+optimization finished, #iter = 9
+Objective value = -0.000701
+nSV = 140
+.*
+optimization finished, #iter = 19
+Objective value = -0.001969
+nSV = 188
+*
+optimization finished, #iter = 9
+Objective value = -0.000834
+nSV = 137
+.*
+optimization finished, #iter = 16
+Objective value = -0.000419
+nSV = 120
+.*
+optimization finished, #iter = 15
+Objective value = -0.000541
+nSV = 152
+..*
+optimization finished, #iter = 26
+Objective value = -0.000932
+nSV = 156
+..*
+optimization finished, #iter = 22
+Objective value = -0.000892
+nSV = 159
+.*
+optimization finished, #iter = 18
+Objective value = -0.002167
+nSV = 197
+.*
+optimization finished, #iter = 14
+Objective value = -0.001006
+nSV = 162
+.*
+optimization finished, #iter = 13
+Objective value = -0.001026
+nSV = 165
+.*
+optimization finished, #iter = 13
+Objective value = -0.001029
+nSV = 172
+Accuracy = 94.1176% (320/340)
+Accuracy = 100% (1020/1020)
+Total classifier : 5, mean accuracy : 95.5882, Merge accuracy : 0.9794
+The  1th classifier accuracy : 0.968
+The  2th classifier accuracy : 0.950
+The  3th classifier accuracy : 0.971
+The  4th classifier accuracy : 0.950
+The  5th classifier accuracy : 0.941
+                   maxit: 200
+            abs_grad_tol: 0
+            rel_grad_tol: 1.0000e-12
+               abs_f_tol: 0
+               rel_f_tol: 1.0000e-12
+    stagnation_detection: 0
+        rel_tol_change_x: 1.0000e-12
+      rel_tol_change_res: 1.0000e-08
+               verbosity: 1
+
+Assert OK, N : 340, K : 17, M : 5( check dimisions of matrix)
+Initialize L done
+0001 / 0030 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.315062572820, cost [0.002 , 0.084] s
+norm(L) : 41.2311, norm(X) : 39.1312, norm(L-X) : 12.9904, alpha : 1.0000
+norm(E) : 7.0757, norm(lamda) : 15.6815, p : 1.01, mu 2.0200
+Current Accuracy : 0.92059
+0001 / 0030 iterations done , cost 0.109 s ***
+
+0002 / 0030 iterations start.....
+Relative gradient tol reached.
+LRGeomCG : error_cg : 0.345336378562, cost [0.002 , 0.045] s
+norm(L) : 41.2311, norm(X) : 39.5358, norm(L-X) : 9.6754, alpha : 0.9901
+norm(E) : 8.9416, norm(lamda) : 17.7797, p : 1.01, mu 2.0402
+Current Accuracy : 0.98235
+0002 / 0030 iterations done , cost 0.074 s ***
+
+0003 / 0030 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.231099881857, cost [0.002 , 0.042] s
+norm(L) : 41.2311, norm(X) : 40.1608, norm(L-X) : 9.2709, alpha : 0.9803
+norm(E) : 9.1580, norm(lamda) : 17.7927, p : 1.01, mu 2.0606
+Current Accuracy : 0.97941
+0003 / 0030 iterations done , cost 0.070 s ***
+
+0004 / 0030 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.196121036306, cost [0.002 , 0.018] s
+norm(L) : 41.2311, norm(X) : 40.8944, norm(L-X) : 9.6068, alpha : 0.9706
+norm(E) : 9.2575, norm(lamda) : 16.6225, p : 1.01, mu 2.0812
+Current Accuracy : 0.97941
+0004 / 0030 iterations done , cost 0.044 s ***
+
+0005 / 0030 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.193401410630, cost [0.002 , 0.060] s
+norm(L) : 41.2311, norm(X) : 40.3476, norm(L-X) : 9.3311, alpha : 0.9610
+norm(E) : 9.3020, norm(lamda) : 16.5364, p : 1.01, mu 2.1020
+Current Accuracy : 0.98235
+0005 / 0030 iterations done , cost 0.086 s ***
+
+0006 / 0030 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.304265305207, cost [0.002 , 0.112] s
+norm(L) : 41.2311, norm(X) : 39.0012, norm(L-X) : 13.5770, alpha : 0.9515
+norm(E) : 11.4437, norm(lamda) : 17.4915, p : 1.01, mu 2.1230
+Current Accuracy : 0.92059
+0006 / 0030 iterations done , cost 0.136 s ***
+
+0007 / 0030 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.205154236048, cost [0.002 , 0.027] s
+norm(L) : 41.2311, norm(X) : 39.3851, norm(L-X) : 10.2208, alpha : 0.9420
+norm(E) : 10.1290, norm(lamda) : 17.6811, p : 1.01, mu 2.1443
+Current Accuracy : 0.98235
+0007 / 0030 iterations done , cost 0.052 s ***
+
+0008 / 0030 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.194142338505, cost [0.002 , 0.073] s
+norm(L) : 41.2311, norm(X) : 39.9182, norm(L-X) : 9.4623, alpha : 0.9327
+norm(E) : 9.4497, norm(lamda) : 17.6692, p : 1.01, mu 2.1657
+Current Accuracy : 0.98235
+0008 / 0030 iterations done , cost 0.096 s ***
+
+0009 / 0030 iterations start.....
+Relative gradient tol reached.
+LRGeomCG : error_cg : 0.184255516402, cost [0.002 , 0.018] s
+norm(L) : 41.2311, norm(X) : 40.6590, norm(L-X) : 9.5958, alpha : 0.9235
+norm(E) : 9.4012, norm(lamda) : 16.6269, p : 1.01, mu 2.1874
+Current Accuracy : 0.98235
+0009 / 0030 iterations done , cost 0.044 s ***
+
+0010 / 0030 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.182469604570, cost [0.002 , 0.037] s
+norm(L) : 41.2311, norm(X) : 40.4283, norm(L-X) : 9.4690, alpha : 0.9143
+norm(E) : 9.4020, norm(lamda) : 16.4120, p : 1.01, mu 2.2092
+Current Accuracy : 0.98235
+0010 / 0030 iterations done , cost 0.062 s ***
+
+0011 / 0030 iterations start.....
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  2.796702e-18.] 
+[> In polymod at 35
+  In armijo_search at 44
+  In LRGeomCG at 54
+  In wrapCG at 36
+  In SolverALM at 40
+  In ExamFlower_CNN at 60] 
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.299013499305, cost [0.002 , 0.094] s
+norm(L) : 41.2311, norm(X) : 38.9596, norm(L-X) : 13.6090, alpha : 0.9053
+norm(E) : 11.6161, norm(lamda) : 17.3761, p : 1.01, mu 2.2313
+Current Accuracy : 0.92059
+0011 / 0030 iterations done , cost 0.117 s ***
+
+0012 / 0030 iterations start.....
+Relative gradient tol reached.
+LRGeomCG : error_cg : 0.194676741925, cost [0.002 , 0.076] s
+norm(L) : 41.2311, norm(X) : 39.3142, norm(L-X) : 10.4024, alpha : 0.8963
+norm(E) : 10.3244, norm(lamda) : 17.5865, p : 1.01, mu 2.2537
+Current Accuracy : 0.98235
+0012 / 0030 iterations done , cost 0.100 s ***
+
+0013 / 0030 iterations start.....
+Relative gradient tol reached.
+LRGeomCG : error_cg : 0.184539990300, cost [0.002 , 0.016] s
+norm(L) : 41.2311, norm(X) : 39.8118, norm(L-X) : 9.6178, alpha : 0.8874
+norm(E) : 9.6057, norm(lamda) : 17.5197, p : 1.01, mu 2.2762
+Current Accuracy : 0.98235
+0013 / 0030 iterations done , cost 0.042 s ***
+
+0014 / 0030 iterations start.....
+Relative gradient tol reached.
+LRGeomCG : error_cg : 0.176214543611, cost [0.002 , 0.077] s
+norm(L) : 41.2311, norm(X) : 40.4295, norm(L-X) : 9.5630, alpha : 0.8787
+norm(E) : 9.3862, norm(lamda) : 17.0180, p : 1.01, mu 2.2989
+Current Accuracy : 0.98235
+0014 / 0030 iterations done , cost 0.100 s ***
+
+0015 / 0030 iterations start.....
+Relative gradient tol reached.
+LRGeomCG : error_cg : 0.173453710818, cost [0.002 , 0.009] s
+norm(L) : 41.2311, norm(X) : 40.5546, norm(L-X) : 9.5672, alpha : 0.8700
+norm(E) : 9.3913, norm(lamda) : 16.4118, p : 1.01, mu 2.3219
+Current Accuracy : 0.98235
+0015 / 0030 iterations done , cost 0.034 s ***
+
+0016 / 0030 iterations start.....
+Line search failed on CG. Resetting to gradient.
+{Error using *
+Inner matrix dimensions must agree.
+
+Error in moveEIG (line 18)
+[U_t,Ru] = qr(t*h.Up,0);
+
+Error in armijo_search (line 28)
+xt = moveEIG(prob,xc,dir,lambda);
+
+Error in LRGeomCG (line 62)
+    [xc_new,fc,succ,~,iarm] = armijo_search(prob, xc,fc_b,gc,dir, tinit);
+
+
+Error in wrapCG (line 36)
+[Xcg,hist] = LRGeomCG(prob,options,x0);
+
+Error in SolverALM (line 40)
+    X = wrapCG(X_verse, K, opts.options);
+
+Error in ExamFlower_CNN (line 60)
+[X, param] = SolverALM(results, test_label, opts);
+} 
+opts.max_iters = 20;
+opts.p = 1.01;
+opts.mu = 1;
+options = default_opts();
+options.maxit = 200;
+opts.options = options;
+opts.options.rel_tol_change_res = 1e-8;
+disp(opts.options);
+                   maxit: 200
+            abs_grad_tol: 0
+            rel_grad_tol: 1.0000e-12
+               abs_f_tol: 0
+               rel_f_tol: 1.0000e-12
+    stagnation_detection: 0
+        rel_tol_change_x: 1.0000e-12
+      rel_tol_change_res: 1.0000e-08
+               verbosity: 1
+
+[X, param] = SolverALM(results, test_label, opts);
+Assert OK, N : 340, K : 17, M : 5( check dimisions of matrix)
+Initialize L done
+0001 / 0020 iterations start.....
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  5.447254e-17.] 
+[> In polymod at 35
+  In armijo_search at 44
+  In LRGeomCG at 54
+  In wrapCG at 36
+  In SolverALM at 40] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  2.723627e-17.] 
+[> In polymod at 35
+  In armijo_search at 44
+  In LRGeomCG at 54
+  In wrapCG at 36
+  In SolverALM at 40] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  1.543389e-16.] 
+[> In polymod at 35
+  In armijo_search at 44
+  In LRGeomCG at 54
+  In wrapCG at 36
+  In SolverALM at 40] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  7.716943e-17.] 
+[> In polymod at 35
+  In armijo_search at 44
+  In LRGeomCG at 54
+  In wrapCG at 36
+  In SolverALM at 40] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.858472e-17.] 
+[> In polymod at 35
+  In armijo_search at 44
+  In LRGeomCG at 54
+  In wrapCG at 36
+  In SolverALM at 40] 
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.315062572820, cost [0.003 , 0.102] s
+norm(L) : 41.2311, norm(X) : 39.1312, norm(L-X) : 12.9904, alpha : 2.0000
+norm(E) : 3.6844, norm(lamda) : 10.4283, p : 1.01, mu 1.0100
+Current Accuracy : 0.92059
+0001 / 0020 iterations done , cost 0.138 s ***
+
+0002 / 0020 iterations start.....
+Relative gradient tol reached.
+LRGeomCG : error_cg : 0.378882591183, cost [0.002 , 0.078] s
+norm(L) : 41.2311, norm(X) : 40.9916, norm(L-X) : 9.2158, alpha : 1.9802
+norm(E) : 3.8697, norm(lamda) : 14.8937, p : 1.01, mu 1.0201
+Current Accuracy : 0.97941
+0002 / 0020 iterations done , cost 0.109 s ***
+
+0003 / 0020 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.441913462313, cost [0.002 , 0.056] s
+norm(L) : 41.2311, norm(X) : 41.4178, norm(L-X) : 10.0326, alpha : 1.9606
+norm(E) : 8.4492, norm(lamda) : 15.9032, p : 1.01, mu 1.0303
+Current Accuracy : 0.97941
+0003 / 0020 iterations done , cost 0.086 s ***
+
+0004 / 0020 iterations start.....
+Relative gradient tol reached.
+LRGeomCG : error_cg : 0.434239027995, cost [0.002 , 0.047] s
+norm(L) : 41.2311, norm(X) : 39.4239, norm(L-X) : 14.1999, alpha : 1.9412
+norm(E) : 9.6680, norm(lamda) : 16.9583, p : 1.01, mu 1.0406
+Current Accuracy : 0.92059
+0004 / 0020 iterations done , cost 0.077 s ***
+
+0005 / 0020 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.368255535216, cost [0.002 , 0.025] s
+norm(L) : 41.2311, norm(X) : 40.7429, norm(L-X) : 9.7306, alpha : 1.9220
+norm(E) : 9.1351, norm(lamda) : 16.5604, p : 1.01, mu 1.0510
+Current Accuracy : 0.97941
+0005 / 0020 iterations done , cost 0.055 s ***
+
+0006 / 0020 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.357267335100, cost [0.002 , 0.094] s
+norm(L) : 41.2311, norm(X) : 41.2892, norm(L-X) : 10.2227, alpha : 1.9029
+norm(E) : 9.2911, norm(lamda) : 16.3075, p : 1.01, mu 1.0615
+Current Accuracy : 0.97647
+0006 / 0020 iterations done , cost 0.124 s ***
+
+0007 / 0020 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.414106106665, cost [0.002 , 0.086] s
+norm(L) : 41.2311, norm(X) : 39.2465, norm(L-X) : 14.1011, alpha : 1.8841
+norm(E) : 9.9111, norm(lamda) : 17.1429, p : 1.01, mu 1.0721
+Current Accuracy : 0.92059
+0007 / 0020 iterations done , cost 0.113 s ***
+
+0008 / 0020 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.352964432450, cost [0.002 , 0.065] s
+norm(L) : 41.2311, norm(X) : 40.6549, norm(L-X) : 9.5874, alpha : 1.8654
+norm(E) : 9.1911, norm(lamda) : 16.7229, p : 1.01, mu 1.0829
+Current Accuracy : 0.97941
+0008 / 0020 iterations done , cost 0.094 s ***
+
+0009 / 0020 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.346637659397, cost [0.002 , 0.057] s
+norm(L) : 41.2311, norm(X) : 41.3468, norm(L-X) : 10.2246, alpha : 1.8470
+norm(E) : 9.2681, norm(lamda) : 16.3848, p : 1.01, mu 1.0937
+Current Accuracy : 0.97941
+0009 / 0020 iterations done , cost 0.086 s ***
+
+0010 / 0020 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.403638206971, cost [0.002 , 0.084] s
+norm(L) : 41.2311, norm(X) : 39.3167, norm(L-X) : 14.1450, alpha : 1.8287
+norm(E) : 9.8114, norm(lamda) : 17.1897, p : 1.01, mu 1.1046
+Current Accuracy : 0.92647
+0010 / 0020 iterations done , cost 0.111 s ***
+
+0011 / 0020 iterations start.....
+Relative gradient tol reached.
+LRGeomCG : error_cg : 0.352021134357, cost [0.002 , 0.118] s
+norm(L) : 41.2311, norm(X) : 40.5769, norm(L-X) : 9.5032, alpha : 1.8106
+norm(E) : 9.1084, norm(lamda) : 17.0277, p : 1.01, mu 1.1157
+Current Accuracy : 0.98235
+0011 / 0020 iterations done , cost 0.146 s ***
+
+0012 / 0020 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.345254989938, cost [0.002 , 0.094] s
+norm(L) : 41.2311, norm(X) : 41.4195, norm(L-X) : 10.3053, alpha : 1.7926
+norm(E) : 9.3165, norm(lamda) : 16.4031, p : 1.01, mu 1.1268
+Current Accuracy : 0.98235
+0012 / 0020 iterations done , cost 0.122 s ***
+
+0013 / 0020 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.396017656891, cost [0.002 , 0.089] s
+norm(L) : 41.2311, norm(X) : 39.2416, norm(L-X) : 14.0038, alpha : 1.7749
+norm(E) : 9.9084, norm(lamda) : 17.2969, p : 1.01, mu 1.1381
+Current Accuracy : 0.92059
+0013 / 0020 iterations done , cost 0.116 s ***
+
+0014 / 0020 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.350168712940, cost [0.002 , 0.109] s
+norm(L) : 41.2311, norm(X) : 40.4911, norm(L-X) : 9.5524, alpha : 1.7573
+norm(E) : 9.1613, norm(lamda) : 17.1812, p : 1.01, mu 1.1495
+Current Accuracy : 0.98235
+0014 / 0020 iterations done , cost 0.139 s ***
+
+0015 / 0020 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.333466062792, cost [0.002 , 0.035] s
+norm(L) : 41.2311, norm(X) : 41.4908, norm(L-X) : 10.3976, alpha : 1.7399
+norm(E) : 9.3383, norm(lamda) : 16.4040, p : 1.01, mu 1.1610
+Current Accuracy : 0.98235
+0015 / 0020 iterations done , cost 0.063 s ***
+
+0016 / 0020 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.332879103948, cost [0.002 , 0.085] s
+norm(L) : 41.2311, norm(X) : 40.1511, norm(L-X) : 9.3919, alpha : 1.7227
+norm(E) : 9.3706, norm(lamda) : 16.4038, p : 1.01, mu 1.1726
+Current Accuracy : 0.98235
+0016 / 0020 iterations done , cost 0.113 s ***
+
+0017 / 0020 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.389828522769, cost [0.002 , 0.084] s
+norm(L) : 41.2311, norm(X) : 39.1575, norm(L-X) : 13.8668, alpha : 1.7056
+norm(E) : 10.0301, norm(lamda) : 17.3591, p : 1.01, mu 1.1843
+Current Accuracy : 0.92059
+0017 / 0020 iterations done , cost 0.111 s ***
+
+0018 / 0020 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.336790749230, cost [0.002 , 0.070] s
+norm(L) : 41.2311, norm(X) : 40.3686, norm(L-X) : 9.4493, alpha : 1.6888
+norm(E) : 9.2055, norm(lamda) : 17.3182, p : 1.01, mu 1.1961
+Current Accuracy : 0.98235
+0018 / 0020 iterations done , cost 0.097 s ***
+
+0019 / 0020 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.320969811575, cost [0.002 , 0.040] s
+norm(L) : 41.2311, norm(X) : 41.5484, norm(L-X) : 10.4818, alpha : 1.6720
+norm(E) : 9.3638, norm(lamda) : 16.4146, p : 1.01, mu 1.2081
+Current Accuracy : 0.98235
+0019 / 0020 iterations done , cost 0.067 s ***
+
+0020 / 0020 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.321357522968, cost [0.002 , 0.091] s
+norm(L) : 41.2311, norm(X) : 40.1446, norm(L-X) : 9.4036, alpha : 1.6555
+norm(E) : 9.3842, norm(lamda) : 16.4086, p : 1.01, mu 1.2202
+Current Accuracy : 0.98235
+0020 / 0020 iterations done , cost 0.119 s ***
+
+Total iteration : 20, Cost : 2.100 s
+opts.max_iters = 25;
+opts.p = 1.01;
+opts.mu = 1;
+options = default_opts();
+options.maxit = 200;
+opts.options = options;
+opts.options.rel_tol_change_res = 1e-8;
+disp(opts.options);
+                   maxit: 200
+            abs_grad_tol: 0
+            rel_grad_tol: 1.0000e-12
+               abs_f_tol: 0
+               rel_f_tol: 1.0000e-12
+    stagnation_detection: 0
+        rel_tol_change_x: 1.0000e-12
+      rel_tol_change_res: 1.0000e-08
+               verbosity: 1
+
+[X, param] = SolverALM(results, test_label, opts);
+Assert OK, N : 340, K : 17, M : 5( check dimisions of matrix)
+Initialize L done
+0001 / 0025 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.315062572820, cost [0.003 , 0.094] s
+norm(L) : 41.2311, norm(X) : 39.1312, norm(L-X) : 12.9904, alpha : 2.0000
+norm(E) : 3.8166, norm(lamda) : 10.4283, p : 1.01, mu 1.0100
+Current Accuracy : 0.92059
+0001 / 0025 iterations done , cost 0.126 s ***
+
+0002 / 0025 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.378882591183, cost [0.002 , 0.045] s
+norm(L) : 41.2311, norm(X) : 40.9916, norm(L-X) : 9.3222, alpha : 1.9802
+norm(E) : 3.8697, norm(lamda) : 14.9276, p : 1.01, mu 1.0201
+Current Accuracy : 0.97941
+0002 / 0025 iterations done , cost 0.075 s ***
+
+0003 / 0025 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.441711022240, cost [0.002 , 0.099] s
+norm(L) : 41.2311, norm(X) : 41.4414, norm(L-X) : 10.0810, alpha : 1.9606
+norm(E) : 8.4492, norm(lamda) : 15.9032, p : 1.01, mu 1.0303
+Current Accuracy : 0.97941
+0003 / 0025 iterations done , cost 0.128 s ***
+
+0004 / 0025 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.434239028006, cost [0.002 , 0.017] s
+norm(L) : 41.2311, norm(X) : 39.4239, norm(L-X) : 14.1999, alpha : 1.9412
+norm(E) : 9.6536, norm(lamda) : 16.9583, p : 1.01, mu 1.0406
+Current Accuracy : 0.92059
+0004 / 0025 iterations done , cost 0.045 s ***
+
+0005 / 0025 iterations start.....
+Relative gradient tol reached.
+LRGeomCG : error_cg : 0.368255535209, cost [0.002 , 0.108] s
+norm(L) : 41.2311, norm(X) : 40.7429, norm(L-X) : 9.7021, alpha : 1.9220
+norm(E) : 9.1351, norm(lamda) : 16.5513, p : 1.01, mu 1.0510
+Current Accuracy : 0.97941
+0005 / 0025 iterations done , cost 0.135 s ***
+
+0006 / 0025 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.357317418575, cost [0.002 , 0.055] s
+norm(L) : 41.2311, norm(X) : 41.2826, norm(L-X) : 10.2093, alpha : 1.9029
+norm(E) : 9.2911, norm(lamda) : 16.3075, p : 1.01, mu 1.0615
+Current Accuracy : 0.97647
+0006 / 0025 iterations done , cost 0.083 s ***
+
+0007 / 0025 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.414106106671, cost [0.002 , 0.083] s
+norm(L) : 41.2311, norm(X) : 39.2465, norm(L-X) : 14.1011, alpha : 1.8841
+norm(E) : 9.9115, norm(lamda) : 17.1429, p : 1.01, mu 1.0721
+Current Accuracy : 0.92059
+0007 / 0025 iterations done , cost 0.109 s ***
+
+0008 / 0025 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.352964432418, cost [0.002 , 0.025] s
+norm(L) : 41.2311, norm(X) : 40.6549, norm(L-X) : 9.5881, alpha : 1.8654
+norm(E) : 9.1911, norm(lamda) : 16.7231, p : 1.01, mu 1.0829
+Current Accuracy : 0.97941
+0008 / 0025 iterations done , cost 0.053 s ***
+
+0009 / 0025 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.346636531482, cost [0.002 , 0.090] s
+norm(L) : 41.2311, norm(X) : 41.3470, norm(L-X) : 10.2249, alpha : 1.8470
+norm(E) : 9.2681, norm(lamda) : 16.3848, p : 1.01, mu 1.0937
+Current Accuracy : 0.97941
+0009 / 0025 iterations done , cost 0.118 s ***
+
+0010 / 0025 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.403638206988, cost [0.002 , 0.101] s
+norm(L) : 41.2311, norm(X) : 39.3167, norm(L-X) : 14.1450, alpha : 1.8287
+norm(E) : 9.8072, norm(lamda) : 17.1897, p : 1.01, mu 1.1046
+Current Accuracy : 0.92647
+0010 / 0025 iterations done , cost 0.128 s ***
+
+0011 / 0025 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.352021134403, cost [0.002 , 0.025] s
+norm(L) : 41.2311, norm(X) : 40.5769, norm(L-X) : 9.4945, alpha : 1.8106
+norm(E) : 9.1084, norm(lamda) : 17.0247, p : 1.01, mu 1.1157
+Current Accuracy : 0.98235
+0011 / 0025 iterations done , cost 0.052 s ***
+
+0012 / 0025 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.345269427325, cost [0.002 , 0.086] s
+norm(L) : 41.2311, norm(X) : 41.4175, norm(L-X) : 10.3014, alpha : 1.7926
+norm(E) : 9.3165, norm(lamda) : 16.4031, p : 1.01, mu 1.1268
+Current Accuracy : 0.98235
+0012 / 0025 iterations done , cost 0.115 s ***
+
+0013 / 0025 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.396017656933, cost [0.002 , 0.083] s
+norm(L) : 41.2311, norm(X) : 39.2416, norm(L-X) : 14.0038, alpha : 1.7749
+norm(E) : 9.8707, norm(lamda) : 17.2969, p : 1.01, mu 1.1381
+Current Accuracy : 0.92059
+0013 / 0025 iterations done , cost 0.109 s ***
+
+0014 / 0025 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.350168781314, cost [0.002 , 0.092] s
+norm(L) : 41.2311, norm(X) : 40.4911, norm(L-X) : 9.4744, alpha : 1.7573
+norm(E) : 9.1613, norm(lamda) : 17.1531, p : 1.01, mu 1.1495
+Current Accuracy : 0.98235
+0014 / 0025 iterations done , cost 0.118 s ***
+
+0015 / 0025 iterations start.....
+Relative gradient tol reached.
+LRGeomCG : error_cg : 0.333592462271, cost [0.002 , 0.051] s
+norm(L) : 41.2311, norm(X) : 41.4731, norm(L-X) : 10.3624, alpha : 1.7399
+norm(E) : 9.3383, norm(lamda) : 16.4040, p : 1.01, mu 1.1610
+Current Accuracy : 0.98235
+0015 / 0025 iterations done , cost 0.079 s ***
+
+0016 / 0025 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.391452157805, cost [0.002 , 0.074] s
+norm(L) : 41.2311, norm(X) : 39.1815, norm(L-X) : 13.8946, alpha : 1.7227
+norm(E) : 10.0238, norm(lamda) : 17.3581, p : 1.01, mu 1.1726
+Current Accuracy : 0.92353
+0016 / 0025 iterations done , cost 0.099 s ***
+
+0017 / 0025 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.340870447729, cost [0.002 , 0.091] s
+norm(L) : 41.2311, norm(X) : 40.3910, norm(L-X) : 9.5272, alpha : 1.7056
+norm(E) : 9.2122, norm(lamda) : 17.2270, p : 1.01, mu 1.1843
+Current Accuracy : 0.98235
+0017 / 0025 iterations done , cost 0.117 s ***
+
+0018 / 0025 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.325042096737, cost [0.002 , 0.083] s
+norm(L) : 41.2311, norm(X) : 41.3884, norm(L-X) : 10.2912, alpha : 1.6888
+norm(E) : 9.3617, norm(lamda) : 16.4177, p : 1.01, mu 1.1961
+Current Accuracy : 0.98235
+0018 / 0025 iterations done , cost 0.108 s ***
+
+0019 / 0025 iterations start.....
+Relative gradient tol reached.
+LRGeomCG : error_cg : 0.323792708706, cost [0.002 , 0.068] s
+norm(L) : 41.2311, norm(X) : 40.1999, norm(L-X) : 9.4050, alpha : 1.6720
+norm(E) : 9.3801, norm(lamda) : 16.4083, p : 1.01, mu 1.2081
+Current Accuracy : 0.98235
+0019 / 0025 iterations done , cost 0.094 s ***
+
+0020 / 0025 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.383687261378, cost [0.002 , 0.102] s
+norm(L) : 41.2311, norm(X) : 39.1412, norm(L-X) : 13.8556, alpha : 1.6555
+norm(E) : 10.1002, norm(lamda) : 17.3874, p : 1.01, mu 1.2202
+Current Accuracy : 0.92059
+0020 / 0025 iterations done , cost 0.128 s ***
+
+0021 / 0025 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.329516487904, cost [0.002 , 0.085] s
+norm(L) : 41.2311, norm(X) : 40.2855, norm(L-X) : 9.4066, alpha : 1.6391
+norm(E) : 9.2201, norm(lamda) : 17.4095, p : 1.01, mu 1.2324
+Current Accuracy : 0.98235
+0021 / 0025 iterations done , cost 0.111 s ***
+
+0022 / 0025 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.310981209297, cost [0.002 , 0.109] s
+norm(L) : 41.2311, norm(X) : 41.5966, norm(L-X) : 10.5197, alpha : 1.6229
+norm(E) : 9.3489, norm(lamda) : 16.4106, p : 1.01, mu 1.2447
+Current Accuracy : 0.98235
+0022 / 0025 iterations done , cost 0.136 s ***
+
+0023 / 0025 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.312922810919, cost [0.002 , 0.085] s
+norm(L) : 41.2311, norm(X) : 40.1487, norm(L-X) : 9.3954, alpha : 1.6068
+norm(E) : 9.3760, norm(lamda) : 16.4080, p : 1.01, mu 1.2572
+Current Accuracy : 0.98235
+0023 / 0025 iterations done , cost 0.112 s ***
+
+0024 / 0025 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.375863664939, cost [0.002 , 0.021] s
+norm(L) : 41.2311, norm(X) : 39.1242, norm(L-X) : 13.8248, alpha : 1.5909
+norm(E) : 10.2094, norm(lamda) : 17.3718, p : 1.01, mu 1.2697
+Current Accuracy : 0.92059
+0024 / 0025 iterations done , cost 0.049 s ***
+
+0025 / 0025 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.318610573331, cost [0.002 , 0.068] s
+norm(L) : 41.2311, norm(X) : 40.1811, norm(L-X) : 9.3989, alpha : 1.5751
+norm(E) : 9.2226, norm(lamda) : 17.4709, p : 1.01, mu 1.2824
+Current Accuracy : 0.98235
+0025 / 0025 iterations done , cost 0.091 s ***
+
+Total iteration : 25, Cost : 2.536 s
+opts.max_iters = 28;
+opts.p = 1.01;
+opts.mu = 1;
+options = default_opts();
+options.maxit = 200;
+opts.options = options;
+opts.options.rel_tol_change_res = 1e-8;
+disp(opts.options);
+                   maxit: 200
+            abs_grad_tol: 0
+            rel_grad_tol: 1.0000e-12
+               abs_f_tol: 0
+               rel_f_tol: 1.0000e-12
+    stagnation_detection: 0
+        rel_tol_change_x: 1.0000e-12
+      rel_tol_change_res: 1.0000e-08
+               verbosity: 1
+
+[X, param] = SolverALM(results, test_label, opts);
+Assert OK, N : 340, K : 17, M : 5( check dimisions of matrix)
+Initialize L done
+0001 / 0028 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.315062572820, cost [0.003 , 0.023] s
+norm(L) : 41.2311, norm(X) : 39.1312, norm(L-X) : 12.9904, alpha : 2.0000
+norm(E) : 3.7390, norm(lamda) : 10.4283, p : 1.01, mu 1.0100
+Current Accuracy : 0.92059
+0001 / 0028 iterations done , cost 0.055 s ***
+
+0002 / 0028 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.378882591183, cost [0.003 , 0.056] s
+norm(L) : 41.2311, norm(X) : 40.9916, norm(L-X) : 9.2594, alpha : 1.9802
+norm(E) : 3.8697, norm(lamda) : 14.9076, p : 1.01, mu 1.0201
+Current Accuracy : 0.97941
+0002 / 0028 iterations done , cost 0.101 s ***
+
+0003 / 0028 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.441830689996, cost [0.002 , 0.070] s
+norm(L) : 41.2311, norm(X) : 41.4274, norm(L-X) : 10.0524, alpha : 1.9606
+norm(E) : 8.4492, norm(lamda) : 15.9032, p : 1.01, mu 1.0303
+Current Accuracy : 0.97941
+0003 / 0028 iterations done , cost 0.100 s ***
+
+0004 / 0028 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.434239028010, cost [0.002 , 0.045] s
+norm(L) : 41.2311, norm(X) : 39.4239, norm(L-X) : 14.1999, alpha : 1.9412
+norm(E) : 9.7293, norm(lamda) : 16.9583, p : 1.01, mu 1.0406
+Current Accuracy : 0.92059
+0004 / 0028 iterations done , cost 0.072 s ***
+
+0005 / 0028 iterations start.....
+Relative gradient tol reached.
+LRGeomCG : error_cg : 0.368255535273, cost [0.002 , 0.062] s
+norm(L) : 41.2311, norm(X) : 40.7429, norm(L-X) : 9.8514, alpha : 1.9220
+norm(E) : 9.1351, norm(lamda) : 16.5992, p : 1.01, mu 1.0510
+Current Accuracy : 0.97941
+0005 / 0028 iterations done , cost 0.089 s ***
+
+0006 / 0028 iterations start.....
+Relative gradient tol reached.
+LRGeomCG : error_cg : 0.357053444643, cost [0.002 , 0.049] s
+norm(L) : 41.2311, norm(X) : 41.3176, norm(L-X) : 10.2795, alpha : 1.9029
+norm(E) : 9.2911, norm(lamda) : 16.3075, p : 1.01, mu 1.0615
+Current Accuracy : 0.97647
+0006 / 0028 iterations done , cost 0.075 s ***
+
+0007 / 0028 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.414106106461, cost [0.002 , 0.013] s
+norm(L) : 41.2311, norm(X) : 39.2465, norm(L-X) : 14.1011, alpha : 1.8841
+norm(E) : 9.8998, norm(lamda) : 17.1429, p : 1.01, mu 1.0721
+Current Accuracy : 0.92059
+0007 / 0028 iterations done , cost 0.037 s ***
+
+0008 / 0028 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.352964433939, cost [0.002 , 0.027] s
+norm(L) : 41.2311, norm(X) : 40.6549, norm(L-X) : 9.5641, alpha : 1.8654
+norm(E) : 9.1911, norm(lamda) : 16.7152, p : 1.01, mu 1.0829
+Current Accuracy : 0.97941
+0008 / 0028 iterations done , cost 0.053 s ***
+
+0009 / 0028 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.346677131389, cost [0.002 , 0.021] s
+norm(L) : 41.2311, norm(X) : 41.3415, norm(L-X) : 10.2139, alpha : 1.8470
+norm(E) : 9.2681, norm(lamda) : 16.3848, p : 1.01, mu 1.0937
+Current Accuracy : 0.97941
+0009 / 0028 iterations done , cost 0.047 s ***
+
+0010 / 0028 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.403638206156, cost [0.002 , 0.067] s
+norm(L) : 41.2311, norm(X) : 39.3167, norm(L-X) : 14.1450, alpha : 1.8287
+norm(E) : 9.8267, norm(lamda) : 17.1897, p : 1.01, mu 1.1046
+Current Accuracy : 0.92647
+0010 / 0028 iterations done , cost 0.091 s ***
+
+0011 / 0028 iterations start.....
+Relative gradient tol reached.
+LRGeomCG : error_cg : 0.352021136130, cost [0.001 , 0.031] s
+norm(L) : 41.2311, norm(X) : 40.5769, norm(L-X) : 9.5346, alpha : 1.8106
+norm(E) : 9.1084, norm(lamda) : 17.0384, p : 1.01, mu 1.1157
+Current Accuracy : 0.98235
+0011 / 0028 iterations done , cost 0.056 s ***
+
+0012 / 0028 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.345202560950, cost [0.002 , 0.019] s
+norm(L) : 41.2311, norm(X) : 41.4266, norm(L-X) : 10.3196, alpha : 1.7926
+norm(E) : 9.3165, norm(lamda) : 16.4031, p : 1.01, mu 1.1268
+Current Accuracy : 0.98235
+0012 / 0028 iterations done , cost 0.045 s ***
+
+0013 / 0028 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.396017656748, cost [0.002 , 0.068] s
+norm(L) : 41.2311, norm(X) : 39.2416, norm(L-X) : 14.0038, alpha : 1.7749
+norm(E) : 9.8672, norm(lamda) : 17.2969, p : 1.01, mu 1.1381
+Current Accuracy : 0.92059
+0013 / 0028 iterations done , cost 0.093 s ***
+
+0014 / 0028 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.350168781059, cost [0.002 , 0.069] s
+norm(L) : 41.2311, norm(X) : 40.4911, norm(L-X) : 9.4671, alpha : 1.7573
+norm(E) : 9.1613, norm(lamda) : 17.1504, p : 1.01, mu 1.1495
+Current Accuracy : 0.98235
+0014 / 0028 iterations done , cost 0.096 s ***
+
+0015 / 0028 iterations start.....
+Relative gradient tol reached.
+LRGeomCG : error_cg : 0.333604330901, cost [0.002 , 0.060] s
+norm(L) : 41.2311, norm(X) : 41.4714, norm(L-X) : 10.3591, alpha : 1.7399
+norm(E) : 9.3383, norm(lamda) : 16.4040, p : 1.01, mu 1.1610
+Current Accuracy : 0.98235
+0015 / 0028 iterations done , cost 0.086 s ***
+
+0016 / 0028 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.391452158458, cost [0.002 , 0.019] s
+norm(L) : 41.2311, norm(X) : 39.1815, norm(L-X) : 13.8946, alpha : 1.7227
+norm(E) : 10.0256, norm(lamda) : 17.3582, p : 1.01, mu 1.1726
+Current Accuracy : 0.92353
+0016 / 0028 iterations done , cost 0.044 s ***
+
+0017 / 0028 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.340870066650, cost [0.002 , 0.070] s
+norm(L) : 41.2311, norm(X) : 40.3911, norm(L-X) : 9.5312, alpha : 1.7056
+norm(E) : 9.2127, norm(lamda) : 17.2234, p : 1.01, mu 1.1843
+Current Accuracy : 0.98235
+0017 / 0028 iterations done , cost 0.094 s ***
+
+0018 / 0028 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.325099082230, cost [0.002 , 0.070] s
+norm(L) : 41.2311, norm(X) : 41.3803, norm(L-X) : 10.2817, alpha : 1.6888
+norm(E) : 9.3617, norm(lamda) : 16.4181, p : 1.01, mu 1.1961
+Current Accuracy : 0.98235
+0018 / 0028 iterations done , cost 0.094 s ***
+
+0019 / 0028 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.323769175902, cost [0.002 , 0.040] s
+norm(L) : 41.2311, norm(X) : 40.2031, norm(L-X) : 9.4055, alpha : 1.6720
+norm(E) : 9.3801, norm(lamda) : 16.4083, p : 1.01, mu 1.2081
+Current Accuracy : 0.98235
+0019 / 0028 iterations done , cost 0.065 s ***
+
+0020 / 0028 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.383687263402, cost [0.002 , 0.068] s
+norm(L) : 41.2311, norm(X) : 39.1412, norm(L-X) : 13.8556, alpha : 1.6555
+norm(E) : 10.1674, norm(lamda) : 17.3882, p : 1.01, mu 1.2202
+Current Accuracy : 0.92059
+0020 / 0028 iterations done , cost 0.092 s ***
+
+0021 / 0028 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.329504657269, cost [0.002 , 0.069] s
+norm(L) : 41.2311, norm(X) : 40.2865, norm(L-X) : 9.5517, alpha : 1.6391
+norm(E) : 9.2508, norm(lamda) : 17.2061, p : 1.01, mu 1.2324
+Current Accuracy : 0.98235
+0021 / 0028 iterations done , cost 0.093 s ***
+
+0022 / 0028 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.313657912681, cost [0.002 , 0.032] s
+norm(L) : 41.2311, norm(X) : 41.2034, norm(L-X) : 10.0563, alpha : 1.6229
+norm(E) : 9.3488, norm(lamda) : 16.4368, p : 1.01, mu 1.2447
+Current Accuracy : 0.98235
+0022 / 0028 iterations done , cost 0.058 s ***
+
+0023 / 0028 iterations start.....
+Relative gradient tol reached.
+LRGeomCG : error_cg : 0.311820527086, cost [0.002 , 0.026] s
+norm(L) : 41.2311, norm(X) : 40.3062, norm(L-X) : 9.4249, alpha : 1.6068
+norm(E) : 9.3759, norm(lamda) : 16.4081, p : 1.01, mu 1.2572
+Current Accuracy : 0.98235
+0023 / 0028 iterations done , cost 0.052 s ***
+
+0024 / 0028 iterations start.....
+Relative gradient tol reached.
+LRGeomCG : error_cg : 0.309498609938, cost [0.002 , 0.065] s
+norm(L) : 41.2311, norm(X) : 40.1469, norm(L-X) : 9.4042, alpha : 1.5909
+norm(E) : 9.3942, norm(lamda) : 16.4064, p : 1.01, mu 1.2697
+Current Accuracy : 0.98235
+0024 / 0028 iterations done , cost 0.092 s ***
+
+0025 / 0028 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.306551774865, cost [0.002 , 0.069] s
+norm(L) : 41.2311, norm(X) : 40.1448, norm(L-X) : 9.4119, alpha : 1.5751
+norm(E) : 9.4067, norm(lamda) : 16.4057, p : 1.01, mu 1.2824
+Current Accuracy : 0.98235
+0025 / 0028 iterations done , cost 0.096 s ***
+
+0026 / 0028 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.372537796961, cost [0.002 , 0.069] s
+norm(L) : 41.2311, norm(X) : 39.1002, norm(L-X) : 13.8041, alpha : 1.5595
+norm(E) : 10.3220, norm(lamda) : 17.3080, p : 1.01, mu 1.2953
+Current Accuracy : 0.92059
+0026 / 0028 iterations done , cost 0.093 s ***
+
+0027 / 0028 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.309830263210, cost [0.002 , 0.032] s
+norm(L) : 41.2311, norm(X) : 40.1416, norm(L-X) : 9.4284, alpha : 1.5441
+norm(E) : 9.2218, norm(lamda) : 17.5854, p : 1.01, mu 1.3082
+Current Accuracy : 0.98235
+0027 / 0028 iterations done , cost 0.057 s ***
+
+0028 / 0028 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.297269937016, cost [0.002 , 0.063] s
+norm(L) : 41.2311, norm(X) : 41.5590, norm(L-X) : 10.4923, alpha : 1.5288
+norm(E) : 9.3666, norm(lamda) : 16.4228, p : 1.01, mu 1.3213
+Current Accuracy : 0.98235
+0028 / 0028 iterations done , cost 0.088 s ***
+
+Total iteration : 28, Cost : 2.134 s
+[SCORES, Tlabel] = GetTrueLabel(X, param.M, param.K);
+opts.lamda = 0.1;
+opts.K = K;
+opts.max_iters = 20;
+opts.gamma = 0.01;
+opts.beta  = 0.01;
+[XX, param] = SolverRCEC(results, test_label, opts);
+Assert OK, N : 340, K : 17, M : 5( check dimisions of matrix)
+Initialize L done
+0001 / 0020 iterations start.....
+norm(L) : 41.2311, norm(X) : 31.0813, norm(L-X) : 19.9085
+gamma : 0.01, lamda : 0.10, beta : 0.01 == Current Accuracy : 0.97647
+0001 / 0020 iterations done , cost 0.008 s ***
+
+0002 / 0020 iterations start.....
+norm(L) : 41.2311, norm(X) : 33.4630, norm(L-X) : 11.3872
+gamma : 0.01, lamda : 0.10, beta : 0.01 == Current Accuracy : 0.97353
+0002 / 0020 iterations done , cost 0.006 s ***
+
+0003 / 0020 iterations start.....
+norm(L) : 41.2311, norm(X) : 36.3752, norm(L-X) : 6.8518
+gamma : 0.01, lamda : 0.10, beta : 0.01 == Current Accuracy : 0.97353
+0003 / 0020 iterations done , cost 0.006 s ***
+
+0004 / 0020 iterations start.....
+norm(L) : 41.2311, norm(X) : 38.2870, norm(L-X) : 4.0296
+gamma : 0.01, lamda : 0.10, beta : 0.01 == Current Accuracy : 0.97941
+0004 / 0020 iterations done , cost 0.006 s ***
+
+0005 / 0020 iterations start.....
+norm(L) : 41.2311, norm(X) : 39.4129, norm(L-X) : 2.3947
+gamma : 0.01, lamda : 0.10, beta : 0.01 == Current Accuracy : 0.97941
+0005 / 0020 iterations done , cost 0.005 s ***
+
+0006 / 0020 iterations start.....
+norm(L) : 41.2311, norm(X) : 40.0486, norm(L-X) : 1.5108
+gamma : 0.01, lamda : 0.10, beta : 0.01 == Current Accuracy : 0.98235
+0006 / 0020 iterations done , cost 0.005 s ***
+
+0007 / 0020 iterations start.....
+norm(L) : 41.2311, norm(X) : 40.4096, norm(L-X) : 1.0507
+gamma : 0.01, lamda : 0.10, beta : 0.01 == Current Accuracy : 0.98235
+0007 / 0020 iterations done , cost 0.005 s ***
+
+0008 / 0020 iterations start.....
+norm(L) : 41.2311, norm(X) : 40.6198, norm(L-X) : 0.8124
+gamma : 0.01, lamda : 0.10, beta : 0.01 == Current Accuracy : 0.98235
+0008 / 0020 iterations done , cost 0.005 s ***
+
+0009 / 0020 iterations start.....
+norm(L) : 41.2311, norm(X) : 40.7444, norm(L-X) : 0.6857
+gamma : 0.01, lamda : 0.10, beta : 0.01 == Current Accuracy : 0.98529
+0009 / 0020 iterations done , cost 0.005 s ***
+
+0010 / 0020 iterations start.....
+norm(L) : 41.2311, norm(X) : 40.8189, norm(L-X) : 0.6148
+gamma : 0.01, lamda : 0.10, beta : 0.01 == Current Accuracy : 0.98529
+0010 / 0020 iterations done , cost 0.005 s ***
+
+0011 / 0020 iterations start.....
+norm(L) : 41.2311, norm(X) : 40.8636, norm(L-X) : 0.5724
+gamma : 0.01, lamda : 0.10, beta : 0.01 == Current Accuracy : 0.98529
+0011 / 0020 iterations done , cost 0.005 s ***
+
+0012 / 0020 iterations start.....
+norm(L) : 41.2311, norm(X) : 40.8905, norm(L-X) : 0.5451
+gamma : 0.01, lamda : 0.10, beta : 0.01 == Current Accuracy : 0.98529
+0012 / 0020 iterations done , cost 0.004 s ***
+
+0013 / 0020 iterations start.....
+norm(L) : 41.2311, norm(X) : 40.9067, norm(L-X) : 0.5262
+gamma : 0.01, lamda : 0.10, beta : 0.01 == Current Accuracy : 0.98529
+0013 / 0020 iterations done , cost 0.004 s ***
+
+0014 / 0020 iterations start.....
+norm(L) : 41.2311, norm(X) : 40.9164, norm(L-X) : 0.5123
+gamma : 0.01, lamda : 0.10, beta : 0.01 == Current Accuracy : 0.98529
+0014 / 0020 iterations done , cost 0.004 s ***
+
+0015 / 0020 iterations start.....
+norm(L) : 41.2311, norm(X) : 40.9224, norm(L-X) : 0.5015
+gamma : 0.01, lamda : 0.10, beta : 0.01 == Current Accuracy : 0.98529
+0015 / 0020 iterations done , cost 0.004 s ***
+
+0016 / 0020 iterations start.....
+norm(L) : 41.2311, norm(X) : 40.9259, norm(L-X) : 0.4927
+gamma : 0.01, lamda : 0.10, beta : 0.01 == Current Accuracy : 0.98529
+0016 / 0020 iterations done , cost 0.004 s ***
+
+0017 / 0020 iterations start.....
+norm(L) : 41.2311, norm(X) : 40.9281, norm(L-X) : 0.4854
+gamma : 0.01, lamda : 0.10, beta : 0.01 == Current Accuracy : 0.98529
+0017 / 0020 iterations done , cost 0.004 s ***
+
+0018 / 0020 iterations start.....
+norm(L) : 41.2311, norm(X) : 40.9294, norm(L-X) : 0.4790
+gamma : 0.01, lamda : 0.10, beta : 0.01 == Current Accuracy : 0.98529
+0018 / 0020 iterations done , cost 0.004 s ***
+
+0019 / 0020 iterations start.....
+norm(L) : 41.2311, norm(X) : 40.9302, norm(L-X) : 0.4733
+gamma : 0.01, lamda : 0.10, beta : 0.01 == Current Accuracy : 0.98529
+0019 / 0020 iterations done , cost 0.004 s ***
+
+0020 / 0020 iterations start.....
+norm(L) : 41.2311, norm(X) : 40.9307, norm(L-X) : 0.4683
+gamma : 0.01, lamda : 0.10, beta : 0.01 == Current Accuracy : 0.98529
+0020 / 0020 iterations done , cost 0.004 s ***
+
+Total iteration : 20, Cost : 0.117 s
+[SCORES, Xlabel] = GetTrueLabel(X, param.M, param.K);
+
+
+for index = 1:numel(features)
+    fprintf('The %2dth classifier accuracy : %.3f\n', index, mean(results(:,index)==test_label));
+end
+The  1th classifier accuracy : 0.968
+The  2th classifier accuracy : 0.950
+The  3th classifier accuracy : 0.971
+The  4th classifier accuracy : 0.950
+The  5th classifier accuracy : 0.941
+fprintf('[Merge accuracy : %.4f] vs [OUR : %.4f] vs [RCEC : %.4f]\n', mean(MergeRes==test_label), mean(Tlabel==test_label), mean(Xlabel==test_label));
+[Merge accuracy : 0.9794] vs [OUR : 0.9824] vs [RCEC : 0.9824]
+
+SolverMKL(train_features, train_label, test_features, test_label, test_results, K);
+{Undefined function or variable 'train_features'.
+} 
+ExamFlower_CNN

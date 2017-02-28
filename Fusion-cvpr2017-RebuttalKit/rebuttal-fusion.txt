@@ -1,0 +1,111 @@
+\section{Overall}
+We thank all the reviewers.
+R3 is positive.
+R1 has some suggestions about technical analysis.
+R2 ...
+We take the comments seriously and will carefully revise the paper. 
+Typos will be corrected. Code will be released.
+
+
+\section{For Assigned Reviewer 1}
+
+Q1: The technical part in Sec 3.2 a little over-sold.
+
+A1:
+First, ALM is usually used for convex problem~[50] and (G. Liu etal, TPAMI 2013),
+but our Problem~(2) is non-convex.
+Therefore, the convergence behavior of Algorithm 1 may be unclear.
+Second, to make the paper self-contained, it is necessary to present every phase of Algorithm~1.
+Third, we explicitly indicate the connection between the definition (Eq (8)) and the computation (Algorithm 2) of Riemannian gradient by presenting Lemma 1.
+This did not present in the previous work.
+To make the contributions more clear, we will provide more references and explain the difference between our paper and previous works as suggested.
+
+
+\section{For Assigned Reviewer 2}
+
+Q1. Weakness of technical novelty and significance}
+
+A1:
+Previous works~[50] that formulate late fusion as matrix completion are based on nuclear norm.
+They cannot handle large-scale problems.
+We thus propose an efficient matrix factorization-based algorithm.
+On one hand, previous matrix factorization algorithms only consider smooth loss rather than non-smooth robust loss.
+On the other hand, previous ALM-related papers consider convex problems, so it is unclear how its convergence behavior is in the non-convex case.
+To address both issues, this paper proposes a new matrix factorization-based algorithm to handle non-smooth loss and provides convergence analysis.
+
+
+Q2. Problem~(6) can be solved by SVD or alternating minimization.
+
+A2:
+In P. Jain et al., 2013, the authors provide global optimality of $\epsilon$-solution (i.e. the loss function satisfies $|| M - X ||_F^2 \leq \epsilon$. See Theorem 2.5 in this paper.) of alternating minimization, rather than a strictly unique global optimum.
+Our paper provides the convergence guarantee of a strictly local minimum where the gradient w.r.t. $\bX$ vanishes.
+Thus, their result and ours may not be comparable.
+
+
+Q3. Algorithms 2 and 3 may be unnecessary.}
+
+A3: 
+The algorithm should be self-contained and it may be necessary to describe solutions for any formula.
+But we are pleasure to simplify our presentation.
+
+
+Q4. Will the sequence of $\lambda_k$ be bounded as required, or that accumulation points even exist?
+
+A4:
+Boundedness of $\blambda_k$:
+After the inner loop (Step 1,2) of Algorithm 1 converges, we have 
+$\calL(\bX_{k+1}, \bE_{k+1}, \blambda_{k}, \mu_{k}) = ||\bE_{k+1}||_{1,2} + \frac{1}{2\mu_{k}}(||\blambda_{k+1}||_{F}^2 - ||\blambda_{k}||_{F}^2)$.
+Due to the convergence and $\frac{1}{\mu_{k}} \rightarrow 0$ when $k \rightarrow + \infty$, we have $||\blambda_{k+1}||_{F}^2 - ||\blambda_{k}||_{F}^2 < +\infty$, and thus the boundedness of $\blambda_{k}$.
+
+As proof of Theorem 1, $k \rightarrow \infty$, $\bL - \bX_{k} - \bE_{k}$ and the gradient of $\calL$ w.r.t. $\bX_{k}$ vanishes.
+Thus $\bX_{k}$ is a stationary point as long as $\bX_{k}$ is generated according to Algorithm 1.
+
+
+Q5. Empirical issues in Table 1 and Table 5.
+
+A5:
+As shown in Table 1, our method outperforms LPBoost significantly on UCF-101 and CIFAR-100,
+and our fusion method performs well on most datasets comparing with other methods.
+
+
+Q6. Why not compare against other SOTA fusion methods in Table.5, but just single model results ?
+
+A6:
+We compare our method with state-of-the-art single models in Sec 4.5 and list the test error in Table 5 to verify the improvement of our late fusion algorithm.
+Test error of competing models are referred from the original papers.
+Comparison between our method and other late fusion methods is performed specifically in Sec 4.3 (Table 1 and Table 2).
+
+
+Q7. Reproducibility - It is obvious that a fused model is better than the best single model.
+
+A7:
+It can't guarantee that a fused model can definitely perform better than the best single model.
+By comparing with single models, we aim to verify the effectiveness of our method.
+The best single model performance on CIFAR-10 is currently in~\cite{xie2016aggregated} (test error 3.58).
+Our method fuse multiple single models which all perform worse than~~\cite{xie2016aggregated}, but can achieve low test error on CIFAR-10 (3.47 in Table 5).
+This demonstrates the benefit of a good late fusion method.
+
+
+\section{For Assigned Reviewer 3}
+
+Q1. Discuss how the $\ell_{1,2}$ norm helps with outliers; show what happens if you use $l_2$ norm as usual}
+
+A1:
+As indicated in lines 106-110, $\ell_{1,2}$ loss preserves the fidelity within columns of $\bL$ and filters out those columns with low fidelity.
+$\ell_{2}$ loss is known to be sensitive to outliers.
+$\ell_{2}$ loss is not robust to large outliers and the result may be biased to them.
+We will add a $\ell_{2}$ variant of our approach as a baseline in the revised version to illustrate the difference.
+
+
+Q2. Discussions about classifiers are adversarial.
+
+A2:
+In fact, Sec 4.1 and Figure 2 show a similar situation: 40\% predicted labels are switched from ground-truth (adversarial classifiers).
+In this situation, our algorithm performs well and recovers most of the results.
+
+
+Q3. Add classifiers that predict uninterested things.}
+
+A3:
+Thanks for this interesting and helpful suggestion.
+We will investigate this problem in our future work.

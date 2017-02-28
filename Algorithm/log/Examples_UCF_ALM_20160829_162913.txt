@@ -1,0 +1,31 @@
+Total classifier : 5, ave accuracy : 0.866
+The  1th classifier accuracy : 0.825
+The  2th classifier accuracy : 0.733
+The  3th classifier accuracy : 0.773
+The  4th classifier accuracy : 0.799
+The  5th classifier accuracy : 0.862
+Assert OK, N : 3783, K : 101, M : 5( check dimisions of matrix)
+Initialize L done
+Initialize paramters: CG_OS : 3.0, size(L) : [3783,505]
+0001 / 0200 iterations start.....
+{Operation terminated by user during exact_search_onlyTxM (line 19)
+
+
+In LRGeomCG (line 50)
+  tinit = exact_search_onlyTxM(prob, xc,dir);
+
+
+In wrapCG (line 35)
+[Xcg,hist] = LRGeomCG(prob,options,x0);
+
+In SolverALM (line 42)
+    X = wrapCG(X_verse, K, opts.CG_OS);
+
+In ExamUCF (line 32)
+[X, param] = SolverALM(results, label, opts);
+} 
+
+
+
+clear;clc;
+exit

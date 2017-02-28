@@ -1,0 +1,1496 @@
+..*
+optimization finished, #iter = 27
+Objective value = -0.033247
+nSV = 192
+.*
+optimization finished, #iter = 17
+Objective value = -0.021547
+nSV = 212
+..*
+optimization finished, #iter = 27
+Objective value = -0.045658
+nSV = 285
+..*
+optimization finished, #iter = 22
+Objective value = -0.038775
+nSV = 224
+.*
+optimization finished, #iter = 14
+Objective value = -0.019306
+nSV = 193
+...**
+optimization finished, #iter = 39
+Objective value = -0.038527
+nSV = 188
+...*
+optimization finished, #iter = 37
+Objective value = -0.112445
+nSV = 393
+.*
+optimization finished, #iter = 18
+Objective value = -0.034157
+nSV = 271
+..**
+optimization finished, #iter = 27
+Objective value = -0.050487
+nSV = 231
+..*.
+optimization finished, #iter = 30
+Objective value = -0.057712
+nSV = 261
+.*
+optimization finished, #iter = 15
+Objective value = -0.009241
+nSV = 117
+..*
+optimization finished, #iter = 22
+Objective value = -0.059715
+nSV = 385
+..*
+optimization finished, #iter = 26
+Objective value = -0.031412
+nSV = 204
+.*
+optimization finished, #iter = 18
+Objective value = -0.022078
+nSV = 194
+..*
+optimization finished, #iter = 21
+Objective value = -0.065740
+nSV = 403
+.*.
+optimization finished, #iter = 20
+Objective value = -0.043697
+nSV = 271
+..*
+optimization finished, #iter = 24
+Objective value = -0.028795
+nSV = 186
+..*
+optimization finished, #iter = 23
+Objective value = -0.031149
+nSV = 195
+..*
+optimization finished, #iter = 25
+Objective value = -0.041473
+nSV = 224
+.*
+optimization finished, #iter = 18
+Objective value = -0.030137
+nSV = 196
+Accuracy = 85.8709% (2741/3192)
+.*
+optimization finished, #iter = 15
+Objective value = -0.003970
+nSV = 257
+.*
+optimization finished, #iter = 12
+Objective value = -0.001664
+nSV = 244
+.*
+optimization finished, #iter = 17
+Objective value = -0.004896
+nSV = 354
+.*
+optimization finished, #iter = 15
+Objective value = -0.003673
+nSV = 249
+.*
+optimization finished, #iter = 12
+Objective value = -0.001805
+nSV = 246
+.*
+optimization finished, #iter = 18
+Objective value = -0.002931
+nSV = 227
+.*.
+optimization finished, #iter = 20
+Objective value = -0.007978
+nSV = 442
+.*
+optimization finished, #iter = 12
+Objective value = -0.003057
+nSV = 341
+.*
+optimization finished, #iter = 15
+Objective value = -0.003871
+nSV = 311
+..*
+optimization finished, #iter = 21
+Objective value = -0.004687
+nSV = 309
+*.
+optimization finished, #iter = 10
+Objective value = -0.000721
+nSV = 153
+.*
+optimization finished, #iter = 16
+Objective value = -0.005088
+nSV = 468
+.*
+optimization finished, #iter = 16
+Objective value = -0.002459
+nSV = 258
+.*
+optimization finished, #iter = 12
+Objective value = -0.001853
+nSV = 262
+.*
+optimization finished, #iter = 15
+Objective value = -0.005907
+nSV = 480
+.*
+optimization finished, #iter = 15
+Objective value = -0.003690
+nSV = 305
+.*
+optimization finished, #iter = 16
+Objective value = -0.003456
+nSV = 259
+.*
+optimization finished, #iter = 16
+Objective value = -0.002436
+nSV = 222
+.*
+optimization finished, #iter = 14
+Objective value = -0.003477
+nSV = 244
+.*
+optimization finished, #iter = 13
+Objective value = -0.002341
+nSV = 252
+Accuracy = 86.1529% (2750/3192)
+..***.
+optimization finished, #iter = 30
+Objective value = -0.080539
+nSV = 170
+..*
+optimization finished, #iter = 22
+Objective value = -0.067326
+nSV = 165
+..*
+optimization finished, #iter = 27
+Objective value = -0.126131
+nSV = 226
+...*
+optimization finished, #iter = 31
+Objective value = -0.090588
+nSV = 151
+.*.
+optimization finished, #iter = 20
+Objective value = -0.062246
+nSV = 160
+...**
+optimization finished, #iter = 34
+Objective value = -0.090192
+nSV = 155
+...*
+optimization finished, #iter = 39
+Objective value = -0.253971
+nSV = 307
+..*
+optimization finished, #iter = 26
+Objective value = -0.123274
+nSV = 256
+...*
+optimization finished, #iter = 35
+Objective value = -0.158069
+nSV = 214
+...*
+optimization finished, #iter = 34
+Objective value = -0.177915
+nSV = 225
+.*.
+optimization finished, #iter = 20
+Objective value = -0.031424
+nSV = 89
+...*
+optimization finished, #iter = 32
+Objective value = -0.179722
+nSV = 299
+..*
+optimization finished, #iter = 26
+Objective value = -0.121825
+nSV = 188
+.*
+optimization finished, #iter = 19
+Objective value = -0.070811
+nSV = 170
+..*.
+optimization finished, #iter = 30
+Objective value = -0.189313
+nSV = 337
+..*
+optimization finished, #iter = 29
+Objective value = -0.133577
+nSV = 226
+..**
+optimization finished, #iter = 24
+Objective value = -0.101800
+nSV = 173
+..*
+optimization finished, #iter = 29
+Objective value = -0.092228
+nSV = 172
+..*.
+optimization finished, #iter = 30
+Objective value = -0.107989
+nSV = 185
+..*
+optimization finished, #iter = 27
+Objective value = -0.097486
+nSV = 178
+Accuracy = 89.505% (2857/3192)
+...*
+optimization finished, #iter = 35
+Objective value = -0.071617
+nSV = 167
+..*
+optimization finished, #iter = 21
+Objective value = -0.065924
+nSV = 166
+..*
+optimization finished, #iter = 29
+Objective value = -0.129962
+nSV = 243
+...*
+optimization finished, #iter = 33
+Objective value = -0.103533
+nSV = 179
+..*
+optimization finished, #iter = 24
+Objective value = -0.058553
+nSV = 169
+...*
+optimization finished, #iter = 36
+Objective value = -0.111586
+nSV = 180
+...*.*
+optimization finished, #iter = 42
+Objective value = -0.296541
+nSV = 329
+..*
+optimization finished, #iter = 27
+Objective value = -0.112965
+nSV = 245
+...*
+optimization finished, #iter = 38
+Objective value = -0.183394
+nSV = 227
+..*.
+optimization finished, #iter = 30
+Objective value = -0.175138
+nSV = 212
+..*
+optimization finished, #iter = 21
+Objective value = -0.033992
+nSV = 85
+...*
+optimization finished, #iter = 32
+Objective value = -0.196778
+nSV = 314
+..*
+optimization finished, #iter = 26
+Objective value = -0.136029
+nSV = 181
+..*
+optimization finished, #iter = 22
+Objective value = -0.085450
+nSV = 170
+..*
+optimization finished, #iter = 29
+Objective value = -0.207004
+nSV = 338
+...*
+optimization finished, #iter = 32
+Objective value = -0.132314
+nSV = 206
+..*.
+optimization finished, #iter = 30
+Objective value = -0.113059
+nSV = 183
+..*
+optimization finished, #iter = 26
+Objective value = -0.091538
+nSV = 176
+...*
+optimization finished, #iter = 31
+Objective value = -0.112776
+nSV = 188
+..*
+optimization finished, #iter = 26
+Objective value = -0.098467
+nSV = 173
+Accuracy = 88.4398% (2823/3192)
+..**
+optimization finished, #iter = 28
+Objective value = -0.124818
+nSV = 186
+..*
+optimization finished, #iter = 23
+Objective value = -0.087930
+nSV = 163
+...**
+optimization finished, #iter = 36
+Objective value = -0.192551
+nSV = 263
+..*
+optimization finished, #iter = 26
+Objective value = -0.139854
+nSV = 169
+..*
+optimization finished, #iter = 24
+Objective value = -0.094478
+nSV = 174
+....*
+optimization finished, #iter = 46
+Objective value = -0.171518
+nSV = 169
+......*
+optimization finished, #iter = 63
+Objective value = -0.460595
+nSV = 297
+..*
+optimization finished, #iter = 25
+Objective value = -0.179677
+nSV = 232
+....**
+optimization finished, #iter = 47
+Objective value = -0.328361
+nSV = 209
+.....*
+optimization finished, #iter = 55
+Objective value = -0.305752
+nSV = 242
+.*.*
+optimization finished, #iter = 21
+Objective value = -0.048037
+nSV = 96
+...**
+optimization finished, #iter = 37
+Objective value = -0.340864
+nSV = 308
+..**
+optimization finished, #iter = 29
+Objective value = -0.129679
+nSV = 182
+..*
+optimization finished, #iter = 26
+Objective value = -0.116556
+nSV = 175
+...*
+optimization finished, #iter = 35
+Objective value = -0.340085
+nSV = 337
+..*
+optimization finished, #iter = 28
+Objective value = -0.195973
+nSV = 210
+...**
+optimization finished, #iter = 39
+Objective value = -0.162070
+nSV = 171
+..*
+optimization finished, #iter = 28
+Objective value = -0.174037
+nSV = 163
+...*.*
+optimization finished, #iter = 41
+Objective value = -0.245456
+nSV = 211
+..*
+optimization finished, #iter = 28
+Objective value = -0.137059
+nSV = 179
+Accuracy = 86.4975% (2761/3192)
+Total classifier : 5, mean accuracy : 87.2932, Merge accuracy : 0.9023
+The  1th classifier accuracy : 0.859
+The  2th classifier accuracy : 0.862
+The  3th classifier accuracy : 0.895
+The  4th classifier accuracy : 0.884
+The  5th classifier accuracy : 0.865
+Assert OK, N : 3192, K : 20, M : 5( check dimisions of matrix)
+Initialize L done
+Initialize paramters: CG_OS : 3.2, size(L) : [3192,100]
+0001 / 0200 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.578229207026, cost [0.134 , 0.201] s
+norm(L) : 126.3329, norm(X) : 84.7531, alpha : 20.0000
+norm(E) : 0.0000, norm(lamda) : 7.3049, p : 1.05, mu 0.1050
+Current Accuracy : 0.69330
+0001 / 0200 iterations done , cost 0.445 s ***
+
+0002 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.694093179873, cost [0.116 , 7.981] s
+norm(L) : 126.3329, norm(X) : 194.6500, alpha : 19.0476
+norm(E) : 1.6925, norm(lamda) : 13.4408, p : 1.05, mu 0.1103
+Current Accuracy : 0.87657
+0002 / 0200 iterations done , cost 8.279 s ***
+
+0003 / 0200 iterations start.....
+LRGeomCG : error_cg : 1.202105728717, cost [0.134 , 7.759] s
+norm(L) : 126.3329, norm(X) : 251.6978, alpha : 18.1406
+norm(E) : 111.7705, norm(lamda) : 17.1618, p : 1.05, mu 0.1158
+Current Accuracy : 0.84305
+0003 / 0200 iterations done , cost 8.065 s ***
+
+0004 / 0200 iterations start.....
+LRGeomCG : error_cg : 1.162824634941, cost [0.110 , 7.910] s
+norm(L) : 126.3329, norm(X) : 263.7654, alpha : 17.2768
+norm(E) : 137.6052, norm(lamda) : 18.9243, p : 1.05, mu 0.1216
+Current Accuracy : 0.84305
+0004 / 0200 iterations done , cost 8.200 s ***
+
+0005 / 0200 iterations start.....
+LRGeomCG : error_cg : 1.062564911354, cost [0.113 , 7.923] s
+norm(L) : 126.3329, norm(X) : 246.7002, alpha : 16.4540
+norm(E) : 140.0295, norm(lamda) : 19.2491, p : 1.05, mu 0.1276
+Current Accuracy : 0.82989
+0005 / 0200 iterations done , cost 8.187 s ***
+
+0006 / 0200 iterations start.....
+LRGeomCG : error_cg : 1.143905062739, cost [0.112 , 8.095] s
+norm(L) : 126.3329, norm(X) : 261.2109, alpha : 15.6705
+norm(E) : 163.9701, norm(lamda) : 19.6697, p : 1.05, mu 0.1340
+Current Accuracy : 0.80984
+0006 / 0200 iterations done , cost 8.380 s ***
+
+0007 / 0200 iterations start.....
+LRGeomCG : error_cg : 1.233440015740, cost [0.117 , 8.033] s
+norm(L) : 126.3329, norm(X) : 292.5251, alpha : 14.9243
+norm(E) : 203.6283, norm(lamda) : 19.8009, p : 1.05, mu 0.1407
+Current Accuracy : 0.84806
+0007 / 0200 iterations done , cost 8.348 s ***
+
+0008 / 0200 iterations start.....
+LRGeomCG : error_cg : 1.054114544453, cost [0.120 , 7.779] s
+norm(L) : 126.3329, norm(X) : 283.7645, alpha : 14.2136
+norm(E) : 209.5223, norm(lamda) : 19.9501, p : 1.05, mu 0.1477
+Current Accuracy : 0.86560
+0008 / 0200 iterations done , cost 8.047 s ***
+
+0009 / 0200 iterations start.....
+LRGeomCG : error_cg : 1.075647772461, cost [0.140 , 8.052] s
+norm(L) : 126.3329, norm(X) : 300.8354, alpha : 13.5368
+norm(E) : 228.4415, norm(lamda) : 19.9768, p : 1.05, mu 0.1551
+Current Accuracy : 0.83897
+0009 / 0200 iterations done , cost 8.377 s ***
+
+0010 / 0200 iterations start.....
+LRGeomCG : error_cg : 1.097365305037, cost [0.128 , 7.845] s
+norm(L) : 126.3329, norm(X) : 301.3795, alpha : 12.8922
+norm(E) : 231.3156, norm(lamda) : 19.9254, p : 1.05, mu 0.1629
+Current Accuracy : 0.84743
+0010 / 0200 iterations done , cost 8.175 s ***
+
+0011 / 0200 iterations start.....
+LRGeomCG : error_cg : 1.061421799879, cost [0.124 , 7.814] s
+norm(L) : 126.3329, norm(X) : 309.3919, alpha : 12.2783
+norm(E) : 240.9498, norm(lamda) : 19.9303, p : 1.05, mu 0.1710
+Current Accuracy : 0.85652
+0011 / 0200 iterations done , cost 8.112 s ***
+
+0012 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.916697418727, cost [0.119 , 8.058] s
+norm(L) : 126.3329, norm(X) : 289.9407, alpha : 11.6936
+norm(E) : 233.6924, norm(lamda) : 19.9950, p : 1.05, mu 0.1796
+Current Accuracy : 0.87406
+0012 / 0200 iterations done , cost 8.388 s ***
+
+0013 / 0200 iterations start.....
+LRGeomCG : error_cg : 1.015378296579, cost [0.134 , 7.908] s
+norm(L) : 126.3329, norm(X) : 293.1001, alpha : 11.1367
+norm(E) : 234.7589, norm(lamda) : 19.9385, p : 1.05, mu 0.1886
+Current Accuracy : 0.86310
+0013 / 0200 iterations done , cost 8.247 s ***
+
+0014 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.846761690131, cost [0.108 , 7.976] s
+norm(L) : 126.3329, norm(X) : 277.5630, alpha : 10.6064
+norm(E) : 228.3889, norm(lamda) : 19.9460, p : 1.05, mu 0.1980
+Current Accuracy : 0.86842
+0014 / 0200 iterations done , cost 8.290 s ***
+
+0015 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.881959995702, cost [0.120 , 7.757] s
+norm(L) : 126.3329, norm(X) : 279.3354, alpha : 10.1014
+norm(E) : 229.2773, norm(lamda) : 19.9656, p : 1.05, mu 0.2079
+Current Accuracy : 0.86685
+0015 / 0200 iterations done , cost 8.095 s ***
+
+0016 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.767953820214, cost [0.105 , 8.025] s
+norm(L) : 126.3329, norm(X) : 261.1834, alpha : 9.6203
+norm(E) : 216.5929, norm(lamda) : 20.0000, p : 1.05, mu 0.2183
+Current Accuracy : 0.86936
+0016 / 0200 iterations done , cost 8.349 s ***
+
+0017 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.850068756903, cost [0.099 , 7.849] s
+norm(L) : 126.3329, norm(X) : 272.0444, alpha : 9.1622
+norm(E) : 223.5274, norm(lamda) : 20.0000, p : 1.05, mu 0.2292
+Current Accuracy : 0.86811
+0017 / 0200 iterations done , cost 8.149 s ***
+
+0018 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.774478862395, cost [0.130 , 8.380] s
+norm(L) : 126.3329, norm(X) : 261.0750, alpha : 8.7259
+norm(E) : 217.3162, norm(lamda) : 20.0000, p : 1.05, mu 0.2407
+Current Accuracy : 0.86811
+0018 / 0200 iterations done , cost 8.696 s ***
+
+0019 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.741641155993, cost [0.113 , 7.854] s
+norm(L) : 126.3329, norm(X) : 260.2762, alpha : 8.3104
+norm(E) : 217.9700, norm(lamda) : 20.0000, p : 1.05, mu 0.2527
+Current Accuracy : 0.86654
+0019 / 0200 iterations done , cost 8.158 s ***
+
+0020 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.648683453248, cost [0.105 , 7.817] s
+norm(L) : 126.3329, norm(X) : 248.9209, alpha : 7.9147
+norm(E) : 210.6554, norm(lamda) : 20.0000, p : 1.05, mu 0.2653
+Current Accuracy : 0.87030
+0020 / 0200 iterations done , cost 8.110 s ***
+
+0021 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.651291888433, cost [0.103 , 7.956] s
+norm(L) : 126.3329, norm(X) : 244.6180, alpha : 7.5378
+norm(E) : 208.5047, norm(lamda) : 20.0000, p : 1.05, mu 0.2786
+Current Accuracy : 0.88440
+0021 / 0200 iterations done , cost 8.267 s ***
+
+0022 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.627737669323, cost [0.125 , 7.649] s
+norm(L) : 126.3329, norm(X) : 247.9043, alpha : 7.1788
+norm(E) : 210.5618, norm(lamda) : 20.0000, p : 1.05, mu 0.2925
+Current Accuracy : 0.88565
+0022 / 0200 iterations done , cost 7.970 s ***
+
+0023 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.618651077398, cost [0.130 , 8.095] s
+norm(L) : 126.3329, norm(X) : 244.0635, alpha : 6.8370
+norm(E) : 206.2691, norm(lamda) : 20.0000, p : 1.05, mu 0.3072
+Current Accuracy : 0.88189
+0023 / 0200 iterations done , cost 8.459 s ***
+
+0024 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.617177086124, cost [0.113 , 7.907] s
+norm(L) : 126.3329, norm(X) : 247.3026, alpha : 6.5114
+norm(E) : 209.8974, norm(lamda) : 20.0000, p : 1.05, mu 0.3225
+Current Accuracy : 0.88409
+0024 / 0200 iterations done , cost 8.210 s ***
+
+0025 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.537665176547, cost [0.124 , 7.862] s
+norm(L) : 126.3329, norm(X) : 245.4452, alpha : 6.2014
+norm(E) : 211.7722, norm(lamda) : 20.0000, p : 1.05, mu 0.3386
+Current Accuracy : 0.88252
+0025 / 0200 iterations done , cost 8.201 s ***
+
+0026 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.558916228822, cost [0.104 , 7.840] s
+norm(L) : 126.3329, norm(X) : 245.6264, alpha : 5.9061
+norm(E) : 211.0277, norm(lamda) : 20.0000, p : 1.05, mu 0.3556
+Current Accuracy : 0.88565
+0026 / 0200 iterations done , cost 8.158 s ***
+
+0027 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.448293776994, cost [0.109 , 7.920] s
+norm(L) : 126.3329, norm(X) : 237.0298, alpha : 5.6248
+norm(E) : 204.8576, norm(lamda) : 20.0000, p : 1.05, mu 0.3733
+Current Accuracy : 0.88878
+0027 / 0200 iterations done , cost 8.247 s ***
+
+0028 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.391415976205, cost [0.111 , 7.818] s
+norm(L) : 126.3329, norm(X) : 227.9488, alpha : 5.3570
+norm(E) : 195.3818, norm(lamda) : 20.0000, p : 1.05, mu 0.3920
+Current Accuracy : 0.88283
+0028 / 0200 iterations done , cost 8.111 s ***
+
+0029 / 0200 iterations start.....
+LRGeomCG : error_cg : 2.477752321816, cost [0.114 , 7.900] s
+norm(L) : 126.3329, norm(X) : 591.0723, alpha : 5.1019
+norm(E) : 547.2941, norm(lamda) : 20.0000, p : 1.05, mu 0.4116
+Current Accuracy : 0.86560
+0029 / 0200 iterations done , cost 8.185 s ***
+
+0030 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.339887980204, cost [0.108 , 7.961] s
+norm(L) : 126.3329, norm(X) : 517.3305, alpha : 4.8589
+norm(E) : 504.5071, norm(lamda) : 20.0000, p : 1.05, mu 0.4322
+Current Accuracy : 0.85620
+0030 / 0200 iterations done , cost 8.224 s ***
+
+0031 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.235331483481, cost [0.121 , 7.838] s
+norm(L) : 126.3329, norm(X) : 483.3773, alpha : 4.6275
+norm(E) : 470.3931, norm(lamda) : 20.0000, p : 1.05, mu 0.4538
+Current Accuracy : 0.84837
+0031 / 0200 iterations done , cost 8.108 s ***
+
+0032 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.247365319827, cost [0.124 , 7.952] s
+norm(L) : 126.3329, norm(X) : 447.5768, alpha : 4.4072
+norm(E) : 433.5995, norm(lamda) : 20.0000, p : 1.05, mu 0.4765
+Current Accuracy : 0.85025
+0032 / 0200 iterations done , cost 8.203 s ***
+
+0033 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.295742643660, cost [0.112 , 7.757] s
+norm(L) : 126.3329, norm(X) : 393.8801, alpha : 4.1973
+norm(E) : 379.1813, norm(lamda) : 20.0000, p : 1.05, mu 0.5003
+Current Accuracy : 0.83051
+0033 / 0200 iterations done , cost 7.995 s ***
+
+0034 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.297356923715, cost [0.101 , 7.857] s
+norm(L) : 126.3329, norm(X) : 381.0295, alpha : 3.9975
+norm(E) : 365.3377, norm(lamda) : 20.0000, p : 1.05, mu 0.5253
+Current Accuracy : 0.83709
+0034 / 0200 iterations done , cost 8.103 s ***
+
+0035 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.446840151742, cost [0.125 , 7.980] s
+norm(L) : 126.3329, norm(X) : 390.7733, alpha : 3.8071
+norm(E) : 374.5987, norm(lamda) : 20.0000, p : 1.05, mu 0.5516
+Current Accuracy : 0.84492
+0035 / 0200 iterations done , cost 8.236 s ***
+
+0036 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.275382822562, cost [0.105 , 7.899] s
+norm(L) : 126.3329, norm(X) : 364.0053, alpha : 3.6258
+norm(E) : 348.1459, norm(lamda) : 20.0000, p : 1.05, mu 0.5792
+Current Accuracy : 0.85996
+0036 / 0200 iterations done , cost 8.156 s ***
+
+0037 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.211791325107, cost [0.099 , 7.767] s
+norm(L) : 126.3329, norm(X) : 337.8959, alpha : 3.4531
+norm(E) : 321.3725, norm(lamda) : 20.0000, p : 1.05, mu 0.6081
+Current Accuracy : 0.86936
+0037 / 0200 iterations done , cost 8.032 s ***
+
+0038 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.313724600124, cost [0.114 , 8.003] s
+norm(L) : 126.3329, norm(X) : 332.4620, alpha : 3.2887
+norm(E) : 315.0153, norm(lamda) : 20.0000, p : 1.05, mu 0.6385
+Current Accuracy : 0.87218
+0038 / 0200 iterations done , cost 8.259 s ***
+
+0039 / 0200 iterations start.....
+LRGeomCG : error_cg : 1.218186521544, cost [0.127 , 7.680] s
+norm(L) : 126.3329, norm(X) : 493.3089, alpha : 3.1321
+norm(E) : 475.2324, norm(lamda) : 20.0000, p : 1.05, mu 0.6705
+Current Accuracy : 0.85777
+0039 / 0200 iterations done , cost 7.949 s ***
+
+0040 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.234207990036, cost [0.110 , 7.849] s
+norm(L) : 126.3329, norm(X) : 460.0869, alpha : 2.9830
+norm(E) : 447.6252, norm(lamda) : 20.0000, p : 1.05, mu 0.7040
+Current Accuracy : 0.82049
+0040 / 0200 iterations done , cost 8.100 s ***
+
+0041 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.407183355497, cost [0.115 , 7.895] s
+norm(L) : 126.3329, norm(X) : 404.2478, alpha : 2.8409
+norm(E) : 389.5770, norm(lamda) : 20.0000, p : 1.05, mu 0.7392
+Current Accuracy : 0.79825
+0041 / 0200 iterations done , cost 8.211 s ***
+
+0042 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.288060172685, cost [0.103 , 8.019] s
+norm(L) : 126.3329, norm(X) : 408.0520, alpha : 2.7056
+norm(E) : 393.7532, norm(lamda) : 20.0000, p : 1.05, mu 0.7762
+Current Accuracy : 0.80952
+0042 / 0200 iterations done , cost 8.282 s ***
+
+0043 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.132681405264, cost [0.147 , 7.944] s
+norm(L) : 126.3329, norm(X) : 396.9826, alpha : 2.5768
+norm(E) : 382.8405, norm(lamda) : 20.0000, p : 1.05, mu 0.8150
+Current Accuracy : 0.78885
+0043 / 0200 iterations done , cost 8.305 s ***
+
+0044 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.443914778056, cost [0.114 , 7.961] s
+norm(L) : 126.3329, norm(X) : 423.1440, alpha : 2.4541
+norm(E) : 407.7985, norm(lamda) : 20.0000, p : 1.05, mu 0.8557
+Current Accuracy : 0.77632
+0044 / 0200 iterations done , cost 8.250 s ***
+
+0045 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.383545640980, cost [0.101 , 7.996] s
+norm(L) : 126.3329, norm(X) : 377.2155, alpha : 2.3372
+norm(E) : 361.9743, norm(lamda) : 20.0000, p : 1.05, mu 0.8985
+Current Accuracy : 0.76848
+0045 / 0200 iterations done , cost 8.312 s ***
+
+0046 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.189511230355, cost [0.101 , 8.218] s
+norm(L) : 126.3329, norm(X) : 367.0631, alpha : 2.2259
+norm(E) : 351.7751, norm(lamda) : 20.0000, p : 1.05, mu 0.9434
+Current Accuracy : 0.76284
+0046 / 0200 iterations done , cost 8.513 s ***
+
+0047 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.143606881770, cost [0.119 , 7.909] s
+norm(L) : 126.3329, norm(X) : 359.6872, alpha : 2.1199
+norm(E) : 343.7276, norm(lamda) : 20.0000, p : 1.05, mu 0.9906
+Current Accuracy : 0.76629
+0047 / 0200 iterations done , cost 8.206 s ***
+
+0048 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.091341398031, cost [0.123 , 7.787] s
+norm(L) : 126.3329, norm(X) : 350.2675, alpha : 2.0190
+norm(E) : 334.0898, norm(lamda) : 20.0000, p : 1.05, mu 1.0401
+Current Accuracy : 0.77287
+0048 / 0200 iterations done , cost 8.073 s ***
+
+0049 / 0200 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.075556995127, cost [0.114 , 7.117] s
+norm(L) : 126.3329, norm(X) : 343.3381, alpha : 1.9228
+norm(E) : 326.7152, norm(lamda) : 20.0000, p : 1.05, mu 1.0921
+Current Accuracy : 0.76942
+0049 / 0200 iterations done , cost 7.398 s ***
+
+0050 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.112403613362, cost [0.117 , 8.105] s
+norm(L) : 126.3329, norm(X) : 334.8783, alpha : 1.8313
+norm(E) : 317.6773, norm(lamda) : 20.0000, p : 1.05, mu 1.1467
+Current Accuracy : 0.78415
+0050 / 0200 iterations done , cost 8.401 s ***
+
+0051 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.435188009822, cost [0.135 , 7.874] s
+norm(L) : 126.3329, norm(X) : 354.1913, alpha : 1.7441
+norm(E) : 335.9788, norm(lamda) : 20.0000, p : 1.05, mu 1.2041
+Current Accuracy : 0.80482
+0051 / 0200 iterations done , cost 8.156 s ***
+
+0052 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.113674338240, cost [0.099 , 8.001] s
+norm(L) : 126.3329, norm(X) : 337.1014, alpha : 1.6610
+norm(E) : 319.7718, norm(lamda) : 20.0000, p : 1.05, mu 1.2643
+Current Accuracy : 0.83365
+0052 / 0200 iterations done , cost 8.312 s ***
+
+0053 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.062396402580, cost [0.149 , 7.897] s
+norm(L) : 126.3329, norm(X) : 329.4378, alpha : 1.5819
+norm(E) : 311.6915, norm(lamda) : 20.0000, p : 1.05, mu 1.3275
+Current Accuracy : 0.84680
+0053 / 0200 iterations done , cost 8.219 s ***
+
+0054 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.091987176649, cost [0.118 , 8.153] s
+norm(L) : 126.3329, norm(X) : 321.2280, alpha : 1.5066
+norm(E) : 302.8620, norm(lamda) : 20.0000, p : 1.05, mu 1.3939
+Current Accuracy : 0.86122
+0054 / 0200 iterations done , cost 8.424 s ***
+
+0055 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.069232457744, cost [0.122 , 7.999] s
+norm(L) : 126.3329, norm(X) : 313.7766, alpha : 1.4349
+norm(E) : 294.9015, norm(lamda) : 20.0000, p : 1.05, mu 1.4636
+Current Accuracy : 0.87375
+0055 / 0200 iterations done , cost 8.336 s ***
+
+0056 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.113824331591, cost [0.117 , 7.902] s
+norm(L) : 126.3329, norm(X) : 315.5956, alpha : 1.3665
+norm(E) : 296.7350, norm(lamda) : 20.0000, p : 1.05, mu 1.5367
+Current Accuracy : 0.87813
+0056 / 0200 iterations done , cost 8.212 s ***
+
+0057 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.284706942757, cost [0.102 , 7.801] s
+norm(L) : 126.3329, norm(X) : 288.7008, alpha : 1.3015
+norm(E) : 267.9049, norm(lamda) : 20.0000, p : 1.05, mu 1.6136
+Current Accuracy : 0.88221
+0057 / 0200 iterations done , cost 8.140 s ***
+
+0058 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.091621365112, cost [0.114 , 7.665] s
+norm(L) : 126.3329, norm(X) : 284.1794, alpha : 1.2395
+norm(E) : 263.1489, norm(lamda) : 20.0000, p : 1.05, mu 1.6943
+Current Accuracy : 0.88377
+0058 / 0200 iterations done , cost 7.940 s ***
+
+0059 / 0200 iterations start.....
+LRGeomCG : error_cg : 1.259718511113, cost [0.120 , 7.906] s
+norm(L) : 126.3329, norm(X) : 392.6345, alpha : 1.1805
+norm(E) : 375.6051, norm(lamda) : 20.0000, p : 1.05, mu 1.7790
+Current Accuracy : 0.88315
+0059 / 0200 iterations done , cost 8.203 s ***
+
+0060 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.543590728939, cost [0.120 , 7.835] s
+norm(L) : 126.3329, norm(X) : 317.3160, alpha : 1.1242
+norm(E) : 299.0264, norm(lamda) : 20.0000, p : 1.05, mu 1.8679
+Current Accuracy : 0.87500
+0060 / 0200 iterations done , cost 8.116 s ***
+
+0061 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.112618874990, cost [0.119 , 7.825] s
+norm(L) : 126.3329, norm(X) : 301.5438, alpha : 1.0707
+norm(E) : 282.4756, norm(lamda) : 20.0000, p : 1.05, mu 1.9613
+Current Accuracy : 0.87907
+0061 / 0200 iterations done , cost 8.125 s ***
+
+0062 / 0200 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.063024537014, cost [0.125 , 6.355] s
+norm(L) : 126.3329, norm(X) : 296.0047, alpha : 1.0197
+norm(E) : 276.4731, norm(lamda) : 20.0000, p : 1.05, mu 2.0594
+Current Accuracy : 0.88001
+0062 / 0200 iterations done , cost 6.670 s ***
+
+0063 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.077252140574, cost [0.127 , 7.845] s
+norm(L) : 126.3329, norm(X) : 292.9583, alpha : 0.9712
+norm(E) : 272.9832, norm(lamda) : 20.0000, p : 1.05, mu 2.1623
+Current Accuracy : 0.88283
+0063 / 0200 iterations done , cost 8.149 s ***
+
+0064 / 0200 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.059175456166, cost [0.111 , 7.500] s
+norm(L) : 126.3329, norm(X) : 288.7962, alpha : 0.9249
+norm(E) : 268.4773, norm(lamda) : 20.0000, p : 1.05, mu 2.2705
+Current Accuracy : 0.88503
+0064 / 0200 iterations done , cost 7.763 s ***
+
+0065 / 0200 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.058606725863, cost [0.104 , 7.504] s
+norm(L) : 126.3329, norm(X) : 285.6798, alpha : 0.8809
+norm(E) : 265.0445, norm(lamda) : 20.0000, p : 1.05, mu 2.3840
+Current Accuracy : 0.88471
+0065 / 0200 iterations done , cost 7.761 s ***
+
+0066 / 0200 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.053024895908, cost [0.093 , 7.551] s
+norm(L) : 126.3329, norm(X) : 281.0545, alpha : 0.8389
+norm(E) : 259.9905, norm(lamda) : 20.0000, p : 1.05, mu 2.5032
+Current Accuracy : 0.88471
+0066 / 0200 iterations done , cost 7.805 s ***
+
+0067 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.055392571959, cost [0.111 , 7.935] s
+norm(L) : 126.3329, norm(X) : 275.0020, alpha : 0.7990
+norm(E) : 253.3514, norm(lamda) : 20.0000, p : 1.05, mu 2.6283
+Current Accuracy : 0.88565
+0067 / 0200 iterations done , cost 8.197 s ***
+
+0068 / 0200 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.040559462256, cost [0.108 , 6.590] s
+norm(L) : 126.3329, norm(X) : 271.9769, alpha : 0.7609
+norm(E) : 249.9864, norm(lamda) : 20.0000, p : 1.05, mu 2.7598
+Current Accuracy : 0.88534
+0068 / 0200 iterations done , cost 6.856 s ***
+
+0069 / 0200 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.047378706625, cost [0.126 , 7.320] s
+norm(L) : 126.3329, norm(X) : 269.6245, alpha : 0.7247
+norm(E) : 247.3603, norm(lamda) : 20.0000, p : 1.05, mu 2.8978
+Current Accuracy : 0.88659
+0069 / 0200 iterations done , cost 7.596 s ***
+
+0070 / 0200 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.043973127435, cost [0.110 , 7.764] s
+norm(L) : 126.3329, norm(X) : 266.1188, alpha : 0.6902
+norm(E) : 243.4706, norm(lamda) : 20.0000, p : 1.05, mu 3.0426
+Current Accuracy : 0.88816
+0070 / 0200 iterations done , cost 8.061 s ***
+
+0071 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.043922659013, cost [0.101 , 7.947] s
+norm(L) : 126.3329, norm(X) : 264.4149, alpha : 0.6573
+norm(E) : 241.5474, norm(lamda) : 20.0000, p : 1.05, mu 3.1948
+Current Accuracy : 0.88878
+0071 / 0200 iterations done , cost 8.223 s ***
+
+0072 / 0200 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.038329523664, cost [0.101 , 6.737] s
+norm(L) : 126.3329, norm(X) : 262.7895, alpha : 0.6260
+norm(E) : 239.7087, norm(lamda) : 20.0000, p : 1.05, mu 3.3545
+Current Accuracy : 0.88910
+0072 / 0200 iterations done , cost 6.993 s ***
+
+0073 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.048209950168, cost [0.116 , 7.947] s
+norm(L) : 126.3329, norm(X) : 260.5834, alpha : 0.5962
+norm(E) : 237.2359, norm(lamda) : 20.0000, p : 1.05, mu 3.5222
+Current Accuracy : 0.88972
+0073 / 0200 iterations done , cost 8.215 s ***
+
+0074 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.039797854902, cost [0.103 , 7.778] s
+norm(L) : 126.3329, norm(X) : 256.5226, alpha : 0.5678
+norm(E) : 232.6901, norm(lamda) : 20.0000, p : 1.05, mu 3.6984
+Current Accuracy : 0.89066
+0074 / 0200 iterations done , cost 8.059 s ***
+
+0075 / 0200 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.031798845601, cost [0.117 , 6.968] s
+norm(L) : 126.3329, norm(X) : 254.3087, alpha : 0.5408
+norm(E) : 230.1941, norm(lamda) : 20.0000, p : 1.05, mu 3.8833
+Current Accuracy : 0.89098
+0075 / 0200 iterations done , cost 7.242 s ***
+
+0076 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.037210800020, cost [0.116 , 7.864] s
+norm(L) : 126.3329, norm(X) : 250.9241, alpha : 0.5150
+norm(E) : 226.4002, norm(lamda) : 20.0000, p : 1.05, mu 4.0774
+Current Accuracy : 0.89098
+0076 / 0200 iterations done , cost 8.164 s ***
+
+0077 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.027801044045, cost [0.106 , 7.860] s
+norm(L) : 126.3329, norm(X) : 248.7424, alpha : 0.4905
+norm(E) : 223.9387, norm(lamda) : 20.0000, p : 1.05, mu 4.2813
+Current Accuracy : 0.89098
+0077 / 0200 iterations done , cost 8.138 s ***
+
+0078 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.035594772598, cost [0.113 , 7.905] s
+norm(L) : 126.3329, norm(X) : 245.7501, alpha : 0.4671
+norm(E) : 220.5912, norm(lamda) : 20.0000, p : 1.05, mu 4.4954
+Current Accuracy : 0.89160
+0078 / 0200 iterations done , cost 8.169 s ***
+
+0079 / 0200 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.027585695317, cost [0.108 , 6.958] s
+norm(L) : 126.3329, norm(X) : 244.5249, alpha : 0.4449
+norm(E) : 219.1903, norm(lamda) : 20.0000, p : 1.05, mu 4.7201
+Current Accuracy : 0.89254
+0079 / 0200 iterations done , cost 7.259 s ***
+
+0080 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.029673664184, cost [0.102 , 7.824] s
+norm(L) : 126.3329, norm(X) : 243.6549, alpha : 0.4237
+norm(E) : 218.1839, norm(lamda) : 20.0000, p : 1.05, mu 4.9561
+Current Accuracy : 0.89254
+0080 / 0200 iterations done , cost 8.074 s ***
+
+0081 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.033666887347, cost [0.114 , 7.775] s
+norm(L) : 126.3329, norm(X) : 242.4442, alpha : 0.4035
+norm(E) : 216.7871, norm(lamda) : 20.0000, p : 1.05, mu 5.2040
+Current Accuracy : 0.89254
+0081 / 0200 iterations done , cost 8.076 s ***
+
+0082 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.022701963745, cost [0.108 , 7.996] s
+norm(L) : 126.3329, norm(X) : 240.7588, alpha : 0.3843
+norm(E) : 214.8588, norm(lamda) : 20.0000, p : 1.05, mu 5.4641
+Current Accuracy : 0.89160
+0082 / 0200 iterations done , cost 8.258 s ***
+
+0083 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.026331824619, cost [0.096 , 7.883] s
+norm(L) : 126.3329, norm(X) : 239.6096, alpha : 0.3660
+norm(E) : 213.5299, norm(lamda) : 20.0000, p : 1.05, mu 5.7374
+Current Accuracy : 0.89286
+0083 / 0200 iterations done , cost 8.159 s ***
+
+0084 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.030182536010, cost [0.108 , 7.995] s
+norm(L) : 126.3329, norm(X) : 237.2826, alpha : 0.3486
+norm(E) : 210.9225, norm(lamda) : 20.0000, p : 1.05, mu 6.0242
+Current Accuracy : 0.89098
+0084 / 0200 iterations done , cost 8.254 s ***
+
+0085 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.022272861040, cost [0.115 , 8.060] s
+norm(L) : 126.3329, norm(X) : 236.3548, alpha : 0.3320
+norm(E) : 209.8581, norm(lamda) : 20.0000, p : 1.05, mu 6.3254
+Current Accuracy : 0.89317
+0085 / 0200 iterations done , cost 8.343 s ***
+
+0086 / 0200 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.017459797806, cost [0.104 , 7.118] s
+norm(L) : 126.3329, norm(X) : 235.1228, alpha : 0.3162
+norm(E) : 208.4362, norm(lamda) : 20.0000, p : 1.05, mu 6.6417
+Current Accuracy : 0.89286
+0086 / 0200 iterations done , cost 7.407 s ***
+
+0087 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.040321763460, cost [0.123 , 7.985] s
+norm(L) : 126.3329, norm(X) : 232.4293, alpha : 0.3011
+norm(E) : 205.3545, norm(lamda) : 20.0000, p : 1.05, mu 6.9738
+Current Accuracy : 0.89411
+0087 / 0200 iterations done , cost 8.272 s ***
+
+0088 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.041299329344, cost [0.116 , 7.987] s
+norm(L) : 126.3329, norm(X) : 230.7680, alpha : 0.2868
+norm(E) : 203.4682, norm(lamda) : 20.0000, p : 1.05, mu 7.3225
+Current Accuracy : 0.89348
+0088 / 0200 iterations done , cost 8.290 s ***
+
+0089 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.026923278897, cost [0.109 , 7.939] s
+norm(L) : 126.3329, norm(X) : 229.7154, alpha : 0.2731
+norm(E) : 202.2469, norm(lamda) : 20.0000, p : 1.05, mu 7.6886
+Current Accuracy : 0.89411
+0089 / 0200 iterations done , cost 8.210 s ***
+
+0090 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.081332441669, cost [0.116 , 7.777] s
+norm(L) : 126.3329, norm(X) : 229.1043, alpha : 0.2601
+norm(E) : 201.4963, norm(lamda) : 20.0000, p : 1.05, mu 8.0730
+Current Accuracy : 0.89317
+0090 / 0200 iterations done , cost 8.049 s ***
+
+0091 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.016727351614, cost [0.110 , 8.205] s
+norm(L) : 126.3329, norm(X) : 228.4141, alpha : 0.2477
+norm(E) : 200.7451, norm(lamda) : 20.0000, p : 1.05, mu 8.4767
+Current Accuracy : 0.89254
+0091 / 0200 iterations done , cost 8.503 s ***
+
+0092 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.015273187370, cost [0.116 , 8.026] s
+norm(L) : 126.3329, norm(X) : 227.3071, alpha : 0.2359
+norm(E) : 199.4828, norm(lamda) : 20.0000, p : 1.05, mu 8.9005
+Current Accuracy : 0.89254
+0092 / 0200 iterations done , cost 8.309 s ***
+
+0093 / 0200 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.015086436624, cost [0.104 , 7.689] s
+norm(L) : 126.3329, norm(X) : 226.5739, alpha : 0.2247
+norm(E) : 198.6481, norm(lamda) : 20.0000, p : 1.05, mu 9.3455
+Current Accuracy : 0.89286
+0093 / 0200 iterations done , cost 7.945 s ***
+
+0094 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.013779736344, cost [0.105 , 7.936] s
+norm(L) : 126.3329, norm(X) : 225.7864, alpha : 0.2140
+norm(E) : 197.7395, norm(lamda) : 20.0000, p : 1.05, mu 9.8128
+Current Accuracy : 0.89286
+0094 / 0200 iterations done , cost 8.223 s ***
+
+0095 / 0200 iterations start.....
+Iteration stagnated rel_tol_change_res.
+LRGeomCG : error_cg : 0.012816493253, cost [0.113 , 7.033] s
+norm(L) : 126.3329, norm(X) : 225.1559, alpha : 0.2038
+norm(E) : 197.0047, norm(lamda) : 20.0000, p : 1.05, mu 10.3035
+Current Accuracy : 0.89348
+0095 / 0200 iterations done , cost 7.298 s ***
+
+0096 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.017853640435, cost [0.126 , 7.941] s
+norm(L) : 126.3329, norm(X) : 224.8550, alpha : 0.1941
+norm(E) : 196.6392, norm(lamda) : 20.0000, p : 1.05, mu 10.8186
+Current Accuracy : 0.89317
+0096 / 0200 iterations done , cost 8.255 s ***
+
+0097 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.011276734766, cost [0.133 , 8.000] s
+norm(L) : 126.3329, norm(X) : 224.1067, alpha : 0.1849
+norm(E) : 195.7670, norm(lamda) : 20.0000, p : 1.05, mu 11.3596
+Current Accuracy : 0.89380
+0097 / 0200 iterations done , cost 8.336 s ***
+
+0098 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.013846648880, cost [0.106 , 7.587] s
+norm(L) : 126.3329, norm(X) : 223.2591, alpha : 0.1761
+norm(E) : 194.7760, norm(lamda) : 20.0000, p : 1.05, mu 11.9276
+Current Accuracy : 0.89411
+0098 / 0200 iterations done , cost 7.852 s ***
+
+0099 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.017377982353, cost [0.105 , 7.974] s
+norm(L) : 126.3329, norm(X) : 222.1040, alpha : 0.1677
+norm(E) : 193.4545, norm(lamda) : 20.0000, p : 1.05, mu 12.5239
+Current Accuracy : 0.89568
+0099 / 0200 iterations done , cost 8.259 s ***
+
+0100 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.012006514620, cost [0.121 , 7.913] s
+norm(L) : 126.3329, norm(X) : 221.5549, alpha : 0.1597
+norm(E) : 192.8191, norm(lamda) : 20.0000, p : 1.05, mu 13.1501
+Current Accuracy : 0.89568
+0100 / 0200 iterations done , cost 8.198 s ***
+
+0101 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.009253687359, cost [0.109 , 7.862] s
+norm(L) : 126.3329, norm(X) : 221.1164, alpha : 0.1521
+norm(E) : 192.3076, norm(lamda) : 20.0000, p : 1.05, mu 13.8076
+Current Accuracy : 0.89536
+0101 / 0200 iterations done , cost 8.127 s ***
+
+0102 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.010495389660, cost [0.113 , 7.892] s
+norm(L) : 126.3329, norm(X) : 220.7527, alpha : 0.1448
+norm(E) : 191.8808, norm(lamda) : 20.0000, p : 1.05, mu 14.4980
+Current Accuracy : 0.89599
+0102 / 0200 iterations done , cost 8.161 s ***
+
+0103 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.009023973435, cost [0.106 , 7.761] s
+norm(L) : 126.3329, norm(X) : 220.1347, alpha : 0.1379
+norm(E) : 191.1671, norm(lamda) : 20.0000, p : 1.05, mu 15.2229
+Current Accuracy : 0.89536
+0103 / 0200 iterations done , cost 8.009 s ***
+
+0104 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.015250245809, cost [0.111 , 7.939] s
+norm(L) : 126.3329, norm(X) : 218.9809, alpha : 0.1314
+norm(E) : 189.8485, norm(lamda) : 20.0000, p : 1.05, mu 15.9841
+Current Accuracy : 0.89536
+0104 / 0200 iterations done , cost 8.223 s ***
+
+0105 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.012409354693, cost [0.117 , 8.170] s
+norm(L) : 126.3329, norm(X) : 218.3605, alpha : 0.1251
+norm(E) : 189.1364, norm(lamda) : 20.0000, p : 1.05, mu 16.7833
+Current Accuracy : 0.89505
+0105 / 0200 iterations done , cost 8.477 s ***
+
+0106 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.014955621802, cost [0.098 , 7.802] s
+norm(L) : 126.3329, norm(X) : 217.7281, alpha : 0.1192
+norm(E) : 188.3985, norm(lamda) : 20.0000, p : 1.05, mu 17.6224
+Current Accuracy : 0.89536
+0106 / 0200 iterations done , cost 8.068 s ***
+
+0107 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.007433703307, cost [0.115 , 7.955] s
+norm(L) : 126.3329, norm(X) : 217.3993, alpha : 0.1135
+norm(E) : 188.0143, norm(lamda) : 20.0000, p : 1.05, mu 18.5035
+Current Accuracy : 0.89536
+0107 / 0200 iterations done , cost 8.257 s ***
+
+0108 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.009131234973, cost [0.100 , 7.904] s
+norm(L) : 126.3329, norm(X) : 217.1059, alpha : 0.1081
+norm(E) : 187.6824, norm(lamda) : 20.0000, p : 1.05, mu 19.4287
+Current Accuracy : 0.89568
+0108 / 0200 iterations done , cost 8.193 s ***
+
+0109 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.008107411505, cost [0.119 , 8.033] s
+norm(L) : 126.3329, norm(X) : 216.7611, alpha : 0.1029
+norm(E) : 187.2731, norm(lamda) : 20.0000, p : 1.05, mu 20.4002
+Current Accuracy : 0.89630
+0109 / 0200 iterations done , cost 8.322 s ***
+
+0110 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.013041535448, cost [0.101 , 7.789] s
+norm(L) : 126.3329, norm(X) : 215.7503, alpha : 0.0980
+norm(E) : 186.1102, norm(lamda) : 20.0000, p : 1.05, mu 21.4202
+Current Accuracy : 0.89662
+0110 / 0200 iterations done , cost 8.056 s ***
+
+0111 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.009174112501, cost [0.139 , 7.889] s
+norm(L) : 126.3329, norm(X) : 215.5808, alpha : 0.0934
+norm(E) : 185.9063, norm(lamda) : 20.0000, p : 1.05, mu 22.4912
+Current Accuracy : 0.89693
+0111 / 0200 iterations done , cost 8.239 s ***
+
+0112 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.006025246615, cost [0.110 , 7.890] s
+norm(L) : 126.3329, norm(X) : 215.3060, alpha : 0.0889
+norm(E) : 185.5792, norm(lamda) : 20.0000, p : 1.05, mu 23.6157
+Current Accuracy : 0.89662
+0112 / 0200 iterations done , cost 8.178 s ***
+
+0113 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.005247511925, cost [0.108 , 7.763] s
+norm(L) : 126.3329, norm(X) : 215.0321, alpha : 0.0847
+norm(E) : 185.2569, norm(lamda) : 20.0000, p : 1.05, mu 24.7965
+Current Accuracy : 0.89693
+0113 / 0200 iterations done , cost 8.031 s ***
+
+0114 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.005751271697, cost [0.115 , 7.784] s
+norm(L) : 126.3329, norm(X) : 214.8388, alpha : 0.0807
+norm(E) : 185.0281, norm(lamda) : 20.0000, p : 1.05, mu 26.0363
+Current Accuracy : 0.89756
+0114 / 0200 iterations done , cost 8.098 s ***
+
+0115 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.007507305905, cost [0.111 , 7.915] s
+norm(L) : 126.3329, norm(X) : 214.5627, alpha : 0.0768
+norm(E) : 184.7123, norm(lamda) : 20.0000, p : 1.05, mu 27.3382
+Current Accuracy : 0.89693
+0115 / 0200 iterations done , cost 8.197 s ***
+
+0116 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.009160860680, cost [0.126 , 7.941] s
+norm(L) : 126.3329, norm(X) : 214.2741, alpha : 0.0732
+norm(E) : 184.3697, norm(lamda) : 20.0000, p : 1.05, mu 28.7051
+Current Accuracy : 0.89724
+0116 / 0200 iterations done , cost 8.272 s ***
+
+0117 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.006490415564, cost [0.099 , 7.853] s
+norm(L) : 126.3329, norm(X) : 213.9938, alpha : 0.0697
+norm(E) : 184.0526, norm(lamda) : 20.0000, p : 1.05, mu 30.1403
+Current Accuracy : 0.89693
+0117 / 0200 iterations done , cost 8.139 s ***
+
+0118 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.005952710630, cost [0.114 , 7.924] s
+norm(L) : 126.3329, norm(X) : 213.8462, alpha : 0.0664
+norm(E) : 183.8818, norm(lamda) : 20.0000, p : 1.05, mu 31.6473
+Current Accuracy : 0.89630
+0118 / 0200 iterations done , cost 8.201 s ***
+
+0119 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.008793323966, cost [0.097 , 7.852] s
+norm(L) : 126.3329, norm(X) : 213.6085, alpha : 0.0632
+norm(E) : 183.6210, norm(lamda) : 20.0000, p : 1.05, mu 33.2297
+Current Accuracy : 0.89662
+0119 / 0200 iterations done , cost 8.146 s ***
+
+0120 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.004497544311, cost [0.127 , 7.855] s
+norm(L) : 126.3329, norm(X) : 213.5055, alpha : 0.0602
+norm(E) : 183.5033, norm(lamda) : 20.0000, p : 1.05, mu 34.8912
+Current Accuracy : 0.89662
+0120 / 0200 iterations done , cost 8.167 s ***
+
+0121 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.008053961556, cost [0.117 , 7.765] s
+norm(L) : 126.3329, norm(X) : 213.2159, alpha : 0.0573
+norm(E) : 183.1720, norm(lamda) : 20.0000, p : 1.05, mu 36.6358
+Current Accuracy : 0.89599
+0121 / 0200 iterations done , cost 8.071 s ***
+
+0122 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.005163806876, cost [0.113 , 7.885] s
+norm(L) : 126.3329, norm(X) : 213.0819, alpha : 0.0546
+norm(E) : 183.0208, norm(lamda) : 20.0000, p : 1.05, mu 38.4675
+Current Accuracy : 0.89599
+0122 / 0200 iterations done , cost 8.184 s ***
+
+0123 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.007379275141, cost [0.115 , 7.795] s
+norm(L) : 126.3329, norm(X) : 212.9195, alpha : 0.0520
+norm(E) : 182.8521, norm(lamda) : 20.0000, p : 1.05, mu 40.3909
+Current Accuracy : 0.89630
+0123 / 0200 iterations done , cost 8.061 s ***
+
+0124 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.006754033670, cost [0.117 , 7.699] s
+norm(L) : 126.3329, norm(X) : 212.7737, alpha : 0.0495
+norm(E) : 182.6929, norm(lamda) : 20.0000, p : 1.05, mu 42.4105
+Current Accuracy : 0.89630
+0124 / 0200 iterations done , cost 8.002 s ***
+
+0125 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.006847542502, cost [0.122 , 7.839] s
+norm(L) : 126.3329, norm(X) : 212.6684, alpha : 0.0472
+norm(E) : 182.5773, norm(lamda) : 20.0000, p : 1.05, mu 44.5310
+Current Accuracy : 0.89599
+0125 / 0200 iterations done , cost 8.115 s ***
+
+0126 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.005017230650, cost [0.112 , 7.903] s
+norm(L) : 126.3329, norm(X) : 212.5285, alpha : 0.0449
+norm(E) : 182.4196, norm(lamda) : 20.0000, p : 1.05, mu 46.7575
+Current Accuracy : 0.89568
+0126 / 0200 iterations done , cost 8.158 s ***
+
+0127 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.003187653681, cost [0.113 , 8.016] s
+norm(L) : 126.3329, norm(X) : 212.4219, alpha : 0.0428
+norm(E) : 182.2922, norm(lamda) : 20.0000, p : 1.05, mu 49.0954
+Current Accuracy : 0.89568
+0127 / 0200 iterations done , cost 8.280 s ***
+
+0128 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.008263864826, cost [0.124 , 7.990] s
+norm(L) : 126.3329, norm(X) : 212.2612, alpha : 0.0407
+norm(E) : 182.1194, norm(lamda) : 20.0000, p : 1.05, mu 51.5502
+Current Accuracy : 0.89568
+0128 / 0200 iterations done , cost 8.338 s ***
+
+0129 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.005155476706, cost [0.112 , 7.984] s
+norm(L) : 126.3329, norm(X) : 212.1104, alpha : 0.0388
+norm(E) : 181.9555, norm(lamda) : 20.0000, p : 1.05, mu 54.1277
+Current Accuracy : 0.89599
+0129 / 0200 iterations done , cost 8.290 s ***
+
+0130 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.004740477878, cost [0.118 , 7.900] s
+norm(L) : 126.3329, norm(X) : 211.9826, alpha : 0.0369
+norm(E) : 181.8107, norm(lamda) : 20.0000, p : 1.05, mu 56.8341
+Current Accuracy : 0.89599
+0130 / 0200 iterations done , cost 8.183 s ***
+
+0131 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.003098149045, cost [0.118 , 7.953] s
+norm(L) : 126.3329, norm(X) : 211.8893, alpha : 0.0352
+norm(E) : 181.7015, norm(lamda) : 20.0000, p : 1.05, mu 59.6758
+Current Accuracy : 0.89568
+0131 / 0200 iterations done , cost 8.261 s ***
+
+0132 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.003471446038, cost [0.118 , 7.911] s
+norm(L) : 126.3329, norm(X) : 211.7567, alpha : 0.0335
+norm(E) : 181.5465, norm(lamda) : 20.0000, p : 1.05, mu 62.6596
+Current Accuracy : 0.89568
+0132 / 0200 iterations done , cost 8.211 s ***
+
+0133 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.002791513239, cost [0.105 , 8.008] s
+norm(L) : 126.3329, norm(X) : 211.6038, alpha : 0.0319
+norm(E) : 181.3658, norm(lamda) : 20.0000, p : 1.05, mu 65.7926
+Current Accuracy : 0.89536
+0133 / 0200 iterations done , cost 8.264 s ***
+
+0134 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.003361073275, cost [0.122 , 7.896] s
+norm(L) : 126.3329, norm(X) : 211.5048, alpha : 0.0304
+norm(E) : 181.2537, norm(lamda) : 20.0000, p : 1.05, mu 69.0822
+Current Accuracy : 0.89536
+0134 / 0200 iterations done , cost 8.170 s ***
+
+0135 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.005655647274, cost [0.160 , 8.080] s
+norm(L) : 126.3329, norm(X) : 211.3784, alpha : 0.0290
+norm(E) : 181.1184, norm(lamda) : 20.0000, p : 1.05, mu 72.5363
+Current Accuracy : 0.89536
+0135 / 0200 iterations done , cost 8.410 s ***
+
+0136 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.005535274937, cost [0.113 , 7.654] s
+norm(L) : 126.3329, norm(X) : 211.2704, alpha : 0.0276
+norm(E) : 181.0013, norm(lamda) : 20.0000, p : 1.05, mu 76.1631
+Current Accuracy : 0.89599
+0136 / 0200 iterations done , cost 7.928 s ***
+
+0137 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.001860619505, cost [0.104 , 7.840] s
+norm(L) : 126.3329, norm(X) : 211.1426, alpha : 0.0263
+norm(E) : 180.8487, norm(lamda) : 20.0000, p : 1.05, mu 79.9713
+Current Accuracy : 0.89568
+0137 / 0200 iterations done , cost 8.103 s ***
+
+0138 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.003513159916, cost [0.112 , 7.842] s
+norm(L) : 126.3329, norm(X) : 211.0741, alpha : 0.0250
+norm(E) : 180.7716, norm(lamda) : 20.0000, p : 1.05, mu 83.9698
+Current Accuracy : 0.89630
+0138 / 0200 iterations done , cost 8.157 s ***
+
+0139 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.002192087125, cost [0.119 , 7.693] s
+norm(L) : 126.3329, norm(X) : 210.9950, alpha : 0.0238
+norm(E) : 180.6749, norm(lamda) : 20.0000, p : 1.05, mu 88.1683
+Current Accuracy : 0.89568
+0139 / 0200 iterations done , cost 7.996 s ***
+
+0140 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.002630338488, cost [0.113 , 7.968] s
+norm(L) : 126.3329, norm(X) : 210.8350, alpha : 0.0227
+norm(E) : 180.4884, norm(lamda) : 20.0000, p : 1.05, mu 92.5767
+Current Accuracy : 0.89599
+0140 / 0200 iterations done , cost 8.257 s ***
+
+0141 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.004281877158, cost [0.118 , 7.974] s
+norm(L) : 126.3329, norm(X) : 210.7600, alpha : 0.0216
+norm(E) : 180.4094, norm(lamda) : 20.0000, p : 1.05, mu 97.2056
+Current Accuracy : 0.89536
+0141 / 0200 iterations done , cost 8.262 s ***
+
+0142 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.001632476409, cost [0.107 , 7.759] s
+norm(L) : 126.3329, norm(X) : 210.6939, alpha : 0.0206
+norm(E) : 180.3307, norm(lamda) : 20.0000, p : 1.05, mu 102.0659
+Current Accuracy : 0.89536
+0142 / 0200 iterations done , cost 8.049 s ***
+
+0143 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.002338881970, cost [0.109 , 7.906] s
+norm(L) : 126.3329, norm(X) : 210.6413, alpha : 0.0196
+norm(E) : 180.2681, norm(lamda) : 20.0000, p : 1.05, mu 107.1691
+Current Accuracy : 0.89568
+0143 / 0200 iterations done , cost 8.195 s ***
+
+0144 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.002466972147, cost [0.127 , 8.004] s
+norm(L) : 126.3329, norm(X) : 210.5802, alpha : 0.0187
+norm(E) : 180.1950, norm(lamda) : 20.0000, p : 1.05, mu 112.5276
+Current Accuracy : 0.89568
+0144 / 0200 iterations done , cost 8.304 s ***
+
+0145 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.004592139142, cost [0.122 , 7.811] s
+norm(L) : 126.3329, norm(X) : 210.5172, alpha : 0.0178
+norm(E) : 180.1259, norm(lamda) : 20.0000, p : 1.05, mu 118.1540
+Current Accuracy : 0.89568
+0145 / 0200 iterations done , cost 8.121 s ***
+
+0146 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.003349385016, cost [0.130 , 7.536] s
+norm(L) : 126.3329, norm(X) : 210.4707, alpha : 0.0169
+norm(E) : 180.0738, norm(lamda) : 20.0000, p : 1.05, mu 124.0617
+Current Accuracy : 0.89536
+0146 / 0200 iterations done , cost 7.857 s ***
+
+0147 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.001282925701, cost [0.111 , 7.827] s
+norm(L) : 126.3329, norm(X) : 210.4232, alpha : 0.0161
+norm(E) : 180.0173, norm(lamda) : 20.0000, p : 1.05, mu 130.2648
+Current Accuracy : 0.89536
+0147 / 0200 iterations done , cost 8.098 s ***
+
+0148 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.001957198596, cost [0.112 , 7.812] s
+norm(L) : 126.3329, norm(X) : 210.3664, alpha : 0.0154
+norm(E) : 179.9505, norm(lamda) : 20.0000, p : 1.05, mu 136.7780
+Current Accuracy : 0.89568
+0148 / 0200 iterations done , cost 8.117 s ***
+
+0149 / 0200 iterations start.....
+LRGeomCG : error_cg : 0.001535043048, cost [0.103 , 7.962] s
+norm(L) : 126.3329, norm(X) : 210.3263, alpha : 0.0146
+norm(E) : 179.9037, norm(lamda) : 20.0000, p : 1.05, mu 143.6169
+Current Accuracy : 0.89568
+0149 / 0200 iterations done , cost 8.270 s ***
+
+0150 / 0200 iterations start.....
+{Operation terminated by user during prepx (line 11)
+
+
+In moveEIG (line 29)
+z = prepx(prob, z);
+
+In armijo_search (line 28)
+xt = moveEIG(prob,xc,dir,lambda);
+
+In LRGeomCG (line 54)
+  [xc_new,fc,succ,~,iarm] = armijo_search(prob, xc,fc,gc,dir, tinit);
+
+
+In wrapCG (line 35)
+[Xcg,hist] = LRGeomCG(prob,options,x0);
+
+In SolverALM (line 42)
+    X = wrapCG(X_verse, K, opts.CG_OS, opts.options);
+
+In ExamVOC07 (line 62)
+[X, param] = SolverALM(results, test_label, opts);
+} 
+ExamVOC07

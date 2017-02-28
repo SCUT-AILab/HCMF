@@ -1,0 +1,35 @@
+Total classifier : 5, ave accuracy : 0.868
+The  1th classifier accuracy : 0.825
+The  2th classifier accuracy : 0.733
+The  3th classifier accuracy : 0.773
+The  4th classifier accuracy : 0.799
+The  5th classifier accuracy : 0.862
+Assert OK, N : 3783, K : 101, M : 5( check dimisions of matrix)
+Initialize L done
+Initialize paramters: CG_OS : 3.0, size(L) : [3783,505]
+0001 / 0200 iterations start.....
+Line search failed on steepest descent. Exiting...
+LRGeomCG : error_cg : 0.583974756250, cost [2.012 , 15.601] s
+norm(L) : 137.5318, norm(X) : 88.0955, alpha : 20.0000
+norm(E) : 0.0000, norm(lamda) : 8.0315, p : 1.10, mu 0.1100
+Current Accuracy : 0.84377
+0001 / 0200 iterations done , cost 24.385 s ***
+
+0002 / 0200 iterations start.....
+{Operation terminated by user during exact_search_onlyTxM (line 19)
+
+
+In LRGeomCG (line 50)
+  tinit = exact_search_onlyTxM(prob, xc,dir);
+
+
+In wrapCG (line 35)
+[Xcg,hist] = LRGeomCG(prob,options,x0);
+
+In SolverALM (line 42)
+    X = wrapCG(X_verse, K, opts.CG_OS);
+
+In ExamUCF (line 32)
+[X, param] = SolverALM(results, label, opts);
+} 
+ExamUCF

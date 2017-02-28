@@ -1,0 +1,314 @@
+\def\year{2017}\relax
+%File: formatting-instruction.tex
+\documentclass[letterpaper]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm,mathrsfs,amsfonts,dsfont}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{subfigure}
+\usepackage{color}
+\usepackage{epstopdf}
+\usepackage{bm}
+%\usepackage[vlined,boxed,ruled]{algorithm2e}
+\usepackage{url}
+\usepackage{xspace}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+
+\def\yanred{\textcolor{red}}
+
+\usepackage{aaai17}
+\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+
+\def\yanred{\textcolor{red}}
+\def\yanblue{\textcolor{blue}}
+
+
+\frenchspacing
+\setlength{\pdfpagewidth}{8.5in}
+\setlength{\pdfpageheight}{11in}
+\pdfinfo{
+/Title (Insert Your Title Here)
+/Author (Put All Your Authors Here, Separated by Commas)}
+\setcounter{secnumdepth}{0}
+ \begin{document}
+
+
+% The file aaai.sty is the style file for AAAI Press
+% proceedings, working notes, and technical reports.
+%
+
+
+
+%\title{Outlier Reject for Late Fusion on Visual Recognition}
+\title{Rebuttal Material 
+for ``Late Fusion via Subspace Search with Consistency Preservation''}
+
+\author{AAAI Press\\
+Association for the Advancement of Artificial Intelligence\\
+2275 East Bayshore Road, Suite 160\\
+Palo Alto, California 94303\\
+}
+
+\maketitle
+
+\section{Review 1}
+\begin{itemize}
+  \item 2: (modest or incremental contribution)
+  \item 2: (minor inconsistencies or small fixable errors) 
+  \item 2: (relevant literature cited but could expand)
+  \item 2: (more or less readable)
+  \item 2: (interest limited to specialty area) 
+  \item 4: (++++)
+\end{itemize}
+
+This paper presents a late fusion method based on $\ell_{1, 2}$ optimization. An efficient optimization method based on ALM is derived for solving the proposed method. The method is very simple and easy to follow. Various experiments show the significance of the proposed method.
+
+The main drawback of this method is that if there are many samples in the test set and many different classifiers then the resulting matrix can be very large. Optimizing this large matrix can be an issue in practice.
+
+The other problem is that it can not be applied in the case when there is only a single test sample, which is very common in biometrics applications such as verification.
+
+\section{Rebuttal For R1}
+
+1. Our algorithm is capable to handle large scale matrices, particularly compared to the nuclear norm based methods whose computational complexity can be cubic due to the presence of SVDs.
+The per-iteration complexity of our algorithm is $O((n+Cm)C^2 +nmC)$,
+(n instances, C classes and m classifiers),
+which can be more efficient, and thus capable to large scale problems.
+
+2. We agree that our algorithm is not applicable to handle the case where there is only a single test sample. However, there are many applications where there are many samples when testing. As demonstrated in our experiments, our method could perform well on these tasks.
+
+
+\section{Review 2}
+\begin{itemize}
+  \item 2: (modest or incremental contribution)
+  \item 2: (minor inconsistencies or small fixable errors) 
+  \item 2: (relevant literature cited but could expand)
+  \item 2: (more or less readable)
+  \item 3: (some interest beyond specialty area)
+  \item -2: (--)
+\end{itemize}
+
+The main contribution of the paper is proposing an ALM-based algorithm to extend existing matrix factorization algorithms from smooth least square loss to nonsmooth $\ell_{1, 2}$ loss.
+This paper aims at outlier rejection for late fusion algorithms and proposes an e cient matrix factorization based approach to fuse predictions from multiple sources. One contribution of the paper is proposed an ALM-based algorithm to extend existing matrix factorization algorithms from smooth least square loss to nonsmooth $\ell_{1, 2}$ loss.
+The comments of the paper are listed as follows:
+
+1.The definition of outlier in the late fusion problem is not legible from Fig 1. In Fig 1, L1 and L2 are just the same, and the second and third columns of L3, which are different from L1 and L2, are marked as outlier. Generally, the decisions based on different feature representations are quite different, in this situation, what is the outlier?
+
+2.From the description of the proposed approach, it is not clear how the method realizes late fusion via subspace search with consistency preservation.
+
+3.The reasons for using robust $\ell_{1, 2}$ loss to catch the outlier columns should be given. As a consequence, the reasons why the proposed method is effective in handling outliers is not clear. It will be better if the paper discusses the advantages of $\ell_{1, 2}$ loss in catching the outlier columns.
+
+4.In the proof of Theorem 1, u should be uk and u/2 should be 2/u.
+
+5.In the feature extraction experiment, the rationality of the selected features is not clearly shown. In this experiment, the author just reported the selected features of each data set, this can not illustrate the advantages of the proposed method in feature selection.
+
+In conclusion, I suggest that the article may not be accepted.
+
+\section{Rebuttal For R2}
+
+1. Decisions on different features are not necessarily very different from each other, given sufficient training data and reasonably good feature representations.
+As shown in Fig 1, we convert the predictions of all classifiers to a 0/1 indicator matrix,
+and assume that there are anomalous columns,
+which means for specific classes, some classifier would perform poorly.
+Therefore, by applying $\ell_{1, 2}$ loss, our algorithm would work well in the case that there are sparse anomalous (outlier) columns.
+
+2. We introduce a low-rank constraint on the indicator label matrix to our late fusion algorithm,
+which would search the solution in a low-rank subspace of the label matrix.
+Meanwhile, the low-rank structure would preserve consistency among all the classifiers.
+
+3. In an indicator matrix, $\ell_{1, 2}$ loss preserves the fidelity within each column by L2 loss in the vertical direction,
+and is tolerant of sparse errors across all the columns by L1 loss in the horizontal direction.
+Thus, if there are outlier columns, $\ell_{1, 2}$ loss would simply capture these columns whose l2 loss is sufficiently large.
+
+4. In the experiment, we select the best-performing CNN models for feature extraction.
+We believe that they are good at representing different aspects of data.
+By leveraging the classifiers trained on single features as base classifiers,
+we investigate the performance improvement of our proposed late fusion algorithm.
+Experimental results show performance improvement by fusing their decisions, which verifies the validity of our algorithm.
+
+
+\section{Review 3}
+\begin{itemize}
+  \item 2: (modest or incremental contribution)
+  \item 3: (correct)
+  \item 3: (excellent coverage of related work)
+  \item 2: (more or less readable)
+  \item 3: (some interest beyond specialty area)
+  \item 2: (++)
+\end{itemize}
+
+The authors provide an algorithm that performs late fusion, meaning that it combines predictions of classifiers that use separate sets of features. Their approach learns a model by optimizing an objective based on matrix factorization with the non-smooth $\ell_{2,1}$ loss, via ALM.
+
+The authors introduce a rank constraint on L to preserve consistency between classifiers.
+\yanred{This can also be achieved through a penalty that explicitly computes differences between predictions.}
+I don’t think the term `accumulation point' is correctly used.
+
+The paragraph where the `tangent bubble' is introduced needs to be better explained. Please break down into several sentences and give some intuition as to why it’s needed.
+
+The authors compare their methods against algorithms from the same class (i.e. fusion). However, there are other state-of-the-art techniques that outperform their accuracy.
+
+For CIFAR-10, better results were obtained with fractional Max Pooling
+
+https://arxiv.org/abs/1412.6071
+
+Wide residual networks also obtained higher accuracy
+
+https://arxiv.org/abs/1605.07146
+
+Why should we use this approach for these particular applications?
+The runtime is faster and the models are simpler and potentially easier to understand, but this doesn’t seem to be crucial for image classification tasks.
+
+\section{Rebuttal for R3}
+
+1. Accumulation point is the limit point of a sequence, and used in many literatures, eg, Tae-Hyun Oh, et al. TPAMI2016 doi:10.1109/TPAMI.2015.2465956.
+
+2. We guess the reviewer is asking “tangent bundle”.
+It consists of all the tangent spaces, to which we restrict the inner product of two tangent vectors.
+The introduction of the tangent bundle is crucial for optimization on Riemannian manifold.
+More details can be found in (Vandereycken, B. 2013) in main text.
+
+3. This work presents a late fusion algorithm based on a set of classifiers trained on individual features.
+We investigate the performance of the proposed late fusion algorithm, instead of achieving higher results on a specific task, eg, CIFAR10.
+As a result, we treat the fusion methods as baselines, rather than the state-of-the-art models trained on a single feature.
+By replacing the base model with the state-of-the-art single model,
+the performance of our method would also improve and may outperform the base model.
+
+\iffalse
+\subsubsection{For Review 2}
+
+1.~Fig 1 is an illustration to explain how our algorithm works via synthetic data.
+%% hard label -> multiple binary problem
+%% Training data , sufficiently good supervison , their from multiple can not be quit different .tend to be stable. similar .
+The soft decisions based on different feature representations are certainly quite different,
+but we convert them to hard label assignment and further decompose them into multiple binary classifition results.
+With sufficiently good supervison, e.g enough training data,
+these hard binary decisions from multiple features can not be quit different and tend to be stable and similar.
+In Fig 1, the algorithm process the hard input to generate soft values,
+and the most different columns comparing with the original one are the outliers as abnormal columns.
+From matrix X, we could see the last two columns of L3 are quite different with the original one,
+so outliers are detected and repaired.
+
+2.~We pursue a low rank property of the decision matrix by finding a solution in the subspace, which is subspace search.
+Low rank structure always results in consistency among multiple decisions.
+%leading into a subspace structure, and  is used to solve Algorithm 3 LRGeomCG which is mentioned in Formula 10.
+%consistency preservation
+
+3.~$\ell_{1, 2}$ loss enforces sparsity over groups and non-sparsity within a group~[1].
+Specifically, $\ell_{1, 2}$ exploits L2 loss within columns to guarantee high fidelity,
+then by L1 loss the columns with high L2 loss tend to be removed.
+%among all the columns we use L1 loss to 
+%but for some abnorm columns we use L1 loss to 
+%4.~Sorry, it's a mistake in writing.
+
+5.~\yanred{The CNN models for extracting features in our paper used to be the state-of-the-art CNN models.
+They are good at different aspects of feature representations.
+%The feature are extracted from the several commonly used deep learning nerual networks, which used to be the state-of-art CNN models.
+Comparing the hand-craft features, a single CNN feature, like fc6 from VGG16, outperforms than fuse multiple hand-craft features on most dataset (e.g Oxford-Flower 17 in [2]).
+Further more, our algorithm improves performance from these advanced CNN features comparing with other state-of-the-art fusion methods in most dataset.}
+
+
+\subsubsection{For Review 3}
+
+1. We carefully use the term `accumulation point' according to Proposition 1 of [4].
+
+2. We guess the reviewer would like to ask about `tangent bundle'.
+Tangent bundle consists of all the tangent spaces, 
+to which we restrict the inner product of two tangent vectors.
+The definition of the tangent bundle is crucial for optimizaiton on Riemannian manifold~[3].
+
+3. This paper is to verify improvement of late fusion.
+It may not be necessary to compare with single model.
+We can replace classifiers' results with single model's results from the state-of-the-art techniques, and it will also lead improvements.
+
+4. It's unfair to simply compare our results with state-of-the-art techniques by two facts:
+1) the single classifier's result in our experiments are trained by SVM using pooling or fully-connection features.
+This will reduce the performance comparing with the results directly from CNN models.
+2) we use the features from the state-of-the-art CNN models.
+But we do not fine tune them on specific dataset (e.g UCF-101) or select the best architecture due to expensive CNN model training cost (e.g ResNet-1001 on CIFAR-10).
+
+5. Single model has limition on representations.
+For example, WRN-28-10 and ResNet-1001 on Cifar-10 can hardly improve their performance by making layer deeper or channel wider.
+In this situation, our approach can significantly improve performance of the single state-of-the-art model.
+
+\subsubsection{For Review 1}
+
+1.~Specifically, the theoretical complexity for our algorithm is $O((n+Cm)C^2 + nmC^2) + O(nCm)$, (n testing instances, C classees and m classifiers).
+It's linear for growing of n and m, but has cubic complex of C.
+So it can optimize large matrix in some special situations~(e.g large instances with small classes) 
+
+2.~Our algorithm works for some applications but can not be qualified to all situations.
+To our knowledge, verification is to ask two things are identity or not. A common way is to extract features and calculate cosine distrance.
+It can be seen as a binary classification problem in some way and if there are multiple features then our algorithm can also handle verification problem.
+
+\section{Refference}
+\begin{itemize}
+  \item [1] A Robust Convex Formulation for Ensemble Clustering.
+  \item [2] On Feature Combination for Multiclass Object Classification.
+  \item [3] Low-rank matrix completion by Riemannian optimization.
+  \item [4] Partial sum minimization of singular values in Robust PCA: Algorithm and applications
+\end{itemize}
+
+\fi
+
+\section{Final Version}
+
+We thank all the reviewers. R1 and R3 are positive. R2 has a few questions regarding the experiment and implementation details, without criticizing the technical part and novelty. We will carefully revise the paper according to all suggestions. 
+
+\subsubsection{To R1 }
+
+1. The complexity of existing nuclear norm based methods is cubic due to the presence of SVDs.The per-iteration complexity of our algorithm is $O((n+Cm)C^2 +nmC)$, which is more efficient. 
+
+ 2. We agree that our algorithm can’t handle the cases where there is only a single test sample. However, there are many applications where there are more than one samples.
+
+\subsubsection{To R2}
+
+Q1. Decisions of features are quite different. 
+
+A1. 
+Please kindly note that even though the “soft labels” derived from different features could be different,
+the “binary class labels” should not be very different,
+given sufficient training data and reasonably good feature representations.
+In Figure 1, we converted the predictions of all features to a “binary” indicator matrix.
+In this case, if the feature is a good one the binary class labels are expected to be consistent among different features.
+If a binary label is very different from others, it is more likely it is an outlier which should be filtered out. 
+
+
+Q2. how to implement late fusion  
+
+A2. The output of Algorithm-3, i.e., X, is used to generate the final labels by post processing (“post process” section). Step 2 and Step 3 in Algorithm-3 perform the subspace search. The procedure of Algorithm-3 guarantees the consistency of different classifiers by imposing the rank constraint into.
+
+Q3. Why robust loss
+
+A3. Thanks for the question. We will add the discussion in the revision. Briefly, the l1,2 loss preserves the fidelity within each column by L2 loss vertically, and is robust to sparse errors across all the columns by L1 loss horizontally.  l1,2 loss will capture the outlier columns whose l2 loss is large. 
+ 
+Q4. Experiment: 
+
+A4. We used the best-performing CNN models for feature extraction including VGGNet, GoogleNet, etc..  These features are fairly state of the art. They have been widely used in various recent research papers and have been verified the most effective features by recent internationally recognized competitions such as the ImageNet competition.
+   
+\subsubsection{To R3}
+
+Q1. Accumulation point 
+
+ A1. Accumulation point is the limit point of a sequence. We will avoid using this term in the revision.
+
+ Q2. tangent bundle 
+
+A2. Tangent bundle is crucial for Riemannian optimization because it helps define the Riemannian metric on manifold, which is the base of computation of Riemannian gradient. More details can be found in (Vandereycken, B. 2013) and will be added into our revision.   
+
+Q3: Not compare to suggested papers 
+
+A3: The focus of this paper is late fusion as opposed to improving a specific task, eg, CIFAR10. Thus, we used the fusion methods as baselines, rather than the state-of-the-art models trained on a single feature. Following your suggestion, we additionally take wide residual network as an input of our algorithm for fusion, and the performance is better than the recommended paper. We will report this result and cite the two papers. 
+
+\end{document}

@@ -1,0 +1,145 @@
+\def\year{2017}\relax
+%File: formatting-instruction.tex
+\documentclass[letterpaper]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm,mathrsfs,amsfonts,dsfont}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{subfigure}
+\usepackage{color}
+\usepackage{epstopdf}
+\usepackage{bm}
+%\usepackage[vlined,boxed,ruled]{algorithm2e}
+\usepackage{url}
+\usepackage{xspace}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+
+\def\yanred{\textcolor{red}}
+
+\usepackage{aaai17}
+\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+
+\def\yanred{\textcolor{red}}
+\def\yanblue{\textcolor{blue}}
+
+
+\frenchspacing
+\setlength{\pdfpagewidth}{8.5in}
+\setlength{\pdfpageheight}{11in}
+\pdfinfo{
+/Title (Insert Your Title Here)
+/Author (Put All Your Authors Here, Separated by Commas)}
+\setcounter{secnumdepth}{0}
+ \begin{document}
+
+
+% The file aaai.sty is the style file for AAAI Press
+% proceedings, working notes, and technical reports.
+%
+
+%\title{Outlier Reject for Late Fusion on Visual Recognition}
+\title{Reviews for Late Fusion via Subspace Search with Consistency Preservation}
+
+\author{AAAI Press\\
+Association for the Advancement of Artificial Intelligence\\
+2275 East Bayshore Road, Suite 160\\
+Palo Alto, California 94303\\
+}
+
+\maketitle
+
+\section{Assigned Reviewer 1 (Borderline)}
+\subsection{Paper Summary}
+This paper proposed an interesting late prediction fusion strategy by formulating the problem as a fixed-rank matrix recovery problem with additional $l_{1,2}$ norm accounting for outliers.
+In order to solve the corresponding formulation, the authors proposed an ALM based optimization algorithm which transforms original unknown problem to solvable existing subproblems.
+Empirical studies on popular datasets show promising performance gains from existing late fusion alternatives.
+
+\subsection{Paper Strengths}
+This paper is well written. The logic flow is clear and most technical parts are correct.
+I like the idea to apply matrix factorization with $l_{1,2}$ norms to deal with outliers in the late prediction fusion problem. 
+Low rank matrix factorization and/or many flavors of sparse-inducing norms have been well studied focusing on their theoretical properties. 
+Using such formulation is both intuitively well-grounded e.g. [1] and empirically validated as shown in the experiment sections. 
+Therefore I found this proposal to be interesting and useful.
+The authors also proposed an optimization solution via ALM to transform their formulation to solvable subproblems. The application of ALM is standard. I am less experience in the field of model ensemble and other fusion methods, I cannot judge the novelty of this application.
+
+[1] Liu, Guangcan, et al. "Robust recovery of subspace structures by low-rank representation." IEEE Transactions on Pattern Analysis and Machine Intelligence 35.1 (2013): 171-184.
+
+\subsection{Paper Weaknesses}
+One of my major concern is that, I found the technical part in Sec 3.2 a little over-sold. For example, Theorem 1 aka the convergence of ALM is not novel and should not appear as a theorem of this paper without any reference. The same concern applies to the technical derivations after eq (6) which are basically contents from [41] etc. 
+
+There are some minor mistakes as follows:
+
+line 173-174 grammar error
+line 212-215, I think the notation of m and C were messed up here, please fix it.
+
+\subsection{Preliminary Evaluation}
+I found the application of low-rank matrix factorization and $l_{1,2}$ norm to the model fusion problem to be interesting. However, I think the technical contribution is relatively limited and I suggest the authors to re-organize their technical parts according to details above.
+
+\section{Assigned Reviewer 2 (Weak Reject)}
+
+\subsection{Paper Summary}
+This paper presents a method for fusing the outputs of an ensemble of classifiers using a low-rank constraint coupled with a column-wise sparsity penalty. The resulting pipeline is deployed on a number of recognition tasks and compared against existing baselines.
+
+\subsection{Paper Strengths}
+With the rise of many different methods for generating diverse feature types and classifiers, fusion methods can have significant practical value, especially if efficient implementations exist, such as that proposed here.
+
+\subsection{Paper Weaknesses}
+This paper exhibits weaknesses that relate to technical novelty and significance. 
+First, the basic concept of performing late fusion using robust low-rank representations has already been explored in the literature, e.g., references [10] and [50]. Hence the remaining space for novelty and impact lies here only in attempts to speed up these formulations by replacing the nuclear norm with a low-rank matrix factorization, a common substitution in the matrix recovery literature (see P. Jain et al., "Low-rank Matrix Completion using Alternating Minimization," STOC 2013). The proposed algorithm itself is based on a very standard augmented Lagrangian formulation that is commonly used for related problems with $L_{(1,2)}$ column sparsity norms, adopted to mute the impact of outliers (e.g., Liu et al., "Robust Recovery of Subspace Structures by Low-Rank Representation," PAMI 2013). We then must examine the various component parts for technical contributions, but here is where additional issues arise.
+
+First, all of Section 3.3, and more than one page of the technical meat of the paper, is spent attempting to solve the subproblem given by eq. (6), which is just minimizing the Frobenius norm of M - X over X, subject to a low-rank factorization constraint $X = UV$. Of course there exists a well-known closed-form solution to eq. (6). Indeed this problem is equivalent to solving $min_X || M - X ||_F s.t., rank(X) <= p$, which has a simple solution in terms of the SVD of M. Please see Vidal and Favaro, "Low Rank Subspace Clustering," Pattern Recognition Letters, 2013, although this result exists in many standard text-books as well given that it is just another basic representation of PCA.
+
+Hence my guess, although not stated in the paper, is that perhaps the obvious closed-form solution via SVD is deemed too computationally expensive in high dimensions? However, even if this is the case, one could always just use standard alternating minimization to solve for U with V fixed and V with U fixed as is done in matrix recovery problems (see the P. Jain et al., 2013 reference from above). Each of these iterations will also have closed-form solutions via least squares, but at a much lower dimension, and geometric convergence can be guaranteed, often to the global solution. In contrast, for the proposed method from Section 3.3 via a complicated Riemannian manifold method, it is unclear to me whether or not any kind of convergence guarantee to a global solution is ever possible.
+
+So Algorithms 2 and 3 may be unnecessary, or at least replaceable with something much simpler, and we turn to the other subproblem of updating E. But this is just an obvious thresholding result as well since the problem easily decouples across columns, so there is no wiggle room for novel technical contributions here (in fact, update rules of this type appear in many places, including reference [47]).
+
+Beyond this, from a technical contribution standpoint we have Theorem 1, which relates any accumulation points of the proposed iterations to stationary points (presumably assuming the inner loop updates for X actually even converge). However, the underlying objective function is nonconvex, and some typcial ALM analysis may not apply, so how do we even know that the sequence of $lambda_k$ will be bounded as required, or that accumulation points will even exist? Without these aspects, the result has limited value, so it would seem that some details are missing from this construction.
+
+Finally, from an empirical standpoint, in Table 1 we observe that LPBoost performs similarly to the proposed method; however, it may be difficult to draw firm conclusions given all of the post-processing steps and parameters involved in tuning various methods. Additionally, in Table 5, why not compare against other state-of-the-art fusion methods, as opposed to just single model results?
+
+\subsection{Preliminary Evaluation}
+Given the incremental nature of this paper per the points raised above, my feeling is that this work is not yet sufficient for CVPR, but I am open to counterarguments during the rebuttal period as I could have misinterpreted certain contributions.
+
+\subsection{Reproducibility}
+I did not quite understand the description of the experiments carried out in Section 4.5. Is the point that a fused model with extra information can perform better than the best single model performance as implied in lines 782-783? If so this seems like a rather obvious conclusion, but I could be missing something.
+
+\section{Assigned Reviewer 3(Weak Accept)}
+
+\subsection{Paper Summary}
+The paper proposes a matrix decomposition approach to discovering structure in the set of labels for a set of data points produced by multiple classifiers. The structure is then utilized to make a consistent prediction in a way that is robust to outliers by some of the classifiers. 
+
+The focus is on speed and robustness. The method is faster than the baselines used in comparisons. In fact, it is by several orders of magnitudes faster by the method that is closest in accuracy.
+
+\subsection{Paper Strengths}
+Looks correct to me. I could think of many other ways of doing this, and can't be sure that the authors' approach is the best, but in comparisons, it achieves all the goals.
+
+\subsection{Paper Weaknesses}
+Minor: 
+
+- The math starts in lines 208-215 with notation that does not match the figure, or the math later (which does match the figure).
+
+- Equation 5, line 302-3, I think you missed $\mu/2$ in front of the first term
+
+- Discuss how the $l_{1,2}$ norm helps with outliers; show what happens if you use $l_2$ norm as usual
+
+- Post-processing to finalize the labels is a bit adhoc and generalizes consensus voting; What if some classifiers are adversarial (deliberately, or accidentally, like switching two labels consistently). Even if some classifiers consistently switch labels for some classes, they would still be adding the information to the ensemble, and the subspace model would in fact catch it (you'd see that $L=1$ really is evidence for $L=2$). It would be worth discussing and showing an example where one of the classifiers is bad like this but helps the ensemble do well (George Constanza idea of doing the opposite; the decomposition detects Constanza's)
+
+\subsection{Preliminary Evaluation}
+See above, plus a suggestion:
+
+There is no reason why this method could not be used to add classifiers that predict things we are not interested in (e.g., we are classifying image as indoors/outdoors, but some oft he classifiers do not predict these labels, but instead predict some of the imagenet categories)
+
+\end{document}

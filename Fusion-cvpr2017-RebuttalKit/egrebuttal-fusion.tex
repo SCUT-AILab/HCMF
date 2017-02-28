@@ -1,0 +1,123 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multirow}
+
+\def\dxyred{\textcolor{red}}
+\def\bE{\bf{E}}
+\def\bL{\bf{L}}
+\def\bX{\bf{X}}
+\def\calL{\mathcal{L}}
+\def\blambda{\mbox{{\boldmath $\lambda$}}}
+
+\usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
+
+%%%%%%%%% PAPER ID  - PLEASE UPDATE
+\def\cvprPaperID{3651} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+\begin{document}
+
+%%%%%%%%% TITLE - PLEASE UPDATE
+\title{Late Fusion via Subspace Search with Consistency Preservation}
+
+\maketitle
+\thispagestyle{empty}
+
+We thank all the reviewers.
+%R3 is positive.
+%R1 has some suggestions about technical analysis.
+%R2 may have some misunderstandings about our paper.
+We will take the comments seriously and will carefully revise the paper.
+Code will be released.
+
+\noindent\emph{\textbf{To Assigned Reviewer 1}}
+
+{\bf Q1: The technical part in Sec 3.2 a little over-sold.}
+
+{\bf A1:}
+\textbf{Thanks for the comments.}
+First, ALM is usually used for solving convex problems~[50] and (G. Liu etal, TPAMI 2013),
+but our Problem~(2) is \textbf{non-convex},
+and thus the convergence behavior of Algorithm 1 is unclear using standard ALM.
+Second, we explicitly indicate the connection between the definition (Eq.8) and the computation (Algorithm 2) of Riemannian gradient by presenting Lemma 1,
+which has never been discussed in previous works.
+Third, we present every step of Algorithm~1 to make the paper self-contained.
+To address the concerns, we will add more references (including G. Liu etal, TPAMI 2013) and explain the difference between our paper and the related works.
+
+Typos will be corrected.
+
+\noindent\emph{\textbf{To Assigned Reviewer 2}}
+
+\textbf{Thanks for constructive comments and suggestions.}
+We may have not clearly presented our method so that reviewer have misunderstood some points.
+Below we mainly clarify reviewer's misunderstandings, illustrate the contributions and highlight the differences between the existing methods.
+
+It it correct that our approach is more efficient than SVD,
+but it seems that reviewer may have misunderstood the connections/differences between the STOC paper (P. Jain et al. 2013) and our approach.
+At the first glance the STOC paper looks directly applicable to our problem,
+but the conditions of the paper and ours are quite different.
+Specifically, the STOC paper requires a \textbf{Incoherent Matrix Assumption} for matrix completion,
+which is not guaranteed to converge the global solution in our work.
+Therefore, we disagree with reviewer that alternating minimization would reach a global solution with a simpler approach.
+In addition, as shown in [41], the Riemannian manifold method converges faster than the alternating minimization approach.
+%indicating that our approach is more capable of dealing with high-dimensional large scale data.
+
+Apart from the misunderstanding, reviewer's concerns are mainly about the contributions given [10], [50] and (Liu et al. PAMI 2013).
+Below, we brief the novelties and contribution over [10], [50] and (Liu et al. PAMI 2013).
+%[10] and [50] formulate the fusion problem as a nuclear norm regularization problem, which cannot handle large-scale problems.
+First, our method leverages $l_{1,2}$ norm for malicious classifier detection rather than the commonly used robust $l_{1}$ norm [10].
+Second, we show the convergence of ALM for solving a non-convex problem rather than the convex problem in previous work (Liu et al. 2013).
+Third, we propose to use matrix factorization (MF) technique to improve the efficiency comparing with nuclear norm based methods [10, 50].
+Fourth, most MF methods only consider smooth $l_{2}$ loss, but we extend it to non-smooth $l_{1,2}$ loss.
+
+Based on our discussions above,
+Algorithm 2/3 should not be replaced by other methods based on the STOC paper.
+
+Regarding the comments on Theorem 1, we clarify a few minor misunderstandings and technical issues.
+First, the convergence of $\bX$ is guaranteed by [41].
+Second, the proof of Theorem 1 relies on the gradient without the convexity requirement.
+Third, the assumption for the boundedness of $\lambda_k$ is common (Th. Oh etal. TPAMI2016).
+With $k \rightarrow \infty$, the gradient of $\calL$ vanishes.
+Thus our algorithm converges and accumulation points will be achieved.
+
+Thanks for the comments on empirical study.
+However, reviewer may have overlooked important results from the tables.
+Our method significantly outperforms LPBosst, as reported in Table 1 and 5.
+Specifically, our method achieves much higher accuracy \textbf{(89.03\%)} than LPBoost \textbf{(86.24\%)} on UCF-101,
+and CIFAR-100 \textbf{(77.72\% vs 76.59\%)}.
+
+As indicated in Sec 4.4, we have provided very detailed approach for post-processing.
+All the parameters of all algorithms are tuned by cross-validation with the same setting.
+No human intervention was involved.
+Therefore, the results should be reproducible and reliable.
+
+
+It is the convention of CV papers to compare the results reported in recent papers on a standard setting.
+CV researchers sometimes do not release their best model for business reasons,
+but often share the not-that-new models with the community.
+We show that combining a few weak models using our method,
+the performance can be better than a single strong model.
+To be more specific, the best single model on CIFAR-10 was reported in 12/2016 (see arXiv:1611.05431) with a test error of 3.58.
+Our method fuse multiple single models which all perform worse than (arXiv:1611.05431), but can achieve low test error on CIFAR-10 (3.47 in Table 5).
+This demonstrates the benefit of a good late fusion method.
+
+We will take reviewer's comments seriously and will revise our paper carefully according to the comments.
+We hope reviewer will find our paper contains novel ideas and acceptable for CVPR based on our explanations.
+
+\noindent\emph{\textbf{To Assigned Reviewer 3}}
+
+\textbf{Thanks for comments.}
+Inappropriate figures, notations and typos will be revised/corrected.
+$\ell_{1,2}$ loss preserves the fidelity within columns (lines 106-110),
+and we will add more discussions and results of using $\ell_{2}$ norm.
+Regarding the question on adversarial classifiers, we have discussed this issue in Sec4.1 \textbf{visualized in Fig.2.}
+We will add more discussions and cite the related paper.
+Thanks for the last suggestion, and it will be investigated in our future work.
+
+\end{document}
