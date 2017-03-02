@@ -174,11 +174,11 @@ or extract features based on well-trained convolutional neural networks (CNNs)~\
 Moreover, text data can be represented by term frequency–inverse document frequency (tf-idf)~\cite{manning2008introduction} and word2vec~\cite{mikoloviclr2013efficient}.
 Each category of features tends to capture some specific characteristics of data,
 such as textures of images and frequencies of text data.
-When building a prediction model, the model trained on one kind of feautures could be biased and hence may incur unsatisfactory performance.
+When building a prediction model, the model trained on one kind of features could be biased and hence may incur unsatisfactory performance.
 Existing works have investigated the performance improvement by combining multiple kinds of features in real-world applications~\cite{gehler2009feature,ye2012robust,xuiccv2013feature,lai2015learning}.
 
 
-%% late fusion is a common sigle model -> single feature, 介绍late fusion
+%% late fusion is a common single model -> single feature, 介绍late fusion
 Late fusion, a typical approach to obtaining the final decision on testing data, aims to fuse the predictions from different features.
 A commonly used method is to learn weights for predictions from various features to combine them, which has a number of variations~\cite{gehler2009feature,xuiccv2013feature,lai2015learning}.
 Among these algorithms, multiple kernel learning (MKL)~\cite{lanckriet2004learning,Rakotomamonjy2008Simplemkl} is often used to train such a weighted combination.
@@ -212,15 +212,16 @@ Particularly, our method searches the solution in a low-rank subspace under a fi
 As for outlier detection,
 we propose to filter out these inconsistent predictions on specific classes of models (See Fig.\ref{fig:framework}.
 Notations are introduced shortly.).
-Due to the fact that the $\ell_{1,2}$ loss preserves the fidelity within each column by $L_2$ loss in the vertical direction and is robust to sparse errors across all the columns by $L_1$ loss in the horizontal direction,
-we apply this robust $\ell_{1,2}$ loss to remove the outlier columns in the label indicator matrix.
-Furthermore, most existing matrix factorization optimization methods only consider smooth loss functions, rather than the nonsmooth loss.
-We thus in particular present an approach based on augmented Lagrangian multiplier (ALM) to extend matrix factorization methods to nonsmooth problems.
+The $\ell_{1,2}$ loss preserves the fidelity within each column by $L_2$ loss in the vertical direction and is robust to sparse errors across all the columns by $L_1$ loss in the horizontal direction.
+However, the single $L_2$ doesn't have the ability to detect outliers and the single $L_1$ has the instability property.
+Based on this observation, we apply this robust $\ell_{1,2}$ loss to remove the outlier columns in the label indicator matrix.
+Furthermore, most existing matrix factorization optimization methods only consider smooth loss functions, rather than the non-smooth loss.
+We thus in particular present an approach based on augmented Lagrangian multiplier (ALM) to extend matrix factorization methods to non-smooth problems.
 
 The main contributions of this work are summarized as below:
 \begin{itemize}
   \item We formulate the late fusion problem as a fixed-rank robust matrix recovery problem based on matrix factorization, which intuitively preserves the consistency of predictions from different sources.
-  \item We propose an ALM based algorithm to extend existing matrix factorization algorithms from smooth least square loss to nonsmooth $\ell_{1,2}$ loss. 
+  \item We propose an ALM based algorithm to extend existing matrix factorization algorithms from smooth least square loss to non-smooth $\ell_{1,2}$ loss. 
   %\item Our proposed algorithm is more efficient than most state-of-the-art late fusion methods.
   %It is capable of handling large scale problems.
   \item Empirical studies show significantly improvement of our proposed method compared to existing late fusion algorithms.
@@ -239,7 +240,7 @@ In~\cite{lai2015learning}, a sample specific late fusion based on graph Laplacia
 which learns sample specific fusion weights by diffusing the information from labeled samples to the unlabeled one.
 In~\cite{xuiccv2013feature}, a optimization algorithm are proposed to combine diverse decision values,
 which learns the weights, thresholding and smoothing parameters in a joint framework.
-However, all these mkl based fusion methods or others only learn weights to combine different basic models, which do not consider the outlier rejection in the fusion process specifically.
+However, all these MKL based fusion methods or others only learn weights to combine different basic models, which do not consider the outlier rejection in the fusion process specifically.
 
 %Our proposed late fusion algorithm is based on matrix factorization,
 %which has attracted increasing attention recently.
@@ -255,11 +256,15 @@ In~\cite{ngonips2012scaled}, a gradient methods based on scaled metric on the Gr
 The authors in~\cite{Wen2012} propose a low-rank matrix fitting algorithm to solve large scale matrix completion problems by exploiting nonlinear successive over-relaxation.
 In~\cite{RechtNIPS2011hogwild}, a lock-free approach to parallelizing stochastic gradient descent is proposed.
 However, all these matrix factorization methods only consider the general least square loss, which cannot be directly applied to handle $\ell_{1,2}$ loss.
+Moreover, \cite{jain2013low} can also be used for matrix completion based on alternating minimization,
+but they require the incoherent matrix assumption and a fresh measurements at each iteration.
+Thus their method can not be guaranteed to converge the global solution in our work.
+In addition, as shown in \cite{vandereycken2013lowrank}, the Riemannian manifold method converges faster than the alternating minimization approach.
 
-Some other fusion algorithms are propsed for specific tasks, which would be hard to extend to general problems.
+Some other fusion algorithms are proposed for specific tasks, which would be hard to extend to general problems.
 In~\cite{zheng2015query}, the authors estimate a feature’s effectiveness in a query-adaptive manner for image retrieval problems,
 and they combine the scores of multiple features weighted by their effectiveness.
-In~\cite{zha2015exploiting}, they use fusion features scores of different CNN layers and encoded features impove the accuracy of action recognition.
+In~\cite{zha2015exploiting}, they use fusion features scores of different CNN layers and encoded features improve the accuracy of action recognition.
 In~\cite{feichtenhofer2016convolutional}, the authors explore a variety of fusion methods to combine spatial and temporal CNN models, significantly improving the performance of two-stream network~\cite{simonyan2014two}.
 \cite{wangmodality} proposes a framework use high-dimensional Fisher Vector features from RGB, HHA and surface normal modalities to effectively achieve state-of-the-art scene classification performance.
 \cite{Wang_Transformation,tapaswi2015movieqa,yaohighlight} use some simple strategies to choose specific weight for different scores from multiple features.
@@ -309,7 +314,7 @@ We hence transform the original problem as a matrix factorization formulation as
 \end{align}
 }
 \noindent
-Nevertheless, existing matrix factorization algorithms focus on smooth loss functions, rather than a nonsmooth $\ell_{1,2}$ loss function~\cite{tanicml2014riemannian,vandereycken2013lowrank,Wen2012,ngonips2012scaled,rtrmc2011boumal}.
+Nevertheless, existing matrix factorization algorithms focus on smooth loss functions, rather than a non-smooth $\ell_{1,2}$ loss function~\cite{tanicml2014riemannian,vandereycken2013lowrank,Wen2012,ngonips2012scaled,rtrmc2011boumal}.
 In the following section, we present an ALM optimization framework to solve Problem~(\ref{eq:l12_mf}).
 
 
@@ -349,9 +354,8 @@ In the following section, we present an ALM optimization framework to solve Prob
 
 \subsection{Optimization Based on ALM}
 
-Most existing matrix factorization optimization methods only consider smooth loss functions, rather than the nonsmooth $\ell_{1,2}$ loss used in Problem~(\ref{eq:l12_mf}).
+Most existing matrix factorization optimization methods only consider smooth loss functions, rather than the non-smooth $\ell_{1,2}$ loss used in Problem~(\ref{eq:l12_mf}).
 In this section, we present an ALM based algorithm to optimize Problem~(\ref{eq:l12_mf}).
-
 
 
 By introducing a new variable $\bE = \bL - \bX$, we can develop Problem~(\ref{eq:l12_mf}) as below:
@@ -376,11 +380,16 @@ and $\blambda \in \dsR^{n \times m\calC}$ are the Lagrangian multipliers.
 Here $\langle \bA, \bB \rangle$ is the inner product of $\bA \in \dsR^{m \times n}$ and $\bB \in \dsR^{m \times n}$, and defined as $\langle \bA, \bB \rangle = \sum_{i=1}^{n} \sum_{j=1}^{m} \bA_{ij} \bB_{ij}$.
 Then we can update $\bX$ and $\bE$ alternatively, which is summarized in Algorithm~\ref{alg:alm_mf}.
 
+The previous ALM methods~\cite{liu2013robust} usually focus on the convex problem,
+but Problem~(\ref{eq:l12_mf}) is the non-convex problem.
+We proof the convergence of ALM for solving a non-convex problem relying on the gradient, as following:
 
 \begin{theorem}
 \label{theorem:alm_convergence}
   Suppose the sequences $\{\bX_k\}_{k=1}^{\infty}$, $\{\bE_k\}_{k=1}^{\infty}$ and $\{\blambda_k\}_{k=1}^{\infty}$ are generated by Algorithm~\ref{alg:alm_mf},
-  and $\{\blambda_k\}$ is bounded. Any accumulation point $(\bX^*, \bE^*)$ is a stationary point.
+  and $\{\blambda_k\}$ is bounded.
+  As $k \to \infty$, the gradient of $\calL$ vanishes,
+  thus any accumulation point $(\bX^*, \bE^*)$ is a stationary point.
 \end{theorem}
 
 \begin{proof}
@@ -427,7 +436,7 @@ A smooth manifold of fixed-rank-$r$ matrices is defined as~\cite{vandereycken201
 }
 \noindent
 where $\textrm{St}_{r}^{n} = \{\U \in \R^{n\times r}:
-\U^{\trsp}\U = \I \}$ dentoes the Stiefel manifold of $n\times r$ real and orthonormal matrices.
+\U^{\trsp}\U = \I \}$ denotes the Stiefel manifold of $n\times r$ real and orthonormal matrices.
 We denote the tangent space by $T_{\bX}\M_{r}$ of $\M_{r}$ at $\bX = \U\diag(\bsigma)\V^{\trsp} \in \R^{n \times m\calC}$,
 which is obtained as below
 {\small
@@ -584,7 +593,6 @@ The above problem can be efficiently solved by the following column-wise soft-th
 }
 \noindent
 where $\bE_{i}$ and $\bN_{i}$ denote the $i$-th column of $\bE$ and $\bN$,
-%and $\alpha = \frac{2}{\mu}$.
 and $\alpha = \frac{1}{2}$.
 
 \subsection{Post Process}
@@ -599,10 +607,10 @@ Intuitively, there might be several possible ways to select as below:
       Finally, we choose the label with the most votes to be the prediction results.
   \item \textbf{[GATE].} $\bX_j$ where $1 \leq j \leq m$ are transformed through softmax function as a gate of the corresponding confidence score matrix, which is normalized by $L_2$ norm.
       As $\bX_j$ contains outlier rejection information, we product the $\bX_j$ by the corresponding score matrix after softmax and normalization.
-      The similar process as the first strategy is applied to the above results, which predictes the final labels.
+      The similar process as the first strategy is applied to the above results, which predicts the final labels.
 \end{itemize}
 According to the experiments, the last strategy ``GATE'' outperforms than the others.
-So We choose the last one as the post process for our fusion method and analyse inner reasons during the experiment section.
+So We choose the last one as the post process for our fusion method and analyze inner reasons during the experiment section.
 
 \subsection{Computation Complexity}
 
@@ -611,32 +619,28 @@ The sub-algorithm in Section~3.3 solve the solution of $\bX$.
 The primary computation is described in Algorithms.~\ref{alg:compute_riemannian_grad} and~\ref{alg:LRGeomCG},
 which uses subspace search to optimize the solution.
 And the complexity is $T \times O((n+{\calC}m){\calC}^2)$, where $T$ is the number of iterations.
-According to \cite{vandereyckensiamjo2013low}, $T$ is less than 100 for most situations,
-and more details can be found in \cite{vandereyckensiamjo2013low}.
+According to \cite{vandereycken2013lowrank}, $T$ is less than 100 for most situations,
+and more details can be found in \cite{vandereycken2013lowrank}.
 The complexity of optimization on $\bE$ and post-processing can be easily calculated as $O(nm{\calC})$ and $O(nm{\calC})$.
-So, the total comlexity per iteration is $T \times O((n+{\calC}m){\calC}^2) + O(nm{\calC})$,
+So, the total complexity per iteration is $T \times O((n+{\calC}m){\calC}^2) + O(nm{\calC})$,
 which is linear by growing of $n$ and $m$, with the cubic complexity of $\calC$.
 
 Comparing with those nuclear norm based methods~\cite{gaoijcai2016robust,ye2012robust} whose computational complexity is cubic due to the presence of SVDs,
 our algorithm is more efficient for large scale problems.
 For example, \cite{gaoijcai2016robust} reportes their entire complexity is $(m{\calC})^3+n(m{\calC})^2$ per iteration.
-With the increase in the number of classifers,
-the computation costs too much to be affordable due to the cubic complexiry of $m$,
+With the increase in the number of classifiers,
+the computation costs too much to be affordable due to the cubic complexity of $m$,
 but ours are able to solve the solution.
 
 \section{Experimental Studies}
 
 In this section, we first visualize the results of our approach on the synthetic dataset.
-Then we evaluate the perfomance on eight publicly available real-world data sets,
+Then we evaluate the performance on eight publicly available real-world data sets,
 UCF101~\cite{soomro2012ucf101}, CIFAR-10~\cite{krizhevsky2009learning}, CIFAR-100~\cite{krizhevsky2009learning}, Oxford-IIIT-Pet~\cite{parkhi2012cats}, PASCAL VOC 2007~\cite{pascal-voc-2007}, Oxford Flower 17~\cite{nilsback2006visual}, Pascal Sentence~\cite{rashtchian2010collecting} and Wikipedia~\cite{rasiwasia2010new}.
 The strategy analysis for post process is detailed in the last subsection.
 
-%Details on feature extraction for each dataset are described in the second subsection.
-%, and the confidence scores are set as outputs of LIBLINEAR.
-%Then we put the confidence scores as the input X of our alogrithm.
 
-
-Five state-of-the-art fusion methods are compared with our proposed alogrithm :
+Five state-of-the-art fusion methods are compared with our proposed algorithm :
 \begin{itemize}
 \item Average Score Fusion(ASF). we directly average the confidence scores predicted by classifiers. We use $L_2$ norm on each classifier's results for normalization.
 \item Multiple Kernel Learning (MKL).  MKL learns a weight w for each classifiers, the final score are obtained from function $f(s)=w^{T}s, \sum w = 1$. We use liblinear-mkl\footnote{\url{http://www.csie.ntu.edu.tw/~b95028/software/liblinear-mkl/}} toolbox to train our MKL model.
@@ -662,13 +666,13 @@ For LPBoost, we use cross-validation to pick up the best $\nu$ from $\{0.5,0.6,0
 \subsection{Synthetic Experiments}
 
 In synthetic experiments, we set $n = 280$, $m = 15$, $\calC = 20$ to generate $n$ instances, which are randomly labeled with $c_i, 1 \leq i \leq n, 1 \leq c_i \leq \calC$.
-And we regard these instances as the ground truth data represened by a matrix $Gt \in \dsR^{280 \times 1}$.
+And we regard these instances as the ground truth data represented by a matrix $Gt \in \dsR^{280 \times 1}$.
 Then we randomly permute $40\%$ instances' labels,
 repeating $m = 15$ times to get fifteen classifiers' results as $Er \in \dsR^{280 \times 15}$.
 Therefore, the classification error of each classifier is around 40\%.
 Then, we derive an indicator matrix from the predictions of 15 classifiers,
-and recovere this indicator matrix into the final results, $Rec \in \dsR^{280 \times 15}$, by our proposed algorithm.
-%Deriving an indicator matrix $\bL \in \dsR^{280 \times 300}$ from the synthetic classifiers' results as the input of our proposed alogrithm,
+and recovery this indicator matrix into the final results, $Rec \in \dsR^{280 \times 15}$, by our proposed algorithm.
+%Deriving an indicator matrix $\bL \in \dsR^{280 \times 300}$ from the synthetic classifiers' results as the input of our proposed algorithm,
 %the visualization results are illustrated in Fig.~\ref{fig:ensemble_cluster}.
 We visualize the ground truth information, classifiers' predictions and the recovered results in Fig.~\ref{fig:ensemble_cluster}.
 
@@ -755,7 +759,7 @@ In all other experiments, eight different features are extracted from the follow
 ``fc6'' of AlexNet,CaffeNet~\cite{krizhevsky2012imagenet},
 ``pool5/7x7\_s1'' from GoogleNet~\cite{szegedy2015going},
 and ``pool5'' of ResNet-50,101,152~\cite{he2015deep}.
-We use the offical pre-trained model provided by Caffe Model Zoo
+We use the official pre-trained model provided by Caffe Model Zoo
 \footnote{\url{https://github.com/BVLC/caffe/wiki/Model-Zoo}}
 .
 For above eight models, we simply extract features with no extra operation.
@@ -807,12 +811,11 @@ and demonstrate the empirical results in Table~\ref{table:total_acc} and Table~\
 Five data sets are used to compare the performance on each contrast algorithm, including UCF-101, CIFAR-10, CIFAR-100, Oxford-III-Pet and PASCAL VOC 2007.
 The computational cost of cross-validation is not counted in FWOT and LPBoost.
 
-%\subsubsection{Experiment on UCF 101 dataset}
 For action recognition, we present the comparison results on UCF 101 dataset.
-UCF101 contains 13320 videos collected from YouTube, categoried into 101 human action classes.
+UCF101 contains 13320 videos collected from YouTube, categorized into 101 human action classes.
 We use the official split-1 described in~\cite{soomro2012ucf101}, which have 9573 training videos and 3783 testing videos.
-As mentioned above, we extract fives features and train different classifier on each feature with the default parameters by liblinear.
-Then by appling five classifiers on test data, we obtain $5 \times 101$ confidence scores for each video, which forms the input matrix $\bX$ of our algorithm.
+As mentioned above, we extract fives features and train different classifier on each feature with the default parameters by LIBLINEAR.
+Then by applying five classifiers on test data, we obtain $5 \times 101$ confidence scores for each video, which forms the input matrix $\bX$ of our algorithm.
 Results are shown in Table~\ref{table:total_acc} and \ref{table:total_time}, in which we illustrate the performance of six fusion methods.
 To be noted, FWOT is too slow to train, we do not show its result (more than one day).
 
@@ -820,7 +823,7 @@ To be noted, FWOT is too slow to train, we do not show its result (more than one
 
 %\subsubsection{Experiment on Cifar10 dataset}
 
-In CIFAR-10 dataset, totally 60000 32x32 colour pictures are categoried into 10 classes, with 6000 pictures per class.
+In CIFAR-10 dataset, totally 60000 32x32 color pictures are categorized into 10 classes, with 6000 pictures per class.
 There are 50000 training data and 10000 testing data.
 Fourteen CNN features are extracted from multiple state of the art models.
 This experiments exhibit the ability of our algorithm to handle large scale data.
@@ -831,11 +834,10 @@ LPBoost algorithm needs to create a $(n\calC - n) \times (1 + n + m)$ constraint
 \footnote{\cite{gehler2009feature} use the MOSEK interior-point solver, see www.mosek.com.},
 which occupies too much memory and still consumes long time to train,
 so we solve this problem by using sparse matrices and parallel computation in MATLAB.
-We also use `-s 2' parameters in liblinear to speedup training process.
+We also use `-s 2' parameters in LIBLINEAR to speedup training process.
 Results of total six compared algorithms are shown in Table~\ref{table:total_acc} and \ref{table:total_time}.
 
 
-%\subsubsection{Experiment on Cifar100 dataset}
 
 CIFAR-100 is similar with CIFAR-10, except it has 100 classes containing 600 images each.
 There are 50000 training data and 10000 testing data as CIFAR-10.
@@ -843,8 +845,6 @@ Twelve CNN features used in this experiment are described in the feature selecti
 Training and comparison process are the same as CIFAR-10.
 Detailed results are shown in Table~\ref{table:total_acc} and \ref{table:total_time}.
 
-
-%\subsubsection{Experiment on Oxford-IIIT-Pet dataset}
 
 The Oxford-IIIT-Pet dataset contains 7349 images covering 37 different breeds of cats and dogs, 2371 images for cats and 4978 images for dogs.
 There are roughly 200 pictures in each category with a large variations in multiple views, such as pose, scale and lighting.
@@ -857,12 +857,12 @@ The comparison results are shown in Table~\ref{table:total_acc} and \ref{table:t
 PASCAL VOC 2007 is a dataset for object detection and image classification.
 In our experiments, we only use the image level annotation information.
 Since each image may contain more than one label, we filter the multi-label images to obtain 6146 clean data.
-There is similar procesure of sampling, classification and fusion as in Oxford-IIIT-Pet.
+There is similar procedure of sampling, classification and fusion as in Oxford-IIIT-Pet.
 
 From Table~\ref{table:total_acc}, our proposed algorithm provides significant improvement comparing with other effective late fusion methods on most datasets.
-Addtionally, our algorithm is more efficient than other late fusion methods in most situations.
+Additionally, our algorithm is more efficient than other late fusion methods in most situations.
 As we can see from Table~\ref{table:total_time}, some methods are not capable of handling large scale dataset.
-However, ours can sovle the large scale problem efficiently.
+However, ours can solve the large scale problem efficiently.
 %For example, the cost of FWOT is tremendous
 %and it takes more than one day to fuse multiple results on CIFAR and UCF-101.
 %With the growth of class number, LPBoost costs too much on data preparation affecting the overall efficiency.
@@ -871,12 +871,12 @@ However, ours can sovle the large scale problem efficiently.
 \subsection{Post Strategy Selection}
 
 In this section, we compare three proposed post strategies on three small datasets: Wikipedia~\cite{rasiwasia2010new}, Oxford Flowers 17~\cite{nilsback2006visual} and Pascal Sentence~\cite{Li2006One}.
-Wikipedia dataset contains paragraphs of text for each picture, and total 2866 image-text pairs are categoried into 10 class.
+Wikipedia dataset contains paragraphs of text for each picture, and total 2866 image-text pairs are categorized into 10 class.
 Only the image label annotation is used in our experiments.
 PASCAL VOC 2007 contains 9963 images annotated with object-level information, which means each picture may have zero or more than one class.
 We choose 6146 images classified into 20 classes by filtering out the no-single class data.
 Oxford Flowers 17 has 17 flower categories with 80 images for each class.
-Pascal Sentence contains 1000 images annotated by caption information and categoried into twenty classes.
+Pascal Sentence contains 1000 images annotated by caption information and categorized into twenty classes.
 Fifty percent of data are sampled as training set and the others as testing set, and experiments are repeated five times on above three datasets.
 
 The $[$AVE$]$ strategy outperforms than the $[$VOTE$]$ in our experiments, which may be caused by the soft average method reserves more detail information than the hard voting method.
@@ -898,11 +898,11 @@ Strategy            & Wikipedia         & Flowers 17          & Pascal Sentence 
 \label{table:strategy}
 \end{table}
 
-\subsection{Comparision with State-of-the-art}
+\subsection{Comparison with State-of-the-art}
 
 In this sub-section, we compare the performance of our algorithm with the state-of-the-art techniques.
 %we demonstrate experiments to compare the performance of our algorithm with the state-of-the-art techniques.
-We use SVM classifiers based on different features in previous experiments to make a fair comparision with some MKL based mthods.
+We use SVM classifiers based on different features in previous experiments to make a fair comparison with some MKL based methods.
 Since the performance of SVM classifiers usually are not as good as the results directly predicted by CNN models,
 in order to obtain a higher result, we directly fuse multiple state-of-the-art CNN predictions.
 Then we demonstrate the improvement of our fusion results compared to the state-of-the-art single model performance in Table.\ref{table:state_of_the_art}.
@@ -920,10 +920,10 @@ NIN~\cite{lin2013network}                     &     -                & -  \\ \hl
 \end{tabular}
 \end{center}
 \caption{Model selection for CIFAR-10 dataset.
-In the ResNet block, numbers repersent the depth of the selected models.
+In the ResNet block, numbers represent the depth of the selected models.
 ``*'' represents using the bottleneck block, otherwise using the basic block in residual networks.
 In WRN block, ``x-y'', x represents the depth, and y represents the widening factor.
-NIN network has only one formula, so we donot list its depth.}
+NIN network has only one formula, so we do not list its depth.}
 \label{table:models}
 \end{table}
 
@@ -958,8 +958,8 @@ This demonstrates the benefit of a good late fusion method.
 To relieve the performance degeneration in late label fusion from multiple sources, we formulate this problem as matrix factorization which recovers the underlying low-rank matrix and preserves the consistency among different sources.
 %To deal with the dispute on combining multi-view predictions, we formulate the late fusion problem as a matrix recover problem.
 %Our proposed algorithm is based on matrix factorization, which is unclear to consider smooth loss function from earlier research.
-Existing matrix factorization algorithms usually consider smooth loss, while it is unclear how to extend them to handle nonsmooth robust loss, \eg, $\ell_{1,2}$ loss.
-We propose an ALM based algorithm to solve matrix factorization problems with nonsmooth loss.
+Existing matrix factorization algorithms usually consider smooth loss, while it is unclear how to extend them to handle non-smooth robust loss, \eg $\ell_{1,2}$ loss.
+We propose an ALM based algorithm to solve matrix factorization problems with non-smooth loss.
 %Specifically, our proposed algorithm first rejects outliers on a label indicator matrix by $\ell_{1,2}$ loss,
 %and then generates the predictions by combining robust outlier rejection information and prediction confidence scores from basic classifiers.
 Empirical studies on large scale real-world data sets demonstrate that our proposed method can effectively improve performance compared to the state-of-the-art late fusion methods.
