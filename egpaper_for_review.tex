@@ -7,7 +7,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
-%%%%% 
+%%%%%
 \usepackage{subfigure}
 \usepackage{multirow}
 \usepackage{amsthm,mathrsfs,amsfonts,dsfont}
@@ -24,7 +24,12 @@
 \newtheorem{lemma}{Lemma}
 \newtheorem{remark}{Remark}
 
+\newcommand\mycomment[1]{}
 
+\def\ranksym{p}
+\def\symp{r}
+
+\def\calP{\mathcal{P}}
 \def\M{\mathcal{M}}
 \def\R{{\mathbb R}}
 \def\bR{{\bf R}}
@@ -106,8 +111,9 @@
 \def\rank{{\text{rank}}}
 \def\Tr{{\text{Tr}}}
 
-\def\yanred{\textcolor{red}}
+\def\yanred{\textcolor{black}}
 \def\yanblue{\textcolor{blue}}
+\def\kuired{\textcolor{red}}
 %%%%%
 
 % Include other packages here, before hyperref.
@@ -150,20 +156,19 @@ First line of institution2 address\\
 
 
 \begin{abstract}
-In many real-world applications, data can be represented in multiple ways or multi-view features,
-in order to describe various characteristics of data.
-In this way, it could often improve the prediction performance by taking advantage of these feature together.
+In many real-world applications, data can be represented by multiple ways or multi-view features, in order to describe various characteristics of data.
+In this sense, the prediction performance can be significantly improved by taking advantages of these features together.
 Late fusion, which combines the predictions of multiple features, is a commonly used approach to make the final decision for a test instance.
-However, it is ubiquitous that different features would dispute on the data, which results in performance degeneration.
-Therefore, there is a requirement of outlier rejection while preserving consistency among different classifier results.
-In this paper, we propose an efficient matrix factorization based approach to fuse predictions from multiple sources,
-which could avoid the performance degeneration caused by the controversy of multiple features on test data.
-Extensive experiments demonstrate that the proposed method is effective to remove outliers and improve fusion performance.
+However, it is ubiquitous that different features dispute the prediction on the same data with each other, leading to  performance degeneration.
+%Therefore, outlier detection is crucial when combining the predictions of different features.
+In this paper, we propose an efficient and effective matrix factorization-based approach to fuse predictions from multiple sources,
+aiming to avoid the performance degeneration caused by the controversy of multiple features. In this way, the consistency of results by various features can be preserved, which can relieve the performance degeneration.
+Extensive experiments demonstrate efficacy of the proposed method on outlier detection and performance improvement,
+which outperforms the previous state-of-the-art late fusion algorithms on most datasets.
 
 \end{abstract}
 
 \section{Introduction}
-
 
 %背景 多model融合
 Feature representation of objects, which transforms raw data into numerical features, is a prerequisite for most real-world applications.
@@ -179,7 +184,7 @@ Existing works have investigated the performance improvement by combining multip
 
 
 %% late fusion is a common single model -> single feature, 介绍late fusion
-Late fusion, a typical approach to obtaining the final decision on testing data, aims to fuse the predictions from different features.
+Late fusion, a typical approach to obtaining the final decision on testing data, aims to fuse the predictions from different features~\cite{ye2012robust,xuiccv2013feature,lai2015learning,vanicassp2014late}.
 A commonly used method is to learn weights for predictions from various features to combine them, which has a number of variations~\cite{gehler2009feature,xuiccv2013feature,lai2015learning}.
 Among these algorithms, multiple kernel learning (MKL)~\cite{lanckriet2004learning,Rakotomamonjy2008Simplemkl} is often used to train such a weighted combination.
 However, a single feature may produce corrupted predictions on some data, which likely degenerates performance.
@@ -188,7 +193,7 @@ Nevertheless, nuclear norm minimization applied in these works requires singular
 
 \begin{figure}[!t]
 \begin{center}
-\includegraphics[width=0.48\textwidth]{resource/frame_work.pdf}
+\includegraphics[width=0.46\textwidth]{resource/frame_work.pdf}
 \end{center}
 \caption{Framework of our late fusion algorithm.
 In this example, there are 10 instances 3 classifiers and 3 classes.
@@ -206,26 +211,28 @@ We finally apply a post-processing method to generate the fused results.
 \label{fig:framework}
 \end{figure}
 
-To prevent from the expensive nuclear norm minimization,
+To avoid the expensive nuclear norm minimization,
 in this paper, we propose a more efficient matrix factorization algorithm to recover the underlying low-rank label matrix.
 Particularly, our method searches the solution in a low-rank subspace under a fixed-rank constraint.
-As for outlier detection,
-we propose to filter out these inconsistent predictions on specific classes of models (See Fig.\ref{fig:framework}.
+This is a hard constraint, and it is different from~\cite{gaoijcai2016robust,ye2012robust} which introduce a soft constraint on the low-rank property.
+On the other hand, to remove the abnormal predictions generated by individual features, we propose to filter out these inconsistent results by using the $\ell_{1,2}$ regularization (See Fig.\ref{fig:framework}.
 Notations are introduced shortly.).
 \yanred{
-The $\ell_{1,2}$ loss preserves the fidelity within each column by $L_2$ loss in the vertical direction and is robust to sparse errors across all the columns by $L_1$ loss in the horizontal direction.
-However, the single $L_2$ doesn't have the ability to detect outliers and the single $L_1$ has the instability property.
-Based on this observation, we apply this robust $\ell_{1,2}$ loss to remove the outlier columns in the label indicator matrix.
+Specially, $\ell_{1,2}$ loss preserves the fidelity within each column by $\ell_{2}$ loss in the vertical direction and is robust to sparse errors across all the columns by $\ell_{1}$ loss in the horizontal direction.
+Compared to $\ell_{1,2}$ loss, $\ell_{2}$ loss is sensitive to outliers, so that may not produce robust and satisfactory predictions.
+$\ell_{1}$ loss is not sensitive to outliers, but not capable to detect the abnormal features which generate corrupted results.
 }
-Furthermore, most existing matrix factorization optimization methods only consider smooth loss functions, rather than the non-smooth loss.
-We thus in particular present an approach based on augmented Lagrangian multiplier (ALM) to extend matrix factorization methods to non-smooth problems.
+In addition, most existing matrix factorization optimization methods only consider smooth loss functions, rather than the non-smooth loss.
+Thus, we in particular present an approach based on augmented Lagrangian multiplier (ALM) to extend matrix factorization methods to non-smooth problems.
 
-The main contributions of this work are summarized as below:
+The main contributions of this work are summarized as follows:
 \begin{itemize}
-  \item We formulate the late fusion problem as a fixed-rank robust matrix recovery problem based on matrix factorization, which intuitively preserves the consistency of predictions from different sources.
-  \item We propose an ALM based algorithm to extend existing matrix factorization algorithms from smooth least square loss to non-smooth $\ell_{1,2}$ loss. 
+  \item We formulate the late fusion problem as a fixed-rank robust matrix recovery problem, which is the first attempt to introduce a hard constraint on the low-rank property to the late fusion problem.
+      Our model intuitively removes inconsistent predictions made by abnormal features and preserves the consistency of predictions from different sources.
+  \item We propose an ALM-based algorithm to enable matrix recovery algorithms to handle non-smooth $\ell_{1,2}$ loss, rather than a simple least square loss which has been frequently studied in literature.
   %\item Our proposed algorithm is more efficient than most state-of-the-art late fusion methods.
   %It is capable of handling large scale problems.
+  \item We provide theoretical convergence analysis for the proposed robust matrix recovery algorithm.
   \item Empirical studies show significantly improvement of our proposed method compared to existing late fusion algorithms.
 \end{itemize}
 
@@ -233,14 +240,15 @@ The main contributions of this work are summarized as below:
 %% Matrix factorization
 %% Fusion Methods
 
-MKL based method is a simple but efficient way to combine different features for multi-model fusion,
-and many improved algorithms have been proposed by introducing more constraint, boosting methods and other optimization.
+%MKL based method is a simple but efficient way to combine different features for multi-model fusion,
+%and many improved algorithms have been proposed by introducing more constraint, boosting methods and other optimization.
+MKL is a common way to combine different features for multi-model fusion.
 In~\cite{vedaldi2009multiple}, the authors use MKL to learn an optimal combination of exponential ${\chi}^2$ kernels capturing a different feature channel.
-In~\cite{gehler2009feature}, boosting approaches are proposed to ensemble different features, which learns the correct weighting of multiple predicted confidence scores from different models.
-In~\cite{natarajan2012multimodal}, the authors propose a two-step strategy employing MKL and late score fusion methods to combine diverse features, specifically on event detection tasks.
+Gehler \etal \cite{gehler2009feature} propose boosting approaches to ensemble different features, which learns the correct weighting of multiple predicted confidence scores from different models.
+The authors of \cite{natarajan2012multimodal} propose a two-step strategy employing MKL and late score fusion methods to combine diverse features, specifically on event detection tasks.
 In~\cite{lai2015learning}, a sample specific late fusion based on graph Laplacian with RankSVM style constraints is proposed,
 which learns sample specific fusion weights by diffusing the information from labeled samples to the unlabeled one.
-In~\cite{xuiccv2013feature}, a optimization algorithm are proposed to combine diverse decision values,
+Xu \etal \cite{xuiccv2013feature} propose an optimization algorithm to combine diverse decision values,
 which learns the weights, thresholding and smoothing parameters in a joint framework.
 However, all these MKL based fusion methods or others only learn weights to combine different basic models, which do not consider the outlier rejection in the fusion process specifically.
 
@@ -248,33 +256,35 @@ However, all these MKL based fusion methods or others only learn weights to comb
 %which has attracted increasing attention recently.
 Matrix factorization has attracted increasing attention recently.
 Many manifold optimization algorithms on matrix factorization have been proposed by exploiting the manifold geometry in a subspace.
-Based on manifold optimization, fixed-rank matrices are supposed to belong to a smooth matrix manifold~\cite{Absil2008OAMM,vandereycken2013lowrank}.
-In~\cite{vandereycken2013lowrank}, the authors propose a low-rank geometric conjugate gradient (LRGeomCG) method.
+Based on manifold optimization, fixed-rank matrices are supposed to belong to a smooth matrix manifold~\cite{Absil2008OAMM,vandereycken2013lowrank,rtrmc2011boumal,Bonnabel2011,Mishra2012,ngonips2012scaled}.
+For instance, in~\cite{vandereycken2013lowrank}, the authors propose a low-rank geometric conjugate gradient (LRGeomCG) method.
 In~\cite{rtrmc2011boumal}, first- and second-order Riemannian trust-region methods are applied to solve the low-rank matrix completion by exploiting the low-rank constraint.
 In~\cite{Bonnabel2011}, a linear regression algorithm is proposed, where the parameter of this algorithm is a fixed-rank matrix based on the Riemannian manifold geometry.
 In~\cite{Mishra2012}, the authors propose a quotient geometric matrix completion method.
-The authors in~\cite{grouse2010Balzano} propose an online algorithm for tracking subspaces, Grassmannian rank-one update subspace estimation.
+%The authors in~\cite{grouse2010Balzano} propose an online algorithm for tracking subspaces, Grassmannian rank-one update subspace estimation.
 In~\cite{ngonips2012scaled}, a gradient methods based on scaled metric on the Grassmann manifold is proposed.
 The authors in~\cite{Wen2012} propose a low-rank matrix fitting algorithm to solve large scale matrix completion problems by exploiting nonlinear successive over-relaxation.
 In~\cite{RechtNIPS2011hogwild}, a lock-free approach to parallelizing stochastic gradient descent is proposed.
-However, all these matrix factorization methods only consider the general least square loss, which cannot be directly applied to handle $\ell_{1,2}$ loss.
-\yanred{
-Moreover, \cite{jain2013low} can also be used for matrix completion based on alternating minimization,
+In \cite{jain2013low} the authors propose a alternating minimization method for matrix factorization with a global optimality guarantee,
 but they require the incoherent matrix assumption and a fresh measurements at each iteration.
-Thus their method can not be guaranteed to converge the global solution in our work.
-In addition, as shown in \cite{vandereycken2013lowrank}, the Riemannian manifold method converges faster than the alternating minimization approach.
-}
+Thus their method cannot be guaranteed the global optimality in our work.
+In addition, as shown in \cite{vandereycken2013lowrank}, the Riemannian manifold method may converge faster than the alternating minimization approach.
+However, most existing matrix factorization methods only consider the general least square loss, which cannot be directly applied to handle $\ell_{1,2}$ loss.
 
-Some other fusion algorithms are proposed for specific tasks, which would be hard to extend to general problems.
-In~\cite{zheng2015query}, the authors estimate a feature’s effectiveness in a query-adaptive manner for image retrieval problems,
+Some other fusion algorithms are proposed for specific tasks.
+The authors of \cite{zheng2015query} estimate a feature’s effectiveness in a query-adaptive manner for image retrieval problems,
 and they combine the scores of multiple features weighted by their effectiveness.
-In~\cite{zha2015exploiting}, they use fusion features scores of different CNN layers and encoded features improve the accuracy of action recognition.
+Zha \etal \cite{zha2015exploiting} use fusion features scores of different CNN layers and encoded features improve the accuracy of action recognition.
 In~\cite{feichtenhofer2016convolutional}, the authors explore a variety of fusion methods to combine spatial and temporal CNN models, significantly improving the performance of two-stream network~\cite{simonyan2014two}.
 \cite{wangmodality} proposes a framework use high-dimensional Fisher Vector features from RGB, HHA and surface normal modalities to effectively achieve state-of-the-art scene classification performance.
 \cite{Wang_Transformation,tapaswi2015movieqa,yaohighlight} use some simple strategies to choose specific weight for different scores from multiple features.
+The authors in~\cite{vanicassp2014late} point out that missing values in predictions can be a challenge for late fusion due to the absence of features.
+These special designed fusion algorithms can be hard to extend to general problems, being lack of generalization.
+
 
 
 \section{The Proposed Approach}
+
 
 We first elaborate the formulation of our proposed algorithm,
 which regards the late fusion problem as a robust matrix recovery problem.
@@ -291,30 +301,30 @@ Let $\bL = [ \bL_1, \bL_2, ..., \bL_m ]$.
 %%On one hand, we aim to preserve the consistency among $m$ classifiers, so we introduce a rank-$m$ constraint on $\bL$.
 On one hand, we aim to preserve the consistency among $m$ classifiers, so we introduce a rank constraint on $\bL$.
 On the other hand, to catch the outlier columns, we apply robust $\ell_{1, 2}$ loss, which is computed by
-{\small
-\begin{align}
-|| \bX ||_{1,2} = \sum_{j = 1}^{m\calC} \sqrt{ \sum_{i = 1}^{n} \bX_{ij}^2 }
-\end{align}
-}
-\noindent
-Thus, the proposed model can be written as below:
-{\small
+$
+|| \bX ||_{1,2} = \sum_{j = 1}^{m\calC} \sqrt{ \sum_{i = 1}^{n} \bX_{ij}^2 }  .
+$
+Thus, a general formulation of recovering the underlying low-rank label matrix can be written as follows:
+{
 \begin{align}\label{eq:l12_rankconstraint}
-  \min_{\bX} ~&~ || \bL - \bX ||_{1,2}~~~~~~\st~~\rank(\bX) = p
+  \min_{\bX} ~&~ || \calP_{\Omega} (\bL - \bX) ||_{1,2}~~~~~~\st~~\rank(\bX) = p
 \end{align}
 }
 \noindent
 where $\bX \in \dsR^{n \times m\calC}$ is the underlying low-rank label matrix to be recovered, $\rank(\bX)$ obtains the rank of $\bX$,
+$\Omega$ denotes a subset containing the indices of the observed entries,
 and $p$ is a scalar.
-In our setting, to preserve the consistency among various classifiers, we set $p = \calC$.
+Here $\calP_{\Omega}$ denotes the orthogonal projection onto the linear space of matrices support on $\Omega: \calP_{\Omega}(\bX) = \bX_{ij}$ if $(ij) \in \Omega$; $\calP_{\Omega} = 0$ otherwise.
+This includes some cases where missing elements may occur~\cite{vanicassp2014late}.
+In our setting, to preserve the consistency among various classifiers, we set the hard constraint of the rank, \ie, $p = \calC$.
+
 
 
 It is difficult to optimize Problem~(\ref{eq:l12_rankconstraint}) directly due to the presence of the rank constraint.
-We hence transform the original problem as a matrix factorization formulation as below:
-{\small
+We hence transform the original problem as a matrix factorization formulation as follows:
+{
 \begin{align}\label{eq:l12_mf}
-  \min_{\bX} ~&~ || \bL - \bX ||_{1,2}   \nonumber \\
-         \st ~&~ \bX = \bU \bV,~\bU \in \dsR^{n \times p},~\bV \in \dsR^{p \times m\calC}  .
+  \min_{\bX} || \calP_{\Omega}(\bL - \bX) ||_{1,2} ,~  \st~ \rank(\bX) = p  .
 \end{align}
 }
 \noindent
@@ -340,7 +350,7 @@ In the following section, we present an ALM optimization framework to solve Prob
 
   \ENDWHILE
 
-  \STATE 3: $\blambda_{t+1} = \blambda_{t} + \mu_{t} (\bL - \bX_{t+1} - \bE_{t+1})$.
+  \STATE 3: $\blambda_{t+1} = \blambda_{t} + \mu_{t} (\calP_{\Omega}{(\bL - \bX_{t+1} - \bE_{t+1})})$.
 
   \STATE 4: $\mu_{t+1} = \rho \mu_{t}$.
 
@@ -355,75 +365,92 @@ In the following section, we present an ALM optimization framework to solve Prob
 \label{alg:alm_mf}
 \end{algorithm}
 
-
 \subsection{Optimization Based on ALM}
 
 Most existing matrix factorization optimization methods only consider smooth loss functions, rather than the non-smooth $\ell_{1,2}$ loss used in Problem~(\ref{eq:l12_mf}).
 In this section, we present an ALM based algorithm to optimize Problem~(\ref{eq:l12_mf}).
 
 
-By introducing a new variable $\bE = \bL - \bX$, we can develop Problem~(\ref{eq:l12_mf}) as below:
-{\small
+By introducing a new variable $\calP_{\Omega} (\bE) = \calP_{\Omega} (\bL - \bX)$, we can develop Problem~(\ref{eq:l12_mf}) as below:
+{
 \begin{align}\label{eq:mf_l21_constrained}
   \min_{\bE, \bX} ~&~ || \bE ||_{1,2}      \nonumber \\
-  \st             ~&~ \bE = \bL - \bX  ,   \nonumber \\
-                  ~&~ \bX = \bU \bV,~\bU \in \dsR^{n \times p},~\bV \in \dsR^{p \times m \calC}
-\end{align}
-}
-\noindent 
-The augmented Lagrangian function of Problem~(\ref{eq:l12_mf}) is constructed as below
-{\small
-\begin{align}\label{eq:lagrangian_l21}
-  \calL (\bX, \bE, \blambda, \mu) = &~ || \bE ||_{1,2} + \langle \blambda, \bL - \bX - \bE \rangle      \nonumber \\
-                                    & + \frac{\mu}{2} || \bL - \bX - \bE ||_F^2
+  \st             ~&~ \calP_{\Omega} (\bE) = \calP_{\Omega} (\bL - \bX)  ,~ \rank(\bX) = p  .
 \end{align}
 }
 \noindent
-where $\bX = \bU \bV$, $\mu$ is a scalar,
+The augmented Lagrangian function of Problem~(\ref{eq:l12_mf}) is constructed as below
+{
+\begin{align}\label{eq:lagrangian_l21}
+  \calL (\bX, \bE, \blambda, \mu) = &~ || \bE ||_{1,2} + \langle \blambda, \calP_{\Omega} (\bL - \bX - \bE) \rangle      \nonumber \\
+                                    & + \frac{\mu}{2} || \calP_{\Omega} (\bL - \bX - \bE) ||_F^2
+\end{align}
+}
+\noindent
+where $\rank (\bX) = p$, $\mu$ is a scalar,
 and $\blambda \in \dsR^{n \times m\calC}$ are the Lagrangian multipliers.
 Here $\langle \bA, \bB \rangle$ is the inner product of $\bA \in \dsR^{m \times n}$ and $\bB \in \dsR^{m \times n}$, and defined as $\langle \bA, \bB \rangle = \sum_{i=1}^{n} \sum_{j=1}^{m} \bA_{ij} \bB_{ij}$.
 Then we can update $\bX$ and $\bE$ alternatively, which is summarized in Algorithm~\ref{alg:alm_mf}.
+The following lemma and theorem provide the theoretical convergence guarantee of the proposed algorithm.
+We emphasize that our problem is a non-convex problem with a rank constraint, which is rarely studied in previous literatures.
 
-\yanred{
-The previous ALM methods~\cite{liu2013robust} usually focus on the convex problem,
-but Problem~(\ref{eq:l12_mf}) is the non-convex problem.
-In addition, we proof the convergence of ALM for solving a non-convex problem relying on the gradient,
-rather than the (xxxxxxxx) for convex problem,
-as following:
-}
 
-\yanred{
-\begin{theorem}
-\label{theorem:alm_convergence}
-  Suppose the sequences $\{\bX_k\}_{k=1}^{\infty}$, $\{\bE_k\}_{k=1}^{\infty}$ and $\{\blambda_k\}_{k=1}^{\infty}$ are generated by Algorithm~\ref{alg:alm_mf},
-  and $\{\blambda_k\}$ is bounded.
-  As $k \to \infty$, the gradient of $\calL$ vanishes,
-  thus any accumulation point $(\bX^*, \bE^*)$ is a stationary point.
-\end{theorem}
-}
+\begin{lemma}
+Given that the sequence $\{ \mu_{t} \}$ is always increasing, $\mu_{0} > 0$ and $\blambda_{0} = 0$, the sequence $\{ \blambda_{t} \}$ computed by Algorithm~\ref{alg:alm_mf} is bounded.
+\end{lemma}
 
 \begin{proof}
-\label{proof:proof_AA}
   The proof can be found in Appendix A.
+  \mycomment{
+  By the optimality of $\bE_{t+1}$ in Step 2 in Algorithm~\ref{alg:alm_mf}, we have the sub-differential of $\calL$ w.r.t. $\bE$ as zeros:
+  {
+  \begin{align}
+  \label{eq:derivatives_calL_E}
+    0 & \in \frac{\calL(\bX_{t+1}, \bE_{t}, \blambda_{t}, \mu_{t})}{\bE_{t+1}} \nonumber \\
+      & = \partial(|| \bE_{t+1} ||_{1,2}) + \blambda_{t} + \mu_{t} (\calP_{\Omega} (\bL - \bX_{t+1} - \bE_{t+1})) \nonumber \\
+      & = \partial(|| \bE_{t+1} ||_{1,2}) + \blambda_{t+1}   \nonumber \\
+    \Rightarrow & -\blambda_{t+1} \in \partial(|| \bE_{t+1} ||_{1,2})  .
+  \end{align}
+  }
+  \noindent
+  Consider the computation of $\bE_{t+1}$ in Eq~(\ref{eq:column_wise_soft_thresholding}), which is associated with $\bL, \bX_{t+1}$, $\blambda_{t}$ and $\mu_{t}$.
+  $\bL$ is the observation and thus bounded.
+  $\bX_{t+1}$ is bounded due to the convergence guarantee of Step 1 in Algorithm~\ref{alg:alm_mf}~\cite{vandereycken2013lowrank}.
+  $\{ \blambda_{t} \}$ is initialized by setting $\blambda_{0} = 0$ and $\{ \mu_{t} \}$ is non-decreasing.
+  Thus when updating by Algorithm~\ref{alg:alm_mf}, $\bE_{t+1}$, $\partial(\bE_{t+1})$ and $\blambda_{t}$ are all bounded accordingly as $t$ increases.
+  This completes the proof.
+  }
+\end{proof}
+
+\begin{theorem}
+\label{theorem:alm_convergence}
+  Suppose the sequences $\{\bX_k\}_{k=1}^{\infty}$, $\{\bE_k\}_{k=1}^{\infty}$ and $\{\blambda_k\}_{k=1}^{\infty}$ are generated by Algorithm~\ref{alg:alm_mf}.
+  As $k \to \infty$, the gradients of $\calL$ w.r.t. $\bX$ and $\bE$ vanish,
+  thus any accumulation point $(\bX^*, \bE^*)$ is a stationary point.
+\end{theorem}
+
+%\vspace{1cm}
+\begin{proof}
+\label{proof:proof_AA}
+  The proof can be found in Appendix B.
 \end{proof}
 
 
-\subsection{Optimization of The Subproblem of $\bX$}
+\subsection{Subproblem Optimization w.r.t. $\bX$}
 
-Particularly, to update $\bX$, we have the following augmented Lagrangian function \wrt. $\bX$:
-{\small
+To update $\bX$, we have the following augmented Lagrangian function \wrt. $\bX$:
+{
 \begin{align}\label{eq:langrangian_wrt_X}
-  \calL (\bX) = & \langle \blambda, \bL - \bX - \bE \rangle + \frac{\mu}{2} || \bL - \bX - \bE ||_F^2  \nonumber  \\
-              = & \frac{\mu}{2} || \bM - \bX ||_F^2 - \frac{1}{2\mu}|| \blambda ||_F^2   ,
+  \calL (\bX) = & \langle \blambda, \calP_{\Omega} (\bL - \bX - \bE) \rangle + \frac{\mu}{2} || \calP_{\Omega} (\bL - \bX - \bE) ||_F^2  \nonumber  \\
+              = & \frac{\mu}{2} || \calP_{\Omega} (\bM - \bX) ||_F^2 - \frac{1}{2\mu}|| \blambda ||_F^2   ,
 \end{align}
 }
 \noindent
 where $\bM = \bL - \bE + \frac{\blambda}{\mu}$.
 Hence, we derive the following subproblem \wrt. $\bX$:
-{\small
+{
 \begin{align}\label{eq:subproblem_wrt_X}
-  \min_{\bX} ~&~ || \bM - \bX ||_F^2    \nonumber \\
-  \st        ~&~ \bX = \bU \bV,~\bU \in \dsR^{n \times p},~\bV \in \dsR^{p \times m\calC}   .
+  \min_{\bX} || \calP_{\Omega} (\bM - \bX) ||_F^2,~ \st~ \rank(\bX) = p.
 \end{align}
 }
 \noindent
@@ -433,68 +460,68 @@ We thus propose to solve the subproblem by exploiting Riemannian geometry of smo
 
 
 
-The key idea of manifold optimization is that update of $\bX$ is always performed on the same manifold, which ensures the rank of $\bX$ unchanged as the optimization iterates.
+The key idea of manifold optimization is that the update of $\bX$ is always performed on the same manifold, which ensures the rank of $\bX$ unchanged as the optimization iterates.
 In other words, we search the solution for $\bX$ in a low-rank subspace.
-Let $r$ be a known scalar.
-A smooth manifold of fixed-rank-$r$ matrices is defined as~\cite{vandereycken2013lowrank}:
-{\small
+A smooth manifold of fixed-rank-$\ranksym$ matrices is defined as~\cite{vandereycken2013lowrank}:
+{
 \begin{align}
-\M_{r} &=& \{\bX\in \R^{n\times m\calC}: \rank(\bX) = r\} \nonumber \\
-       &=& \{\U\diag(\bsigma)\V^{\trsp}: \U \in \textrm{St}_{r}^{n}, \V \in
-           \textrm{St}_{r}^{m\calC}, ||\bsigma||_0 = r\} \nonumber
+\M_{\ranksym} &= \{\bX\in \R^{n\times m\calC}: \rank(\bX) = \ranksym\} \nonumber \\
+       &= \{\U\diag(\bsigma)\V^{\trsp}: \U \in \textrm{St}_{\ranksym}^{n}, \V \in
+           \textrm{St}_{\ranksym}^{m\calC}, ||\bsigma||_0 = \ranksym\} \nonumber
 \end{align}
 }
 \noindent
-where $\textrm{St}_{r}^{n} = \{\U \in \R^{n\times r}:
-\U^{\trsp}\U = \I \}$ denotes the Stiefel manifold of $n\times r$ real and orthonormal matrices.
-We denote the tangent space by $T_{\bX}\M_{r}$ of $\M_{r}$ at $\bX = \U\diag(\bsigma)\V^{\trsp} \in \R^{n \times m\calC}$,
-which is obtained as below
-{\small
+where $\textrm{St}_{\ranksym}^{n} = \{\U \in \R^{n\times \ranksym}:
+\U^{\trsp}\U = \I \}$ denotes the Stiefel manifold of $n \times \ranksym$ real and orthonormal matrices.
+We denote the tangent space by $T_{\bX}\M_{\ranksym}$ of $\M_{\ranksym}$ at $\bX = \U\diag(\bsigma)\V^{\trsp} \in \R^{n \times m\calC}$,
+which is obtained as below:
+{
 \begin{align}
 \label{eq:tangent_vector}
-&&T_{\bX}\M_{r} =  \{\U\bM\V^{\trsp} \!\!+\! \U_p\V^{\trsp} \!\!+\!
-\U\V_p^{\trsp}: \bM \in \R^{r\times r}, \nonumber\\ && \U_p \in \R^{n\times r},
-\U_p^{\trsp}\U = \0, \V_p \in \R^{m\calC \times r}, \V_p^{\trsp}\V = \0\}.
+&&T_{\bX}\M_{\ranksym} =  \{\U\bM\V^{\trsp} \!\!+\! \U_{\symp} \V^{\trsp} \!\!+\!
+\U\V_{\symp}^{\trsp}: \bM \in \R^{\ranksym \times \ranksym}, \nonumber\\ && \U_{\symp} \in \R^{n\times \ranksym},
+\U_{\symp}^{\trsp}\U = \0, \V_{\symp} \in \R^{m\calC \times \ranksym}, \V_{\symp}^{\trsp}\V = \0\}.
 \end{align}
 }
 \noindent
-One can define a metric $g_{\bX}({\bA},{\bB}) = \langle{\bA},{\bB}\rangle$ on $\M_{r}$,
-with $\bX \in \M_{r}$ and ${\bA},{\bB} \in T_{\bX}\M_{r}$,
-then $\M_{r}$ becomes a Riemannian manifold by restricting
+One can define a metric $g_{\bX}({\bA},{\bB}) = \langle{\bA},{\bB}\rangle$ on $\M_{\ranksym}$,
+with $\bX \in \M_{\ranksym}$ and ${\bA},{\bB} \in T_{\bX}\M_{\ranksym}$,
+then $\M_{\ranksym}$ becomes a Riemannian manifold by restricting
 $\langle\bA,\bB\rangle$
 to the \emph{tangent bundle}, defined as the disjoint union of all tangent spaces:
-$T\M_{r} = \bigcup_{\bX\in \M_{r}}\{\bX\} \times T_{\bX}\M_{r}
-         = \! \{(\bX,\bP)\in \R^{n \times m\calC} \times \R^{n \times m\calC}: \bX \in \M_{r}, \bP \in T_{\bX}\M_{r}\}.$
+$T\M_{\ranksym} = \bigcup_{\bX\in \M_{\ranksym}}\{\bX\} \times T_{\bX}\M_{\ranksym}
+         = \! \{(\bX,\bP)\in \R^{n \times m\calC} \times \R^{n \times m\calC}: \bX \in \M_{\ranksym}, \bP \in T_{\bX}\M_{\ranksym}\}.$
 
 
-Let $f(\bX) = || \bM - \bX ||_F^2$.
+Let $f(\bX) = ||\calP_{\Omega} (\bM - \bX) ||_F^2$.
 %Suppose that $\G$ is the gradient of the smooth function $f(\bX)$ in Euclidean space at $\bX = \U\diag(\bsigma)\V^{\trsp} $.
 Suppose that $\G = \nabla f(\bX)$ in Euclidean space at $\bX = \U\diag(\bsigma)\V^{\trsp}$.
-Then, according to~\cite{vandereycken2013lowrank}, the Riemannian gradient of $f(\bX)$ on $\M_r$ is given as the orthogonal
+Then, according to~\cite{vandereycken2013lowrank}, the Riemannian gradient of $f(\bX)$ on $\M_\ranksym$ is given as the orthogonal
 projection of $\G$ onto the tangent space at $\bX$:
-{\small
+{
 \begin{eqnarray}\label{eq:grad}
-\grad{f(\bX)} = P_{T_{\bX}\M_{r}}(\G)
+\grad{f(\bX)} = P_{T_{\bX}\M_{\ranksym}}(\G)
 \end{eqnarray}
 }
 \noindent
 where
-$P_{T_{\bX}\M_{r}}(\bZ): \bZ \mapsto P_{U}\bZ P_{V} + P_{U}^{\perp} \bZ P_{V} + P_{U} \bZ P_{V}^{\perp}$
+$P_{T_{\bX}\M_{\ranksym}}(\bZ): \bZ \mapsto P_{U}\bZ P_{V} + P_{U}^{\perp} \bZ P_{V} + P_{U} \bZ P_{V}^{\perp}$
 denotes the orthogonal projection of any
 $\bZ \in \R^{n \times m\calC}$ onto the tangent space at $\bX = \U\diag(\bsigma)\V^{\trsp}$.
-Here $P_U = \U \U^{\trsp}$ and $P_U^{\perp} = \I - \U \U^{\trsp}$ for any $\U \in \textrm{St}_{r}^{n}$.
+Here $P_U = \U \U^{\trsp}$ and $P_U^{\perp} = \I - \U \U^{\trsp}$ for any $\U \in \textrm{St}_{\ranksym}^{n}$.
 
 \begin{lemma}
-  Assuming that $\U_{p}$, $\V_{p}$ and $\bM$ are computed by Algorithm~\ref{alg:compute_riemannian_grad},
-  we have {\small${\textnormal{grad}} f(\bX) = \U \bM \V + \U_{p} \V^{\trsp} + \U \V^{\trsp}_{p}$}.
+  Assuming that $\U_{\symp}$, $\V_{\symp}$ and $\bM$ are computed by Algorithm~\ref{alg:compute_riemannian_grad},
+  we can obtain {${\textnormal{grad}} f(\bX) = \U \bM \V + \U_{\symp} \V^{\trsp} + \U \V^{\trsp}_{\symp}$}.
 \end{lemma}
 
-{\small
 \begin{proof}
+  The proof can be found in Appendix C.
+  \mycomment{
 \begin{align}
 \label{eq:proof_lemma1}
        & \grad f(\bX) \\
-       & = \U \bM \V^{\trsp} + \U_{p} \V^{\trsp} + \U \V_{p}^{\trsp}  \nonumber \\
+       & = \U \bM \V^{\trsp} + \U_{\symp} \V^{\trsp} + \U \V_{\symp}^{\trsp}  \nonumber \\
        & = \U(\U^{\trsp} \G \V) \V^{\trsp} + (\bR_{v} - \U \bM) \V^{\trsp} + \U (\bR_{u} - \V \bM^{\trsp})^{\trsp} \nonumber \\
        & = P_{\U} \G P_{V} + \G \V \V^{\trsp} - \U \bM \V^{\trsp} + \U \U^{\trsp} \G - \U \bM \V^{\trsp} \nonumber \\
        & = P_{\U} \G P_{V} + \G P_{V} - 2\U \bM \V^{\trsp} + P_{U} \G  \nonumber \\
@@ -503,43 +530,43 @@ Here $P_U = \U \U^{\trsp}$ and $P_U^{\perp} = \I - \U \U^{\trsp}$ for any $\U \i
        & = P_{\U} \G P_{V} + (\bI - P_{U}) \G P_{V} + P_{U} \G (\bI - P_{V})  \nonumber \\
        & = P_{\U} \G P_{V} + P_{U}^{\perp} \G P_{V} + P_{U} \G P_{V}^{\perp}  ,
 \end{align}
-\end{proof}
 }
+\end{proof}
+
 
 \begin{algorithm}
   \begin{algorithmic}
     \REQUIRE $\bX = \U \diag(\sigma) \V^{\trsp} \in \M_{r}$, $\G$.
-    \STATE 1. $\bR_{u} \leftarrow \G^{\trsp} \U$, $\bR_{v} \leftarrow \G \V$.   
-    \STATE 2. $\bM \leftarrow \U^{\trsp} \bR_{v}$.    
-    \STATE 3. $\U_{p} \leftarrow \bR_{v} - \U \bM$, $\V_{p} \leftarrow \bR_{u} - \V \bM^{\trsp}$.
-    \ENSURE $\grad f(\bX) = \U \bM \V^{\trsp} + \U_{p} \V^{\trsp} + \U \V_{p}^{\trsp} \in T_{\bX}\M_{r}$.    
+    \STATE 1. $\bR_{u} \leftarrow \G^{\trsp} \U$, $\bR_{v} \leftarrow \G \V$.
+    \STATE 2. $\bM \leftarrow \U^{\trsp} \bR_{v}$.
+    \STATE 3. $\U_{\symp} \leftarrow \bR_{v} - \U \bM$, $\V_{\symp} \leftarrow \bR_{u} - \V \bM^{\trsp}$.
+    \ENSURE $\grad f(\bX) = \U \bM \V^{\trsp} + \U_{\symp} \V^{\trsp} + \U \V_{\symp}^{\trsp} \in T_{\bX}\M_{\ranksym}$.
   \end{algorithmic}
   \caption{Computation of $\grad f(\bX)$ (Algorithm 2 in~\cite{vandereycken2013lowrank})}
   \label{alg:compute_riemannian_grad}
 \end{algorithm}
 
-Based on the above discussion, the solution of $\bX$ can be solved by Algorithm~\ref{alg:LRGeomCG} as following:
 
 \begin{algorithm}
   \begin{algorithmic}
-    \REQUIRE Initial $\bX_{1} \in \M_{r}$, tangent vector $\bfeta_{0} = \0$, $k = 1$.
-    
+    \REQUIRE Initial $\bX_{1} \in \M_{\ranksym}$, tangent vector $\bfeta_{0} = \0$, $k = 1$.
+
     \WHILE{not converge}
-      
+
       \STATE 1. Compute Riemannian gradient $\bP_{k} = \grad f(\bX_{k})$ by Algorithm~\ref{alg:compute_riemannian_grad}.
-      
+
       \STATE 2. Compute a conjugate direction with PR+:
-             $\bfeta_k = - \bP_{k} + \beta_{k} \mT_{\bX_{k-1} \rightarrow \bX_{k}}( \bfeta_{k-1}) \in T\M_{r}$.
-             
+             $\bfeta_k = - \bP_{k} + \beta_{k} \mT_{\bX_{k-1} \rightarrow \bX_{k}}( \bfeta_{k-1}) \in T\M_{\ranksym}$.
+
       \STATE 3. Find a step size $t_{k} = \min_{t} f(\bX + t\bfeta_{k}) $
 
       \STATE 4. Update $\bX_{k+1} = R_{\bX_{k}}(t_{k} \bfeta_{k})$.
-      
+
       \STATE 5. $k = k + 1$.
-      
+
     \ENDWHILE
 
-    \ENSURE $\bX \in \M_{r}$.
+    \ENSURE $\bX \in \M_{\ranksym}$.
 
   \end{algorithmic}
   \caption{LRGeomCG (Algorithm 1 in~\cite{vandereycken2013lowrank})}
@@ -547,56 +574,54 @@ Based on the above discussion, the solution of $\bX$ can be solved by Algorithm~
 \end{algorithm}
 
 
+Based on the above discussion, the solution of $\bX$ can be solved by Algorithm~\ref{alg:LRGeomCG}.
 Particularly, in Step 2 of Algorithm~\ref{alg:LRGeomCG}, $\beta_{k}$ is determined by a Polak-Ribi$\grave{e}$re (PR+) rule~\cite{vandereycken2013lowrank}:
-{\small
+{
 \begin{eqnarray}\label{eq:beta}
 \beta_{k} = \frac{\grad f(\bX_{k})^{\trsp}(\grad f(\bX_{k}) - \grad f(\bX_{k-1}))}{\langle \grad f(\bX_{k-1}),\grad f(\bX_{k-1})\rangle}.
 \end{eqnarray}
 }
 \noindent
-The step size $t_{k}$ in Step 3, given a search direction $\bfeta_{k} \in T_{\bX_{k} \M_{r}}$, is chosen such that
-{\small
+The step size $t_{k}$ in Step 3, given a search direction $\bfeta_{k} \in T_{\bX_{k} \M_{\ranksym}}$, is chosen such that
+{
 \begin{align}\label{eq:choose_step_size}
   f(R_{\bX_{k}} (t_{k} \bfeta_{k})) \leq f(\bX_{k}) + c_{1} t_{k} \langle \grad f(\bX_{k}), \bfeta_{k} \rangle ,
 \end{align}
 }
-{\small
+\mycomment{
+{
 \begin{align}\label{eq+choose_step_size2}
   | \langle \grad f(R_{\bX_{k}} (t_{k} \bfeta_{k})), & \mT_{\bX_{k-1} \rightarrow \bX_{k}} (\bfeta_{k}) \rangle |  \nonumber \\
                            & \leq c_{2} | \langle \grad f(\bX_{k}), \bfeta_{k} \rangle |  ,
 \end{align}
 }
+}
 \noindent
 where $0 \leq c_{1} \leq c_{2} \leq \frac{1}{2}$.
 The notation $\mT_{\bX_{k-1} \rightarrow \bX_{k}} (\bfeta_{k-1})$ in Step 2 and $R_{\bX_{k}} (t_k \bfeta_{k})$ denote \emph{vector transport} and \emph{retraction}, respectively.
-For more details of above two operators and the geometry of $\M_{r}$, see~\cite{vandereycken2013lowrank} and the references therein.
+For more details of above two operators and the geometry of $\M_{\ranksym}$, see~\cite{vandereycken2013lowrank} and the references therein.
 
-\subsection{Optimization of The Subproblem of $\bE$}
 
-Similarly, to update $\bE$, we consider the augmented Lagrangian function \wrt. $\bE$ as below:
-{\small
+
+
+\subsection{Subproblem Optimization w.r.t. $\bE$}
+
+Similarly, to update $\bE$, we have the following problem \wrt. $\bE$:
+{
 \begin{align}
-\label{eq:subproblem_wrt_E_1}
-  \calL (\bE) = & || \bE ||_{1,2} + || \bN - \bE ||_F^2 - \frac{1}{2\mu}|| \blambda ||_F^2   ,
+\label{eq:subproblem_wrt_E_2}
+  \min_{\bE} & || \bE ||_{1,2} + || \calP_{\Omega} (\bN - \bE) ||_F^2 ,
 \end{align}
 }
 \noindent
 where $\bN = \bL - \bX + \frac{\blambda}{\mu}$.
-We thus obtain the subproblem \wrt. $\bE$ as below:
-{\small
-\begin{align}
-\label{eq:subproblem_wrt_E_2}
-  \min_{\bE} & || \bE ||_{1,2} + || \bN - \bE ||_F^2 .
-\end{align}
-}
-\noindent
 The above problem can be efficiently solved by the following column-wise soft-thresholding operator~\cite{xiao2015FaLRR}:
-{\small
+{
 \begin{align}\label{eq:column_wise_soft_thresholding}
   \bE_{i} = \calS_{\alpha}(\bN_{i}) = \left\{
     \begin{aligned}
-      & \zerocolumn,~\text{if}~ ||\bN_{i}||_2 \leq \alpha   \\
-      & \bN_{i} - \frac{\alpha \bN_{i}}{|| \bN_{i} ||_2},~\text{otherwise,}
+      & \zerocolumn,~\text{if}~ ||\calP_{\Omega} (\bN_{i})||_2 \leq \alpha   \\
+      & \calP_{\Omega} (\bN_{i}) - \frac{\alpha \calP_{\Omega} (\bN_{i})}{|| \calP_{\Omega} (\bN_{i}) ||_2},~\text{otherwise,}
     \end{aligned}
     \right.
 \end{align}
@@ -607,8 +632,9 @@ and $\alpha = \frac{1}{2}$.
 
 \subsection{Post Process}
 As we recover the low-rank matrix $\bX$ from the label assignment matrix $\bL$,
-it needs a post process to generate the prediction label for each testing data.
-Intuitively, there might be several possible ways to select as below:
+there requires a post process to generate the prediction label for each testing data from $\bX$.
+Intuitively, there might be several possible methods to select as below:
+
 \begin{itemize}
   \item \textbf{[AVE].} A prediction score matrix $\bX^{*} \in \dsR^{n \times {\calC}}$ is obtained by averaging $[ \bX_1, \bX_2, ..., \bX_{\calC}]$.
     The indicator of the highest value in each row of $\bX^{*}$ is regard as the predicted label for the corresponding data.
@@ -652,8 +678,9 @@ The strategy analysis for post process is detailed in the last subsection.
 
 Five state-of-the-art fusion methods are compared with our proposed algorithm :
 \begin{itemize}
-\item Average Score Fusion(ASF). we directly average the confidence scores predicted by classifiers. We use $L_2$ norm on each classifier's results for normalization.
-\item Multiple Kernel Learning (MKL).  MKL learns a weight w for each classifiers, the final score are obtained from function $f(s)=w^{T}s, \sum w = 1$. We use liblinear-mkl\footnote{\url{http://www.csie.ntu.edu.tw/~b95028/software/liblinear-mkl/}} toolbox to train our MKL model.
+\item Average Score Fusion(ASF). we directly average the confidence scores predicted by multiple classifiers. 
+Then the $L_2$ norm is applied on each classifier's results for normalization.
+\item Multiple Kernel Learning (MKL).  MKL learns a weight coefficient $w$ for each classifier, and the final scores are obtained from function $f(s)=w^{T}s,~\sum w = 1$. We use liblinear-mkl\footnote{\url{http://www.csie.ntu.edu.tw/~b95028/software/liblinear-mkl/}} toolbox to train our MKL model.
 \item Robust Convex Ensemble Clustering (RCEC)\cite{gaoijcai2016robust}.
 The core alogrithm in RCEC can be modified to recover $\bX$ from $L$ in Problem.~\ref{eq:l12_mf}, and the post process is same as our method.
 \item Feature Weighting via Optimal Thresholding (FWOT) \cite{xuiccv2013feature}.
@@ -672,12 +699,10 @@ For RCEC method, we use 5 folder cross validation to select the best parameter $
 For FWOT, the smoothing parameter candidates are $\{0.5, 0.6, ... , 0.9\}$ and the parameter $C$ in is selected from $\{10^{-4},10^{-2},...,10^{4}\}$ according to cross-validation, which is same in~\cite{xuiccv2013feature}.
 For LPBoost, we use cross-validation to pick up the best $\nu$ from $\{0.5,0.6,0.7,0.8,0.9\}$ suggested in~\cite{xuiccv2013feature}.
 
-\yanred{
 \textbf{Reproducibility.}
-Our implementation is modified from the open-sourced LRGeomCG
-\cite{vandereycken2013lowrank}\footnote{http://www.unige.ch/math/vandereycken/matrix\_completion.html}.
-We will release the source code soon.
-}
+Our implementation is based on the open-sourced LRGeomCG code by Vandereycken
+\cite{vandereycken2013lowrank}.
+We will release the source code soon on Github.
 
 \subsection{Synthetic Experiments}
 
@@ -725,57 +750,10 @@ We visualize the ground truth information, classifiers' predictions and the reco
     \label{fig:ensemble_cluster}
 \end{figure}
 
-As we can observe, our proposed algorithm significantly detect the outliers,
-and furthermore, the outlier elements are accurately converted into the right predictions while preserving consistency among all classifiers.
+As we can observe, our proposed algorithm significantly detect the outliers.
+Furthermore, the outlier elements are accurately converted into the correct predictions, and only few results are wrong.
+This preserves the consistency among all classifiers.
 
-
-
-\subsection{Feature Extraction}
-%We describe the details of the feature extraction for each dataset we use.
-%All CNN features are extracted using Caffe~\cite{jia2014caffe}, a deep learning framework.
-We used the best-performing CNN models for feature extraction including ResNet~\cite{he2015deep}, GoogleNet~\cite{szegedy2015going}, or etc.
-These features are fairly state of the art.
-They have been widely used in various recent research papers and have been verified the most effective features by recent internationally recognized competitions such as the ImageNet competition~\cite{russakovsky2015imagenet}.
-
-In UCF101 dataset, five different features are extracted from the following:
-%\begin{itemize}
-%  \item `fc6' of C3D~\cite{tran2015learning}
-%  \item `pool5/7x7\_s1' from GoogleNet~\cite{szegedy2015going}
-%  \item `pool5' of ResNet-152~\cite{he2015deep}
-%  \item two `fc6's of Two-Stream~\cite{simonyan2014two}
-%\end{itemize}
-`fc6' of C3D~\cite{tran2015learning},
-`pool5/7x7\_s1' from GoogleNet~\cite{szegedy2015going},
-`pool5' of ResNet-152~\cite{he2015deep},
-and two `fc6's of Two-Stream~\cite{simonyan2014two}.
-Given a video, we extract the above five features following the same process in~\cite{simonyan2014two,tran2015learning}(GoogleNet and ResNet-152 feature are same as spatial net in~\cite{simonyan2014two}).
-All models we used are public available on Internet. %% provided by authors.
-
-In Cifar10 dataset, the features are extracted from the `global\_pool' layer of ResNet-20,32,44,56,110~\cite{he2015deep} and of pre-activation ResNet-20,32,44,56,110,164 models~\cite{he2016identity}.
-One feature is extracted from `pool3' layer's features of cifar10\_full model described in caffe example prototxt
-\footnote{\url{https://github.com/BVLC/caffe/blob/master/examples/cifar10/cifar10_full.prototxt}}
-.
-Two modified networks VGG16 and GoogleNet are used to extract final pooling features~(Modify the stride 2 in conv4 and conv5 layers to stride 1 and fc layers to global pooling layers), trained the same in~\cite{he2015deep}
-Each ResNet model is trained following the standard procedure in~\cite{he2015deep,he2016identity}, and cifar10\_full model is trained by an official shell
-\footnote{\url{https://github.com/BVLC/caffe/blob/master/examples/cifar10/train_full.sh}}
-before extracting features.
-In Cifar100 dataset, we use `global\_pool' layer features of ResNet-20,32,44,56,68,110 and of pre-activation ResNet-20,32,44,56,110,164 models, following the same training process as in~\cite{he2015deep,he2016identity}.
-
-In all other experiments, eight different features are extracted from the following:
-%\begin{itemize}
-%  \item `fc6' of VGG16,VGG19~\cite{chatfield2014return}
-%  \item `fc6' of AlexNet,CaffeNet~\cite{krizhevsky2012imagenet}
-%  \item `pool5/7x7\_s1' from GoogleNet~\cite{szegedy2015going}
-%  \item `pool5' of ResNet-50,101,152~\cite{he2015deep}
-%\end{itemize}
-``fc6'' of VGG16, VGG19~\cite{chatfield2014return},
-``fc6'' of AlexNet,CaffeNet~\cite{krizhevsky2012imagenet},
-``pool5/7x7\_s1'' from GoogleNet~\cite{szegedy2015going},
-and ``pool5'' of ResNet-50,101,152~\cite{he2015deep}.
-We use the official pre-trained model provided by Caffe Model Zoo
-\footnote{\url{https://github.com/BVLC/caffe/wiki/Model-Zoo}}
-.
-For above eight models, we simply extract features with no extra operation.
 
 \begin{table*}[t]
 \centering
@@ -815,6 +793,54 @@ so we omit these results indicated by ``$\infty$''.}
 \label{table:total_time}
 \end{table*}
 
+\subsection{Feature Extraction}
+%We describe the details of the feature extraction for each dataset we use.
+%All CNN features are extracted using Caffe~\cite{jia2014caffe}, a deep learning framework.
+We used the best-performing CNN models for feature extraction including ResNet~\cite{he2015deep}, GoogleNet~\cite{szegedy2015going}, or etc.
+These features are fairly state of the art.
+They have been widely used in various recent research papers and have been verified the most effective features by recent internationally recognized competitions such as the ImageNet competition~\cite{russakovsky2015imagenet}.
+
+On UCF101 dataset, five different features are extracted from the following:
+%\begin{itemize}
+%  \item `fc6' of C3D~\cite{tran2015learning}
+%  \item `pool5/7x7\_s1' from GoogleNet~\cite{szegedy2015going}
+%  \item `pool5' of ResNet-152~\cite{he2015deep}
+%  \item two `fc6's of Two-Stream~\cite{simonyan2014two}
+%\end{itemize}
+`fc6' of C3D~\cite{tran2015learning},
+`pool5/7x7\_s1' from GoogleNet~\cite{szegedy2015going},
+`pool5' of ResNet-152~\cite{he2015deep},
+and two `fc6's of Two-Stream~\cite{simonyan2014two}.
+Given a video, we extract the above five features following the same process in~\cite{simonyan2014two,tran2015learning}(GoogleNet and ResNet-152 feature are same as spatial net in~\cite{simonyan2014two}).
+All models we used are public available on Internet. %% provided by authors.
+
+On Cifar10 dataset, the features are extracted from the `global\_pool' layer of ResNet-20,32,44,56,110~\cite{he2015deep} and of pre-activation ResNet-20,32,44,56,110,164 models~\cite{he2016identity}.
+One feature is extracted from `pool3' layer's features of cifar10\_full model described in caffe example prototxt
+\footnote{\url{https://github.com/BVLC/caffe/blob/master/examples/cifar10/cifar10_full.prototxt}}
+.
+Two modified networks VGG16 and GoogleNet are used to extract final pooling features~(Modify the stride 2 in conv4 and conv5 layers to stride 1 and fc layers to global pooling layers), trained the same in~\cite{he2015deep}
+Each ResNet model is trained following the standard procedure in~\cite{he2015deep,he2016identity}, and cifar10\_full model is trained by an official shell
+\footnote{\url{https://github.com/BVLC/caffe/blob/master/examples/cifar10/train_full.sh}}
+before extracting features.
+In Cifar100 dataset, we use `global\_pool' layer features of ResNet-20,32,44,56,68,110 and of pre-activation ResNet-20,32,44,56,110,164 models, following the same training process as in~\cite{he2015deep,he2016identity}.
+
+In all other experiments, eight different features are extracted from the following:
+%\begin{itemize}
+%  \item `fc6' of VGG16,VGG19~\cite{chatfield2014return}
+%  \item `fc6' of AlexNet,CaffeNet~\cite{krizhevsky2012imagenet}
+%  \item `pool5/7x7\_s1' from GoogleNet~\cite{szegedy2015going}
+%  \item `pool5' of ResNet-50,101,152~\cite{he2015deep}
+%\end{itemize}
+``fc6'' of VGG16, VGG19~\cite{chatfield2014return},
+``fc6'' of AlexNet,CaffeNet~\cite{krizhevsky2012imagenet},
+``pool5/7x7\_s1'' from GoogleNet~\cite{szegedy2015going},
+and ``pool5'' of ResNet-50,101,152~\cite{he2015deep}.
+We use the official pre-trained models provided by Caffe Model Zoo
+\footnote{\url{https://github.com/BVLC/caffe/wiki/Model-Zoo}}
+.
+For the above eight models, we simply extract features without any extra operations.
+
+
 
 
 \subsection{Real-world Experiments}
@@ -838,8 +864,8 @@ Fourteen CNN features are extracted from multiple state of the art models.
 This experiments exhibit the ability of our algorithm to handle large scale data.
 
 As we have 50000 training data and 10000 testing data,
-FWOT algorithm has one step to deal with $n\times n$ matrixes, which are excessive to train~(more than one day).
-LPBoost algorithm needs to create a $(n\calC - n) \times (1 + n + m)$ constraint matrix linear programming solvers
+The FWOT algorithm has one step to deal with $n\times n$ matrices, which are excessive to train~(more than one day).
+The LPBoost algorithm requires to create a $(n\calC - n) \times (1 + n + m)$ constraint matrix linear programming solvers
 \footnote{\cite{gehler2009feature} use the MOSEK interior-point solver, see www.mosek.com.},
 which occupies too much memory and still consumes long time to train,
 so we solve this problem by using sparse matrices and parallel computation in MATLAB.
@@ -862,27 +888,27 @@ We repeat the sample , training and fusion process five times to get fair result
 The comparison results are shown in Table~\ref{table:total_acc} and Table~\ref{table:total_time}.
 
 %% VOC07
-PASCAL VOC 2007 is a dataset for object detection and image classification.
+PASCAL VOC 2007 is a dataset for general object detection and image classification.
 In our experiments, we only use the image level annotation information.
-Since each image may contain more than one label, we filter the multi-label images to obtain 6146 clean data.
-There is similar procedure of sampling, classification and fusion as in Oxford-IIIT-Pet.
+Since each image may contain more than one label, we filter the multi-label images, resulting in a clean dataset with 6146 images.
+The procedures of sampling, classification and fusion are similar as Oxford-IIIT-Pet.
 
 From Table~\ref{table:total_acc}, our proposed algorithm provides significant improvement comparing with other effective late fusion methods on most datasets.
 Additionally, our algorithm is more efficient than other late fusion methods in most situations.
-As we can see from Table~\ref{table:total_time}, some methods are not capable of handling large scale dataset.
+As we can see from Table~\ref{table:total_time}, some methods are not capable of handling large scale datasets.
 \yanred{
 However, the time consumption of ours is acceptable in all experiments and quite fast on CIFAR-10/VOC2007.
-In conclusion, our method can solve the large scale problem efficiently.
+In conclusion, our method can handle the large scale problem efficiently and yield stable performance.
 }
 
 \subsection{Post Strategy Selection}
 
 In this section, we compare three proposed post strategies on three small datasets: Wikipedia~\cite{rasiwasia2010new}, Oxford Flowers 17~\cite{nilsback2006visual} and Pascal Sentence~\cite{Li2006One}.
 Wikipedia dataset contains paragraphs of text for each picture, and total 2866 image-text pairs are categorized into 10 class.
-Only the image label annotation is used in our experiments.
+Only the image-level annotation is used in our experiments.
 PASCAL VOC 2007 contains 9963 images annotated with object-level information, which means each picture may have zero or more than one class.
 We choose 6146 images classified into 20 classes by filtering out the no-single class data.
-Oxford Flowers 17 has 17 flower categories with 80 images for each class.
+Oxford Flowers 17 has seventeen flower categories with 80 images for each category.
 Pascal Sentence contains 1000 images annotated by caption information and categorized into twenty classes.
 Fifty percent of data are sampled as training set and the others as testing set, and experiments are repeated five times on above three datasets.
 
@@ -901,18 +927,18 @@ Strategy            & Wikipedia         & Flowers 17          & Pascal Sentence 
 [GATE]              & \textbf{49.03\%}  & \textbf{96.77\%}    & \textbf{67.20\%}    \\
 \hline
 \end{tabular}
-\caption{Mean accuracy using different strategies on three datasets.}
+\caption{Mean accuracy using different post process strategies on three datasets.}
 \label{table:strategy}
 \end{table}
 
-\subsection{Comparison with State-of-the-art}
+\subsection{Comparison with State-of-the-art Models}
 
-In this sub-section, we compare the performance of our algorithm with the state-of-the-art techniques.
+In this sub-section, we compare the performance of our algorithm with the state-of-the-art single models.
 %we demonstrate experiments to compare the performance of our algorithm with the state-of-the-art techniques.
-We use SVM classifiers based on different features in previous experiments to make a fair comparison with some MKL based methods.
-Since the performance of SVM classifiers usually are not as good as the results directly predicted by CNN models,
-in order to obtain a higher result, we directly fuse multiple state-of-the-art CNN predictions.
-Then we demonstrate the improvement of our fusion results compared to the state-of-the-art single model performance in Table~\ref{table:state_of_the_art}.
+In the previous experiments, we use SVM classifiers based on different features to make a fair comparison with some MKL based methods.
+The performance of SVM classifiers are usually not as good as the results directly predicted by CNN models.
+In order to obtain a higher result, we directly use multiple state-of-the-art CNN predictions and fuse them by our method.
+We demonstrate the improvement of our fusion results compared to the state-of-the-art single model performance in Table~\ref{table:state_of_the_art}.
 
 \begin{table}[ht]
 \begin{center}
@@ -953,22 +979,22 @@ Ours                                                &   \textbf{3.47} &  \textbf
 
 We carefully cite the best performances reported in their papers
 \cite{clevert2015fast,he2016identity,lin2013network,srivastava2015highway,xie2016aggregated,zagoruyko2016wide}.
-\yanred{
-As we can observe, our fusion is capable of further improving the performance of single model by a large margin.
-A single model has limited performance even with deeper depth or wider channel.
-However, our fusion algorithm can achieve further improvement when the single model reaches the limit.
-To be noticed, our method fuses multiple single models which all perform worse than ResNeXt~\cite{xie2016aggregated},
-but can achieve low test error.
-This demonstrates the benefit of a good late fusion method.
-}
+As can be observed, our fusion algorithm is capable of further improving the performance of single models significantly,
+even a single model has satisfactory performance with deeper depth or wider channel.
+%However, our fusion algorithm can achieve further improvement when the single model reaches the limit.
+We emphasize that ResNeXt~\cite{xie2016aggregated} is the best performer in single models, and our method only fuses models which perform worse than ResNeXt,
+but can achieve lower test error than ResNeXt.
+This demonstrates the aim and benefit of our late fusion method.
+
 
 \section{Conclusion}
 
-To relieve the performance degeneration in late label fusion from multiple sources, we formulate this problem as matrix factorization which recovers the underlying low-rank matrix and preserves the consistency among different sources.
-%To deal with the dispute on combining multi-view predictions, we formulate the late fusion problem as a matrix recover problem.
-%Our proposed algorithm is based on matrix factorization, which is unclear to consider smooth loss function from earlier research.
-Existing matrix factorization algorithms usually consider smooth loss, while it is unclear how to extend them to handle non-smooth robust loss, \eg $\ell_{1,2}$ loss.
-We propose an ALM based algorithm to solve matrix factorization problems with non-smooth loss.
+Late fusion is proposed to improve prediction performance by taking advantages of multiple features together.
+%In practice, the ubiquitousness of controversy of different features may degenerate the performance.
+In practice, the controversy of different features is ubiquitous and may degenerate the performance.
+To deal with this issue, we formulate this task as a robust matrix recovery problem with a hard constraint on the matrix rank to preserve the consistency among various features.
+Matrix factorization is often considered to handle the hard rank constraint, but only focuses on smooth loss, while it is unclear how to extend them to handle non-smooth robust loss, \eg, $\ell_{1,2}$ loss.
+We thus propose an ALM-based algorithm to cope with the non-smooth loss.
 %Specifically, our proposed algorithm first rejects outliers on a label indicator matrix by $\ell_{1,2}$ loss,
 %and then generates the predictions by combining robust outlier rejection information and prediction confidence scores from basic classifiers.
 Empirical studies on large scale real-world data sets demonstrate that our proposed method can effectively improve performance compared to the state-of-the-art late fusion methods.

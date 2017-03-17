@@ -11,3 +11,4 @@
 *.DS_Store
 *.eps
 reference
+resource/*.pdf
