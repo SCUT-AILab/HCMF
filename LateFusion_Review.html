@@ -1,0 +1,457 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head><title>
+	Reviews For Paper
+</title>
+<style>
+body
+{
+	font-family:verdana,arial,helvetica;
+}
+#header
+{
+    width: 100%;
+    font-size: small;
+    background-color:#F7F7F7;
+}
+.headerSeparator
+{
+    background-color: #105586;
+}
+.printThemeText
+{
+    font-size:small;
+}
+.printThemeTable td
+{
+    vertical-align:top;
+}
+.printThemeGrid th
+{
+    color:white;
+    background:#5D7B9D;
+    font-weight:bold;
+}
+.printThemeGrid
+{
+    border-collapse:collapse;
+}
+.printThemeGrid td, .printThemeGrid th
+{
+    border:solid 1px #D6D3CE;
+    padding:4px 4px 4px 4px;
+}
+.printThemeGrid .row
+{ 
+    background-color:#F7F6F3;
+    color:#333333;
+    vertical-align:top;
+}
+.printThemeGrid .altrow
+{ 
+    background-color:White;
+    color:#284775;
+    vertical-align:top;
+}
+.cellprompt
+{
+	font-weight:bold;
+	white-space:nowrap;
+    width:100px;	
+}
+.paperHeader
+{
+    background-color:#dee3e7;
+    margin:5px 5px 15px 0px;
+    width:99%;
+    font-family:Verdana;
+    font-size:medium;
+    font-weight:bold;
+}
+.sectionHeader
+{
+    background-color:#dee3e7;
+    padding:5px 5px 5px 0px;
+    width:99%;
+    text-decoration:underline;
+    font-family:Verdana;
+    font-size:small;
+    font-weight:bold;
+}
+.underlineheader
+{
+    text-decoration:underline;
+    font-weight:bold;
+    padding:5px 0px;
+}
+.response
+{
+    padding:5px 0px;
+}
+.reviewerlabel
+{
+    padding-right:20px;
+}
+.pageTitle
+{
+    background-color:#dee3e7;
+    padding:5px 5px 5px 5px;
+    margin-top:10px;
+    width:99%;
+    font-family:Verdana;
+    font-size:medium;
+    font-weight:bold;
+}
+.submissionDetailsView
+{
+}
+.submissionDetailsView tr
+{
+    vertical-align:top;
+}
+.submissionDetailsView td.prompt
+{
+    font-weight:bold;
+}
+.submissionDetailsView tr.sectionSeparator
+{
+
+}
+.submissionDetailsView tr.sectionSeparator td
+{
+    background-color:#dee3e7;
+    padding:5px 5px 5px 5px;
+    font-family:Verdana;
+    font-size:small;
+    font-weight:bold;
+    color:Navy;
+}
+/*CSS Grid View General Definitions*/
+.CssGridView
+{
+    font-size:small; 
+}
+
+.CssGridView td, .CssGridView th
+{
+    padding:4px 4px 4px 4px;
+}
+
+/*CSS Compact Grid View General Definitions*/
+.CssGridViewCompact img
+{
+    border-style:none;
+    border-width:0px;
+}
+
+.CssGridViewCompact
+{
+    font-size:1em;
+    border-style:solid;
+    border-color:#D6D3CE;
+    border-width:1px;
+}
+
+.CssGridViewCompact .hrow a
+{
+    font-size:1em;
+}
+
+.CssGridViewCompact .row a, .CssGridViewCompact .altrow a
+{
+    font-size:0.8em;
+}
+
+.CssGridViewCompact .row .normal a, .CssGridViewCompact .row .normal, .CssGridViewCompact .altrow .normal a, .CssGridViewCompact .altrow .normal
+{
+    font-size:1em;
+}
+
+/*CSS Grid View Header Styles*/
+.CssGridView .hrow, .CssGridViewCompact .hrow
+{ 
+    background-color:#5D7B9D;
+    font-weight:bold;
+    color:White;
+}
+
+
+.CssGridViewCompact .hrow td
+{ 
+    border-bottom-width:0px;
+}
+
+.CssGridViewCompact .hrow th
+{ 
+    border-top-width:0px;
+    font-size:0.8em;
+    vertical-align:top;
+    border-left-width:0px;
+    border-right-width:0px;
+}
+
+.CssGridViewCompact .smaller
+{
+    font-size:0.8em;
+}
+
+/*CSS Grid View Row Styles*/
+.CssGridViewCompact .row, .CssGridViewCompact .altrow
+{
+    border-top-style:solid;
+    border-top-color:#D6D3CE;
+    border-top-width:1px;
+    border-bottom-style:solid;
+    border-bottom-color:#D6D3CE;
+    border-bottom-width:1px;
+}
+
+/*CSS Grid View Header Styles*/
+.CssGridViewCompact .hrow .leftborder, .CssGridViewCompact .row .leftborder, .CssGridViewCompact .altrow .leftborder
+{
+    border-left-width:1px;
+    border-left-color:#D6D3CE;
+    border-left-style:solid;
+}
+
+.CssGridViewCompact .hrow .rightborder, .CssGridViewCompact .row .rightborder, .CssGridViewCompact .altrow .rightborder
+{
+    border-right-width:1px;
+    border-right-color:#D6D3CE;
+    border-right-style:solid;
+}
+
+.CssGridView .hrow a, .CssGridViewCompact .hrow a
+{ 
+    color:White;
+}
+ 
+.CssGridView .row, .CssGridViewCompact .row
+{ 
+    background-color:#F7F6F3;
+    color:#333333;
+    vertical-align:top;
+}
+
+.CssGridView .altrow, .CssGridViewCompact .altrow
+{ 
+    vertical-align:top;
+}
+
+.CssGridViewCompact .row td
+{ 
+    border-left-width:0px;
+    border-right-width:0px;
+}
+ 
+.CssGridViewCompact .altrow
+{ 
+    background-color:White;
+    color:#284775;
+    vertical-align:top;
+}
+
+.CssGridView .altrow tr, .CssGridViewCompact .altrow tr, .CssGridView .row tr, .CssGridViewCompact .row tr
+{ 
+    vertical-align:top;
+}
+</style>
+</head>
+<body>
+<form name="aspnetForm" method="post" action="./ViewReviewsForPaper.aspx?paperId=283" id="aspnetForm">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTAxNDM4ODU3Ng9kFgJmD2QWAgIDD2QWAmYPZBYCAgUPDxYCHgdWaXNpYmxlZ2QWBgIBD2QWAmYPZBYCZg9kFgQCAQ9kFgICAQ9kFgJmDw8WAh4EVGV4dAUDMjgzZGQCAg9kFgICAQ9kFgJmDw8WAh8BBT1MYXRlIEZ1c2lvbiB2aWEgU3Vic3BhY2UgU2VhcmNoIHdpdGggQ29uc2lzdGVuY3kgUHJlc2VydmF0aW9uZGQCAw8PFgIfAGhkZAIFDxYCHgtfIUl0ZW1Db3VudAIDFgZmD2QWBgIDD2QWAmYPFQETQXNzaWduZWRfUmV2aWV3ZXJfMWQCBw88KwARAwAPFgQeC18hRGF0YUJvdW5kZx8CAgZkARAWABYAFgAMFCsAABYCZg9kFg4CAQ9kFgRmDw8WAh8BBUpQYXBlciBTdW1tYXJ5LiBQbGVhc2Ugc3VtbWFyaXplIGluIHlvdXIgb3duIHdvcmRzIHdoYXQgdGhlIHBhcGVyIGlzIGFib3V0LmRkAgEPZBYCZg8VAZUDVGhpcyBwYXBlciBzdHVkaWVzIHRoZSBwcm9ibGVtIG9mIGxhdGUtZnVzaW9uIG9mIGZlYXR1cmVzIG9idGFpbmVkIGZyb20gZGlmZmVyZW50IG1vZGFsaXRpZXMvdmlld3MuIE1haW4gY29udHJpYnV0aW9ucyBpbmNsdWRlIChpKSBhIG1hdHJpeCBmYWN0b3JpemF0aW9uIGFwcHJvYWNoIHRvIGZ1c2UgZmVhdHVyZXMgZnJvbSBkaWZmZXJlbnQgZG9tYWlucywgaXQgcGxhY2VzIGEgaGFyZCBjb25zdHJhaW50IG9uIHJhbmsgdG8gbWF4aW1pemUgY29uc2lzdGVuY3k7IChpaSkgYW4gQUxNLWJhc2VkIGFsZ29yaXRobSB0byB3aXRoIHdpdGggdGhlIG5vbi1zbW9vdGggbG9zcywgZS5nLiwgTF8xMi4gVGhlIGZ1c2lvbiBzdHJhdGVneSBpcyBldmFsdWF0ZWQgb24gYSBmZXcgY29tbW9ubHkgdXNlZCBkYXRhc2V0cy4gZAICD2QWBGYPDxYCHwEFkwJQYXBlciBTdHJlbmd0aHMuIFBvc2l0aXZlIGFzcGVjdHMgb2YgdGhlIHBhcGVyLiBCZSBzdXJlIHRvIGNvbW1lbnQgb24gdGhlIHBhcGVyJiMzOTtzIG5vdmVsdHksIHRlY2huaWNhbCBjb3JyZWN0bmVzcywgY2xhcml0eSBhbmQgZXhwZXJpbWVudGFsIGV2YWx1YXRpb24uIE5vdGljZSB0aGF0IGRpZmZlcmVudCBwYXBlcnMgbWF5IG5lZWQgZGlmZmVyZW50IGxldmVscyBvZiBldmFsdWF0aW9uOiBlLmcuLCBhIHRoZW9yZXRpY2FsIHBhcGVyIHZzLiBhbiBhcHBsaWNhdGlvbiBwYXBlcmRkAgEPZBYCZg8VAZoBUHJvczo8YnIgLz4tIHRlY2huaWNhbCBleHBvc2l0aW9ucyBhcmUgb24gdGhlIHJpZ29yb3VzIHNpZGUsIGVzcGVjaWFsbHkgdGhlIHRoZW9yZXRpY2FsIGNvbnZlcmdlbmNlIGFuYWx5c2lzPGJyIC8+LSB0aGUgcGFwZXIgaXMgcmVsYXRpdmVseSBlYXN5IHRvIGZvbGxvd2QCAw9kFgRmDw8WAh8BBf0BUGFwZXIgV2Vha25lc3Nlcy4gRGlzY3VzcyB0aGUgbmVnYXRpdmUgYXNwZWN0czogbGFjayBvZiBub3ZlbHR5IG9yIGNsYXJpdHksIHRlY2huaWNhbCBlcnJvcnMsIGluc3VmZmljaWVudCBleHBlcmltZW50YWwgZXZhbHVhdGlvbiwgZXRjLiBQbGVhc2UganVzdGlmeSB5b3VyIGNvbW1lbnRzIGluIGdyZWF0IGRldGFpbC4gSWYgeW91IHRoaW5rIHRoZSBwYXBlciBpcyBub3Qgbm92ZWwsIGV4cGxhaW4gd2h5IGFuZCBwcm92aWRlIGV2aWRlbmNlc2RkAgEPZBYCZg8VAfMFQ29uczo8YnIgLz4tIG5vdCBlbnRpcmVseSBjb252aW5jZWQgYnkgdGhlIG5hcnJvdyBmb2N1cyBvbiBsYXRlIGZ1c2lvbjsgSSBjZXJ0YWlubHkgYnV5IHRoZSBsYXJnZXIgYW5nbGUgb2YgYmV0dGVyIHZpZXcvbW9kYWxpdHkgZnVzaW9uLCBidXQgbmFycm93aW5nIHRoZSBpbnZlc3RpZ2F0aW9uIHRvd2FyZHMgbGF0ZSBmdXNpb24gb25seSwgd2hpbGUgbmVnbGVjdGluZyBvdGhlciBtZWFucyBvZiBjbG9zaW5nIHRoZSBkb21haW4gZ2FwIGlzIHJhdGhlciBoYXJzaDsgIEkgd291bGQgYmUgY29udmluY2VkIGlmIGV4cGVyaW1lbnRzIGFyZSBzZXQgdXAgaW4gYSB3YXkgdGhhdCB0aGV5IG5vdCBvbmx5IGNvbXBhcmVzIHRoZSBwcm9wb3NlZCB3aXRoIGxhdGUgZnVzaW9uIG1ldGhvZHMsIGJ1dCBvdGhlciBwYXJhZGlnbXMsIGUuZy4sIHRoZSBtYW55IHdlaWdodCBzaGFyaW5nIHN0cmF0ZWdpZXMgd2hlcmUgZnVzaW9uIGlzIGltcGxpY2l0bHkgdGFja2xlZCBhdCB0cmFpbmluZzxiciAvPi0gZXhwZXJpbWVudHMgbm90IHN1cGVyIGNvbnZpbmNpbmcsIChpKSBSQ0VDIHNlZW1zIHRvIGJlIGRvaW5nIHJhdGhlciB3ZWxsLCB3aGlsZSBiZWluZyBhIGxvdCBmYXN0ZXIgb24gYXZlcmFnZSwgKGlpKSBJIGZhaWwgdG8gc2VlIHdoeSBkb2luZyAoYSBiaXQpIGJldHRlciB0aGFuIFJlc05lWHQgYnkgZnVzaW5nIGluZmVyaW9yIG1vZGVscyBzb21laG93IGp1c3RpZmllcyB0aGUgYmVuZWZpdHMgb2YgdGhlIHByb3Bvc2VkIG1ldGhvZC5kAgQPZBYEZg8PFgIfAQUSUHJlbGltaW5hcnkgUmF0aW5nZGQCAQ9kFgJmDxUBC1dlYWsgUmVqZWN0ZAIFD2QWBGYPDxYCHwEF+QFQcmVsaW1pbmFyeSBFdmFsdWF0aW9uLiBQbGVhc2UgaW5kaWNhdGUgdG8gdGhlIEFDLCB5b3VyIGZlbGxvdyByZXZpZXdlcnMsIGFuZCB0aGUgYXV0aG9ycyB5b3VyIGN1cnJlbnQgb3BpbmlvbiBvbiB0aGUgcGFwZXIuIFBsZWFzZSBzdW1tYXJpemUgdGhlIGtleSB0aGluZ3MgeW91IHdvdWxkIGxpa2UgdGhlIGF1dGhvcnMgdG8gaW5jbHVkZSBpbiB0aGVpciByZWJ1dHRhbHMgdG8gZmFjaWxpdGF0ZSB5b3VyIGRlY2lzaW9uIG1ha2luZy5kZAIBD2QWAmYPFQHWAk92ZXJhbGwsIHRoaXMgcGFwZXIgaGFzIGl0cyBtZXJpdHMgb24gdGhlIHRlY2huaWNhbCBzaWRlLCB0aG91Z2ggSSBhbSBsYXJnZWx5IGxldCBkb3duIGJ5IGl0cyBuYXJyb3cgZm9jdXMsIGFuZCBsYWNrIG9mIGNvbXBhcmlzb24gd2l0aCB0aGUgbGFyZ2VyIGZpZWxkIG9mIGZlYXR1cmUgZnVzaW9uIC0tIHRoZSBKb2ludCBCYXllc2lhbiB3b3JrIG1pZ2h0IGJlIGEgZ29vZCBzdGFydGluZyBwb2ludCwgc2VlICJELiBDaGVuLCBYLiBDYW8sIEwuIFdhbmcsIEYuIFdlbiwgYW5kIEouIFN1bi4gQmF5ZXNpYW4gZmFjZSByZXZpc2l0ZWQ6IEEgam9pbnQgZm9ybXVsYXRpb24uIEluIEVDQ1YsIDIwMTIiLmQCBg9kFgRmDw8WAh8BBb0CQ29uZmlkZW5jZS4gV3JpdGUg4oCcVmVyeSBDb25maWRlbnQmcXVvdDsgdG8gc3RyZXNzIHlvdSBhcmUgYWJzb2x1dGVseSBzdXJlIGFib3V0IHlvdXIgY29uY2x1c2lvbnMgKGUuZy4sIHlvdSBhcmUgYW4gZXhwZXJ0IHdvcmtpbmcgaW4gdGhlIGFyZWEpLCDigJxDb25maWRlbnTigJ0gdG8gc3RyZXNzIHlvdSBhcmUgbW9zdGx5IHN1cmUgYWJvdXQgeW91ciBjb25jbHVzaW9ucyAoZS5nLiwgeW91IGFyZSBub3QgYW4gZXhwZXJ0IGJ1dCBhcmUga25vd2xlZGdlYWJsZSkuICZxdW90O05vdCBDb25maWRlbnQmcXVvdDsgaW4gYWxsIHRoZSBvdGhlciBjYXNlcy5kZAIBD2QWAmYPFQEJQ29uZmlkZW50ZAIHDw8WAh8AaGRkAggPFQEAZAIBD2QWBgIDD2QWAmYPFQETQXNzaWduZWRfUmV2aWV3ZXJfMmQCBw88KwARAwAPFgQfA2cfAgIGZAEQFgAWABYADBQrAAAWAmYPZBYOAgEPZBYEZg8PFgIfAQVKUGFwZXIgU3VtbWFyeS4gUGxlYXNlIHN1bW1hcml6ZSBpbiB5b3VyIG93biB3b3JkcyB3aGF0IHRoZSBwYXBlciBpcyBhYm91dC5kZAIBD2QWAmYPFQHPAlRoaXMgcGFwZXIgcHJvcG9zZXMgYSBsYXRlIGZ1c2lvbiBtZXRob2QsIHdoaWNoIGNhbiBjb21iaW5lIHRoZSBwcmVkaWN0aW9ucyBmcm9tIG11bHRpcGxlIGZlYXR1cmVzL2NsYXNzaWZpZXJzLiAgVGhlIHByb3Bvc2VkIGFwcHJvYWNoIGZvcm11bGF0ZXMgdGhlIGxhdGUgZnVzaW9uIHRhc2sgYXMgYSBtYXRyaXggcmVjb3ZlcnkgcHJvYmxlbSwgYW5kIHVzZXMgbWF0cml4IGxvdy1yYW5rIGNvbnN0cmFpbnQgdG8gYWNoaWV2ZSBjb25zaXN0ZW5jeSBpbiB0aGUgcmVzdWx0cy4gRXhwZXJpbWVudHMgYXJlIHJ1biBvbiBhIGNvdXBsZSBvZiBwdWJsaWMgZGF0YXNldHMuPGJyIC8+PGJyIC8+ZAICD2QWBGYPDxYCHwEFkwJQYXBlciBTdHJlbmd0aHMuIFBvc2l0aXZlIGFzcGVjdHMgb2YgdGhlIHBhcGVyLiBCZSBzdXJlIHRvIGNvbW1lbnQgb24gdGhlIHBhcGVyJiMzOTtzIG5vdmVsdHksIHRlY2huaWNhbCBjb3JyZWN0bmVzcywgY2xhcml0eSBhbmQgZXhwZXJpbWVudGFsIGV2YWx1YXRpb24uIE5vdGljZSB0aGF0IGRpZmZlcmVudCBwYXBlcnMgbWF5IG5lZWQgZGlmZmVyZW50IGxldmVscyBvZiBldmFsdWF0aW9uOiBlLmcuLCBhIHRoZW9yZXRpY2FsIHBhcGVyIHZzLiBhbiBhcHBsaWNhdGlvbiBwYXBlcmRkAgEPZBYCZg8VAdMCVGhlIHBhcGVyIGlzIGdlbmVyYWxseSBjbGVhcmx5IHdyaXR0ZW4uICBJdCBwcm9wb3NlcyBhIG5ldyB3YXkgdG8gZG8gbGF0ZSBmdXNpb24gZnJvbSBtdWx0aXBsZSBwcmVkaWNhdGlvbnMuIFRoZSBwcm9wb3NlZCBhcHByb2FjaCBmb3JtdWxhdGVzIHRoZSBsYXRlIGZ1c2lvbiB0YXNrIGFzIGEgbWF0cml4IHJlY292ZXJ5IHByb2JsZW0sIGFuZCB1c2VzIG1hdHJpeCBsb3ctcmFuayBjb25zdHJhaW50IHRvIGFjaGlldmUgY29uc2lzdGVuY3kgaW4gdGhlIHJlc3VsdHMuIDxiciAvPk11bHRpcGxlIGRlZXAgbmV1cmFsIG5ldHdvcmtzIGFyZSB1c2VkIGFzIGEgaW4gZXhwZXJpbWVudHMuPGJyIC8+ZAIDD2QWBGYPDxYCHwEF/QFQYXBlciBXZWFrbmVzc2VzLiBEaXNjdXNzIHRoZSBuZWdhdGl2ZSBhc3BlY3RzOiBsYWNrIG9mIG5vdmVsdHkgb3IgY2xhcml0eSwgdGVjaG5pY2FsIGVycm9ycywgaW5zdWZmaWNpZW50IGV4cGVyaW1lbnRhbCBldmFsdWF0aW9uLCBldGMuIFBsZWFzZSBqdXN0aWZ5IHlvdXIgY29tbWVudHMgaW4gZ3JlYXQgZGV0YWlsLiBJZiB5b3UgdGhpbmsgdGhlIHBhcGVyIGlzIG5vdCBub3ZlbCwgZXhwbGFpbiB3aHkgYW5kIHByb3ZpZGUgZXZpZGVuY2VzZGQCAQ9kFgJmDxUBswRGZWF0dXJlcyBmcm9tIG11bHRpcGxlIGRlZXAgbmV1cmFsIG5ldHdvcmtzIGFyZSB1c2VkIGluIGV4cGVyaW1lbnRzLCBhbmQgcHJlZGljYXRpb25zIGFyZSBsZWFybmVkIHZpYSBTVk0gZnJvbSB0aGVzZSBmZWF0dXJlcy4gVGhlIHByZWRpY2F0aW9ucyBhcmUgdGhlbiB1c2VkIGFzIGlucHV0IGZvciB0aGUgcHJvcG9zZWQgbGF0ZSBmdXNpb24gbWV0aG9kLiBUbyBtYWtlIHRoZSB3b3JrIG1vcmUgY29udmluY2luZywgaXQgd291bGQgYmUgZGVzaXJhYmxlIHRvIHNlZSBob3cgdGhlIFNWTS1wcmVkaWNhdGlvbiBsYXRlIGZ1c2lvbiByZXN1bHRzIGNvbXBhcmVkIHdpdGggdGhlIHByZWRpY3Rpb25zIGxlYXJuIGVuZC10by1lbmQgdmlhIGEgbmV1cmFsIG5ldHdvcmsuIEl0IHdvdWxkIGJlIGludGVyZXN0aW5nIHRvIHNlZSBob3cgaXQgY29tcGFyZWQgd2l0aCBuZXVyYWwgbmV0d29yayBiYXNlZCBmdXNpb24gbWV0aG9kLiBBbHNvLCBpdCBpcyB1bmNsZWFyIGhvdyB0aGUgIm4iICh0aGUgbnVtYmVyIG9mIGluc3RhbmNlcykgd291bGQgaW1wYWN0IHRoZSByZXN1bHRzLjxiciAvPjxiciAvPmQCBA9kFgRmDw8WAh8BBRJQcmVsaW1pbmFyeSBSYXRpbmdkZAIBD2QWAmYPFQELV2VhayBSZWplY3RkAgUPZBYEZg8PFgIfAQX5AVByZWxpbWluYXJ5IEV2YWx1YXRpb24uIFBsZWFzZSBpbmRpY2F0ZSB0byB0aGUgQUMsIHlvdXIgZmVsbG93IHJldmlld2VycywgYW5kIHRoZSBhdXRob3JzIHlvdXIgY3VycmVudCBvcGluaW9uIG9uIHRoZSBwYXBlci4gUGxlYXNlIHN1bW1hcml6ZSB0aGUga2V5IHRoaW5ncyB5b3Ugd291bGQgbGlrZSB0aGUgYXV0aG9ycyB0byBpbmNsdWRlIGluIHRoZWlyIHJlYnV0dGFscyB0byBmYWNpbGl0YXRlIHlvdXIgZGVjaXNpb24gbWFraW5nLmRkAgEPZBYCZg8VAcAEVGhpcyBwYXBlciBmb3JtdWxhdGVzIHRoZSBsYXRlIGZ1c2lvbiBvZiBwcmVkaWN0aW9ucyBmcm9tIG11bHRpcGxlIGZlYXR1cmVzIGFzIGEgbWF0cml4IHJlY292ZXJ5IHByb2JsZW0sIGFuZCB1c2VzIG1hdHJpeCBsb3ctcmFuayBjb25zdHJhaW50IHRvIGVuaGFuY2UgdGhlICBjb25zaXN0ZW5jeSBpbiB0aGUgcmVzdWx0cy4gIEl0IHVzZXMgU1ZNIHRvIGxlYXJuIHByZWRpY2F0aW9ucyBmcm9tIG5ldXJhbCBuZXR3b3JrIGZlYXR1cmVzLiBUaGUgdXNlZnVsbmVzcy9lZmZlY3RpdmVuZXNzIG9mIHRoZSBtZXRob2Qgd291bGQgYmUgbW9yZSBjb252aW5jaW5nIGlmIGl0IGlzIGNvbXBhcmVkIGFnYWluc3QgZW5kLXRvLWVuZCB0cmFpbmVkIHByZWRpY2F0aW9ucyBmcm9tIG5ldXJhbCBuZXR3b3JrLiAgSXQgd291bGQgYmUgaW50ZXJlc3RpbmcgdG8gc2VlIGhvdyBpdCBjb21wYXJlZCB3aXRoIG5ldXJhbCBuZXR3b3JrIGJhc2VkIGZ1c2lvbiBtZXRob2QuIEFsc28sIGl0IGlzIHVuY2xlYXIgaG93IHRoZSAibiIgKHRoZSBudW1iZXIgb2YgaW5zdGFuY2VzKSB3b3VsZCBpbXBhY3QgdGhlIHJlc3VsdHMuPGJyIC8+ZAIGD2QWBGYPDxYCHwEFvQJDb25maWRlbmNlLiBXcml0ZSDigJxWZXJ5IENvbmZpZGVudCZxdW90OyB0byBzdHJlc3MgeW91IGFyZSBhYnNvbHV0ZWx5IHN1cmUgYWJvdXQgeW91ciBjb25jbHVzaW9ucyAoZS5nLiwgeW91IGFyZSBhbiBleHBlcnQgd29ya2luZyBpbiB0aGUgYXJlYSksIOKAnENvbmZpZGVudOKAnSB0byBzdHJlc3MgeW91IGFyZSBtb3N0bHkgc3VyZSBhYm91dCB5b3VyIGNvbmNsdXNpb25zIChlLmcuLCB5b3UgYXJlIG5vdCBhbiBleHBlcnQgYnV0IGFyZSBrbm93bGVkZ2VhYmxlKS4gJnF1b3Q7Tm90IENvbmZpZGVudCZxdW90OyBpbiBhbGwgdGhlIG90aGVyIGNhc2VzLmRkAgEPZBYCZg8VAQlDb25maWRlbnRkAgcPDxYCHwBoZGQCCA8VAQBkAgIPZBYGAgMPZBYCZg8VARNBc3NpZ25lZF9SZXZpZXdlcl8zZAIHDzwrABEDAA8WBB8DZx8CAgZkARAWABYAFgAMFCsAABYCZg9kFg4CAQ9kFgRmDw8WAh8BBUpQYXBlciBTdW1tYXJ5LiBQbGVhc2Ugc3VtbWFyaXplIGluIHlvdXIgb3duIHdvcmRzIHdoYXQgdGhlIHBhcGVyIGlzIGFib3V0LmRkAgEPZBYCZg8VAdwBVGhpcyBwYXBlciBpbnRyb2R1Y2VkIGEgZmVhdHVyZSBmdXNpb24gbWV0aG9kIHZpYSBtYXRyaXggcmVjb3Zlcnkgd2l0aCBtYXRyaXggcmFuayBjb25zdHJhaW50LiBBbiBBTE0tYmFzZWQgb3B0aW1pemF0aW9uIGFsZ29yaXRobSBpcyBhbHNvIHByb3Bvc2VkLiBFeHBlcmltZW50cyBvbiBzZXZlcmFsIGRhdGFzZXQgc2hvd3MgdGhlIHN0YXRlIG9mIHRoZSBhcnQgcGVyZm9ybWFuY2VzLmQCAg9kFgRmDw8WAh8BBZMCUGFwZXIgU3RyZW5ndGhzLiBQb3NpdGl2ZSBhc3BlY3RzIG9mIHRoZSBwYXBlci4gQmUgc3VyZSB0byBjb21tZW50IG9uIHRoZSBwYXBlciYjMzk7cyBub3ZlbHR5LCB0ZWNobmljYWwgY29ycmVjdG5lc3MsIGNsYXJpdHkgYW5kIGV4cGVyaW1lbnRhbCBldmFsdWF0aW9uLiBOb3RpY2UgdGhhdCBkaWZmZXJlbnQgcGFwZXJzIG1heSBuZWVkIGRpZmZlcmVudCBsZXZlbHMgb2YgZXZhbHVhdGlvbjogZS5nLiwgYSB0aGVvcmV0aWNhbCBwYXBlciB2cy4gYW4gYXBwbGljYXRpb24gcGFwZXJkZAIBD2QWAmYPFQGiAXRoaXMgcGFwZXIgaXMgdGhlb3JldGljYWxseSBzb3VuZCBhbmQgdGhlIHJlc3VsdHMgb24gbXVsdGlwbGUgZGF0YXNldCBzaG93cyBpbXByb3ZlbWVudHMgYWdhaW5zdCBvdGhlciBmZWF0dXJlIGZ1c2lvbiBtZXRob2RzIGFuZCBhbHNvIHN0cm9uZyBiYXNlbGluZSAocmVzTmV4dCkuIGQCAw9kFgRmDw8WAh8BBf0BUGFwZXIgV2Vha25lc3Nlcy4gRGlzY3VzcyB0aGUgbmVnYXRpdmUgYXNwZWN0czogbGFjayBvZiBub3ZlbHR5IG9yIGNsYXJpdHksIHRlY2huaWNhbCBlcnJvcnMsIGluc3VmZmljaWVudCBleHBlcmltZW50YWwgZXZhbHVhdGlvbiwgZXRjLiBQbGVhc2UganVzdGlmeSB5b3VyIGNvbW1lbnRzIGluIGdyZWF0IGRldGFpbC4gSWYgeW91IHRoaW5rIHRoZSBwYXBlciBpcyBub3Qgbm92ZWwsIGV4cGxhaW4gd2h5IGFuZCBwcm92aWRlIGV2aWRlbmNlc2RkAgEPZBYCZg8VAbQBdGhlIGNhcHRpb24gaW4gdGFibGUgMiAiZXhwZXJpbWVudCByZXN1bHRzIiBpcyBtaXNsZWFkaW5nLCBpdCBzaG91bGQgYmUgY29tcHV0YXRpb25hbCB0aW1lLiBBbHNvIGZvciB0aGUgc2NhbGFiaWxpdHksIHRoZSBjdWJpYyBjb21wbGV4aXR5IHRvIEMgc2VlbXMgc2NhcnkgZm9yIHJlYWwtd29ybGQgcHJvYmxlbXMuZAIED2QWBGYPDxYCHwEFElByZWxpbWluYXJ5IFJhdGluZ2RkAgEPZBYCZg8VAQtXZWFrIEFjY2VwdGQCBQ9kFgRmDw8WAh8BBfkBUHJlbGltaW5hcnkgRXZhbHVhdGlvbi4gUGxlYXNlIGluZGljYXRlIHRvIHRoZSBBQywgeW91ciBmZWxsb3cgcmV2aWV3ZXJzLCBhbmQgdGhlIGF1dGhvcnMgeW91ciBjdXJyZW50IG9waW5pb24gb24gdGhlIHBhcGVyLiBQbGVhc2Ugc3VtbWFyaXplIHRoZSBrZXkgdGhpbmdzIHlvdSB3b3VsZCBsaWtlIHRoZSBhdXRob3JzIHRvIGluY2x1ZGUgaW4gdGhlaXIgcmVidXR0YWxzIHRvIGZhY2lsaXRhdGUgeW91ciBkZWNpc2lvbiBtYWtpbmcuZGQCAQ9kFgJmDxUBY1RoaXMgcGFwZXIgaXMgdGhlb3JldGljYWwgc29saWQgYW5kIHNob3dzIGNvbnZpbmNpbmcgcmVzdWx0cyBvbiBtdWx0aXBsZSBkYXRhc2V0LiBJIHN1Z2dlc3QgYWNjZXB0LmQCBg9kFgRmDw8WAh8BBb0CQ29uZmlkZW5jZS4gV3JpdGUg4oCcVmVyeSBDb25maWRlbnQmcXVvdDsgdG8gc3RyZXNzIHlvdSBhcmUgYWJzb2x1dGVseSBzdXJlIGFib3V0IHlvdXIgY29uY2x1c2lvbnMgKGUuZy4sIHlvdSBhcmUgYW4gZXhwZXJ0IHdvcmtpbmcgaW4gdGhlIGFyZWEpLCDigJxDb25maWRlbnTigJ0gdG8gc3RyZXNzIHlvdSBhcmUgbW9zdGx5IHN1cmUgYWJvdXQgeW91ciBjb25jbHVzaW9ucyAoZS5nLiwgeW91IGFyZSBub3QgYW4gZXhwZXJ0IGJ1dCBhcmUga25vd2xlZGdlYWJsZSkuICZxdW90O05vdCBDb25maWRlbnQmcXVvdDsgaW4gYWxsIHRoZSBvdGhlciBjYXNlcy5kZAIBD2QWAmYPFQEJQ29uZmlkZW50ZAIHDw8WAh8AaGRkAggPFQEAZBgDBR9jdGwwMCRjcGgkZ3ZSZXZpZXdzJGN0bDAyJGN0bDAwDzwrAAwBCAIBZAUfY3RsMDAkY3BoJGd2UmV2aWV3cyRjdGwwMSRjdGwwMA88KwAMAQgCAWQFH2N0bDAwJGNwaCRndlJldmlld3MkY3RsMDAkY3RsMDAPPCsADAEIAgFkmYt839oy8bPnqVyQ28QxqNqokX4=" />
+</div>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="DCCEC959" />
+</div>
+<table id="header">
+<tr>
+<td width="100%"><a href='http&#58;&#47;&#47;iccv2017.thecvf.com&#47;' target='_blank'>ICCV 2017</a><br /><b>International Conference on Computer Vision 2017</b><br />Oct 22, 2017 - Oct 29, 2017, Venice, Italy</td>
+</tr>
+<tr class='headerSeparator'>
+    <td style='height:5px'></td>
+</tr>
+</table>
+<table id="content"><tr><td class='contentBorder'>&nbsp;</td><td class="contentContainer">
+<span id="ctl00_cph_Label4" style="font-size:Small;font-weight:bold;">Reviews For Paper</span>
+<span id="ctl00_cph_lblErrorMessage" class="error" style="font-size:Small;"></span>
+<div id="ctl00_cph_pnlReviews">
+	
+    <span style="font-size:Small;"><table id="ctl00_cph_infoSubmission_tblInfo" class="nicetable2" style="text-align:left; width: 100%;">
+		<tr>
+			<td width="100px"><b>Paper ID</b></td>
+			<td><span id="ctl00_cph_infoSubmission_lblPaperId" style="font-size:Small;">283</span></td>
+		</tr>
+		<tr>
+			<td><b>Title</b></td>
+			<td><span id="ctl00_cph_infoSubmission_lblPaperTitle" style="font-size:Small;">Late Fusion via Subspace Search with Consistency Preservation</span></td>
+		</tr>
+	</table>
+	</span>
+    
+    
+            <hr />
+            <table>
+                <tr>
+                    <td>
+                        <span id="ctl00_cph_gvReviews_ctl00_Label2" style="font-size:Small;font-weight:bold;">Masked Reviewer ID:</span>
+                    </td>
+                    <td>
+                        <span id="ctl00_cph_gvReviews_ctl00_Label1" style="font-size:Small;">Assigned_Reviewer_1</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span id="ctl00_cph_gvReviews_ctl00_Label3" style="font-size:Small;font-weight:bold;">Review:</span>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </table>
+            <div>
+		<table cellspacing="0" cellpadding="4" rules="all" border="1" style="color:#333333;border-width:1px;border-style:None;font-family:Verdana;font-size:Small;border-collapse:collapse;">
+			<tr style="color:White;background-color:#5D7B9D;font-weight:bold;">
+				<th scope="col">Question</th><th scope="col">&nbsp;</th>
+			</tr><tr style="color:#333333;background-color:#F7F6F3;">
+				<td style="width:20%;">Paper Summary. Please summarize in your own words what the paper is about.</td><td style="width:80%;">
+                            This paper studies the problem of late-fusion of features obtained from different modalities/views. Main contributions include (i) a matrix factorization approach to fuse features from different domains, it places a hard constraint on rank to maximize consistency; (ii) an ALM-based algorithm to with with the non-smooth loss, e.g., L_12. The fusion strategy is evaluated on a few commonly used datasets. 
+                        </td>
+			</tr><tr style="color:#284775;background-color:White;">
+				<td style="width:20%;">Paper Strengths. Positive aspects of the paper. Be sure to comment on the paper&#39;s novelty, technical correctness, clarity and experimental evaluation. Notice that different papers may need different levels of evaluation: e.g., a theoretical paper vs. an application paper</td><td style="width:80%;">
+                            Pros:<br />- technical expositions are on the rigorous side, especially the theoretical convergence analysis<br />- the paper is relatively easy to follow
+                        </td>
+			</tr><tr style="color:#333333;background-color:#F7F6F3;">
+				<td style="width:20%;">Paper Weaknesses. Discuss the negative aspects: lack of novelty or clarity, technical errors, insufficient experimental evaluation, etc. Please justify your comments in great detail. If you think the paper is not novel, explain why and provide evidences</td><td style="width:80%;">
+                            Cons:<br />- not entirely convinced by the narrow focus on late fusion; I certainly buy the larger angle of better view/modality fusion, but narrowing the investigation towards late fusion only, while neglecting other means of closing the domain gap is rather harsh;  I would be convinced if experiments are set up in a way that they not only compares the proposed with late fusion methods, but other paradigms, e.g., the many weight sharing strategies where fusion is implicitly tackled at training<br />- experiments not super convincing, (i) RCEC seems to be doing rather well, while being a lot faster on average, (ii) I fail to see why doing (a bit) better than ResNeXt by fusing inferior models somehow justifies the benefits of the proposed method.
+                        </td>
+			</tr><tr style="color:#284775;background-color:White;">
+				<td style="width:20%;">Preliminary Rating</td><td style="width:80%;">
+                            Weak Reject
+                        </td>
+			</tr><tr style="color:#333333;background-color:#F7F6F3;">
+				<td style="width:20%;">Preliminary Evaluation. Please indicate to the AC, your fellow reviewers, and the authors your current opinion on the paper. Please summarize the key things you would like the authors to include in their rebuttals to facilitate your decision making.</td><td style="width:80%;">
+                            Overall, this paper has its merits on the technical side, though I am largely let down by its narrow focus, and lack of comparison with the larger field of feature fusion -- the Joint Bayesian work might be a good starting point, see "D. Chen, X. Cao, L. Wang, F. Wen, and J. Sun. Bayesian face revisited: A joint formulation. In ECCV, 2012".
+                        </td>
+			</tr><tr style="color:#284775;background-color:White;">
+				<td style="width:20%;">Confidence. Write “Very Confident&quot; to stress you are absolutely sure about your conclusions (e.g., you are an expert working in the area), “Confident” to stress you are mostly sure about your conclusions (e.g., you are not an expert but are knowledgeable). &quot;Not Confident&quot; in all the other cases.</td><td style="width:80%;">
+                            Confident
+                        </td>
+			</tr>
+		</table>
+	</div>
+            
+        
+            <hr />
+            <table>
+                <tr>
+                    <td>
+                        <span id="ctl00_cph_gvReviews_ctl01_Label2" style="font-size:Small;font-weight:bold;">Masked Reviewer ID:</span>
+                    </td>
+                    <td>
+                        <span id="ctl00_cph_gvReviews_ctl01_Label1" style="font-size:Small;">Assigned_Reviewer_2</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span id="ctl00_cph_gvReviews_ctl01_Label3" style="font-size:Small;font-weight:bold;">Review:</span>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </table>
+            <div>
+		<table cellspacing="0" cellpadding="4" rules="all" border="1" style="color:#333333;border-width:1px;border-style:None;font-family:Verdana;font-size:Small;border-collapse:collapse;">
+			<tr style="color:White;background-color:#5D7B9D;font-weight:bold;">
+				<th scope="col">Question</th><th scope="col">&nbsp;</th>
+			</tr><tr style="color:#333333;background-color:#F7F6F3;">
+				<td style="width:20%;">Paper Summary. Please summarize in your own words what the paper is about.</td><td style="width:80%;">
+                            This paper proposes a late fusion method, which can combine the predictions from multiple features/classifiers.  The proposed approach formulates the late fusion task as a matrix recovery problem, and uses matrix low-rank constraint to achieve consistency in the results. Experiments are run on a couple of public datasets.<br /><br />
+                        </td>
+			</tr><tr style="color:#284775;background-color:White;">
+				<td style="width:20%;">Paper Strengths. Positive aspects of the paper. Be sure to comment on the paper&#39;s novelty, technical correctness, clarity and experimental evaluation. Notice that different papers may need different levels of evaluation: e.g., a theoretical paper vs. an application paper</td><td style="width:80%;">
+                            The paper is generally clearly written.  It proposes a new way to do late fusion from multiple predications. The proposed approach formulates the late fusion task as a matrix recovery problem, and uses matrix low-rank constraint to achieve consistency in the results. <br />Multiple deep neural networks are used as a in experiments.<br />
+                        </td>
+			</tr><tr style="color:#333333;background-color:#F7F6F3;">
+				<td style="width:20%;">Paper Weaknesses. Discuss the negative aspects: lack of novelty or clarity, technical errors, insufficient experimental evaluation, etc. Please justify your comments in great detail. If you think the paper is not novel, explain why and provide evidences</td><td style="width:80%;">
+                            Features from multiple deep neural networks are used in experiments, and predications are learned via SVM from these features. The predications are then used as input for the proposed late fusion method. To make the work more convincing, it would be desirable to see how the SVM-predication late fusion results compared with the predictions learn end-to-end via a neural network. It would be interesting to see how it compared with neural network based fusion method. Also, it is unclear how the "n" (the number of instances) would impact the results.<br /><br />
+                        </td>
+			</tr><tr style="color:#284775;background-color:White;">
+				<td style="width:20%;">Preliminary Rating</td><td style="width:80%;">
+                            Weak Reject
+                        </td>
+			</tr><tr style="color:#333333;background-color:#F7F6F3;">
+				<td style="width:20%;">Preliminary Evaluation. Please indicate to the AC, your fellow reviewers, and the authors your current opinion on the paper. Please summarize the key things you would like the authors to include in their rebuttals to facilitate your decision making.</td><td style="width:80%;">
+                            This paper formulates the late fusion of predictions from multiple features as a matrix recovery problem, and uses matrix low-rank constraint to enhance the  consistency in the results.  It uses SVM to learn predications from neural network features. The usefulness/effectiveness of the method would be more convincing if it is compared against end-to-end trained predications from neural network.  It would be interesting to see how it compared with neural network based fusion method. Also, it is unclear how the "n" (the number of instances) would impact the results.<br />
+                        </td>
+			</tr><tr style="color:#284775;background-color:White;">
+				<td style="width:20%;">Confidence. Write “Very Confident&quot; to stress you are absolutely sure about your conclusions (e.g., you are an expert working in the area), “Confident” to stress you are mostly sure about your conclusions (e.g., you are not an expert but are knowledgeable). &quot;Not Confident&quot; in all the other cases.</td><td style="width:80%;">
+                            Confident
+                        </td>
+			</tr>
+		</table>
+	</div>
+            
+        
+            <hr />
+            <table>
+                <tr>
+                    <td>
+                        <span id="ctl00_cph_gvReviews_ctl02_Label2" style="font-size:Small;font-weight:bold;">Masked Reviewer ID:</span>
+                    </td>
+                    <td>
+                        <span id="ctl00_cph_gvReviews_ctl02_Label1" style="font-size:Small;">Assigned_Reviewer_3</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span id="ctl00_cph_gvReviews_ctl02_Label3" style="font-size:Small;font-weight:bold;">Review:</span>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </table>
+            <div>
+		<table cellspacing="0" cellpadding="4" rules="all" border="1" style="color:#333333;border-width:1px;border-style:None;font-family:Verdana;font-size:Small;border-collapse:collapse;">
+			<tr style="color:White;background-color:#5D7B9D;font-weight:bold;">
+				<th scope="col">Question</th><th scope="col">&nbsp;</th>
+			</tr><tr style="color:#333333;background-color:#F7F6F3;">
+				<td style="width:20%;">Paper Summary. Please summarize in your own words what the paper is about.</td><td style="width:80%;">
+                            This paper introduced a feature fusion method via matrix recovery with matrix rank constraint. An ALM-based optimization algorithm is also proposed. Experiments on several dataset shows the state of the art performances.
+                        </td>
+			</tr><tr style="color:#284775;background-color:White;">
+				<td style="width:20%;">Paper Strengths. Positive aspects of the paper. Be sure to comment on the paper&#39;s novelty, technical correctness, clarity and experimental evaluation. Notice that different papers may need different levels of evaluation: e.g., a theoretical paper vs. an application paper</td><td style="width:80%;">
+                            this paper is theoretically sound and the results on multiple dataset shows improvements against other feature fusion methods and also strong baseline (resNext). 
+                        </td>
+			</tr><tr style="color:#333333;background-color:#F7F6F3;">
+				<td style="width:20%;">Paper Weaknesses. Discuss the negative aspects: lack of novelty or clarity, technical errors, insufficient experimental evaluation, etc. Please justify your comments in great detail. If you think the paper is not novel, explain why and provide evidences</td><td style="width:80%;">
+                            the caption in table 2 "experiment results" is misleading, it should be computational time. Also for the scalability, the cubic complexity to C seems scary for real-world problems.
+                        </td>
+			</tr><tr style="color:#284775;background-color:White;">
+				<td style="width:20%;">Preliminary Rating</td><td style="width:80%;">
+                            Weak Accept
+                        </td>
+			</tr><tr style="color:#333333;background-color:#F7F6F3;">
+				<td style="width:20%;">Preliminary Evaluation. Please indicate to the AC, your fellow reviewers, and the authors your current opinion on the paper. Please summarize the key things you would like the authors to include in their rebuttals to facilitate your decision making.</td><td style="width:80%;">
+                            This paper is theoretical solid and shows convincing results on multiple dataset. I suggest accept.
+                        </td>
+			</tr><tr style="color:#284775;background-color:White;">
+				<td style="width:20%;">Confidence. Write “Very Confident&quot; to stress you are absolutely sure about your conclusions (e.g., you are an expert working in the area), “Confident” to stress you are mostly sure about your conclusions (e.g., you are not an expert but are knowledgeable). &quot;Not Confident&quot; in all the other cases.</td><td style="width:80%;">
+                            Confident
+                        </td>
+			</tr>
+		</table>
+	</div>
+            
+        
+    <br />
+    <br />
+
+</div>
+</td><td class='contentBorder'>&nbsp;</td></tr></table>
+</form>
+</body>
+</html>
