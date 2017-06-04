@@ -1,32 +1,28 @@
-load('lbp_WDRef.mat')
-load('id_WDRef.mat')
-labels = id_WDRef;
-X = double(lbp_WDRef);
-X = sqrt(X);
-X = bsxfun(@rdivide,X,sum(X,2));
-train_mean = mean(X, 1);
+load ('Test_ALL.mat');
+train_labels = [train_label + 1; train_label + 1];             clear train_label;
+X            = double([train_features{1}; train_features{2}]); clear train_features;
+X            = sqrt(X);
+train_x      = bsxfun(@rdivide,X,sum(X,2));
+train_mean   = mean(train_x, 1);
 %[COEFF,SCORE] = princomp(X,'econ');
-[COEFF, SCORE] = pca(X,'Algorithm','svd','Economy', true);
-fprintf('PCA done');
+%[COEFF, SCORE] = pca(X,'Algorithm','svd','Economy', true);
+%fprintf('PCA done');
 
-top_dims = 64;
-
-train_x = SCORE(:,1:top_dims);
-
-
-[mappedX, mapping] = JointBayesian(train_x, labels);
+[mappedX, mapping] = JointBayesian(train_x, train_labels);
 fprintf('JointBayesian Done\n');
+
 % Dis_matrix = repmat(mapping.c,1,size(train_x,1))+repmat(mapping.c,1,size(train_x,1))+train_x * mapping.G *train_x';
-[classes, bar, labels] = unique(labels);
-    nc = length(classes);
-train_Intra = zeros(nc*2,2);
+[classes, bar, labels] = unique(train_labels);
+nc                     = length(classes);
+train_Intra            = zeros(nc*2, 2);
+
 for i=1:nc
-    train_Intra(2*i-1,:) = randperm(sum(labels == i),2) + find(labels == i,1,'first') - 1;
-    train_Intra(2*i,:) = randperm(sum(labels == i),2) + find(labels == i,1,'first') - 1;
+    train_Intra(2*i-1,:) = randperm(sum(train_labels == i),2) + find(train_labels == i,1,'first') - 1;
+    train_Intra(2*i,:)   = randperm(sum(train_labels == i),2) + find(train_labels == i,1,'first') - 1;
 end;
-train_Extra = reshape(randperm(length(labels),20000),10000,2);
-train_Extra(labels(train_Extra(:,1))==labels(train_Extra(:,2)),:)=[];
-train_Extra(size(train_Intra,1)+1:end,:)=[];
+train_Extra = reshape(randperm(length(train_labels), 20000), 10000, 2);
+train_Extra(train_labels(train_Extra(:,1)) == train_labels(train_Extra(:,2)),:) = [];
+train_Extra(size(train_Intra,1)+1:end,:) = [];
 Dis_train_Intra = zeros(size(train_Intra,1),1);
 Dis_train_Extra = zeros(size(train_Intra,1),1);
 
@@ -37,61 +33,36 @@ end;
 group_train = [ones(size(Dis_train_Intra,1),1);zeros(size(Dis_train_Extra,1),1)];
 training = [Dis_train_Intra;Dis_train_Extra];
 
-load('lbp_lfw.mat')
-load('pairlist_lfw.mat')
-normX = double(lbp_lfw);
-normX = sqrt(normX);
-normX = bsxfun(@rdivide,normX,sum(normX,2));
-normX = bsxfun(@minus,normX,train_mean);
-normX = normX * COEFF(:,1:top_dims);
-test_Intra = pairlist_lfw.IntraPersonPair;
-test_Extra = pairlist_lfw.ExtraPersonPair;
+test_labels  = [test_label + 1;  test_label + 1];             clear test_label;
+test_x       = double([test_features{1};  test_features{2}]); clear test_features;
+test_x = double(test_x);
+test_x = sqrt(normX);
+test_x = bsxfun(@rdivide, normX, sum(normX,2));
+test_x = bsxfun(@minus, normX, train_mean);
+%normX = normX * COEFF(:,1:top_dims);
 
-result_Intra = zeros(3000,1);
-result_Extra = zeros(3000,1);
-for i=1:3000
-    result_Intra(i) = normX(test_Intra(i,1),:) * mapping.A * normX(test_Intra(i,1),:)' + normX(test_Intra(i,2),:) * mapping.A * normX(test_Intra(i,2),:)' - 2 * normX(test_Intra(i,1),:) * mapping.G * normX(test_Intra(i,2),:)';
-    result_Extra(i) = normX(test_Extra(i,1),:) * mapping.A * normX(test_Extra(i,1),:)' + normX(test_Extra(i,2),:) * mapping.A * normX(test_Extra(i,2),:)' - 2 * normX(test_Extra(i,1),:) * mapping.G * normX(test_Extra(i,2),:)';
+%test_Intra = pairlist_lfw.IntraPersonPair;
+%test_Extra = pairlist_lfw.ExtraPersonPair;
+
+test_Intra = zeros(5000, 2);
+test_Extra = zeros(5000, 2);
+for i = 1:5000
+  
+end
+
+
+index_1_ok = train_labels == 1;
+index_1_no = train_labels ~= 1;
+
+result_Intra = zeros(5000,1);
+result_Extra = zeros(5000,1);
+for i=1:5000
+  result_Intra(i) = normX(test_Intra(i,1),:) * mapping.A * normX(test_Intra(i,1),:)' + normX(test_Intra(i,2),:) * mapping.A * normX(test_Intra(i,2),:)' - 2 * normX(test_Intra(i,1),:) * mapping.G * normX(test_Intra(i,2),:)';
+  result_Extra(i) = normX(test_Extra(i,1),:) * mapping.A * normX(test_Extra(i,1),:)' + normX(test_Extra(i,2),:) * mapping.A * normX(test_Extra(i,2),:)' - 2 * normX(test_Extra(i,1),:) * mapping.G * normX(test_Extra(i,2),:)';
 end;
 
-group_sample = [ones(3000,1);zeros(3000,1)];
+group_sample = [ones(5000,1); zeros(5000,1)];
 sample = [result_Intra;result_Extra];
-
-
-
-%%% the method of classification     
-[m,n]=size(group_train);
-starderd=0;
-eg1=0;
-num1=0;
-eg2=0;
-num2=0;
-for i=1:m
-     if group_train(i,1)==0
-        eg2=eg2+training(i,1);
-        num2=num2+1;
-     else
-         eg1=eg1+training(i,1);
-         num1=num1+1;
-     end
-end
-starderd=(eg1+eg2)/(num1+num2);
- [m,n]=size(sample);
- label=zeros(m,1);
- accuracy=0;
- for i=1:m
-     if sample(i,1)>starderd
-        label(i,1)=1;
-     else
-        label(i,1)=0;
-     end
-     if label(i,1)==group_sample(i,1)
-         accuracy=accuracy+1;
-     end
- end
- accuracy/m
- %result(1,1)=result(1,1)+accuracy/m;
-
 
 %method SVM
 bestc=256;

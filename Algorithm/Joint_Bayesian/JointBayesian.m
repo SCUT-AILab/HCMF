@@ -24,20 +24,23 @@ function [mappedX, mapping] = JointBayesian(X, labels)
 %     [COEFF,SCORE] = princomp(X,'econ');
 %     X = SCORE(:,1:400);
 %     X = bsxfun(@minus,X,mapping.mean);
-    m = length(labels);
-    n = size(X,2);
+  max_buffer_number = 20000;
+  max_iteration = 500;
+
+  m = length(labels);
+  n = size(X,2);
 	
 	% Make sure labels are nice
 	[classes, bar, labels] = unique(labels);
-    nc = length(classes);
+  nc = length(classes);
 	
 	% Intialize Sw
 	Sw = zeros(size(X, 2), size(X, 2));
     
-   cur = {};
-    withinCount = 0;
-    numberBuff = zeros(1000,1);
-%     numberInvert = zeros(1000,1);
+  cur = {};
+  withinCount = 0;
+  numberBuff = zeros(max_buffer_number, 1);
+% numberInvert = zeros(1000,1);
     maxNumberInOneClass = [];
     for i=1:nc
         % Get all instances with class i
@@ -86,15 +89,15 @@ function [mappedX, mapping] = JointBayesian(X, labels)
     
     oldSw = Sw;
 %     Gs = cell(maxNumberInOneClass,1);
-    SuFG = cell(1000,1);
-    SwG = cell(1000,1);
+    SuFG = cell(20000,1);
+    SwG = cell(20000,1);
     
-    for l=1:500
+    for l=1:max_iteration
 %         tic;
         F = inv(Sw);
         ep =zeros(n,m);
         nowp = 1;
-        for g = 1:1000
+        for g = 1:max_buffer_number
             if numberBuff(g)==1
                 G = -1 .* (g .* Su + Sw) \ Su / Sw;
                 SuFG{g} = Su * (F + g.*G);
@@ -114,7 +117,7 @@ function [mappedX, mapping] = JointBayesian(X, labels)
 %     Sw = ep*ep'/withinCount;
         fprintf('%d %f\n',l,norm(Sw - oldSw)/norm(Sw));
 %         toc;
-        if norm(Sw - oldSw)/norm(Sw)<1e-6
+        if norm(Sw - oldSw)/norm(Sw)<1e-5
             break;
         end;
         oldSw = Sw;
