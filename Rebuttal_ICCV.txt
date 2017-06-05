@@ -3,7 +3,7 @@ We thank all the reviewers for the comments and suggestions. We take the comment
 
 To Reviewer 1:
 
-Thanks for the comments. 
+Thanks for the comments.
 
 - While you generally recognized our technical merit, your major concern is that we did not compare our method to more other fusion methods in which fusion is implicitly tackled at the training stage. Following your suggestion, we conducted more experiment and compared to the Bayesian-based method [1] suggested by you. Because [1] is not directly applicable to fusion, some necessary modification is made. A limitation of [1] is that it requires the same dimensionality of features for fusing, which is not true in many real world applications. The global_pooling layer always generates 64-dimension features. We thus choose the global_pooling layer's feature of all residual-based network used in Table 4 as the input of the joint Bayesian method [1]. In this way, we have feature dimension = 64, 50000 instances (10 models) for total 10 classes. The accuracy of Joint Bayesian [1] is 93.8. Using the SVM predictions with the global pooling feature as input, the accuracy of our method is 95.0, which outperforms the method suggested by you. Additionally, because our method does not require the input feature to be of the same dimension, our method can be applied to a broader range of applications. 
 
