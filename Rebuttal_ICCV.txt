@@ -3,56 +3,58 @@ We thank all the reviewers for the comments and suggestions. We take the comment
 
 To Reviewer 1:
 
-Thanks for the comments.
-
-- While you generally recognized our technical merit, your major concern is that we did not compare our method to more other fusion methods in which fusion is implicitly tackled at the training stage. Following your suggestion, we conducted more experiment and compared to the Bayesian-based method [1] suggested by you. Because [1] is not directly applicable to fusion, some necessary modification is made. A limitation of [1] is that it requires the same dimensionality of features for fusing, which is not true in many real world applications. The global_pooling layer always generates 64-dimension features. We thus choose the global_pooling layer's feature of all residual-based network used in Table 4 as the input of the joint Bayesian method [1]. In this way, we have feature dimension = 64, 50000 instances (10 models) for total 10 classes. The accuracy of Joint Bayesian [1] is 93.8. Using the SVM predictions with the global pooling feature as input, the accuracy of our method is 95.0, which outperforms the method suggested by you. Additionally, because our method does not require the input feature to be of the same dimension, our method can be applied to a broader range of applications. 
+Q: Comparisons with more fusion methods.
+A: As suggested, we compared with the Bayesian-based method [1] suggested by you. Note that [1] requires the same dimensionality of features for fusing, which, however, is not directly applicable in many real world applications. Based on ResNet, recall that the global-pooling layer generates 64-dimension features. We thus choose the global-pooling layer's feature of all residual-based networks used in Table 4 as the input of the joint Bayesian method [1]. In this way, we have 50000 instances with feature dimension = 64 for total 10 classes. The accuracy of Joint Bayesian [1] is 93.8; While the accuracy of our method is 95.0, which outperforms Joint Bayesian. More importantly, because our method does not require the input feature to be of the same dimension, our method can be applied to a broader range of applications.
 
 - Other two minor issues:
-(i)In terms of efficiency, our method and RCEC are the two most efficient methods (See Table 2). The two algorithms have a similar range of running time. On the other hand, our method outperforms RCEC in accuracy for all the five datasets (See Table 2).
+(i) In terms of efficiency, our method and RCEC are the two most efficient methods (See Table 2). The two algorithms have the similar range of running time. Nevertheless, our method outperforms RCEC in terms of accuracy for all the five datasets (See Table 1).
 
-(ii) Our method and ResNeXt are two different directions for image classification. Our method can further take ResNeXt as additional input. We conducted the experiments by taking ResNeXt as another input, and our method outperforms ResNeXt by about 3%, which is significant and worthwhile. 
+(ii) Our method and ResNeXt are two different kinds of methods for image classification. With the proposed fusion scheme, our method takes ResNeXt as additional input, and it outperforms ResNeXt by about 3%. Thus, the proposed method is significant and worthwhile. 
+
+We will cite [1] and discuss more methods in our revised version.
 
 [1] Bayesian face revisited: A joint formulation. In ECCV, 2012
-We will cite [1] and discuss more implicit fusion methods in our revised version.
 
-
-To  Reviewer 2:
+To Reviewer 2:
 
 Thanks for your comments that the paper proposes a new way for information fusion. We also appreciate your suggestions for improving the paper.
 
 Your major concern is that we should add three more experiments. 
-To address the concerns, we conducted all the suggested experiments and report the result on CIFAR-10 in this rebuttal due to space limit.
+To address the concerns, we conducted all the suggested experiments and report the results on CIFAR-10 in this rebuttal due to space limit.
 
-1. SVM-prediction V.S. CNN-prediction as the input of late fusion.
-We used SVM prediction as input in our original submission because some of the compared algorithms cannot take CNN predictions as input (see L801 to L803 for our justifications). Nevertheless, we additionally used CNN-predictions learned by end-to-end CNN models as the input of late fusion to address your comments. The accuracy of our method by fusing the CNN-predictions of each model used in Table 1 is 95.93, higher than the fusion of SVM-predictions (95.11). The only two compared methods that are able to use CNN prediction as input are RCEC and average fusion. The accuracies of RCEC and average fusion using CNN prediction are 95.36 and 94.97. Again, our method outperforms the compared methods. 
+Q1. SVM-prediction V.S. CNN-prediction as the input of late fusion.
 
-2. Neural network based fusion V.S. Our method
+A. We used the SVM prediction as input in our original submission because some compared algorithms cannot take CNN predictions as input (see L801 to L803 for our justifications). Nevertheless, we additionally used CNN-predictions learned by end-to-end CNN models as the input of late fusion. By fusing the CNN-predictions, our method achieves an accuracy of 95.93, which is much better than the fusion of SVM-predictions (95.11). RCEC and average fusion are two other methods that can use CNN predictions as input, and their accuracies are 95.36 and 94.97, respectively. Again, our method outperforms the compared methods.
 
-Note that directly training a fusion model that fuses several entire CNN models including all convolutional layers may be intractable due to excessive GPU memory consumption. We thus perform the following two alternative experiments to address your comment.
+Q2. Neural network based fusion V.S. Our method.
+
+A. Directly training a fusion model that fuses several CNN models may be intractable due to excessive GPU memory consumption. We thus perform the following two alternative experiments to respond your comment.
 
 ---(1) Feature fusion via CNN
-We conducted an experiment in which fusion is performed at the last pooling layer of all CNN models. Two strategies were used in our experiment. In the first setting, the features are flattened and concatenated (we denote this strategy by 'concatenation'). In the second setting,  we additionally apply max pooling crossing channel (denoted by 'max pooling'), followed by a fc layer with 10 num_outputs and a softmax layer.  
+We conducted an experiment in which we performed the fusion at the last pooling layer of all CNN models. Two strategies were used in our experiment. In the first setting, the features are flattened and concatenated (denoted as 'concatenation'). In the second setting, we apply max-pooling across channels (denoted by 'max pooling').
 The results (in accuracy) are as follows:
 | concatenation | max pooling | ours |
 | --- 95.21 --- | -- 94.93 -- | 95.93|
 
 ---(2) Late fusion via CNN
-We additionally conducted the experiment in which the fusion of different CNNs is performed at the fully connected layer. Below are the experiment results.
+We conducted the experiment in which we perform the fusion of different CNNs is performed at the fully connected layer. Below are the experiment results.
 | CNN weighting | average | ours |
 | --- 95.26 --- |- 95.12 -| 95.93| 
 
-As demonstrated by this comparison, our method still achieves the best performance across all baselines.
+Based on the above comparisons, our method still achieves the best performance among all baselines.
 
-3. The impact of the number of instances:
-You have also asked the impact of the number of instances. We additionally perform an experiment by setting the different number of instances (number of rows in matrix L). In this experiment, SVM-predictions are used as fusion input. The experiment results (in accuracy) are listed below:
-| 1000  |  2000  | 4000  |  6000   |  8000  | 10000 |
-| 94.94 |  95.10 | 95.12  |  95.10   |  95.11  | 95.11   |
+Q3. The impact of the number of instances.
 
-We can observe that our method achieves stable performance when the number is greater than 2000. We will include all new experimental results into the revised paper.
+A. We performed an experiment by setting the different number of instances (number of rows in matrix L). In this experiment, SVM-predictions are used as fusion input. The experiment results (in accuracy) are listed below:
+|#instances| 1000  | 2000 | 4000 | 6000 | 8000 | 10000 |
+| Accuracy | 94.94 |95.10 |95.12 |95.10 |95.11 | 95.11 |
+
+From the above comparison, our method achieves stable performance when the number is greater than 2000. 
+
+We will include the above experimental results into the revised paper.
 
 
 For Reviewer 3:
 
-Thanks for your kind advice. The caption will be revised.
-The C represents the number of classes. There are usually not many classes in most real-world applications. In this situation, the complexity is acceptable.
-If C is quite large for some specific problems (e.g. YouTube-8M includes 4716 classes). A trade-off method may be splitting all classes into multiple parts, performing late fusion on each part and finally merging together. The above discussions will be included in our revision.
+Thanks for your kind advice. We will revise the caption.
+The C represents the number of classes. There are usually not many classes in most real-world applications. In this situation, the complexity is acceptable. If C is quite large for some specific problems (e.g. YouTube-8M includes 4716 classes). A trade-off method may be splitting all classes into multiple parts, and then performing late fusion on each part and finally merging together. The above discussions will be included in our revision.
