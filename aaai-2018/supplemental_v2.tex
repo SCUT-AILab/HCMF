@@ -1,0 +1,315 @@
+\def\year{2018}\relax
+%File: formatting-instruction.tex
+\documentclass[letterpaper]{article} %DO NOT CHANGE THIS
+\usepackage{aaai18}  %Required
+\usepackage{times}  %Required
+\usepackage{helvet}  %Required
+\usepackage{courier}  %Required
+\usepackage{url}  %Required
+\usepackage{graphicx}  %Required
+\frenchspacing  %Required
+\setlength{\pdfpagewidth}{8.5in}  %Required
+\setlength{\pdfpageheight}{11in}  %Required
+
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{amsthm,mathrsfs,amsfonts,dsfont}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\usepackage{epstopdf}
+\usepackage{bm}
+%\usepackage[vlined,boxed,ruled]{algorithm2e}
+\usepackage{url}
+\usepackage{xspace}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+
+
+
+\newcommand\mycomment[1]{}
+
+
+\def\ranksym{p}
+\def\symp{r}
+
+\def\calP{\mathcal{P}}
+
+
+\def\M{\mathcal{M}}
+\def\R{{\mathbb R}}
+\def\bR{{\bf R}}
+\def\U{{\bf U}}
+\def\V{{\bf V}}
+\def\diag{\mbox{diag}}
+\def\bsigma{\mbox{{\boldmath $\sigma$}}}
+\def\trsp{{\sf T}}
+\def\I{{\bf I}}
+\def\0{{\bf 0}}
+\def\E{{\bf E}}
+\def\G{{\bf G}}
+\def\grad{{\text{grad}}}
+\def\bZ{{\bf Z}}
+\def\bfeta{\mbox{{\boldmath $\eta$}}}
+\def\mT{{\mathcal T}}
+
+\def\bA{{\bf A}}
+\def\bB{{\bf B}}
+\def\bN{{\bf N}}
+\def\bM{{\bf M}}
+\def\bD{{\bf D}}
+\def\bI{{\bf I}}
+\def\bE{{\bf E}}
+\def\blambda{{\bm \lambda}}
+\def\calL{{\mathcal{L}}}
+\def\calC{{\mathcal{C}}}
+\def\calS{{\mathcal{S}}}
+\def\calF{{\mathcal{F}}}
+\def\bL{{\bf L}}
+\def\bO{{\bf O}}
+\def\bU{{\bf U}}
+\def\bV{{\bf V}}
+\def\dsR{\mathds{R}}
+\def\bX{{\bf X}}
+\def\bx{{\bf x}}
+\def\btx{{\tilde{\bf x}}}
+\def\by{{\bf y}}
+\def\bw{{\bf w}}
+\def\btw{{\tilde{\bf w}}}
+\def\tK{\tilde{K}}
+\def\txi{\tilde{\xi}}
+\def\tildeb{{\tilde{b}}}
+\def\tphi{{\tilde{\phi}}}
+\def\bz{{\bf z}}
+\def\br{{\bf r}}
+\def\bv{{\bf v}}
+\def\bb{{\bf b}}
+\def\bp{{\bf p}}
+\def\bA{{\bf A}}
+\def\bI{{\bf I}}
+
+\def\bx{{\bf x}}
+\def\bX{{\bf X}}
+\def\by{{\bf y}}
+\def\bY{{\bf Y}}
+\def\bw{{\bf w}}
+\def\bW{{\bf W}}
+\def\balpha{{\bm \alpha}}
+\def\bmu{{\bm \mu}}
+\def\bK{{\bf K}}
+\def\bg{{\bf g}}
+\def\bp{{\bf p}}
+\def\p{p}
+\def\bP{{\bf P}}
+
+\def\balpha{{\bm \alpha}}
+\def\bbeta{{\bm \beta}}
+\def\eg{{\emph{e.g.}}}
+\def\zerocolumn{{\bf 0}}
+
+\def\ttTP{{\tt TP}}
+\def\ttFP{{\tt FP}}
+\def\ttFN{{\tt FN}}
+
+\def\st{{\text{s.t.}}}
+\def\etc{\emph{etc}}
+\def\wrt{\emph{w.r.t}}
+\def\ie{\emph{ie}}
+\def\eg{\emph{eg}}
+\def\rank{{\text{rank}}}
+\def\Tr{{\text{Tr}}}
+
+\def\yanred{\textcolor{red}}
+\def\yanblue{\textcolor{blue}}
+
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[pagebackref=true,breaklinks=true,colorlinks,bookmarks=false]{hyperref}
+
+
+
+\begin{document}
+
+%%%%%%%%% TITLE3
+\title{Supplemental Material for \\``Late Fusion via Subspace Search with Consistency Preservation''}
+
+\author{AAAI Press\\
+Association for the Advancement of Artificial Intelligence\\
+2275 East Bayshore Road, Suite 160\\
+Palo Alto, California 94303\\
+}
+
+\maketitle
+
+
+
+\section{Appendix A: The Proof of Lemma 1}
+
+\begin{lemma}
+%Given that the sequence $\{ \mu_{t} \}$ is always increasing, $\mu_{0} > 0$ and $\blambda_{0} = 0$, the sequence $\{ \blambda_{t} \}$ computed by Algorithm~\ref{alg:alm_mf} is bounded.
+Given that $\rho > 1$, the sequence $\{ \mu_{t} \}$ is always increasing, $\mu_{0} > 0$ and $\blambda_{0} = 0$, the sequence $\{ \blambda_{t} \}$ computed by Algorithm~1 is bounded.
+\end{lemma}
+
+\begin{proof}
+  %By the optimality of $\bE_{t+1}$ in Step 2 in Algorithm~\ref{alg:alm_mf}, we have the sub-differential of $\calL$ w.r.t. $\bE$ as zeros:
+  By the optimality of $\bE_{t+1}$ in Step 2 in Algorithm~1, we have the sub-differential of $\calL$ w.r.t. $\bE$ as zeros:
+  {\small{
+  \begin{align}
+  \label{eq:derivatives_calL_E}
+    0 & \in \frac{\calL(\bX_{t+1}, \bE_{t+1}, \blambda_{t}, \mu_{t})}{\bE_{t+1}} \nonumber \\
+      & = \partial(|| \bE_{t+1} ||_{1,2}) + \blambda_{t} + \mu_{t} (\calP_{\Omega} (\bL - \bX_{t+1} - \bE_{t+1})) \nonumber \\
+      & = \partial(|| \bE_{t+1} ||_{1,2}) + \blambda_{t+1}   \nonumber \\
+    \Rightarrow & -\blambda_{t+1} \in \partial(|| \bE_{t+1} ||_{1,2})  .
+  \end{align}
+  }}
+  \noindent
+  %Consider the computation of $\bE_{t+1}$ in Eq~(\ref{eq:column_wise_soft_thresholding}), which is associated with $\bL, \bX_{t+1}$, $\blambda_{t}$ and $\mu_{t}$.
+  Consider the computation of $\bE_{t+1}$ in Eq~(17), which is associated with $\bL, \bX_{t+1}$, $\blambda_{t}$ and $\mu_{t}$.
+  $\bL$ is the observation and thus bounded.
+  %$\bX_{t+1}$ is bounded due to the convergence guarantee of Step 1 in Algorithm~\ref{alg:alm_mf}~\cite{vandereycken2013lowrank}.
+  $\bX_{t+1}$ is bounded due to the convergence guarantee of Step 1 in Algorithm~1~[42].
+  $\{ \blambda_{t} \}$ is initialized by setting $\blambda_{0} = 0$ and $\{ \mu_{t} \}$ is non-decreasing.
+  %Thus when updating by Algorithm~\ref{alg:alm_mf}, $\bE_{t+1}$, $\partial(\bE_{t+1})$ and $\blambda_{t}$ are all bounded accordingly as $t$ increases.
+  Thus when updating by Algorithm~1, $\bE_{t+1}$, $\partial(\bE_{t+1})$ and $\blambda_{t}$ are all bounded accordingly as $t$ increases.
+  This completes the proof.
+\end{proof}
+
+
+
+\section{Appendix B: The Proof of Theorem 1}
+
+\mycomment{
+\begin{theorem}\label{theorem:alm_convergence}
+  Given that the sequence $\{ \blambda_{k} \}$ is bounded, any accumulation point $(\bX^*, \bE^*)$ of Algorithm~1 is a stationary point.
+\end{theorem}
+}
+
+\begin{theorem}
+\label{theorem:alm_convergence}
+  %Suppose the sequences $\{\bX_k\}_{k=1}^{\infty}$, $\{\bE_k\}_{k=1}^{\infty}$ and $\{\blambda_k\}_{k=1}^{\infty}$ are generated by Algorithm~\ref{alg:alm_mf}.
+  Suppose the sequences $\{\bX_k\}_{k=1}^{\infty}$, $\{\bE_k\}_{k=1}^{\infty}$ and $\{\blambda_k\}_{k=1}^{\infty}$ are generated by Algorithm~1.
+  As $k \to \infty$, the gradients of $\calL$ w.r.t. $\bX$ and $\bE$ vanish,
+  thus any accumulation point $(\bX^*, \bE^*)$ is a stationary point.
+\end{theorem}
+
+
+%\begin{proof}
+%  The proof can be found in Appendix A.
+%\end{proof}
+\begin{proof}
+    %Considering the $(k+1)$-th iteration of Algorithm~\ref{alg:alm_mf}, we have the following development:
+    Considering the $(k+1)$-th iteration of Algorithm~1, we have the following development:
+    \begin{align}
+    \label{eq:proof1}
+      & \calL(\bX_{k+1}, \bE_{k+1}, \blambda_{k}, \mu_{k})   \nonumber \\
+      & = || \bE_{k+1} ||_{1,2} + \langle \blambda_{k}, \bL - \bX_{k+1} - \bE_{k+1} \rangle  \nonumber \\
+      & \quad + \frac{\mu}{2} || \bL - \bX_{k+1} - \bE_{k+1} ||_{F}^2         \nonumber \\
+      & = || \bE_{k+1} ||_{1,2} + \frac{\mu}{2} [ || \bL - \bX_{k+1} - \bE_{k+1} ||_{F}^2  \nonumber \\
+      & \quad + \frac{\mu}{2} \langle \blambda_{k}, \bL - \bX_{k+1} - \bE_{k+1} \rangle + \frac{1}{\mu_{k}^2} || \blambda_k ||_F^2 ] \nonumber \\
+      & \quad - \frac{1}{2\mu_k} || \blambda_k ||_F^2    \nonumber  \\
+      & = || \bE_{k+1} ||_{1,2} + \frac{\mu_k}{2} || \bL - \bX_{k+1} - \bE_{k+1} + \frac{\blambda_k}{\mu_k} ||_F^2 \nonumber \\
+      & \quad - \frac{1}{2\mu_k} || \blambda_k ||_F^2   \nonumber \\
+      & = || \bE_{k+1} ||_{1,2} + \frac{\mu_k}{2} || \frac{1}{\mu_k} [ \mu_k (\bL - \bX_{k+1} - \bE_{k+1}) - \blambda_k ] ||_F^2  \nonumber \\
+      & \quad - \frac{1}{2\mu_k} || \blambda_k ||_F^2   \nonumber \\
+      & = || \bE_{k+1} ||_{1,2} + \frac{1}{2\mu_k} ( || \blambda_{k+1} || - || \blambda_{k} ||_F^2 )   .
+    \end{align}
+    \noindent
+    Let $f^*$ denote a local optimal objective function value, which enables the following development:
+    \begin{align}\label{eq:proof2}
+      f^* & = \min_{\bX + \bE = \bL, \bX \in \M_{\ranksym}} || \bE ||_{1,2}   \nonumber  \\
+          & = \min_{\bX + \bE = \bL, \bX \in \M_{\ranksym}} || \bE ||_{1,2} + \langle \blambda_k, \bL - \bX - \bE \rangle \nonumber \\
+          & \quad + \frac{\mu_k}{2} || \bL - \bA - \bE ||_F^2   \nonumber \\
+          & \geq \min_{\bE, \bX \in \M_{\ranksym}} || \bE ||_{1,2} + \langle \blambda_k, \bL - \bX - \bE \rangle \nonumber \\
+          & \quad + \frac{\mu_k}{2} ||  \bL - \bX - \bE ||_F^2     \nonumber \\
+          & = \min_{\bE, \bX \in \M_{\ranksym}} || \bE ||_{1,2} + \frac{1}{2\mu_k} (|| \blambda_{k+1} ||_F^2 - || \blambda_{k} ||_F^2)   .
+    \end{align}
+    \indent
+    Regarding that $\mu_{k+1} = \rho \mu_{k}$ where $\rho > 1$, and the sequence $\{ \blambda_k \}$ is bounded (Lemma 1), we derive that
+    $\frac{1}{2\mu_k} (|| \blambda_{k+1} ||_F^2 - || \blambda_{k} ||_F^2) \rightarrow 0$ when $k \rightarrow +\infty .$
+    Therefore, when $k \rightarrow +\infty$, we obtain $\min_{\bE, \bA = \bU \bV} = || \bE^* ||_{1,2} \leq f^*$.
+    On the other hand, by Algorithm~1, $\bL - \bX_{k+1} - \bE_{k+1} = \mu_k^{-1} (\blambda_{k+1} - \blambda_{k}) .$
+    As $k \rightarrow +\infty$, we have $\bL - \bX^* - \bE^* \rightarrow 0  ,$
+    which indicates that $(\bX^*, \bE^*)$ is a stationary point.
+    This completes proof.
+\end{proof}
+
+
+
+
+\section{Appendix C: The Proof of Lemma 2}
+
+
+\begin{lemma}
+  %Assuming that $\U_{\symp}$, $\V_{\symp}$ and $\bM$ are computed by Algorithm~\ref{alg:compute_riemannian_grad},
+  Assuming that $\U_{\symp}$, $\V_{\symp}$ and $\bM$ are computed by Algorithm~2,
+  we have {\small${\textnormal{grad}} f(\bX) = \U \bM \V + \U_{\symp} \V^{\trsp} + \U \V^{\trsp}_{\symp}$}.
+\end{lemma}
+
+\begin{proof}
+\begin{align}
+\label{eq:proof_lemma1}
+       & \grad f(\bX) \\
+       & = \U \bM \V^{\trsp} + \U_{\symp} \V^{\trsp} + \U \V_{\symp}^{\trsp}  \nonumber \\
+       & = \U(\U^{\trsp} \G \V) \V^{\trsp} + (\bR_{v} - \U \bM) \V^{\trsp} + \U (\bR_{u} - \V \bM^{\trsp})^{\trsp} \nonumber \\
+       & = P_{\U} \G P_{V} + \G \V \V^{\trsp} - \U \bM \V^{\trsp} + \U \U^{\trsp} \G - \U \bM \V^{\trsp} \nonumber \\
+       & = P_{\U} \G P_{V} + \G P_{V} - 2\U \bM \V^{\trsp} + P_{U} \G  \nonumber \\
+       & = P_{\U} \G P_{V} + \G P_{V} - 2\U (\U^{\trsp} \bR_{v}) \V^{\trsp} + P_{U} \G  \nonumber \\
+       & = P_{\U} \G P_{V} + \G P_{V} - 2\U (\U^{\trsp} \G \V) \V^{\trsp} + P_{U} \G  \nonumber \\
+       & = P_{\U} \G P_{V} + (\bI - P_{U}) \G P_{V} + P_{U} \G (\bI - P_{V})  \nonumber \\
+       & = P_{\U} \G P_{V} + P_{U}^{\perp} \G P_{V} + P_{U} \G P_{V}^{\perp}  ,
+\end{align}
+\end{proof}
+
+\section{Appendix D: Additional Experimental Results}
+{\bf{The impact of the number of instances.}}
+We performed an experiment by setting the different number of instances (number of rows in matrix $\calL$). 
+In this experiment, SVM-predictions are used as fusion input, and we choose the networks the same as in Table 1 of the main paper.
+The results are shown in Table~\ref{table:number}, our method achieves stable performance when the number is greater than 2000.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|}\hline
+\#Instances &   Accuracy      \\\hline
+1000       &   94.94          \\\hline
+2000       &   95.10          \\\hline
+4000       &   95.12          \\\hline
+6000       &   95.10          \\\hline
+8000       &   95.11          \\\hline
+10000      &   95.11          \\\hline
+\end{tabular}
+\caption{Mean accuracy on CIFAR-10 for different number of instances.
+}
+\label{table:number}
+\end{table}
+
+{\bf{SVM-prediction V.S. CNN-prediction}}
+We compare the difference between using SVM prediction results as our fusion input and the CNN predictions as input.
+We choose the networks the same as in Table 1 of the main paper.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|}\hline
+           &   CIFAR-10 & CIFAR-100      \\\hline
+SVM        &   95.11\%  & 77.72\%    \\\hline
+CNN        &   95.93\%  & 79.37\% \\\hline
+\end{tabular}
+\caption{Mean accuracy on CIFAR-10 and CIFAR-100 using SVM-prediction or CNN-prediction results as our fusion inputs.
+}
+\label{table:state_of_the_art}
+\end{table}
+
+With CNN predictions as our fusion inputs, we can obtain a much better performance.
+
+\end{document}
