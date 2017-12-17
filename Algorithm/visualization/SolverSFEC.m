@@ -59,7 +59,7 @@ for iter = 1:max_iters
     end
     fprintf ('PreNorm: %.3f, CurNorm : %.3f, done [%.3f] s\n',previous_norm, temp, toc);
     if (termination)
-        fprintf('End Break in %d\n', iter); break;
+        fprintf ('End Break in %d\n', iter); break;
     end
     %fprintf ('norm(L) : %.4f, norm(X) : %.4f, norm(E) : %.4f \n\n', norm(L, 'fro'), norm(X, 'fro'), norm(E, 'fro'));
 end
