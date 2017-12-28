@@ -7,7 +7,7 @@ function warp_vis(N, M, Class, error_ratios, save_dir)
   assert (status, 'The mkdir state is wrong');
   fprintf('warp the visualization with N=%d, Class=%d, classifiers=%d\n', N, Class, M);
   % visualization 
-  pix_rect = [3, 2];
+  pix_rect = [3, 8];
   gt_X = rand(N, Class);
 
 
@@ -74,7 +74,7 @@ function save_image(image, path)
   imagesc(image);
   set(gca,'XTick',[]); % Remove the ticks in the x axis!
   set(gca,'YTick',[]); % Remove the ticks in the y axis
-  set(gca,'Position',[0 0 1 1]); % Make the axes occupy the hole figure
+  %set(gca,'Position',[0 0 1 1]); % Make the axes occupy the hole figure
   print(gcf, path,'-dpdf','-r300');
   %system(['pdfcrop ', path, ' ', path]);
   close all;
@@ -106,6 +106,7 @@ function save_pca(cells, path)
   legend(cells(:, 2) , 'FontSize', font_size);
   %ylabel('the ratio of the largest eigenvalues to the sum of eigenvalues', 'FontSize', font_size);
   %xlabel('the index of each eigenvalue (sorted from large to small)', 'FontSize', font_size);
+  ylim([0, 0.1]);
   set(gca,'fontsize', font_size);
   print(gcf, path, '-dpdf','-r300');
   %system(['pdfcrop ', path, ' ', path]);

@@ -1,9 +1,11 @@
 function I = Convert2Image(X, rect_len)
     M = numel(X);
     [N, K] = size(X{1});
-    gaps = [2,3];
+    %gaps = [2,3];
+    gaps = rect_len;
 
     I = uint8(zeros(N*rect_len(2) + gaps(1) * 2, M*K*rect_len(1) + gaps(2) * (M+1), 3)) + 255;
+    fprintf('image size : %d, %d\n', size(I,1), size(I,2));
 
     RGBs = uint8( jet(K) * 255 );
 
