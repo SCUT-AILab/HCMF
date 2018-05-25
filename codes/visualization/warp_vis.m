@@ -1,6 +1,7 @@
 % Example for Call :
 % warp_vis(250, 15, 20, [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9], 'results/visual/');
 % warp_vis(250, 15, 20, [0.3], 'results/visual/');
+% Figure 2 and Figure 3
 function warp_vis(N, M, Class, error_ratios, save_dir)
   fprintf('save the results into %s', save_dir);
   status = mkdir(save_dir);
@@ -27,7 +28,11 @@ function warp_vis(N, M, Class, error_ratios, save_dir)
     p  = 1.01;
     mu = 1;
     max_iters = 2000;
+    [~, max_index] = merge_results(L, numel(ER), Class);
+    Acc_ours_before = sum(max_index==tLabel) / N * 100;
     [X_ours]  = SolverSFEC(L, numel(ER), Class, p, mu, max_iters);
+    [~, max_index] = merge_results(X_ours, numel(ER), Class);
+    Acc_ours_after = sum(max_index==tLabel) / N * 100;
     % compare with RCEC ::: beta = {0.01, 0.1, 1, 2, 5, 10}
     opts_rcec = struct('K', Class, 'max_iters', max_iters, 'beta', 1, 'gamma', 0.01, 'lamda', 0.1);
     [X_rcec]  = Solver_Rcec(L, tLabel, opts_rcec);
@@ -52,8 +57,19 @@ function warp_vis(N, M, Class, error_ratios, save_dir)
     save_image(image_rcec , strcat(save_dir, '/', 'rcec-', indicator, '.pdf'));
     save_image(image_error, strcat(save_dir, '/', 'eror-', indicator, '.pdf'));
     save_image(image_gt   , strcat(save_dir, '/', 'grot-', indicator, '.pdf'));
+    fprintf('Accuracy for the error ratio of %.2f : %.2f  ->  %.2f\n', error_ratio, Acc_ours_before, Acc_ours_after);
   end
 
+end
+
+function [fusion, max_index] = merge_results(X, M, Class)
+    assert(size(X, 2) == M*Class);
+    fusion = zeros(size(X,1), Class);
+    for i = 1:M
+        fusion = fusion + X(:,(i-1)*Class+1:i*Class);
+    end
+    fusion = fusion / M;
+    [Max, max_index] = max(fusion, [], 2);
 end
 
 function cells = split(Matrix, M, Class)
