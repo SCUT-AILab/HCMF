@@ -1,9 +1,0 @@
-Total Class : 0,  Train Instances : 0, Feature Dims : 0
-Total Class : 0,  Test  Instances : 0, Feature Dims : 0
-label (1st argument) should be a vector (# of column is 1).
-{Attempted to access accuracy(1); index out of bounds because numel(accuracy)=0.
-
-Error in ExamEnsemble (line 43)
-original_accuracy = accuracy(1);
-} 
-ExamEnsemble('satimage.scale.tr', 'satimage.scale.t', '-s 1');

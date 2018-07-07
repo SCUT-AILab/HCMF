@@ -13,3 +13,5 @@
 reference
 resource/*.pdf
 *.mexmaci64
+*/.DS_Store
+*/*/.DS_Store
