@@ -7,8 +7,8 @@ If you find this project help your research, please cite:
 ```
 @article{dong2018hcmf,
   title={Late Fusion via Subspace Search with Consistency Preservation},
-  author={Dong, Xuanyi and Yan, Yan and Tan, Mingkui and Yang, Yi and Tsang, W., Ivor},
-  journal={},
+  author={Dong, Xuanyi and Yan, Yan and Tan, Mingkui and Yang, Yi and Tsang, Ivor W},
+  journal={IEEE Transactions on Image Processing (TIP)},
   year={2018}
 }
 ```
