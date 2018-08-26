@@ -13,6 +13,14 @@ If you find this project help your research, please cite:
 }
 ```
 
+## Visualization
+To generate the figures used in this paper (synthetic experiments), please use the following code:
+```
+cd codes/visualization/
+matlab
+warp_vis(250, 15, 20, [0.3], 'results/visual/')
+```
+
 
 ## Resourse
 - LRGeomCG, Low-rank matrix completion by Riemannian optimization. [\[paper\]](http://www.unige.ch/math/vandereycken/bibtexbrowser.php?key=Vandereycken_2013&bib=my_pubs.bib)[\[code\]](http://www.unige.ch/math/vandereycken/software/RiemannianMatrixCompletion_31Jun2014.zip)
