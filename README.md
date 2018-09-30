@@ -5,11 +5,18 @@ We propose an late fusion algorithm, i.e., Hard-rank Constraint Matrix Factoriza
 ## Citation
 If you find this project help your research, please cite:
 ```
-@article{dong2018hcmf,
-  title={Late Fusion via Subspace Search with Consistency Preservation},
-  author={Dong, Xuanyi and Yan, Yan and Tan, Mingkui and Yang, Yi and Tsang, Ivor W},
-  journal={IEEE Transactions on Image Processing (TIP)},
-  year={2018}
+@article{dong2019hcmf,
+  title  = {Late Fusion via Subspace Search with Consistency Preservation},
+  author = {Dong, Xuanyi and Yan, Yan and Tan, Mingkui and Yang, Yi and Tsang, Ivor W},
+  journal= {IEEE Transactions on Image Processing (TIP)},
+  year   = {2019}, 
+  volume = {28}, 
+  number = {1}, 
+  pages  = {518-528},
+  doi    = {10.1109/TIP.2018.2867747}, 
+  ISSN   = {1057-7149},
+  month  = {Jan},
+  year   = {2019}
 }
 ```
 
