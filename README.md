@@ -18,8 +18,7 @@ If you find this project help your research, please cite:
   pages  = {518-528},
   doi    = {10.1109/TIP.2018.2867747}, 
   ISSN   = {1057-7149},
-  month  = {Jan},
-  year   = {2019}
+  month  = {Jan}
 }
 ```
 
